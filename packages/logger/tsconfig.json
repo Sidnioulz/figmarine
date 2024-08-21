@@ -1,0 +1,10 @@
+{
+  "extends": "@figmarine/config-typescript/library.json",
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

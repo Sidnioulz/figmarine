@@ -1,0 +1,43 @@
+{
+  "name": "eslint-plugin-figma",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "exports": {
+    "./*": {
+      "types": "./dist/*.d.js",
+      "default": "./dist/*.js"
+    }
+  },
+  "files": [
+    "dist/**"
+  ],
+  "jest": {
+    "preset": "@figmarine/config-jest-presets/node"
+  },
+  "devDependencies": {
+    "@figmarine/config-eslint": "workspace:*",
+    "@figmarine/config-jest-presets": "workspace:*",
+    "@figmarine/config-tsup": "workspace:*",
+    "@figmarine/config-typescript": "workspace:*",
+    "eslint-plugin-eslint-plugin": "^6.2.0",
+    "eslint-plugin-n": "^17.10.2",
+    "tsup": "^8.2.4",
+    "typescript": "latest",
+    "typescript-eslint": "^8.2.0"
+  },
+  "dependencies": {
+    "@eslint/core": "^0.4.0",
+    "@eslint/json": "^0.4.0",
+    "@figmarine/logger": "workspace:*",
+    "@types/node": "^20.16.1"
+  },
+  "peerDependencies": {
+    "eslint": ">=9.0.0"
+  }
+}

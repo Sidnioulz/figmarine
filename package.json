@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "clean": "turbo run clean",
+    "clean:cache": "turbo run clean --filter=@figmarine/cache",
+    "dev": "turbo run dev",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "turbo": "^2.0.9"
+  },
+  "packageManager": "pnpm@9.1.4",
+  "engines": {
+    "node": ">=18"
+  },
+  "name": "figmarine"
+}

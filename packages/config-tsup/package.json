@@ -1,0 +1,16 @@
+{
+  "name": "@figmarine/config-tsup",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "index.js"
+  ],
+  "exports": {
+    ".": "./index.js"
+  },
+  "devDependencies": {
+    "tsup": "^8.2.4"
+  }
+}
