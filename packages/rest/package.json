@@ -11,7 +11,6 @@
     "docs:serve": "echo 'TODO: vitepress serve docs'",
     "dev": "tsup --watch",
     "lint": "eslint src/",
-    "postinstall": "pnpm api:regen",
     "test": "jest",
     "typecheck": "tsc --noEmit"
   },
