@@ -11,9 +11,7 @@ permissions:
 jobs:
   dependabot-regen-api:
     runs-on: ubuntu-latest
-    if:
-       - github.actor == 'dependabot[bot]'
-       - contains(github.event.pull_request.title, "Bump the oas group")
+    if: github.actor == 'dependabot[bot]' && contains(github.event.pull_request.title, "Bump the oas group")
     steps:
       - name: Dependabot metadata
         id: metadata
