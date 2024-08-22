@@ -21,7 +21,7 @@ importers:
         specifier: workspace:*
         version: link:../logger
       cache-manager:
-        specifier: ^5.7.3
+        specifier: ^5.7.6
         version: 5.7.6
       cache-manager-fs-hash:
         specifier: ^2.0.0
@@ -60,6 +60,9 @@ importers:
 
   packages/config-eslint:
     devDependencies:
+      '@eslint/json':
+        specifier: ^0.4.0
+        version: 0.4.0(eslint@9.9.0)
       eslint-config-prettier:
         specifier: ^9.1.0
         version: 9.1.0(eslint@9.9.0)
@@ -91,7 +94,11 @@ importers:
         specifier: ^8.2.4
         version: 8.2.4(postcss@8.4.38)(typescript@5.5.4)
 
-  packages/config-typescript: {}
+  packages/config-typescript:
+    devDependencies:
+      '@types/jest':
+        specifier: ^29.5.12
+        version: 29.5.12
 
   packages/eslint-plugin-figma:
     dependencies:
