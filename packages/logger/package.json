@@ -4,30 +4,33 @@
   "private": true,
   "license": "MIT",
   "type": "module",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "jest",
+    "test:dev": "jest --watch",
+    "typecheck": "tsc --noEmit"
+  },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist/**"
   ],
-  "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
-    "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
-    "test": "jest"
-  },
   "jest": {
     "preset": "@figmarine/config-jest-presets/node"
   },
   "devDependencies": {
     "@figmarine/config-eslint": "workspace:*",
     "@figmarine/config-jest-presets": "workspace:*",
+    "@figmarine/config-prettier": "workspace:*",
     "@figmarine/config-tsup": "workspace:*",
     "@figmarine/config-typescript": "workspace:*",
     "@types/jest": "^29.5.12",
     "@types/node": "^22.5.0",
     "jest": "^29.7.0",
     "tsup": "^8.2.4",
-    "typescript": "^5.5.4"
+    "typescript": "latest"
   }
 }
