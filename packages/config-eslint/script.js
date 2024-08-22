@@ -1,28 +1,12 @@
-import json from "@eslint/json";
-import nodePlugin from "eslint-plugin-n";
-import prettier from "eslint-plugin-prettier/recommended";
-import turbo from "eslint-plugin-turbo";
-import tseslint from "typescript-eslint";
-
-const jsonConfig = {
-  plugins: {
-    json,
-  },
-};
+import nodePlugin from 'eslint-plugin-n';
+import { configs as shared, ignoreJson } from './shared.js';
 
 export const configs = [
-  jsonConfig,
+  ...shared,
+  ignoreJson(nodePlugin.configs['flat/recommended-script']),
   {
-    ignores: ["dist/*"],
-  },
-  {
-    files: ["turbo.json"],
-    language: "json/json",
-    plugins: {
-      turbo,
+    rules: {
+      'n/no-missing-import': 'off',
     },
   },
-  prettier,
-  ...tseslint.configs.recommended,
-  nodePlugin.configs["flat/recommended-script"],
 ];
