@@ -1,14 +1,14 @@
-import os from 'node:os';
-import path from 'node:path';
+import fs from 'node:fs';
 
 import { createCache } from 'cache-manager';
 import { DiskStore } from 'cache-manager-fs-hash';
 
 import { log } from '@figmarine/logger';
 
-const cachePath = path.join(os.tmpdir(), '@figmarine/cache');
-log(`Loading REST API cache from location ${cachePath}`);
+import { cachePath } from './constants';
 
+log(`Loading REST API cache from location ${cachePath}`);
+fs.mkdirSync(cachePath, { recursive: true });
 const diskCache = createCache(
   new DiskStore({
     path: cachePath,
