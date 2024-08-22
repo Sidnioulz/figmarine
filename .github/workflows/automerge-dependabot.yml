@@ -11,17 +11,27 @@ permissions:
 jobs:
   dependabot-regen-api:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22]
     if: github.actor == 'dependabot[bot]' && contains(github.event.pull_request.title, 'Bump the oas group')
     steps:
-      - name: Dependabot metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@v1
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
         with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          version: 9
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
       - name: Regenerate API clients on OpenAPI Spec change
+        run: pnpm api:regen
+      - name: Commit regenerated API clients
         run: |
-          pnpm i
-          pnpm api:regen
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
@@ -31,8 +41,13 @@ jobs:
           PR_URL: ${{github.event.pull_request.html_url}}
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
   dependabot-approve:
+    needs: [dependabot-regen-api]
     runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]'
+    if:  |
+      always() &&
+      !contains(needs.*.result, 'failure') &&
+      !contains(needs.*.result, 'cancelled') &&
+      github.actor == 'dependabot[bot]'
     steps:
       - name: Dependabot metadata
         id: metadata
@@ -45,6 +60,7 @@ jobs:
           PR_URL: ${{github.event.pull_request.html_url}}
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
   dependabot-merge:
+    needs: [dependabot-approve]
     runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]'
     steps:
