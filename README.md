@@ -18,38 +18,18 @@
   
   <p>
     <img src="https://img.shields.io/badge/status-initial_stages-orange" alt="Status: Initial stages" />
-    <a href="https://github.com/Sidnioulz/figmarine/commits">
-      <img src="https://img.shields.io/github/commit-activity/m/Sidnioulz/figmarine" alt="commit activity" />
-    </a>
-    <a href="https://github.com/Sidnioulz/figmarine/commits">
-      <img src="https://img.shields.io/github/last-commit/Sidnioulz/figmarine" alt="last commit" />
-    </a>
-    <a href="https://github.com/Sidnioulz/figmarine/issues/">
-      <img src="https://img.shields.io/github/issues/Sidnioulz/figmarine" alt="open issues" />
-    </a>
-    <a href="https://github.com/Sidnioulz/figmarine/actions/workflows/continuous-integration.yml">
-      <img src="https://github.com/Sidnioulz/figmarine/actions/workflows/continuous-integration.yml/badge.svg" alt="CI status" />
-    </a>
-    <a href="https://codecov.io/gh/Sidnioulz/figmarine">
-      <img src="https://codecov.io/gh/Sidnioulz/figmarine/graph/badge.svg?token=4SX3N57XH3" alt="code coverage" />
-    </a>
+    <a href="https://github.com/Sidnioulz/figmarine/commits"><img src="https://img.shields.io/github/commit-activity/m/Sidnioulz/figmarine" alt="commit activity" /></a>
+    <a href="https://github.com/Sidnioulz/figmarine/commits"><img src="https://img.shields.io/github/last-commit/Sidnioulz/figmarine" alt="last commit" /></a>
+    <a href="https://github.com/Sidnioulz/figmarine/issues/"><img src="https://img.shields.io/github/issues/Sidnioulz/figmarine" alt="open issues" /></a>
+    <a href="https://github.com/Sidnioulz/figmarine/actions/workflows/continuous-integration.yml"><img src="https://github.com/Sidnioulz/figmarine/actions/workflows/continuous-integration.yml/badge.svg" alt="CI status" /></a>
+    <a href="https://codecov.io/gh/Sidnioulz/figmarine"><img src="https://codecov.io/gh/Sidnioulz/figmarine/graph/badge.svg?token=4SX3N57XH3" alt="code coverage" /></a>
   </p>
   <p>
-    <a href="https://github.com/Sidnioulz/figmarine/graphs/contributors">
-      <img src="https://img.shields.io/github/contributors/Sidnioulz/figmarine" alt="contributors" />
-    </a>
-    <a href="https://github.com/Sidnioulz/figmarine/blob/main/LICENSE">
-      <img src="https://img.shields.io/github/license/Sidnioulz/figmarine.svg" alt="license" />
-    </a>
-    <a href="https://github.com/Sidnioulz/figmarine/network/members">
-      <img src="https://img.shields.io/github/forks/Sidnioulz/figmarine" alt="forks" />
-    </a>
-    <a href="https://github.com/Sidnioulz/figmarine/stargazers">
-      <img src="https://img.shields.io/github/stars/Sidnioulz/figmarine" alt="stars" />
-    </a>
-    <a href="https://github.com/Sidnioulz/figmarine/stargazers">
-      <img src="https://img.shields.io/badge/sponsor-30363D?logo=GitHub-Sponsors&logoColor=#EA4AAA" alt="sponsor this project" />
-    </a>
+    <a href="https://github.com/Sidnioulz/figmarine/graphs/contributors"><img src="https://img.shields.io/github/contributors/Sidnioulz/figmarine" alt="contributors" /></a>
+    <a href="https://github.com/Sidnioulz/figmarine/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Sidnioulz/figmarine.svg" alt="license" /></a>
+    <a href="https://github.com/Sidnioulz/figmarine/network/members"><img src="https://img.shields.io/github/forks/Sidnioulz/figmarine" alt="forks" /></a>
+    <a href="https://github.com/Sidnioulz/figmarine/stargazers"><img src="https://img.shields.io/github/stars/Sidnioulz/figmarine" alt="stars" /></a>
+    <a href="https://github.com/Sidnioulz/figmarine/stargazers"><img src="https://img.shields.io/badge/sponsor-30363D?logo=GitHub-Sponsors&logoColor=#EA4AAA" alt="sponsor this project" /></a>
   </p>
 
   <h4>
