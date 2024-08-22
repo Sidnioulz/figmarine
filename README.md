@@ -51,22 +51,21 @@
 
 <!-- no toc -->
 - [Key Projects](#star2-key-projects)
-  * [Nursery](#nursery)
-  * [REST API Client](#rest-api-client)
-  * [GraphQL Client](#graphql-client)
-  * [ESLint Plugin](#eslint-plugin)
+  - [Nursery](#nursery)
+  - [REST API Client](#rest-api-client)
+  - [GraphQL Client](#graphql-client)
+  - [ESLint Plugin](#eslint-plugin)
 - [Contributing](#package-contributing)
-  * [Code of Conduct](#code-of-conduct)
-  * [Contributor License Agreement](#contributor-license-agreement)
-  * [Getting Started](#getting-started)
-  * [Pull Requests](#pull-requests)
-  * [Release System](#release-system)
+  - [Code of Conduct](#code-of-conduct)
+  - [Contributor License Agreement](#contributor-license-agreement)
+  - [Getting Started](#getting-started)
+  - [Pull Requests](#pull-requests)
+  - [Release System](#release-system)
 - [Support](#sos-support)
 - [Contact](#envelope-contact)
 - [Acknowledgments](#yellow_heart-acknowledgments)
-  * [Thanks](#thanks)
-  * [Built With](#built-with)
-
+  - [Thanks](#thanks)
+  - [Built With](#built-with)
 
 ## :star2: Key Projects
 
@@ -102,6 +101,7 @@ Please read the [Code of Conduct](https://github.com/Sidnioulz/figmarine/blob/ma
 To ensure that contributors are legally allowed to share the content they contribute under the license terms of this project, contributors must adhere to the [Developer Certificate of Origin](https://developercertificate.org/) (DCO). All contributions made must be signed to satisfy the DCO. This is handled by a Pull Request check.
 
 > By signing your commits, you attest to the following:
+>
 > 1. The contribution was created in whole or in part by you and you have the right to submit it under the open source license indicated in the file; or
 > 2. The contribution is based upon previous work that, to the best of your knowledge, is covered under an appropriate open source license and you have the right under that license to submit that work with modifications, whether created in whole or in part by you, under the same open source license (unless you are permitted to submit under a different license), as indicated in the file; or
 > 3. The contribution was provided directly to you by some other person who certified 1., 2. or 3. and you have not modified it.
@@ -111,22 +111,20 @@ To ensure that contributors are legally allowed to share the content they contri
 
 This project uses PNPM as a package manager, and Turbo as a monorepo provider.
 
-* See the [installation instructions for PNPM](https://pnpm.io/installation)
-* Clone the whole repository; all published projects depend on internal utility and config packages
-* Run `pnpm i` at the root of the monorepo to have everything installed
-* You can now switch to the package you're interested in working on and check its `README.md`
+- See the [installation instructions for PNPM](https://pnpm.io/installation)
+- Clone the whole repository; all published projects depend on internal utility and config packages
+- Run `pnpm i` at the root of the monorepo to have everything installed
+- You can now switch to the package you're interested in working on and check its `README.md`
 
 ### Pull Requests
 
 > [!CAUTION]
 > TODO
 
-
 ### Release System
 
 > [!CAUTION]
 > TODO
-
 
 ## :sos: Support
 
@@ -143,14 +141,16 @@ Project Link: [https://github.com/Sidnioulz/figmarine](https://github.com/Sidnio
 ## :yellow_heart: Acknowledgments
 
 ### Thanks
-* Photo by Michal Klajban, under a [Creative Commons BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.en) license
-* Thanks to [Nicholas C. Zakas](https://github.com/nzakas) for his help in bootstrapping the ESLint plugin
-* Thanks to [Louis3797](https://github.com/Louis3797) for his Readme template
+
+- Photo by Michal Klajban, under a [Creative Commons BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.en) license
+- Thanks to [Nicholas C. Zakas](https://github.com/nzakas) for his help in bootstrapping the ESLint plugin
+- Thanks to [Louis3797](https://github.com/Louis3797) for his Readme template
 
 ### Built With
+
 [![Axios](https://img.shields.io/badge/Axios-5a29e4?logo=axios&logoColor=white)](https://axios-http.com/)
 [![Dependabot](https://img.shields.io/badge/Dependabot-025E8C?logo=dependabot&logoColor=white)](https://github.com/dependabot)
-[![ESLint](https://img.shields.io/badge/ESLint-4b32c3?logo=eslint&logoColor=white)]([XXXXXX](https://eslint.org/))
+[![ESLint](https://img.shields.io/badge/ESLint-4b32c3?logo=eslint&logoColor=white)](https://eslint.org/)
 [![Figma](https://img.shields.io/badge/Figma-a259ff?logo=figma&logoColor=white)](https://github.com/figma/rest-api-spec/)
 [![GitHub](https://img.shields.io/badge/GitHub-0d1117?logo=github&logoColor=white)](https://github.com/solutions/ci-cd)
 [![Jest](https://img.shields.io/badge/Jest-99425b?logo=jest&logoColor=white)](https://jestjs.io/)

@@ -1,11 +1,12 @@
 {
   "private": true,
+  "type": "module",
   "scripts": {
     "api:regen": "turbo run api:regen",
     "build": "turbo run build",
     "clean": "turbo run clean",
     "dev": "turbo run dev",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md}\"",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
     "test": "turbo run test",
