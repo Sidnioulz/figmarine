@@ -14,6 +14,7 @@
   "devDependencies": {
     "@eslint/json": "^0.4.0",
     "eslint-config-turbo": "^2.0.14",
+    "eslint-plugin-n": "^17.10.2",
     "eslint-plugin-only-warn": "^1.1.0",
     "eslint-plugin-prettier": "^5.2.1"
   }
