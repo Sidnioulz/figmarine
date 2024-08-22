@@ -1,17 +1,19 @@
 {
-  "name": "@figmarine/figma-rest-ts-client",
+  "name": "@figmarine/rest",
   "version": "0.0.0",
   "license": "MIT",
   "type": "module",
   "scripts": {
     "api:regen": "echo 'node ./scripts/regenFigmaRestApi.mjs'",
     "build": "tsup",
+    "dev": "tsup --watch",
     "docs:build": "echo 'TODO: vitepress build docs'",
     "docs:dev": "echo 'TODO: vitepress dev docs --port 1227'",
     "docs:serve": "echo 'TODO: vitepress serve docs'",
-    "dev": "tsup --watch",
-    "lint": "eslint src/",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "test": "jest",
+    "test:dev": "jest --watch",
     "typecheck": "tsc --noEmit"
   },
   "exports": {
@@ -29,6 +31,7 @@
   "devDependencies": {
     "@figmarine/config-eslint": "workspace:*",
     "@figmarine/config-jest-presets": "workspace:*",
+    "@figmarine/config-prettier": "workspace:*",
     "@figmarine/config-tsup": "workspace:*",
     "@figmarine/config-typescript": "workspace:*",
     "@figma/rest-api-spec": "^0.16.0",
@@ -42,7 +45,6 @@
   "dependencies": {
     "@figmarine/cache": "workspace:*",
     "@figmarine/logger": "workspace:*",
-    "@types/node": "^22.5.0",
     "axios": "^1.7.4",
     "axios-cache-interceptor": "^1.5.3"
   }
