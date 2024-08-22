@@ -74,22 +74,18 @@
   * [REST API Client](#rest-api-client)
   * [GraphQL Client](#graphql-client)
   * [ESLint Plugin](#eslint-plugin)
-- [Contributing](#:package:-contributing)
+- [Contributing](#package-contributing)
   * [Code of Conduct](#code-of-conduct)
   * [Contributor License Agreement](#contributor-license-agreement)
   * [Getting Started](#getting-started)
   * [Pull Requests](#pull-requests)
   * [Release System](#release-system)
-- [Support](#:sos:-support)
-- [Contact](#:envelope:-contact)
-- [Acknowledgments](#:yellow_heart:-acknowledgments)
+- [Support](#sos-support)
+- [Contact](#envelope-contact)
+- [Acknowledgments](#yellow_heart-acknowledgments)
   * [Thanks](#thanks)
   * [Built With](#built-with)
 
-
-
-> [!CAUTION]
-> TODO, ToC
 
 ## :star2: Key Projects
 
@@ -136,13 +132,13 @@ You'll need to clone the whole repository to use it. All published depend on int
 ### Pull Requests
 
 > [!CAUTION]
-> TODO, ToC
+> TODO
 
 
 ### Release System
 
 > [!CAUTION]
-> TODO, ToC
+> TODO
 
 
 ## :sos: Support
