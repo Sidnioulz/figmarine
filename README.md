@@ -109,9 +109,12 @@ To ensure that contributors are legally allowed to share the content they contri
 
 ### Getting Started
 
-This project uses PNPM as a package manager, and Turbo as a monorepo provider. See the [installation instructions for PNPM](https://pnpm.io/installation).
+This project uses PNPM as a package manager, and Turbo as a monorepo provider.
 
-You'll need to clone the whole repository to use it. All published depend on internal utility and config packages. Once cloned, run `pnpm i` at the root of the monorepo to have everything installed. You can then switch to the package you're interested in working on.
+* See the [installation instructions for PNPM](https://pnpm.io/installation)
+* Clone the whole repository; all published projects depend on internal utility and config packages
+* Run `pnpm i` at the root of the monorepo to have everything installed
+* You can now switch to the package you're interested in working on and check its `README.md`
 
 ### Pull Requests
 
