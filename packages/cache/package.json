@@ -7,9 +7,11 @@
     "build": "tsup",
     "clean": "rm '/tmp/@figmarine' -rf",
     "dev": "tsup --watch",
-    "lint": "eslint src/",
-    "typecheck": "tsc --noEmit",
-    "test": "jest"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "jest",
+    "test:dev": "jest --watch",
+    "typecheck": "tsc --noEmit"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
