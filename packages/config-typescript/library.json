@@ -8,8 +8,11 @@
     ],
     "module": "ESNext",
     "noEmit": false,
-    "outDir": "dist",
-    "rootDir": "src",
     "target": "ESNext"
+  },
+  "typeAcquisition": {
+    "include": [
+      "jest"
+    ]
   }
 }
