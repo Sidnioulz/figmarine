@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "api:regen": "turbo run api:regen",
     "build": "turbo run build",
     "clean": "turbo run clean",
     "clean:cache": "turbo run clean --filter=@figmarine/cache",
