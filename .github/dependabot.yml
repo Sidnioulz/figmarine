@@ -1,0 +1,21 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directories:
+      - "/"
+      - "/apps/*"
+      - "/packages/*"
+    schedule:
+      interval: "weekly"
+    versioning-strategy: increase
+    assignees:
+      - "sidnioulz"
+    reviewers:
+      - "sidnioulz"
+    groups:
+      oas:
+        patterns:
+        - "@figma/rest-api-spec"
+      all:
+        patterns:
+        - "*"

@@ -1,0 +1,58 @@
+# Inspired by https://github.com/vercel/turborepo/blob/main/.github/workflows/examples-autoapprove-and-automerge.yml
+# Auto-approves and auto-merges Dependabot PRs.
+# If PRs involve an OpenAPI Spec package, also auto-regens generated API code before merging.
+name: Dependabot automerge
+on: pull_request
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  # TODO
+  # dependabot-regen-api:
+    # runs-on: ubuntu-latest
+    # if:
+    #    - github.actor == 'dependabot[bot]'
+    #    - TODO -> title contains the OAS package name
+    # steps:
+    #   - name: Dependabot metadata
+    #     id: metadata
+    #     uses: dependabot/fetch-metadata@v1
+    #     with:
+    #       github-token: "${{ secrets.GITHUB_TOKEN }}"
+    #   - name: Regenerate API clients on OpenAPI Spec change
+    #     run:
+    #       - TODO -> regen all apis
+    #       - TODO -> commit
+    #     env:
+    #       PR_URL: ${{github.event.pull_request.html_url}}
+    #       GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  dependabot-approve:
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]'
+    steps:
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v1
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Approve a PR
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  dependabot-merge:
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]'
+    steps:
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v1
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Enable auto-merge for Dependabot PRs
+        run: gh pr merge --auto "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
