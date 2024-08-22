@@ -69,29 +69,26 @@
 
 ## :star2: Key Projects
 
-<div style="display: flex; gap: 1rem; flex-wrap: wrap">
-  <group style="flex: 1; border-radius: 1rem; min-width: 200px; box-shadow: box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2); background: #8888881a; padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem">
-  <h3 style="margin: 0;">Nursery</h3>
-  <span style="flex: 1">A library for fetching and storing JSON representations of Figma files.</span>
-  <a style="align-self: end; padding: .25rem .5rem; border-radius: .5rem; border: 1px solid currentColor;" href="./apps/nursery/">Go to project</a>
-  </group>
-  <group style="flex: 1; border-radius: 1rem; min-width: 200px; box-shadow: box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2); background: #8888881a; padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem">
-  <h3 style="margin: 0;">REST API Client</h3>
-  <span style="flex: 1">A fully-typed JS client for the REST API built through OpenAPI codegen.</span>
-  <a style="align-self: end; padding: .25rem .5rem; border-radius: .5rem; border: 1px solid currentColor;" href="./packages/rest/">Go to project</a>
-  </group>
-  <group style="flex: 1; border-radius: 1rem; min-width: 200px; box-shadow: box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2); background: #8888881a; padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem">
-  <h3 style="margin: 0;">GraphQL Client</h3>
-  <span style="flex: 1">A GraphQL client for the REST API, automatically updated.</span>
-  <a style="align-self: end; padding: .25rem .5rem; border-radius: .5rem; border: 1px solid currentColor;" href="./packages/graphql/">Go to project</a>
-  </group>
-  <group style="flex: 1; border-radius: 1rem; min-width: 200px; box-shadow: box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2); background: #8888881a; padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem">
-  <h3 style="margin: 0;">ESLint Plugin</h3>
-  <span style="flex: 1">An ESLint plugin that can parse Figmarine "vfiles" and run rules against them</span>
-  <a style="align-self: end; padding: .25rem .5rem; border-radius: .5rem; border: 1px solid currentColor;" href="./packages/eslint-plugin-figma/">Go to project</a>
-  </group>
-</div>
-
+<table>
+  <tr>
+    <td>
+      <h3><a href="./apps/nursery/">Nursery</a></h3>
+      <div>A library for fetching and storing cuttings, which are JSON representations of Figma files.</div>
+    </td>
+    <td>
+      <h3><a href="./packages/rest/">REST API Client</a></h3>
+      <div>A fully-typed JS client for the REST API, generated from an OpenAPI Spec.</div>
+    </td>
+    <td>
+      <h3><a href="./packages/graphql/">GraphQL Client</a></h3>
+      <div>A GraphQL client for the REST API, also generated from an OpenAPI Spec.</div>
+    </td>
+    <td>
+      <h3><a href="./packages/eslint-plugin-figma/">ESLint Plugin</a></h3>
+      <div>An ESLint plugin that can parse Figma cutting files and run rules against them</div>
+    </td>
+  </tr>
+</table>
 
 ## :package: Contributing
 
