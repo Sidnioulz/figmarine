@@ -1,28 +1,28 @@
 export default {
-  arrowParens: "always",
+  arrowParens: 'always',
   bracketSpacing: true,
   semi: true,
   printWidth: 100,
   singleQuote: true,
   tabWidth: 2,
-  trailingComma: "all",
+  trailingComma: 'all',
   overrides: [
     {
-      files: "./**/*.json",
+      files: './**/*.json',
       options: {
-        parser: "json",
+        parser: 'json',
       },
     },
     {
-      files: "./*.json",
+      files: './*.json',
       options: {
-        parser: "json",
+        parser: 'json',
       },
     },
     {
-      files: ".*.rc",
+      files: '.*.rc',
       options: {
-        parser: "json",
+        parser: 'json',
       },
     },
   ],
