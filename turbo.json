@@ -1,44 +1,38 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
+    "api:regen": {
+      "cache": false
+    },
     "build": {
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env*"
-      ],
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "build/**",
-        "dist/**"
-      ]
-    },
-    "test": {
-      "outputs": [
-        "coverage/**"
-      ],
-      "dependsOn": []
-    },
-    "lint": {
-      "dependsOn": [
-        "^build"
-      ]
-    },
-    "typecheck": {
-      "dependsOn": [
-        "^build"
-      ]
-    },
-    "dev": {
-      "dependsOn": [
-        "^build"
-      ],
-      "cache": false,
-      "persistent": true
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "dependsOn": ["^build"],
+      "outputs": ["build/**", "dist/**"]
     },
     "clean": {
       "cache": false
+    },
+    "dev": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "dependsOn": ["^build"]
+    },
+    "lint:fix": {
+      "dependsOn": ["^build"]
+    },
+    "test": {
+      "outputs": ["coverage/**"],
+      "dependsOn": []
+    },
+    "test:dev": {
+      "outputs": ["coverage/**"],
+      "dependsOn": []
+    },
+    "typecheck": {
+      "dependsOn": ["^build"]
     }
   }
 }

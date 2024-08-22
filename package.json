@@ -4,10 +4,10 @@
     "api:regen": "turbo run api:regen",
     "build": "turbo run build",
     "clean": "turbo run clean",
-    "clean:cache": "turbo run clean --filter=@figmarine/cache",
     "dev": "turbo run dev",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck"
   },
