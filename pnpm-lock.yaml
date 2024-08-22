@@ -63,9 +63,6 @@ importers:
       '@eslint/json':
         specifier: ^0.4.0
         version: 0.4.0(eslint@9.9.0)
-      eslint-config-prettier:
-        specifier: ^9.1.0
-        version: 9.1.0(eslint@9.9.0)
       eslint-config-turbo:
         specifier: ^2.0.14
         version: 2.0.14(eslint@9.9.0)
@@ -154,6 +151,9 @@ importers:
       '@figmarine/config-jest-presets':
         specifier: workspace:*
         version: link:../config-jest-presets
+      '@figmarine/config-prettier':
+        specifier: workspace:*
+        version: link:../config-prettier
       '@figmarine/config-tsup':
         specifier: workspace:*
         version: link:../config-tsup
@@ -173,7 +173,7 @@ importers:
         specifier: ^8.2.4
         version: 8.2.4(postcss@8.4.38)(typescript@5.5.4)
       typescript:
-        specifier: ^5.5.4
+        specifier: latest
         version: 5.5.4
 
   packages/rest:
@@ -184,9 +184,6 @@ importers:
       '@figmarine/logger':
         specifier: workspace:*
         version: link:../logger
-      '@types/node':
-        specifier: ^22.5.0
-        version: 22.5.0
       axios:
         specifier: ^1.7.4
         version: 1.7.4
@@ -203,6 +200,9 @@ importers:
       '@figmarine/config-jest-presets':
         specifier: workspace:*
         version: link:../config-jest-presets
+      '@figmarine/config-prettier':
+        specifier: workspace:*
+        version: link:../config-prettier
       '@figmarine/config-tsup':
         specifier: workspace:*
         version: link:../config-tsup
@@ -212,6 +212,9 @@ importers:
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.12
+      '@types/node':
+        specifier: ^22.5.0
+        version: 22.5.0
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@22.5.0)
@@ -4080,6 +4083,7 @@ snapshots:
   eslint-config-prettier@9.1.0(eslint@9.9.0):
     dependencies:
       eslint: 9.9.0
+    optional: true
 
   eslint-config-turbo@2.0.14(eslint@9.9.0):
     dependencies:
