@@ -1,3 +1,3 @@
-import { esmLibrary } from "@figmarine/config-tsup";
+import { esmLibrary } from '@figmarine/config-tsup';
 
-export default esmLibrary
+export default esmLibrary;

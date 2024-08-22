@@ -1,4 +1,4 @@
 // /** @type {import("eslint").Linter.Config} */
-import { configs } from '@figmarine/config-eslint/library';
+import { library } from '@figmarine/config-eslint';
 
-export default configs;
+export default library;
