@@ -13,7 +13,7 @@
   <h1>Figmarine</h1>
   
   <p>
-    Figue marine, Carpobrotus Edulis. Tools for frontend and DevOps engineers who work with Figma.
+    Figue marine, Carpobrotus Edulis. Tools for frontend and DevOps engineers who use Figma.
   </p>
   
   <p>
@@ -24,8 +24,6 @@
     <a href="https://github.com/Sidnioulz/figmarine/actions/workflows/github-code-scanning/codeql"><img src="https://github.com/Sidnioulz/figmarine/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main" alt="CodeQL status" /></a>
     <a href="https://github.com/Sidnioulz/figmarine/actions/workflows/continuous-integration.yml"><img src="https://github.com/Sidnioulz/figmarine/actions/workflows/continuous-integration.yml/badge.svg?branch=main" alt="CI status" /></a>
     <a href="https://codecov.io/gh/Sidnioulz/figmarine"><img src="https://codecov.io/gh/Sidnioulz/figmarine/graph/badge.svg?token=4SX3N57XH3" alt="code coverage" /></a>
-  </p>
-  <p>
     <a href="https://github.com/Sidnioulz/figmarine/graphs/contributors"><img src="https://img.shields.io/github/contributors/Sidnioulz/figmarine" alt="contributors" /></a>
     <a href="https://github.com/Sidnioulz/figmarine/blob/main/CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg" alt="code of conduct: contributor covenant 2.1" /></a>
     <a href="https://github.com/Sidnioulz/figmarine/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Sidnioulz/figmarine.svg" alt="license" /></a>
@@ -46,6 +44,7 @@
 ---
 
 > [!IMPORTANT]
+> This is a community open-source project. It is not affiliated with Figma.
 > This project is in its infancy. Get in touch with me before using it in production.
 
 ## :notebook_with_decorative_cover: Table of Contents
