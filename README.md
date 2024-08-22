@@ -33,11 +33,11 @@
   </p>
 
   <h4>
-    <a href="https://github.com/Sidnioulz/figmarine">Documentation</a>
+    <a href="https://github.com/Sidnioulz/figmarine">📗 Documentation</a>
   <span> · </span>
-    <a href="https://github.com/Sidnioulz/figmarine/issues/">Report a Bug</a>
+    <a href="https://github.com/Sidnioulz/figmarine/issues/">🐛 Report a Bug</a>
   <span> · </span>
-    <a href="https://github.com/Sidnioulz/figmarine/discussions/new?category=linting-rules">Suggest Linting Rule</a>
+    <a href="https://github.com/Sidnioulz/figmarine/discussions/new?category=linting-rules">💡 Suggest Linting Rule</a>
   </h4>
 </div>
 
