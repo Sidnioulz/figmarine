@@ -8,7 +8,10 @@
     "index.js"
   ],
   "exports": {
-    ".": "./index.js"
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    }
   },
   "devDependencies": {
     "tsup": "^8.2.4"
