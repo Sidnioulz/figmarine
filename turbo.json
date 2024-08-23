@@ -27,19 +27,33 @@
       "cache": false,
       "persistent": true
     },
-    "lint": {},
-    "lint:fix": {},
+    "lint": {
+      "dependsOn": [
+        "^lint"
+      ]
+    },
+    "lint:fix": {
+      "dependsOn": [
+        "lint",
+        "^lint"
+      ]
+    },
     "test": {
       "outputs": [
         "coverage/**"
       ],
-      "dependsOn": []
+      "dependsOn": [
+        "^test"
+      ]
     },
     "test:dev": {
       "outputs": [
         "coverage/**"
       ],
-      "dependsOn": []
+      "dependsOn": [
+        "test",
+        "^test"
+      ]
     },
     "typecheck": {
       "dependsOn": [
