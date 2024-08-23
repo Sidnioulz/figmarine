@@ -4,6 +4,21 @@
   "private": true,
   "license": "MIT",
   "type": "module",
+  "description": "ESLint config package for the Figmarine monorepo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sidnioulz/figmarine",
+    "directory": "packages/config-eslint"
+  },
+  "bugs": {
+    "url": "https://github.com/Sidnioulz/figmarine/issues"
+  },
+  "keywords": [
+    "config",
+    "eslint"
+  ],
+  "author": "Steve Dodier-Lazaro",
+  "homepage": "https://github.com/Sidnioulz/figmarine",
   "files": [
     "*.js"
   ],

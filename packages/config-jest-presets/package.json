@@ -4,6 +4,22 @@
   "private": true,
   "license": "MIT",
   "type": "module",
+  "description": "Jest config package for the Figmarine monorepo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sidnioulz/figmarine",
+    "directory": "packages/config-jest"
+  },
+  "bugs": {
+    "url": "https://github.com/Sidnioulz/figmarine/issues"
+  },
+  "keywords": [
+    "config",
+    "jest",
+    "jest-preset"
+  ],
+  "author": "Steve Dodier-Lazaro",
+  "homepage": "https://github.com/Sidnioulz/figmarine",
   "files": [
     "browser/jest-preset.js",
     "node/jest-preset.js"

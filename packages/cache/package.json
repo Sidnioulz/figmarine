@@ -4,6 +4,20 @@
   "private": true,
   "license": "MIT",
   "type": "module",
+  "description": "Library to cache arbitrary data to disk for arbitrarily long",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sidnioulz/figmarine",
+    "directory": "packages/cache"
+  },
+  "bugs": {
+    "url": "https://github.com/Sidnioulz/figmarine/issues"
+  },
+  "keywords": [
+    "cache"
+  ],
+  "author": "Steve Dodier-Lazaro",
+  "homepage": "https://github.com/Sidnioulz/figmarine",
   "scripts": {
     "build": "tsup",
     "clean": "rm '/tmp/@figmarine' -rf",

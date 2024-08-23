@@ -4,6 +4,21 @@
   "private": true,
   "license": "MIT",
   "type": "module",
+  "description": "Prettier config package for the Figmarine monorepo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sidnioulz/figmarine",
+    "directory": "packages/config-prettier"
+  },
+  "bugs": {
+    "url": "https://github.com/Sidnioulz/figmarine/issues"
+  },
+  "keywords": [
+    "config",
+    "prettier"
+  ],
+  "author": "Steve Dodier-Lazaro",
+  "homepage": "https://github.com/Sidnioulz/figmarine",
   "files": [
     "index.js"
   ],

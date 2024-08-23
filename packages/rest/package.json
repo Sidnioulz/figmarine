@@ -3,6 +3,24 @@
   "version": "0.0.0",
   "license": "MIT",
   "type": "module",
+  "description": "Fully-typed JS client for the Figma REST API",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sidnioulz/figmarine",
+    "directory": "packages/rest"
+  },
+  "bugs": {
+    "url": "https://github.com/Sidnioulz/figmarine/issues"
+  },
+  "keywords": [
+    "figma",
+    "rest",
+    "api",
+    "openapi-specification",
+    "oas"
+  ],
+  "author": "Steve Dodier-Lazaro",
+  "homepage": "https://github.com/Sidnioulz/figmarine",
   "scripts": {
     "api:regen": "echo 'node ./scripts/regenFigmaRestApi.mjs'",
     "build": "tsup",

@@ -1,6 +1,25 @@
 {
+  ,
+  "name": "figmarine",
   "private": true,
   "type": "module",
+  "description": "Figue marine, Carpobrotus edulis - A collection of tools for frontend and DevOps engineers who use Figma",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sidnioulz/figmarine"
+  },
+  "bugs": {
+    "url": "https://github.com/Sidnioulz/figmarine/issues"
+  },
+  "keywords": [
+    "figma",
+    "rest",
+    "api",
+    "eslint",
+    "figmarine"
+  ],
+  "author": "Steve Dodier-Lazaro",
+  "homepage": "https://github.com/Sidnioulz/figmarine",
   "scripts": {
     "api:regen": "turbo run api:regen",
     "build": "turbo run build",
@@ -18,7 +37,6 @@
   },
   "packageManager": "pnpm@9.1.4",
   "engines": {
-    "node": ">=18"
-  },
-  "name": "figmarine"
+    "node": ">=20"
+  }
 }

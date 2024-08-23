@@ -3,6 +3,22 @@
   "version": "0.0.1",
   "license": "MIT",
   "type": "module",
+  "description": "ESLint plugin that can parse Figmarine cuttings",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sidnioulz/figmarine",
+    "directory": "packages/eslint-plugin-figma"
+  },
+  "bugs": {
+    "url": "https://github.com/Sidnioulz/figmarine/issues"
+  },
+  "keywords": [
+    "eslint",
+    "eslint-plugin",
+    "figmarine"
+  ],
+  "author": "Steve Dodier-Lazaro",
+  "homepage": "https://github.com/Sidnioulz/figmarine",
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
