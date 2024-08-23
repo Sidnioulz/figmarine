@@ -29,13 +29,13 @@
     },
     "lint": {
       "dependsOn": [
+        "^build",
         "^lint"
       ]
     },
     "lint:fix": {
       "dependsOn": [
-        "lint",
-        "^lint"
+        "lint"
       ]
     },
     "test": {
@@ -43,6 +43,7 @@
         "coverage/**"
       ],
       "dependsOn": [
+        "^build",
         "^test"
       ]
     },
@@ -51,8 +52,7 @@
         "coverage/**"
       ],
       "dependsOn": [
-        "test",
-        "^test"
+        "test"
       ]
     },
     "typecheck": {
