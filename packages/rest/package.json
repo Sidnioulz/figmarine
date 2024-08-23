@@ -22,9 +22,9 @@
   "author": "Steve Dodier-Lazaro",
   "homepage": "https://github.com/Sidnioulz/figmarine",
   "scripts": {
-    "api:regen": "echo 'node ./scripts/regenFigmaRestApi.mjs'",
-    "build": "tsup",
-    "dev": "tsup --watch",
+    "api:regen": "node ./scripts/regenFigmaRestApi.mjs",
+    "build": "tsc && tsup --env.NODE_ENV production",
+    "dev": "tsc-watch --onSuccess \"tsup --env.NODE_ENV production\"",
     "docs:build": "echo 'TODO: vitepress build docs'",
     "docs:dev": "echo 'TODO: vitepress dev docs --port 1227'",
     "docs:serve": "echo 'TODO: vitepress serve docs'",
@@ -47,16 +47,17 @@
     "preset": "@figmarine/config-jest-presets/node"
   },
   "devDependencies": {
+    "@figma/rest-api-spec": "^0.16.0",
     "@figmarine/config-eslint": "workspace:*",
     "@figmarine/config-jest-presets": "workspace:*",
     "@figmarine/config-prettier": "workspace:*",
     "@figmarine/config-tsup": "workspace:*",
     "@figmarine/config-typescript": "workspace:*",
-    "@figma/rest-api-spec": "^0.16.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^22.5.0",
     "jest": "^29.7.0",
     "swagger-typescript-api": "^13.0.21",
+    "tsc-watch": "^6.2.0",
     "tsup": "^8.2.4",
     "typescript": "latest"
   },
