@@ -28,7 +28,7 @@
   <span> · </span>
     <a href="https://github.com/Sidnioulz/figmarine/issues/new?labels=bug,pkg:%20cache">🐛 Report a Bug</a>
   <span> · </span>
-    <a href="https://github.com/Sidnioulz/figmarine/issues/new?labels=enhancement,pkg:%20cache">💡 Suggest Linting Rule</a>
+    <a href="https://github.com/Sidnioulz/figmarine/issues/new?labels=enhancement,pkg:%20cache">💡 Request Feature</a>
   </h4>
 </div>
 
