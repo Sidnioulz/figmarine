@@ -26,9 +26,9 @@
   <h4>
     <a href="https://github.com/Sidnioulz/figmarine/packages/cache">📗 Documentation</a>
   <span> · </span>
-    <a href="https://github.com/Sidnioulz/figmarine/issues/new?labels=bug,pkg:%20cache">🐛 Report a Bug</a>
+    <a href="https://github.com/Sidnioulz/figmarine/issues/new?labels=bug,pkg-cache">🐛 Report a Bug</a>
   <span> · </span>
-    <a href="https://github.com/Sidnioulz/figmarine/issues/new?labels=enhancement,pkg:%20cache">💡 Request Feature</a>
+    <a href="https://github.com/Sidnioulz/figmarine/issues/new?labels=enhancement,pkg-cache">💡 Request Feature</a>
   </h4>
 </div>
 
@@ -161,7 +161,7 @@ Distributed under the [MIT License](https://github.com/Sidnioulz/figmarine/tree/
 
 Please open a conversation in the [discussion space](https://github.com/Sidnioulz/figmarine/discussions) to ask a question.
 
-Please [open an issue](https://github.com/Sidnioulz/figmarine/issues/new?labels=pkg:%20cache) for bug reports or code suggestions.
+Please [open an issue](https://github.com/Sidnioulz/figmarine/issues/new?labels=pkg-cache) for bug reports or code suggestions.
 
 ## :yellow_heart: Acknowledgments
 
