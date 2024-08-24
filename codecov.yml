@@ -1,3 +1,9 @@
+component_management:
+  default_rules:
+    paths:
+      - "apps/*"
+      - "packages/*"
+
 flags:
   pkg-cache:
     paths:
