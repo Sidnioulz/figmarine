@@ -1,0 +1,13 @@
+flags:
+  pkg-cache:
+    paths:
+      - packages/cache/
+  pkg-eslint-plugin-figma:
+    paths:
+      - packages/eslint-plugin-figma/
+  pkg-logger:
+    paths:
+      - packages/logger/
+  pkg-rest:
+    paths:
+      - packages/rest/
