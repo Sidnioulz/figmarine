@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 
-import type { File, LanguageOptions, OkParseResult, ParseResult, SourceCode } from '@eslint/core';
 import { DocumentNode, JSONLanguage, JSONNode, JSONSourceCode } from '@eslint/json';
+import type { File, LanguageOptions, OkParseResult, ParseResult, SourceCode } from '@eslint/core';
 
 import { isArray, isNonNullObject } from './utils';
 

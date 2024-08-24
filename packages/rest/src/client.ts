@@ -1,6 +1,6 @@
+import { buildStorage, setupCache } from 'axios-cache-interceptor';
 import { makeCache, type MakeCacheOptions } from '@figmarine/cache';
 import { log } from '@figmarine/logger';
-import { buildStorage, setupCache } from 'axios-cache-interceptor';
 
 import { Api, type Api as ApiInterface } from './__generated__/figmaRestApi';
 

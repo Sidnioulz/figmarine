@@ -1,6 +1,6 @@
 // TEMP FIXME: this is a debug file.
-
 import { log } from '@figmarine/logger';
+
 import { Client } from './client';
 
 const client = await Client();

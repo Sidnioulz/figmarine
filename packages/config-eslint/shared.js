@@ -29,6 +29,17 @@ export const configs = [
       turbo,
     },
   },
+  {
+    rules: {
+      'sort-imports': ['error', {
+        ignoreCase: true,
+        ignoreDeclarationSort: false,
+        ignoreMemberSort: false,
+        memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+        allowSeparatedGroups: true
+      }]
+    }
+  },
   prettier,
   ...tseslint.configs.recommended.map(ignoreJson),
 ];

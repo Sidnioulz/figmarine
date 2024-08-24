@@ -3,7 +3,6 @@ import path from 'node:path';
 
 import { createCache } from 'cache-manager';
 import { DiskStore } from 'cache-manager-fs-hash';
-
 import { log } from '@figmarine/logger';
 
 import { DEFAULT_CACHE_PATH, YEAR_IN_SECONDS } from './constants';
