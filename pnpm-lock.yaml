@@ -210,8 +210,8 @@ importers:
         version: 1.5.3(axios@1.7.4)
     devDependencies:
       '@figma/rest-api-spec':
-        specifier: ^0.16.0
-        version: 0.16.0
+        specifier: ^0.17.0
+        version: 0.17.0
       '@figmarine/config-eslint':
         specifier: workspace:*
         version: link:../config-eslint
@@ -671,8 +671,8 @@ packages:
   '@exodus/schemasafe@1.3.0':
     resolution: {integrity: sha512-5Aap/GaRupgNx/feGBwLLTVv8OQFfv3pq2lPRzPg9R+IOBnDgghTGW7l7EuVXOvg5cc/xSAlRW8rBrjIC3Nvqw==}
 
-  '@figma/rest-api-spec@0.16.0':
-    resolution: {integrity: sha512-J/u7LIHGIKpm9jcJpoAcfUAEfgtuWTtNgIS94mhfdie3p1tgJSZxrJMQxg8u4V7T7SKMpjlqtMr1LwkWf1iC/A==}
+  '@figma/rest-api-spec@0.17.0':
+    resolution: {integrity: sha512-T+C7pl4n/HK4ZRBumGdww9bU77MB5MQiUmyjqfYVwyDbod5XhDXAHz6mJjuxp65C64B6JbOxtV17jugo63/60Q==}
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -3276,7 +3276,7 @@ snapshots:
 
   '@exodus/schemasafe@1.3.0': {}
 
-  '@figma/rest-api-spec@0.16.0': {}
+  '@figma/rest-api-spec@0.17.0': {}
 
   '@humanwhocodes/module-importer@1.0.1': {}
 
