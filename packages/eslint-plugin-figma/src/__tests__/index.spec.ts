@@ -1,3 +1,3 @@
 describe('eslint-plugin-figma', () => {
-  xit('', () => {});
+  it.skip('', () => { });
 });
