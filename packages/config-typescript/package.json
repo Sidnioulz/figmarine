@@ -18,8 +18,5 @@
     "typescript"
   ],
   "author": "Steve Dodier-Lazaro",
-  "homepage": "https://github.com/Sidnioulz/figmarine",
-  "devDependencies": {
-    "@types/jest": "^29.5.12"
-  }
+  "homepage": "https://github.com/Sidnioulz/figmarine"
 }
