@@ -8,11 +8,9 @@
     ],
     "module": "ESNext",
     "noEmit": false,
-    "target": "ESNext"
-  },
-  "typeAcquisition": {
-    "include": [
-      "jest"
+    "target": "ESNext",
+    "types": [
+      "vitest/globals"
     ]
   }
 }
