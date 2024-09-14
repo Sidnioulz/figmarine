@@ -1,3 +1,3 @@
 describe('@figmarine/cuttings', () => {
-  it.only('', () => { });
+  it.only('', () => {});
 });

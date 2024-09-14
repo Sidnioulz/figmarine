@@ -45,6 +45,7 @@
     "@types/node": "^22.5.0",
     "@vitest/coverage-v8": "^2.1.1",
     "axios": "^1.7.4",
+    "memfs": "^4.11.1",
     "tsc-watch": "^6.2.0",
     "tsup": "^8.2.4",
     "typescript": "latest",

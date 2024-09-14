@@ -9,10 +9,13 @@ export default defineConfig({
         '!*.config.{js,ts,cjs}',
         '!**/coverage/**',
         '!**/scripts/**',
+        '!**/__fixtures__/**',
+        '!**/__mocks__/**',
         '!**/__tests__/**',
         '!**/__generated__/**',
         '!**/node_modules/**',
         '!**/dist/**',
+        '!**/src/debug.ts',
       ]
     }
   },
