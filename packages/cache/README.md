@@ -40,14 +40,11 @@
   - [Package Details](#star2-package-details)
   - [Usage](#eyes-usage)
   - [Run Locally](#running-run-locally)
+  - [Roadmap](#dart-roadmap)
   - [Contributing](#wave-contributing)
   - [License](#warning-license)
   - [Support](#sos-support)
   - [Acknowledgments](#yellow_heart-acknowledgments)
-
-
-
-
 
 ## :star2: Package Details
 
@@ -93,7 +90,6 @@ console.log(value); // 'My value'
 await diskCache.del(key);
 const value = await diskCache.get<string>('myKey');
 console.log(value); // 'undefined'
-
 ```
 
 You can also wrap existing functions with `cacheWrapper`. When a wrapped function is called,
@@ -148,6 +144,12 @@ Check that tests run as you make changes
   pnpm test:dev
 ```
 
+## :dart: Roadmap
+
+- [x] Make typedoc compatible
+- [ ] Add manual invalidator for the wrapper function
+- [ ] Add unit tests
+- [ ] Document package
 
 ## :wave: Contributing
 

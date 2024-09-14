@@ -2,6 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { createCache } from 'cache-manager';
+import type { MemoryCache as DiskCache } from 'cache-manager';
+export type { MemoryCache as DiskCache } from 'cache-manager';
 import { DiskStore } from 'cache-manager-fs-hash';
 import { log } from '@figmarine/logger';
 
@@ -67,8 +69,8 @@ export function makeCache(opts: MakeCacheOptions) {
 
   const refreshErrorHandler = refreshThreshold
     ? (error: Error) => {
-        log(error);
-      }
+      log(error);
+    }
     : undefined;
 
   const diskCache = createCache(
@@ -79,7 +81,7 @@ export function makeCache(opts: MakeCacheOptions) {
       onBackgroundRefreshError: refreshErrorHandler,
       ttl: 1000 * (ttl === -1 ? YEAR_IN_SECONDS : ttl),
     }),
-  );
+  ) satisfies DiskCache;
   log(`Created cache with ${ttl === -1 ? 'infinite TTL (dev mode)' : `${ttl} second TTL`}`);
 
   /**
