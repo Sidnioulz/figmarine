@@ -1,3 +1,3 @@
 describe('@figmarine/rest', () => {
-  it.skip('TODO', () => { });
+  it.skip('TODO', () => {});
 });

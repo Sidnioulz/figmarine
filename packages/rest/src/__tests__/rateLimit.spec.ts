@@ -1,15 +1,12 @@
 import { interceptRequest } from '../rateLimit';
 import type { Log } from '../rateLimit.config';
 
-const {
-  mockedConfig,
-  mockedConfigActualImplementation,
-} = vi.hoisted(() => {
+const { mockedConfig, mockedConfigActualImplementation } = vi.hoisted(() => {
   return {
     mockedConfig: vi.fn(),
     mockedConfigActualImplementation: vi.fn(),
-  }
-})
+  };
+});
 
 vi.mock(import('../rateLimit.config'), async (importOriginal) => {
   const mod = await importOriginal();
@@ -18,21 +15,20 @@ vi.mock(import('../rateLimit.config'), async (importOriginal) => {
   return {
     ...mod,
     getConfig: mockedConfig,
-  }
+  };
 });
 
 describe('@figmarine/rest - rateLimit', () => {
   describe('interceptRequest', () => {
-
     beforeEach(async () => {
-      vi.useFakeTimers()
-      vi.setSystemTime(609401000)
+      vi.useFakeTimers();
+      vi.setSystemTime(609401000);
       vi.spyOn(global, 'setTimeout');
       mockedConfig.mockImplementation(mockedConfigActualImplementation);
-    })
+    });
     afterEach(() => {
       vi.restoreAllMocks();
-    })
+    });
 
     it('does not wait when the rate limiting request log is empty', async () => {
       await interceptRequest(1);
@@ -41,12 +37,15 @@ describe('@figmarine/rest - rateLimit', () => {
       expect(setTimeout).not.toHaveBeenCalled();
     });
 
-    it.todo('does not wait when the rate limiting request log is not empty and there is enough budget', async () => {
-      // await interceptRequest(1);
-      // vi.runAllTimers();
-      // expect(mockedConfig).toHaveBeenCalledTimes(1);
-      // expect(setTimeout).not.toHaveBeenCalled();
-    });
+    it.todo(
+      'does not wait when the rate limiting request log is not empty and there is enough budget',
+      async () => {
+        // await interceptRequest(1);
+        // vi.runAllTimers();
+        // expect(mockedConfig).toHaveBeenCalledTimes(1);
+        // expect(setTimeout).not.toHaveBeenCalled();
+      },
+    );
 
     it.todo('clears the request log with stale requests upon receiving a new one', async () => {
       // await interceptRequest(1);
@@ -62,7 +61,9 @@ describe('@figmarine/rest - rateLimit', () => {
         WINDOW_LENGTH: 1,
       });
 
-      await expect(() => interceptRequest(100)).rejects.toThrowError('request cannot proceed due to improper configuration');
+      await expect(() => interceptRequest(100)).rejects.toThrowError(
+        'request cannot proceed due to improper configuration',
+      );
     });
 
     it('waits the entire window length if two consecutives requests are above budget', () => {

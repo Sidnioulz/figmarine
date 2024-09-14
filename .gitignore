@@ -12,3 +12,6 @@ server/dist
 public/dist
 coverage
 *cutting.figmarine.json
+
+# Debug files for local testing
+packages/rest/src/debug.ts

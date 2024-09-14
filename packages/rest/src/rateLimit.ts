@@ -6,7 +6,7 @@ import { getConfig, type Log } from './rateLimit.config';
  * Returns the timestamp at which it'll be acceptable to run the next
  * request without getting past the rate limit budget for a given sliding
  * window request log.
- * 
+ *
  * @param now The current time.
  * @param requestCost The cost of the request we want to send.
  * @param reqLog The request log to inspect.
@@ -40,8 +40,11 @@ function getNextRequestLegalTime(
   if (indexOfFirstRelevantRequest > 0) {
     reqLog.splice(0, indexOfFirstRelevantRequest);
   }
-  log(`Rate limit: sliding window starts at ${startOfWindow}, request log contains ${reqLog.length} relevant${indexOfFirstRelevantRequest > 0 ? ` and ${indexOfFirstRelevantRequest} stale` : ''
-    } requests.`);
+  log(
+    `Rate limit: sliding window starts at ${startOfWindow}, request log contains ${reqLog.length} relevant${
+      indexOfFirstRelevantRequest > 0 ? ` and ${indexOfFirstRelevantRequest} stale` : ''
+    } requests.`,
+  );
 
   // Sum the budget consumed by all requests within the window of reference.
   let remainingBudget = WINDOW_BUDGET;
@@ -51,27 +54,37 @@ function getNextRequestLegalTime(
     // If we go past the budget, we can tell our callee exactly when there'll
     // be enough budget for their call.
     if (remainingBudget < requestCost) {
-      log(`Rate limit: we're over budget (time of offending request ${reqLog[i].timestamp}, budget freed by it: ${reqLog[i].budget}).`);
+      log(
+        `Rate limit: we're over budget (time of offending request ${reqLog[i].timestamp}, budget freed by it: ${reqLog[i].budget}).`,
+      );
       return reqLog[i].timestamp + WINDOW_LENGTH;
     }
   }
 
-  log(`Rate limit: we're within budget (remaining: ${remainingBudget}, cost of next request: ${requestCost}).`);
+  log(
+    `Rate limit: we're within budget (remaining: ${remainingBudget}, cost of next request: ${requestCost}).`,
+  );
   return now;
 }
 
-export async function interceptRequest(
-  requestCost: number,
-): Promise<void> {
+export async function interceptRequest(requestCost: number): Promise<void> {
   const { reqLog, WINDOW_BUDGET, WINDOW_LENGTH } = getConfig();
 
   // Second precision is enough.
   const now = Math.floor(Date.now() / 1000);
-  log(`Rate limit: checking if we can send a request at ${now} (cost: ${requestCost}, budget: ${WINDOW_BUDGET} every ${WINDOW_LENGTH} seconds)`);
+  log(
+    `Rate limit: checking if we can send a request at ${now} (cost: ${requestCost}, budget: ${WINDOW_BUDGET} every ${WINDOW_LENGTH} seconds)`,
+  );
 
   // Figure out the next request time.
-  const runNextRequest = getNextRequestLegalTime(now, requestCost, reqLog, WINDOW_BUDGET, WINDOW_LENGTH);
-  const timeDelta = runNextRequest - now
+  const runNextRequest = getNextRequestLegalTime(
+    now,
+    requestCost,
+    reqLog,
+    WINDOW_BUDGET,
+    WINDOW_LENGTH,
+  );
+  const timeDelta = runNextRequest - now;
   log(`Rate limit: request can be sent in ${timeDelta} seconds (at ${runNextRequest})`);
 
   // We must remember to write in the queues that we'll be consuming budget,
@@ -84,9 +97,11 @@ export async function interceptRequest(
   // Now wait if necessary.
   if (timeDelta > 0) {
     log(`Waiting ${timeDelta} seconds to respect API rate limits.\n`);
-    await new Promise<void>((resolve) => setTimeout(() => {
-      resolve();
-    }, timeDelta * 1000));
+    await new Promise<void>((resolve) =>
+      setTimeout(() => {
+        resolve();
+      }, timeDelta * 1000),
+    );
   } else {
     log(`Rate limit: sending request immediately\n`);
   }
@@ -95,7 +110,6 @@ export async function interceptRequest(
 export async function interceptResponse() {
   // In case of unexpected 429, record it so we can delay the next requests.
   // TODO
-
   // Return the response to the caller.
   // TODO
 }

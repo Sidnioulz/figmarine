@@ -12,7 +12,7 @@ const RATE_DECREASE_LENGTH = 900;
 type LogEntry = {
   timestamp: number;
   budget: number;
-}
+};
 
 export type Log = LogEntry[];
 
@@ -30,7 +30,7 @@ const reqLog: Log = [];
  * of further 429 errors.
  */
 // TODO: implement
-const error429Log: Log = [];
+// const error429Log: Log = [];
 
 /**
  * Returns singleton objects and constants for the rate limit algorithm.
@@ -44,5 +44,5 @@ export function getConfig() {
     WINDOW_LENGTH,
     ERROR_WAIT_DURATION,
     RATE_DECREASE_LENGTH,
-  }
+  };
 }

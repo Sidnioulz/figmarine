@@ -1,5 +1,5 @@
 import { buildStorage, defaultKeyGenerator, setupCache } from 'axios-cache-interceptor';
-import { makeCache, type DiskCache, MakeCacheOptions } from '@figmarine/cache';
+import { type DiskCache, makeCache, MakeCacheOptions } from '@figmarine/cache';
 import { log } from '@figmarine/logger';
 
 import { Api, type Api as ApiInterface } from './__generated__/figmaRestApi';
@@ -13,8 +13,8 @@ export interface ClientOptions {
    * @type {object | boolean}
    */
   cache?:
-  | false
-  | (Exclude<MakeCacheOptions, 'location'> & { location?: MakeCacheOptions['location'] });
+    | false
+    | (Exclude<MakeCacheOptions, 'location'> & { location?: MakeCacheOptions['location'] });
   /**
    * Whether the REST API is used in a development or production project.
    * In development, API calls are cached by default to help you get work
@@ -137,7 +137,7 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
         async clear() {
           log('API cache middleware: resetting.');
           await diskCache.reset();
-        }
+        },
       }),
     });
   }
@@ -154,7 +154,7 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
 
     api.instance.interceptors.request.use(async function (config) {
       // If we have cache for the request, no need to consider rate limiting.
-      const cacheHit = diskCache && await diskCache.get<string>(defaultKeyGenerator(config))
+      const cacheHit = diskCache && (await diskCache.get<string>(defaultKeyGenerator(config)));
 
       if (!cacheHit) {
         // Until Figma shed light on their actual rate limit implementation, all

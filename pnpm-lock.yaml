@@ -53,13 +53,13 @@ importers:
         version: 2.1.1(vitest@2.1.1(@types/node@22.5.0)(jsdom@20.0.3))
       tsc-watch:
         specifier: ^6.2.0
-        version: 6.2.0(typescript@5.5.4)
+        version: 6.2.0(typescript@5.6.2)
       tsup:
         specifier: ^8.2.4
-        version: 8.2.4(postcss@8.4.45)(typescript@5.5.4)(yaml@2.5.1)
+        version: 8.2.4(postcss@8.4.45)(typescript@5.6.2)(yaml@2.5.1)
       typescript:
         specifier: latest
-        version: 5.5.4
+        version: 5.6.2
       vitest:
         specifier: ^2.1.1
         version: 2.1.1(@types/node@22.5.0)(jsdom@20.0.3)
@@ -172,13 +172,13 @@ importers:
         version: 6.2.0(eslint@9.9.0)
       tsc-watch:
         specifier: ^6.2.0
-        version: 6.2.0(typescript@5.5.4)
+        version: 6.2.0(typescript@5.6.2)
       tsup:
         specifier: ^8.2.4
-        version: 8.2.4(postcss@8.4.45)(typescript@5.5.4)(yaml@2.5.1)
+        version: 8.2.4(postcss@8.4.45)(typescript@5.6.2)(yaml@2.5.1)
       typescript:
         specifier: latest
-        version: 5.5.4
+        version: 5.6.2
       vitest:
         specifier: ^2.1.1
         version: 2.1.1(@types/node@22.5.0)(jsdom@20.0.3)
@@ -208,13 +208,13 @@ importers:
         version: 2.1.1(vitest@2.1.1(@types/node@22.5.0)(jsdom@20.0.3))
       tsc-watch:
         specifier: ^6.2.0
-        version: 6.2.0(typescript@5.5.4)
+        version: 6.2.0(typescript@5.6.2)
       tsup:
         specifier: ^8.2.4
-        version: 8.2.4(postcss@8.4.45)(typescript@5.5.4)(yaml@2.5.1)
+        version: 8.2.4(postcss@8.4.45)(typescript@5.6.2)(yaml@2.5.1)
       typescript:
         specifier: latest
-        version: 5.5.4
+        version: 5.6.2
       vitest:
         specifier: ^2.1.1
         version: 2.1.1(@types/node@22.5.0)(jsdom@20.0.3)
@@ -263,13 +263,13 @@ importers:
         version: 13.0.22
       tsc-watch:
         specifier: ^6.2.0
-        version: 6.2.0(typescript@5.5.4)
+        version: 6.2.0(typescript@5.6.2)
       tsup:
         specifier: ^8.2.4
-        version: 8.2.4(postcss@8.4.45)(typescript@5.5.4)(yaml@2.5.1)
+        version: 8.2.4(postcss@8.4.45)(typescript@5.6.2)(yaml@2.5.1)
       typescript:
         specifier: latest
-        version: 5.5.4
+        version: 5.6.2
       vitest:
         specifier: ^2.1.1
         version: 2.1.1(@types/node@22.5.5)(jsdom@20.0.3)
@@ -6383,42 +6383,15 @@ snapshots:
       '@jest/types': 29.6.3
       babel-jest: 29.7.0(@babel/core@7.24.0)
 
-  tsc-watch@6.2.0(typescript@5.5.4):
+  tsc-watch@6.2.0(typescript@5.6.2):
     dependencies:
       cross-spawn: 7.0.3
       node-cleanup: 2.1.2
       ps-tree: 1.2.0
       string-argv: 0.3.2
-      typescript: 5.5.4
+      typescript: 5.6.2
 
   tslib@2.6.3: {}
-
-  tsup@8.2.4(postcss@8.4.45)(typescript@5.5.4)(yaml@2.5.1):
-    dependencies:
-      bundle-require: 5.0.0(esbuild@0.23.1)
-      cac: 6.7.14
-      chokidar: 3.6.0
-      consola: 3.2.3
-      debug: 4.3.6
-      esbuild: 0.23.1
-      execa: 5.1.1
-      globby: 11.1.0
-      joycon: 3.1.1
-      picocolors: 1.0.1
-      postcss-load-config: 6.0.1(postcss@8.4.45)(yaml@2.5.1)
-      resolve-from: 5.0.0
-      rollup: 4.21.0
-      source-map: 0.8.0-beta.0
-      sucrase: 3.35.0
-      tree-kill: 1.2.2
-    optionalDependencies:
-      postcss: 8.4.45
-      typescript: 5.5.4
-    transitivePeerDependencies:
-      - jiti
-      - supports-color
-      - tsx
-      - yaml
 
   tsup@8.2.4(postcss@8.4.45)(typescript@5.6.2)(yaml@2.5.1):
     dependencies:
