@@ -1,6 +1,6 @@
 import * as constants from '../constants';
 
-describe('constants', () => {
+describe('@figmarine/cache - constants', () => {
   describe('DEFAULT_CACHE_PATH', () => {
     it('exports DEFAULT_CACHE_PATH', () => {
       expect(constants).toHaveProperty('DEFAULT_CACHE_PATH');

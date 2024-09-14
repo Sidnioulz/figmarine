@@ -1,13 +1,9 @@
-describe('index', () => {
+describe('@figmarine/cache - index', () => {
   describe('diskCache', () => {
-    xit('', () => {});
-    xit('', () => {});
-    xit('', () => {});
+    it.skip('TODO', () => { });
   });
 
-  describe('cache', () => {
-    xit('', () => {});
-    xit('', () => {});
-    xit('', () => {});
+  describe('cacheWrapper', () => {
+    it.skip('TODO', () => { });
   });
 });
