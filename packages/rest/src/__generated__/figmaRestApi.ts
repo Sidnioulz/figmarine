@@ -36,7 +36,7 @@ export interface IsLayerTrait {
    * How layer should be treated when the frame is resized
    * @default "SCROLLS"
    */
-  scrollBehavior: 'SCROLLS' | 'FIXED' | 'STICKY_SCROLLS';
+  scrollBehavior: "SCROLLS" | "FIXED" | "STICKY_SCROLLS";
   /**
    * The rotation of the node, if not 0.
    * @default 0
@@ -156,7 +156,7 @@ export interface HasLayoutTrait {
    *
    * In horizontal auto-layout frames, "MIN" and "MAX" correspond to "TOP" and "BOTTOM". In vertical auto-layout frames, "MIN" and "MAX" correspond to "LEFT" and "RIGHT".
    */
-  layoutAlign?: 'INHERIT' | 'STRETCH' | 'MIN' | 'CENTER' | 'MAX';
+  layoutAlign?: "INHERIT" | "STRETCH" | "MIN" | "CENTER" | "MAX";
   /**
    * This property is applicable only for direct children of auto-layout frames, ignored otherwise. Determines whether a layer should stretch along the parent's primary axis. A `0` corresponds to a fixed size and `1` corresponds to stretch.
    * @default 0
@@ -166,7 +166,7 @@ export interface HasLayoutTrait {
    * Determines whether a layer's size and position should be determined by auto-layout settings or manually adjustable.
    * @default "AUTO"
    */
-  layoutPositioning?: 'AUTO' | 'ABSOLUTE';
+  layoutPositioning?: "AUTO" | "ABSOLUTE";
   /**
    * The minimum width of the frame. This property is only applicable for auto-layout frames or direct children of auto-layout frames.
    * @default 0
@@ -193,14 +193,14 @@ export interface HasLayoutTrait {
    * - `HUG`: only valid on auto-layout frames and text nodes
    * - `FILL`: only valid on auto-layout frame children
    */
-  layoutSizingHorizontal?: 'FIXED' | 'HUG' | 'FILL';
+  layoutSizingHorizontal?: "FIXED" | "HUG" | "FILL";
   /**
    * The vertical sizing setting on this auto-layout frame or frame child.
    * - `FIXED`
    * - `HUG`: only valid on auto-layout frames and text nodes
    * - `FILL`: only valid on auto-layout frame children
    */
-  layoutSizingVertical?: 'FIXED' | 'HUG' | 'FILL';
+  layoutSizingVertical?: "FIXED" | "HUG" | "FILL";
 }
 
 export interface HasFramePropertiesTrait {
@@ -222,36 +222,32 @@ export interface HasFramePropertiesTrait {
    * Whether a node has primary axis scrolling, horizontal or vertical.
    * @default "NONE"
    */
-  overflowDirection?:
-    | 'HORIZONTAL_SCROLLING'
-    | 'VERTICAL_SCROLLING'
-    | 'HORIZONTAL_AND_VERTICAL_SCROLLING'
-    | 'NONE';
+  overflowDirection?: "HORIZONTAL_SCROLLING" | "VERTICAL_SCROLLING" | "HORIZONTAL_AND_VERTICAL_SCROLLING" | "NONE";
   /**
    * Whether this layer uses auto-layout to position its children.
    * @default "NONE"
    */
-  layoutMode?: 'NONE' | 'HORIZONTAL' | 'VERTICAL';
+  layoutMode?: "NONE" | "HORIZONTAL" | "VERTICAL";
   /**
    * Whether the primary axis has a fixed length (determined by the user) or an automatic length (determined by the layout engine). This property is only applicable for auto-layout frames.
    * @default "AUTO"
    */
-  primaryAxisSizingMode?: 'FIXED' | 'AUTO';
+  primaryAxisSizingMode?: "FIXED" | "AUTO";
   /**
    * Whether the counter axis has a fixed length (determined by the user) or an automatic length (determined by the layout engine). This property is only applicable for auto-layout frames.
    * @default "AUTO"
    */
-  counterAxisSizingMode?: 'FIXED' | 'AUTO';
+  counterAxisSizingMode?: "FIXED" | "AUTO";
   /**
    * Determines how the auto-layout frame's children should be aligned in the primary axis direction. This property is only applicable for auto-layout frames.
    * @default "MIN"
    */
-  primaryAxisAlignItems?: 'MIN' | 'CENTER' | 'MAX' | 'SPACE_BETWEEN';
+  primaryAxisAlignItems?: "MIN" | "CENTER" | "MAX" | "SPACE_BETWEEN";
   /**
    * Determines how the auto-layout frame's children should be aligned in the counter axis direction. This property is only applicable for auto-layout frames.
    * @default "MIN"
    */
-  counterAxisAlignItems?: 'MIN' | 'CENTER' | 'MAX' | 'BASELINE';
+  counterAxisAlignItems?: "MIN" | "CENTER" | "MAX" | "BASELINE";
   /**
    * The padding between the left border of the frame and its children. This property is only applicable for auto-layout frames.
    * @default 0
@@ -288,14 +284,14 @@ export interface HasFramePropertiesTrait {
    */
   strokesIncludedInLayout?: boolean;
   /** Whether this auto-layout frame has wrapping enabled. */
-  layoutWrap?: 'NO_WRAP' | 'WRAP';
+  layoutWrap?: "NO_WRAP" | "WRAP";
   /** The distance between wrapped tracks of an auto-layout frame. This property is only applicable for auto-layout frames with `layoutWrap: "WRAP"` */
   counterAxisSpacing?: number;
   /**
    * Determines how the auto-layout frame’s wrapped tracks should be aligned in the counter axis direction. This property is only applicable for auto-layout frames with `layoutWrap: "WRAP"`.
    * @default "AUTO"
    */
-  counterAxisAlignContent?: 'AUTO' | 'SPACE_BETWEEN';
+  counterAxisAlignContent?: "AUTO" | "SPACE_BETWEEN";
 }
 
 export interface HasBlendModeAndOpacityTrait {
@@ -328,20 +324,20 @@ export type HasGeometryTrait = MinimalFillsTrait &
      * @default "NONE"
      */
     strokeCap?:
-      | 'NONE'
-      | 'ROUND'
-      | 'SQUARE'
-      | 'LINE_ARROW'
-      | 'TRIANGLE_ARROW'
-      | 'DIAMOND_FILLED'
-      | 'CIRCLE_FILLED'
-      | 'TRIANGLE_FILLED'
-      | 'WASHI_TAPE_1'
-      | 'WASHI_TAPE_2'
-      | 'WASHI_TAPE_3'
-      | 'WASHI_TAPE_4'
-      | 'WASHI_TAPE_5'
-      | 'WASHI_TAPE_6';
+      | "NONE"
+      | "ROUND"
+      | "SQUARE"
+      | "LINE_ARROW"
+      | "TRIANGLE_ARROW"
+      | "DIAMOND_FILLED"
+      | "CIRCLE_FILLED"
+      | "TRIANGLE_FILLED"
+      | "WASHI_TAPE_1"
+      | "WASHI_TAPE_2"
+      | "WASHI_TAPE_3"
+      | "WASHI_TAPE_4"
+      | "WASHI_TAPE_5"
+      | "WASHI_TAPE_6";
     /**
      * Only valid if `strokeJoin` is "MITER". The corner angle, in degrees, below which `strokeJoin` will be set to "BEVEL" to avoid super sharp corners. By default this is 28.96 degrees.
      * @default 28.96
@@ -371,12 +367,12 @@ export interface MinimalStrokesTrait {
    * - `OUTSIDE`: stroke drawn outside the shape boundary
    * - `CENTER`: stroke drawn centered along the shape boundary
    */
-  strokeAlign?: 'INSIDE' | 'OUTSIDE' | 'CENTER';
+  strokeAlign?: "INSIDE" | "OUTSIDE" | "CENTER";
   /**
    * A string enum with value of "MITER", "BEVEL", or "ROUND", describing how corners in vector paths are rendered.
    * @default "MITER"
    */
-  strokeJoin?: 'MITER' | 'BEVEL' | 'ROUND';
+  strokeJoin?: "MITER" | "BEVEL" | "ROUND";
   /**
    * An array of floating point numbers describing the pattern of dash length and gap lengths that the vector stroke will use when drawn.
    *
@@ -426,7 +422,7 @@ export interface HasMaskTrait {
    * - VECTOR: if the mask node has visible fill paints, every pixel inside the node's fill regions will be fully visible in the masked result. If the mask has visible stroke paints, every pixel inside the node's stroke regions will be fully visible in the masked result.
    * - LUMINANCE: the luminance value of each pixel of the mask node will be used to determine the opacity of that pixel in the masked result.
    */
-  maskType?: 'ALPHA' | 'VECTOR' | 'LUMINANCE';
+  maskType?: "ALPHA" | "VECTOR" | "LUMINANCE";
   /**
    * True if maskType is VECTOR. This field is deprecated; use maskType instead.
    * @deprecated
@@ -458,7 +454,7 @@ export interface TypePropertiesTrait {
    * - `ORDERED`: Text is an ordered list (numbered).
    * - `UNORDERED`: Text is an unordered list (bulleted).
    */
-  lineTypes: ('NONE' | 'ORDERED' | 'UNORDERED')[];
+  lineTypes: ("NONE" | "ORDERED" | "UNORDERED")[];
   /** An array with the same number of elements as lines in the text node, where lines are delimited by newline or paragraph separator characters. Each element in the array corresponds to the indentation level of a specific line. */
   lineIndentations: number[];
 }
@@ -480,7 +476,7 @@ export interface TransitionSourceTrait {
 export interface DevStatusTrait {
   /** Represents whether or not a node has a particular handoff (or dev) status applied to it. */
   devStatus?: {
-    type: 'NONE' | 'READY_FOR_DEV' | 'COMPLETED';
+    type: "NONE" | "READY_FOR_DEV" | "COMPLETED";
     /** An optional field where the designer can add more information about the design and what has changed. */
     description?: string;
   };
@@ -515,91 +511,91 @@ export type RectangularShapeTraits = DefaultShapeTraits & CornerTrait & Individu
 
 export type Node =
   | ({
-      type: 'BOOLEAN_OPERATION';
+      type: "BOOLEAN_OPERATION";
     } & BooleanOperationNode)
   | ({
-      type: 'COMPONENT';
+      type: "COMPONENT";
     } & ComponentNode)
   | ({
-      type: 'COMPONENT_SET';
+      type: "COMPONENT_SET";
     } & ComponentSetNode)
   | ({
-      type: 'CONNECTOR';
+      type: "CONNECTOR";
     } & ConnectorNode)
   | ({
-      type: 'ELLIPSE';
+      type: "ELLIPSE";
     } & EllipseNode)
   | ({
-      type: 'EMBED';
+      type: "EMBED";
     } & EmbedNode)
   | ({
-      type: 'FRAME';
+      type: "FRAME";
     } & FrameNode)
   | ({
-      type: 'GROUP';
+      type: "GROUP";
     } & GroupNode)
   | ({
-      type: 'INSTANCE';
+      type: "INSTANCE";
     } & InstanceNode)
   | ({
-      type: 'LINE';
+      type: "LINE";
     } & LineNode)
   | ({
-      type: 'LINK_UNFURL';
+      type: "LINK_UNFURL";
     } & LinkUnfurlNode)
   | ({
-      type: 'RECTANGLE';
+      type: "RECTANGLE";
     } & RectangleNode)
   | ({
-      type: 'REGULAR_POLYGON';
+      type: "REGULAR_POLYGON";
     } & RegularPolygonNode)
   | ({
-      type: 'SECTION';
+      type: "SECTION";
     } & SectionNode)
   | ({
-      type: 'SHAPE_WITH_TEXT';
+      type: "SHAPE_WITH_TEXT";
     } & ShapeWithTextNode)
   | ({
-      type: 'SLICE';
+      type: "SLICE";
     } & SliceNode)
   | ({
-      type: 'STAR';
+      type: "STAR";
     } & StarNode)
   | ({
-      type: 'STICKY';
+      type: "STICKY";
     } & StickyNode)
   | ({
-      type: 'TABLE';
+      type: "TABLE";
     } & TableNode)
   | ({
-      type: 'TABLE_CELL';
+      type: "TABLE_CELL";
     } & TableCellNode)
   | ({
-      type: 'TEXT';
+      type: "TEXT";
     } & TextNode)
   | ({
-      type: 'VECTOR';
+      type: "VECTOR";
     } & VectorNode)
   | ({
-      type: 'WASHI_TAPE';
+      type: "WASHI_TAPE";
     } & WashiTapeNode)
   | ({
-      type: 'WIDGET';
+      type: "WIDGET";
     } & WidgetNode)
   | ({
-      type: 'DOCUMENT';
+      type: "DOCUMENT";
     } & DocumentNode)
   | ({
-      type: 'CANVAS';
+      type: "CANVAS";
     } & CanvasNode);
 
 export type DocumentNode = {
-  type: 'DOCUMENT';
+  type: "DOCUMENT";
   children: CanvasNode[];
 } & IsLayerTrait;
 
 export type CanvasNode = {
-  type: 'CANVAS';
+  type: "CANVAS";
   children: SubcanvasNode[];
   /** Background color of the canvas. */
   backgroundColor: RGBA;
@@ -617,83 +613,83 @@ export type CanvasNode = {
 
 export type SubcanvasNode =
   | ({
-      type: 'BOOLEAN_OPERATION';
+      type: "BOOLEAN_OPERATION";
     } & BooleanOperationNode)
   | ({
-      type: 'COMPONENT';
+      type: "COMPONENT";
     } & ComponentNode)
   | ({
-      type: 'COMPONENT_SET';
+      type: "COMPONENT_SET";
     } & ComponentSetNode)
   | ({
-      type: 'CONNECTOR';
+      type: "CONNECTOR";
     } & ConnectorNode)
   | ({
-      type: 'ELLIPSE';
+      type: "ELLIPSE";
     } & EllipseNode)
   | ({
-      type: 'EMBED';
+      type: "EMBED";
     } & EmbedNode)
   | ({
-      type: 'FRAME';
+      type: "FRAME";
     } & FrameNode)
   | ({
-      type: 'GROUP';
+      type: "GROUP";
     } & GroupNode)
   | ({
-      type: 'INSTANCE';
+      type: "INSTANCE";
     } & InstanceNode)
   | ({
-      type: 'LINE';
+      type: "LINE";
     } & LineNode)
   | ({
-      type: 'LINK_UNFURL';
+      type: "LINK_UNFURL";
     } & LinkUnfurlNode)
   | ({
-      type: 'RECTANGLE';
+      type: "RECTANGLE";
     } & RectangleNode)
   | ({
-      type: 'REGULAR_POLYGON';
+      type: "REGULAR_POLYGON";
     } & RegularPolygonNode)
   | ({
-      type: 'SECTION';
+      type: "SECTION";
     } & SectionNode)
   | ({
-      type: 'SHAPE_WITH_TEXT';
+      type: "SHAPE_WITH_TEXT";
     } & ShapeWithTextNode)
   | ({
-      type: 'SLICE';
+      type: "SLICE";
     } & SliceNode)
   | ({
-      type: 'STAR';
+      type: "STAR";
     } & StarNode)
   | ({
-      type: 'STICKY';
+      type: "STICKY";
     } & StickyNode)
   | ({
-      type: 'TABLE';
+      type: "TABLE";
     } & TableNode)
   | ({
-      type: 'TABLE_CELL';
+      type: "TABLE_CELL";
     } & TableCellNode)
   | ({
-      type: 'TEXT';
+      type: "TEXT";
     } & TextNode)
   | ({
-      type: 'VECTOR';
+      type: "VECTOR";
     } & VectorNode)
   | ({
-      type: 'WASHI_TAPE';
+      type: "WASHI_TAPE";
     } & WashiTapeNode)
   | ({
-      type: 'WIDGET';
+      type: "WIDGET";
     } & WidgetNode);
 
 export type BooleanOperationNode = {
   /** The type of this node, represented by the string literal "BOOLEAN_OPERATION" */
-  type: 'BOOLEAN_OPERATION';
+  type: "BOOLEAN_OPERATION";
   /** A string enum indicating the type of boolean operation applied. */
-  booleanOperation: 'UNION' | 'INTERSECT' | 'SUBTRACT' | 'EXCLUDE';
+  booleanOperation: "UNION" | "INTERSECT" | "SUBTRACT" | "EXCLUDE";
 } & IsLayerTrait &
   HasBlendModeAndOpacityTrait &
   HasChildrenTrait &
@@ -706,7 +702,7 @@ export type BooleanOperationNode = {
 
 export type SectionNode = {
   /** The type of this node, represented by the string literal "SECTION" */
-  type: 'SECTION';
+  type: "SECTION";
   /**
    * Whether the contents of the section are visible
    * @default false
@@ -720,67 +716,67 @@ export type SectionNode = {
 
 export type FrameNode = {
   /** The type of this node, represented by the string literal "FRAME" */
-  type: 'FRAME';
+  type: "FRAME";
 } & FrameTraits;
 
 export type GroupNode = {
   /** The type of this node, represented by the string literal "GROUP" */
-  type: 'GROUP';
+  type: "GROUP";
 } & FrameTraits;
 
 export type ComponentNode = {
   /** The type of this node, represented by the string literal "COMPONENT" */
-  type: 'COMPONENT';
+  type: "COMPONENT";
 } & FrameTraits &
   ComponentPropertiesTrait;
 
 export type ComponentSetNode = {
   /** The type of this node, represented by the string literal "COMPONENT_SET" */
-  type: 'COMPONENT_SET';
+  type: "COMPONENT_SET";
 } & FrameTraits &
   ComponentPropertiesTrait;
 
 export type VectorNode = {
   /** The type of this node, represented by the string literal "VECTOR" */
-  type: 'VECTOR';
+  type: "VECTOR";
 } & CornerRadiusShapeTraits;
 
 export type StarNode = {
   /** The type of this node, represented by the string literal "STAR" */
-  type: 'STAR';
+  type: "STAR";
 } & CornerRadiusShapeTraits;
 
 export type LineNode = {
   /** The type of this node, represented by the string literal "LINE" */
-  type: 'LINE';
+  type: "LINE";
 } & DefaultShapeTraits;
 
 export type EllipseNode = {
   /** The type of this node, represented by the string literal "ELLIPSE" */
-  type: 'ELLIPSE';
+  type: "ELLIPSE";
   /** Information about the arc properties of an ellipse. 0° is the x axis and increasing angles rotate clockwise. */
   arcData: ArcData;
 } & DefaultShapeTraits;
 
 export type RegularPolygonNode = {
   /** The type of this node, represented by the string literal "REGULAR_POLYGON" */
-  type: 'REGULAR_POLYGON';
+  type: "REGULAR_POLYGON";
 } & CornerRadiusShapeTraits;
 
 export type RectangleNode = {
   /** The type of this node, represented by the string literal "RECTANGLE" */
-  type: 'RECTANGLE';
+  type: "RECTANGLE";
 } & RectangularShapeTraits;
 
 export type TextNode = {
   /** The type of this node, represented by the string literal "TEXT" */
-  type: 'TEXT';
+  type: "TEXT";
 } & DefaultShapeTraits &
   TypePropertiesTrait;
 
 export type TableNode = {
   /** The type of this node, represented by the string literal "TABLE" */
-  type: 'TABLE';
+  type: "TABLE";
 } & IsLayerTrait &
   HasChildrenTrait &
   HasLayoutTrait &
@@ -791,7 +787,7 @@ export type TableNode = {
 
 export type TableCellNode = {
   /** The type of this node, represented by the string literal "TABLE_CELL" */
-  type: 'TABLE_CELL';
+  type: "TABLE_CELL";
 } & IsLayerTrait &
   MinimalFillsTrait &
   HasLayoutTrait &
@@ -799,12 +795,12 @@ export type TableCellNode = {
 
 export type SliceNode = {
   /** The type of this node, represented by the string literal "SLICE" */
-  type: 'SLICE';
+  type: "SLICE";
 } & IsLayerTrait;
 
 export type InstanceNode = {
   /** The type of this node, represented by the string literal "INSTANCE" */
-  type: 'INSTANCE';
+  type: "INSTANCE";
   /** ID of component that this instance came from. */
   componentId: string;
   /**
@@ -822,19 +818,19 @@ export type InstanceNode = {
 
 export type EmbedNode = {
   /** The type of this node, represented by the string literal "EMBED" */
-  type: 'EMBED';
+  type: "EMBED";
 } & IsLayerTrait &
   HasExportSettingsTrait;
 
 export type LinkUnfurlNode = {
   /** The type of this node, represented by the string literal "LINK_UNFURL" */
-  type: 'LINK_UNFURL';
+  type: "LINK_UNFURL";
 } & IsLayerTrait &
   HasExportSettingsTrait;
 
 export type StickyNode = {
   /** The type of this node, represented by the string literal "STICKY" */
-  type: 'STICKY';
+  type: "STICKY";
   /**
    * If true, author name is visible.
    * @default false
@@ -851,7 +847,7 @@ export type StickyNode = {
 
 export type ShapeWithTextNode = {
   /** The type of this node, represented by the string literal "SHAPE_WITH_TEXT" */
-  type: 'SHAPE_WITH_TEXT';
+  type: "SHAPE_WITH_TEXT";
   /** Geometric shape type. Most shape types have the same name as their tooltip but there are a few exceptions. ENG_DATABASE: Cylinder, ENG_QUEUE: Horizontal cylinder, ENG_FILE: File, ENG_FOLDER: Folder. */
   shapeType: ShapeType;
 } & IsLayerTrait &
@@ -867,7 +863,7 @@ export type ShapeWithTextNode = {
 
 export type ConnectorNode = {
   /** The type of this node, represented by the string literal "CONNECTOR" */
-  type: 'CONNECTOR';
+  type: "CONNECTOR";
   /** The starting point of the connector. */
   connectorStart: ConnectorEndpoint;
   /** The ending point of the connector. */
@@ -877,23 +873,23 @@ export type ConnectorNode = {
    * @default "NONE"
    */
   connectorStartStrokeCap:
-    | 'NONE'
-    | 'LINE_ARROW'
-    | 'TRIANGLE_ARROW'
-    | 'DIAMOND_FILLED'
-    | 'CIRCLE_FILLED'
-    | 'TRIANGLE_FILLED';
+    | "NONE"
+    | "LINE_ARROW"
+    | "TRIANGLE_ARROW"
+    | "DIAMOND_FILLED"
+    | "CIRCLE_FILLED"
+    | "TRIANGLE_FILLED";
   /**
    * A string enum describing the end cap of the end of the connector.
    * @default "NONE"
    */
   connectorEndStrokeCap:
-    | 'NONE'
-    | 'LINE_ARROW'
-    | 'TRIANGLE_ARROW'
-    | 'DIAMOND_FILLED'
-    | 'CIRCLE_FILLED'
-    | 'TRIANGLE_FILLED';
+    | "NONE"
+    | "LINE_ARROW"
+    | "TRIANGLE_ARROW"
+    | "DIAMOND_FILLED"
+    | "CIRCLE_FILLED"
+    | "TRIANGLE_FILLED";
   /** Connector line type. */
   connectorLineType: ConnectorLineType;
   /** Connector text background. */
@@ -908,12 +904,12 @@ export type ConnectorNode = {
 
 export type WashiTapeNode = {
   /** The type of this node, represented by the string literal "WASHI_TAPE" */
-  type: 'WASHI_TAPE';
+  type: "WASHI_TAPE";
 } & DefaultShapeTraits;
 
 export type WidgetNode = {
   /** The type of this node, represented by the string literal "WIDGET" */
-  type: 'WIDGET';
+  type: "WIDGET";
 } & IsLayerTrait &
   HasExportSettingsTrait &
   HasChildrenTrait;
@@ -986,11 +982,11 @@ export interface Size {
 
 /** The device used to view a prototype. */
 export interface PrototypeDevice {
-  type: 'NONE' | 'PRESET' | 'CUSTOM' | 'PRESENTATION';
+  type: "NONE" | "PRESET" | "CUSTOM" | "PRESENTATION";
   /** A width and a height. */
   size?: Size;
   presetIdentifier?: string;
-  rotation: 'NONE' | 'CCW_90';
+  rotation: "NONE" | "CCW_90";
 }
 
 /** Sizing constraint for exports. */
@@ -1002,7 +998,7 @@ export interface Constraint {
    * - `WIDTH`: Scale proportionally and set width to `value`.
    * - `HEIGHT`: Scale proportionally and set height to `value`.
    */
-  type: 'SCALE' | 'WIDTH' | 'HEIGHT';
+  type: "SCALE" | "WIDTH" | "HEIGHT";
   /** See type property for effect of this field. */
   value: number;
 }
@@ -1010,7 +1006,7 @@ export interface Constraint {
 /** An export setting. */
 export interface ExportSetting {
   suffix: string;
-  format: 'JPG' | 'PNG' | 'SVG' | 'PDF';
+  format: "JPG" | "PNG" | "SVG" | "PDF";
   /** Sizing constraint for exports. */
   constraint: Constraint;
 }
@@ -1050,25 +1046,25 @@ export interface ExportSetting {
  * - `LUMINOSITY`
  */
 export enum BlendMode {
-  PASS_THROUGH = 'PASS_THROUGH',
-  NORMAL = 'NORMAL',
-  DARKEN = 'DARKEN',
-  MULTIPLY = 'MULTIPLY',
-  LINEAR_BURN = 'LINEAR_BURN',
-  COLOR_BURN = 'COLOR_BURN',
-  LIGHTEN = 'LIGHTEN',
-  SCREEN = 'SCREEN',
-  LINEAR_DODGE = 'LINEAR_DODGE',
-  COLOR_DODGE = 'COLOR_DODGE',
-  OVERLAY = 'OVERLAY',
-  SOFT_LIGHT = 'SOFT_LIGHT',
-  HARD_LIGHT = 'HARD_LIGHT',
-  DIFFERENCE = 'DIFFERENCE',
-  EXCLUSION = 'EXCLUSION',
-  HUE = 'HUE',
-  SATURATION = 'SATURATION',
-  COLOR = 'COLOR',
-  LUMINOSITY = 'LUMINOSITY',
+  PASS_THROUGH = "PASS_THROUGH",
+  NORMAL = "NORMAL",
+  DARKEN = "DARKEN",
+  MULTIPLY = "MULTIPLY",
+  LINEAR_BURN = "LINEAR_BURN",
+  COLOR_BURN = "COLOR_BURN",
+  LIGHTEN = "LIGHTEN",
+  SCREEN = "SCREEN",
+  LINEAR_DODGE = "LINEAR_DODGE",
+  COLOR_DODGE = "COLOR_DODGE",
+  OVERLAY = "OVERLAY",
+  SOFT_LIGHT = "SOFT_LIGHT",
+  HARD_LIGHT = "HARD_LIGHT",
+  DIFFERENCE = "DIFFERENCE",
+  EXCLUSION = "EXCLUSION",
+  HUE = "HUE",
+  SATURATION = "SATURATION",
+  COLOR = "COLOR",
+  LUMINOSITY = "LUMINOSITY",
 }
 
 /** A 2d vector. */
@@ -1161,7 +1157,7 @@ export interface BasePaint {
 /** A solid color */
 export type SolidPaint = {
   /** The string literal "SOLID" representing the paint's type. Always check the `type` before reading other properties. */
-  type: 'SOLID';
+  type: "SOLID";
   /** Solid color of the paint */
   color: RGBA;
   /** The variables bound to a particular field on this paint */
@@ -1174,7 +1170,7 @@ export type SolidPaint = {
 /** A gradient */
 export type GradientPaint = {
   /** The string literal representing the paint's type. Always check the `type` before reading other properties. */
-  type: 'GRADIENT_LINEAR' | 'GRADIENT_RADIAL' | 'GRADIENT_ANGULAR' | 'GRADIENT_DIAMOND';
+  type: "GRADIENT_LINEAR" | "GRADIENT_RADIAL" | "GRADIENT_ANGULAR" | "GRADIENT_DIAMOND";
   /** This field contains three vectors, each of which are a position in normalized object space (normalized object space is if the top left corner of the bounding box of the object is (0, 0) and the bottom right is (1,1)). The first position corresponds to the start of the gradient (value 0 for the purposes of calculating gradient stops), the second position is the end of the gradient (value 1), and the third handle position determines the width of the gradient. */
   gradientHandlePositions: Vector[];
   /** Positions of key points along the gradient axis with the colors anchored there. Colors along the gradient are interpolated smoothly between neighboring gradient stops. */
@@ -1184,9 +1180,9 @@ export type GradientPaint = {
 /** An image */
 export type ImagePaint = {
   /** The string literal "IMAGE" representing the paint's type. Always check the `type` before reading other properties. */
-  type: 'IMAGE';
+  type: "IMAGE";
   /** Image scaling mode. */
-  scaleMode: 'FILL' | 'FIT' | 'TILE' | 'STRETCH';
+  scaleMode: "FILL" | "FIT" | "TILE" | "STRETCH";
   /** A reference to an image embedded in this node. To download the image using this reference, use the `GET file images` endpoint to retrieve the mapping from image references to image URLs. */
   imageRef: string;
   /** Affine transform applied to the image, only present if `scaleMode` is `STRETCH` */
@@ -1217,7 +1213,7 @@ export interface LayoutConstraint {
    * - `TOP_BOTTOM`: Both top and bottom of node are constrained relative to containing frame (node stretches with frame)
    * - `SCALE`: Node scales vertically with containing frame
    */
-  vertical: 'TOP' | 'BOTTOM' | 'CENTER' | 'TOP_BOTTOM' | 'SCALE';
+  vertical: "TOP" | "BOTTOM" | "CENTER" | "TOP_BOTTOM" | "SCALE";
   /**
    * Horizontal constraint (relative to containing frame) as an enum:
    *
@@ -1227,7 +1223,7 @@ export interface LayoutConstraint {
    * - `LEFT_RIGHT`: Both left and right of node are constrained relative to containing frame (node stretches with frame)
    * - `SCALE`: Node scales horizontally with containing frame
    */
-  horizontal: 'LEFT' | 'RIGHT' | 'CENTER' | 'LEFT_RIGHT' | 'SCALE';
+  horizontal: "LEFT" | "RIGHT" | "CENTER" | "LEFT_RIGHT" | "SCALE";
 }
 
 /** A rectangle that expresses a bounding box in absolute coordinates. */
@@ -1251,7 +1247,7 @@ export interface LayoutGrid {
    * - `ROWS`: Horizontal grid
    * - `GRID`: Square grid
    */
-  pattern: 'COLUMNS' | 'ROWS' | 'GRID';
+  pattern: "COLUMNS" | "ROWS" | "GRID";
   /** Width of column grid or height of row grid or square grid spacing. */
   sectionSize: number;
   /** Is the grid currently visible? */
@@ -1266,7 +1262,7 @@ export interface LayoutGrid {
    * - `STRETCH`: Grid is stretched to fit the frame
    * - `CENTER`: Grid is center aligned
    */
-  alignment: 'MIN' | 'MAX' | 'STRETCH' | 'CENTER';
+  alignment: "MIN" | "MAX" | "STRETCH" | "CENTER";
   /** Spacing in between columns and rows */
   gutterSize: number;
   /** Spacing before the first column or row */
@@ -1328,7 +1324,7 @@ export interface BaseShadowEffect {
 /** A drop shadow effect */
 export type DropShadowEffect = {
   /** A string literal representing the effect's type. Always check the type before reading other properties. */
-  type: 'DROP_SHADOW';
+  type: "DROP_SHADOW";
   /**
    * Whether to show the shadow behind translucent or transparent pixels
    * @default false
@@ -1339,13 +1335,13 @@ export type DropShadowEffect = {
 /** An inner shadow effect */
 export type InnerShadowEffect = {
   /** A string literal representing the effect's type. Always check the type before reading other properties. */
-  type?: 'INNER_SHADOW';
+  type?: "INNER_SHADOW";
 } & BaseShadowEffect;
 
 /** A blur effect */
 export interface BlurEffect {
   /** A string literal representing the effect's type. Always check the type before reading other properties. */
-  type: 'LAYER_BLUR' | 'BACKGROUND_BLUR';
+  type: "LAYER_BLUR" | "BACKGROUND_BLUR";
   /** Whether this blur is active. */
   visible: boolean;
   /**
@@ -1362,16 +1358,16 @@ export interface BlurEffect {
 
 export type Effect =
   | ({
-      type: 'DROP_SHADOW';
+      type: "DROP_SHADOW";
     } & DropShadowEffect)
   | ({
-      type: 'INNER_SHADOW';
+      type: "INNER_SHADOW";
     } & InnerShadowEffect)
   | ({
-      type: 'LAYER_BLUR';
+      type: "LAYER_BLUR";
     } & BlurEffect)
   | ({
-      type: 'BACKGROUND_BLUR';
+      type: "BACKGROUND_BLUR";
     } & BlurEffect);
 
 /** A set of properties that can be applied to nodes and published. Styles for a property can be created in the corresponding property's panel while editing a file. */
@@ -1406,19 +1402,19 @@ export interface Style {
  * - `CUSTOM_SPRING`: User-defined spring animation.
  */
 export enum EasingType {
-  EASE_IN = 'EASE_IN',
-  EASE_OUT = 'EASE_OUT',
-  EASE_IN_AND_OUT = 'EASE_IN_AND_OUT',
-  LINEAR = 'LINEAR',
-  EASE_IN_BACK = 'EASE_IN_BACK',
-  EASE_OUT_BACK = 'EASE_OUT_BACK',
-  EASE_IN_AND_OUT_BACK = 'EASE_IN_AND_OUT_BACK',
-  CUSTOM_CUBIC_BEZIER = 'CUSTOM_CUBIC_BEZIER',
-  GENTLE = 'GENTLE',
-  QUICK = 'QUICK',
-  BOUNCY = 'BOUNCY',
-  SLOW = 'SLOW',
-  CUSTOM_SPRING = 'CUSTOM_SPRING',
+  EASE_IN = "EASE_IN",
+  EASE_OUT = "EASE_OUT",
+  EASE_IN_AND_OUT = "EASE_IN_AND_OUT",
+  LINEAR = "LINEAR",
+  EASE_IN_BACK = "EASE_IN_BACK",
+  EASE_OUT_BACK = "EASE_OUT_BACK",
+  EASE_IN_AND_OUT_BACK = "EASE_IN_AND_OUT_BACK",
+  CUSTOM_CUBIC_BEZIER = "CUSTOM_CUBIC_BEZIER",
+  GENTLE = "GENTLE",
+  QUICK = "QUICK",
+  BOUNCY = "BOUNCY",
+  SLOW = "SLOW",
+  CUSTOM_SPRING = "CUSTOM_SPRING",
 }
 
 /** Individual stroke weights */
@@ -1446,7 +1442,7 @@ export interface Path {
   /** A series of path commands that encodes how to draw the path. */
   path: string;
   /** The winding rule for the path (same as in SVGs). This determines whether a given point in space is inside or outside the path. */
-  windingRule: 'NONZERO' | 'EVENODD';
+  windingRule: "NONZERO" | "EVENODD";
   /** If there is a per-region fill, this refers to an ID in the `fillOverrideTable`. */
   overrideID?: number;
 }
@@ -1475,7 +1471,7 @@ export interface ArcData {
 /** A link to either a URL or another frame (node) in the document. */
 export interface Hyperlink {
   /** The type of hyperlink. Can be either `URL` or `NODE`. */
-  type: 'URL' | 'NODE';
+  type: "URL" | "NODE";
   /** The URL that the hyperlink points to, if `type` is `URL`. */
   url?: string;
   /** The ID of the node that the hyperlink points to, if `type` is `NODE`. */
@@ -1513,28 +1509,28 @@ export interface TypeStyle {
   /** Font size in px. */
   fontSize?: number;
   /** Text casing applied to the node, default is the original casing. */
-  textCase?: 'UPPER' | 'LOWER' | 'TITLE' | 'SMALL_CAPS' | 'SMALL_CAPS_FORCED';
+  textCase?: "UPPER" | "LOWER" | "TITLE" | "SMALL_CAPS" | "SMALL_CAPS_FORCED";
   /**
    * Text decoration applied to the node, default is none.
    * @default "NONE"
    */
-  textDecoration?: 'NONE' | 'STRIKETHROUGH' | 'UNDERLINE';
+  textDecoration?: "NONE" | "STRIKETHROUGH" | "UNDERLINE";
   /**
    * Dimensions along which text will auto resize, default is that the text does not auto-resize. TRUNCATE means that the text will be shortened and trailing text will be replaced with "…" if the text contents is larger than the bounds. `TRUNCATE` as a return value is deprecated and will be removed in a future version. Read from `textTruncation` instead.
    * @default "NONE"
    */
-  textAutoResize?: 'NONE' | 'WIDTH_AND_HEIGHT' | 'HEIGHT' | 'TRUNCATE';
+  textAutoResize?: "NONE" | "WIDTH_AND_HEIGHT" | "HEIGHT" | "TRUNCATE";
   /**
    * Whether this text node will truncate with an ellipsis when the text contents is larger than the text node.
    * @default "DISABLED"
    */
-  textTruncation?: 'DISABLED' | 'ENDING';
+  textTruncation?: "DISABLED" | "ENDING";
   /** When `textTruncation: "ENDING"` is set, `maxLines` determines how many lines a text node can grow to before it truncates. */
   maxLines?: number;
   /** Horizontal text alignment as string enum. */
-  textAlignHorizontal?: 'LEFT' | 'RIGHT' | 'CENTER' | 'JUSTIFIED';
+  textAlignHorizontal?: "LEFT" | "RIGHT" | "CENTER" | "JUSTIFIED";
   /** Vertical text alignment as string enum. */
-  textAlignVertical?: 'TOP' | 'CENTER' | 'BOTTOM';
+  textAlignVertical?: "TOP" | "CENTER" | "BOTTOM";
   /** Space between characters in px. */
   letterSpacing?: number;
   /** An array of fill paints applied to the characters. */
@@ -1553,7 +1549,7 @@ export interface TypeStyle {
   /** Line height as a percentage of the font size. Only returned when `lineHeightPercent` (deprecated) is not 100. */
   lineHeightPercentFontSize?: number;
   /** The unit of the line height value specified by the user. */
-  lineHeightUnit?: 'PIXELS' | 'FONT_SIZE_%' | 'INTRINSIC_%';
+  lineHeightUnit?: "PIXELS" | "FONT_SIZE_%" | "INTRINSIC_%";
   /** The variables bound to a particular field on this style */
   boundVariables?: {
     /** Contains a variable alias */
@@ -1577,16 +1573,16 @@ export interface TypeStyle {
 
 /** Component property type. */
 export enum ComponentPropertyType {
-  BOOLEAN = 'BOOLEAN',
-  INSTANCE_SWAP = 'INSTANCE_SWAP',
-  TEXT = 'TEXT',
-  VARIANT = 'VARIANT',
+  BOOLEAN = "BOOLEAN",
+  INSTANCE_SWAP = "INSTANCE_SWAP",
+  TEXT = "TEXT",
+  VARIANT = "VARIANT",
 }
 
 /** Instance swap preferred value. */
 export interface InstanceSwapPreferredValue {
   /** Type of node for this preferred value. */
-  type: 'COMPONENT' | 'COMPONENT_SET';
+  type: "COMPONENT" | "COMPONENT_SET";
   /** Key of this component or component set. */
   key: string;
 }
@@ -1628,36 +1624,36 @@ export interface Overrides {
 
 /** Geometric shape type. */
 export enum ShapeType {
-  SQUARE = 'SQUARE',
-  ELLIPSE = 'ELLIPSE',
-  ROUNDED_RECTANGLE = 'ROUNDED_RECTANGLE',
-  DIAMOND = 'DIAMOND',
-  TRIANGLE_UP = 'TRIANGLE_UP',
-  TRIANGLE_DOWN = 'TRIANGLE_DOWN',
-  PARALLELOGRAM_RIGHT = 'PARALLELOGRAM_RIGHT',
-  PARALLELOGRAM_LEFT = 'PARALLELOGRAM_LEFT',
-  ENG_DATABASE = 'ENG_DATABASE',
-  ENG_QUEUE = 'ENG_QUEUE',
-  ENG_FILE = 'ENG_FILE',
-  ENG_FOLDER = 'ENG_FOLDER',
-  TRAPEZOID = 'TRAPEZOID',
-  PREDEFINED_PROCESS = 'PREDEFINED_PROCESS',
-  SHIELD = 'SHIELD',
-  DOCUMENT_SINGLE = 'DOCUMENT_SINGLE',
-  DOCUMENT_MULTIPLE = 'DOCUMENT_MULTIPLE',
-  MANUAL_INPUT = 'MANUAL_INPUT',
-  HEXAGON = 'HEXAGON',
-  CHEVRON = 'CHEVRON',
-  PENTAGON = 'PENTAGON',
-  OCTAGON = 'OCTAGON',
-  STAR = 'STAR',
-  PLUS = 'PLUS',
-  ARROW_LEFT = 'ARROW_LEFT',
-  ARROW_RIGHT = 'ARROW_RIGHT',
-  SUMMING_JUNCTION = 'SUMMING_JUNCTION',
-  OR = 'OR',
-  SPEECH_BUBBLE = 'SPEECH_BUBBLE',
-  INTERNAL_STORAGE = 'INTERNAL_STORAGE',
+  SQUARE = "SQUARE",
+  ELLIPSE = "ELLIPSE",
+  ROUNDED_RECTANGLE = "ROUNDED_RECTANGLE",
+  DIAMOND = "DIAMOND",
+  TRIANGLE_UP = "TRIANGLE_UP",
+  TRIANGLE_DOWN = "TRIANGLE_DOWN",
+  PARALLELOGRAM_RIGHT = "PARALLELOGRAM_RIGHT",
+  PARALLELOGRAM_LEFT = "PARALLELOGRAM_LEFT",
+  ENG_DATABASE = "ENG_DATABASE",
+  ENG_QUEUE = "ENG_QUEUE",
+  ENG_FILE = "ENG_FILE",
+  ENG_FOLDER = "ENG_FOLDER",
+  TRAPEZOID = "TRAPEZOID",
+  PREDEFINED_PROCESS = "PREDEFINED_PROCESS",
+  SHIELD = "SHIELD",
+  DOCUMENT_SINGLE = "DOCUMENT_SINGLE",
+  DOCUMENT_MULTIPLE = "DOCUMENT_MULTIPLE",
+  MANUAL_INPUT = "MANUAL_INPUT",
+  HEXAGON = "HEXAGON",
+  CHEVRON = "CHEVRON",
+  PENTAGON = "PENTAGON",
+  OCTAGON = "OCTAGON",
+  STAR = "STAR",
+  PLUS = "PLUS",
+  ARROW_LEFT = "ARROW_LEFT",
+  ARROW_RIGHT = "ARROW_RIGHT",
+  SUMMING_JUNCTION = "SUMMING_JUNCTION",
+  OR = "OR",
+  SPEECH_BUBBLE = "SPEECH_BUBBLE",
+  INTERNAL_STORAGE = "INTERNAL_STORAGE",
 }
 
 /** Stores canvas location for a connector start/end point. */
@@ -1672,13 +1668,13 @@ export type ConnectorEndpoint =
       /** Node ID that this endpoint attaches to. */
       endpointNodeId?: string;
       /** The magnet type is a string enum. */
-      magnet?: 'AUTO' | 'TOP' | 'BOTTOM' | 'LEFT' | 'RIGHT' | 'CENTER';
+      magnet?: "AUTO" | "TOP" | "BOTTOM" | "LEFT" | "RIGHT" | "CENTER";
     };
 
 /** Connector line type. */
 export enum ConnectorLineType {
-  STRAIGHT = 'STRAIGHT',
-  ELBOWED = 'ELBOWED',
+  STRAIGHT = "STRAIGHT",
+  ELBOWED = "ELBOWED",
 }
 
 export type ConnectorTextBackground = CornerTrait & MinimalFillsTrait;
@@ -1721,7 +1717,7 @@ export interface DocumentationLink {
 
 /** Contains a variable alias */
 export interface VariableAlias {
-  type: 'VARIABLE_ALIAS';
+  type: "VARIABLE_ALIAS";
   /** The id of the variable that the current variable is aliased to. This variable can be a local or remote variable, and both can be retrieved via the GET /v1/files/:file_key/variables/local endpoint. */
   id: string;
 }
@@ -1748,7 +1744,7 @@ export interface Region {
    * The corner of the comment region to pin to the node's corner as a string enum.
    * @default "bottom-right"
    */
-  comment_pin_corner?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+  comment_pin_corner?: "top-left" | "top-right" | "bottom-left" | "bottom-right";
 }
 
 /** Position of a region comment relative to the frame to which it is attached. */
@@ -1765,7 +1761,7 @@ export interface FrameOffsetRegion {
    * The corner of the comment region to pin to the node's corner as a string enum.
    * @default "bottom-right"
    */
-  comment_pin_corner?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+  comment_pin_corner?: "top-left" | "top-right" | "bottom-left" | "bottom-right";
 }
 
 /** A comment or reply left by a user. */
@@ -1900,10 +1896,10 @@ export interface PublishedComponentSet {
 
 /** The type of style */
 export enum StyleType {
-  FILL = 'FILL',
-  TEXT = 'TEXT',
-  EFFECT = 'EFFECT',
-  GRID = 'GRID',
+  FILL = "FILL",
+  TEXT = "TEXT",
+  EFFECT = "EFFECT",
+  GRID = "GRID",
 }
 
 /** A set of published properties that can be applied to nodes. */
@@ -1987,12 +1983,12 @@ export interface WebhookV2 {
 
 /** An enum representing the possible events that a webhook can subscribe to */
 export enum WebhookV2Event {
-  PING = 'PING',
-  FILE_UPDATE = 'FILE_UPDATE',
-  FILE_VERSION_UPDATE = 'FILE_VERSION_UPDATE',
-  FILE_DELETE = 'FILE_DELETE',
-  LIBRARY_PUBLISH = 'LIBRARY_PUBLISH',
-  FILE_COMMENT = 'FILE_COMMENT',
+  PING = "PING",
+  FILE_UPDATE = "FILE_UPDATE",
+  FILE_VERSION_UPDATE = "FILE_VERSION_UPDATE",
+  FILE_DELETE = "FILE_DELETE",
+  LIBRARY_PUBLISH = "LIBRARY_PUBLISH",
+  FILE_COMMENT = "FILE_COMMENT",
 }
 
 /**
@@ -2001,8 +1997,8 @@ export enum WebhookV2Event {
  * - `PAUSED`: The webhook is paused and will not receive any events
  */
 export enum WebhookV2Status {
-  ACTIVE = 'ACTIVE',
-  PAUSED = 'PAUSED',
+  ACTIVE = "ACTIVE",
+  PAUSED = "PAUSED",
 }
 
 /** Information regarding the most recent interactions sent to a webhook endpoint */
@@ -2072,11 +2068,11 @@ export interface WebhookBasePayload {
 }
 
 export type WebhookPingPayload = WebhookBasePayload & {
-  event_type: 'PING';
+  event_type: "PING";
 };
 
 export type WebhookFileUpdatePayload = WebhookBasePayload & {
-  event_type: 'FILE_UPDATE';
+  event_type: "FILE_UPDATE";
   /** The key of the file that was updated */
   file_key: string;
   /** The name of the file that was updated */
@@ -2084,7 +2080,7 @@ export type WebhookFileUpdatePayload = WebhookBasePayload & {
 };
 
 export type WebhookFileDeletePayload = WebhookBasePayload & {
-  event_type: 'FILE_DELETE';
+  event_type: "FILE_DELETE";
   /** The key of the file that was deleted */
   file_key: string;
   /** The name of the file that was deleted */
@@ -2094,7 +2090,7 @@ export type WebhookFileDeletePayload = WebhookBasePayload & {
 };
 
 export type WebhookFileVersionUpdatePayload = WebhookBasePayload & {
-  event_type: 'FILE_VERSION_UPDATE';
+  event_type: "FILE_VERSION_UPDATE";
   /**
    * UTC ISO 8601 timestamp of when the version was created
    * @format date-time
@@ -2113,7 +2109,7 @@ export type WebhookFileVersionUpdatePayload = WebhookBasePayload & {
 };
 
 export type WebhookLibraryPublishPayload = WebhookBasePayload & {
-  event_type: 'LIBRARY_PUBLISH';
+  event_type: "LIBRARY_PUBLISH";
   /** Components that were created by the library publish */
   created_components: LibraryItemData[];
   /** Styles that were created by the library publish */
@@ -2145,7 +2141,7 @@ export type WebhookLibraryPublishPayload = WebhookBasePayload & {
 };
 
 export type WebhookFileCommentPayload = WebhookBasePayload & {
-  event_type: 'FILE_COMMENT';
+  event_type: "FILE_COMMENT";
   /** Contents of the comment itself */
   comment: CommentFragment[];
   /** Unique identifier for comment */
@@ -2168,7 +2164,7 @@ export type WebhookFileCommentPayload = WebhookBasePayload & {
 /** A Figma user */
 export interface ActivityLogUserEntity {
   /** The type of entity. */
-  type: 'user';
+  type: "user";
   /** Unique stable id of the user. */
   id: string;
   /** Name of the user. */
@@ -2180,23 +2176,23 @@ export interface ActivityLogUserEntity {
 /** A Figma Design or FigJam file */
 export interface ActivityLogFileEntity {
   /** The type of entity. */
-  type: 'file';
+  type: "file";
   /** Unique identifier of the file. */
   key: string;
   /** Name of the file. */
   name: string;
   /** Indicates if the object is a file on Figma Design or FigJam. */
-  editor_type: 'figma' | 'figjam';
+  editor_type: "figma" | "figjam";
   /** Access policy for users who have the link to the file. */
-  link_access: 'view' | 'edit' | 'org_view' | 'org_edit' | 'inherit';
+  link_access: "view" | "edit" | "org_view" | "org_edit" | "inherit";
   /** Access policy for users who have the link to the file's prototype. */
-  proto_link_access: 'view' | 'org_view' | 'inherit';
+  proto_link_access: "view" | "org_view" | "inherit";
 }
 
 /** A file branch that diverges from and can be merged back into the main file */
 export interface ActivityLogFileRepoEntity {
   /** The type of entity. */
-  type: 'file_repo';
+  type: "file_repo";
   /** Unique identifier of the file branch. */
   id: string;
   /** Name of the file. */
@@ -2208,7 +2204,7 @@ export interface ActivityLogFileRepoEntity {
 /** A project that a collection of Figma files are grouped under */
 export interface ActivityLogProjectEntity {
   /** The type of entity. */
-  type: 'project';
+  type: "project";
   /** Unique identifier of the project. */
   id: string;
   /** Name of the project. */
@@ -2218,7 +2214,7 @@ export interface ActivityLogProjectEntity {
 /** A Figma team that contains multiple users and projects */
 export interface ActivityLogTeamEntity {
   /** The type of entity. */
-  type: 'team';
+  type: "team";
   /** Unique identifier of the team. */
   id: string;
   /** Name of the team. */
@@ -2228,7 +2224,7 @@ export interface ActivityLogTeamEntity {
 /** Part of the organizational hierarchy of managing files and users within Figma, only available on the Enterprise Plan */
 export interface ActivityLogWorkspaceEntity {
   /** The type of entity. */
-  type: 'workspace';
+  type: "workspace";
   /** Unique identifier of the workspace. */
   id: string;
   /** Name of the workspace. */
@@ -2238,7 +2234,7 @@ export interface ActivityLogWorkspaceEntity {
 /** A Figma organization */
 export interface ActivityLogOrgEntity {
   /** The type of entity. */
-  type: 'org';
+  type: "org";
   /** Unique identifier of the organization. */
   id: string;
   /** Name of the organization. */
@@ -2248,25 +2244,25 @@ export interface ActivityLogOrgEntity {
 /** A Figma plugin */
 export interface ActivityLogPluginEntity {
   /** The type of entity. */
-  type: 'plugin';
+  type: "plugin";
   /** Unique identifier of the plugin. */
   id: string;
   /** Name of the plugin. */
   name: string;
   /** Indicates if the object is a plugin is available on Figma Design or FigJam. */
-  editor_type: 'figma' | 'figjam';
+  editor_type: "figma" | "figjam";
 }
 
 /** A Figma widget */
 export interface ActivityLogWidgetEntity {
   /** The type of entity. */
-  type: 'widget';
+  type: "widget";
   /** Unique identifier of the widget. */
   id: string;
   /** Name of the widget. */
   name: string;
   /** Indicates if the object is a widget available on Figma Design or FigJam. */
-  editor_type: 'figma' | 'figjam';
+  editor_type: "figma" | "figjam";
 }
 
 /** An event returned by the Activity Logs API. */
@@ -2278,7 +2274,7 @@ export interface ActivityLog {
   /** The user who performed the action. */
   actor: {
     /** The type of the user. */
-    type?: 'user';
+    type?: "user";
     /** The ID of the user. */
     id?: string;
     /** The name of the user. For SCIM events, the value is "SCIM Provider". For official support actions, the value is "Figma Support". */
@@ -2296,31 +2292,31 @@ export interface ActivityLog {
   /** The resource the actor took the action on. It can be a user, file, project or other resource types. */
   entity:
     | ({
-        type: 'user';
+        type: "user";
       } & ActivityLogUserEntity)
     | ({
-        type: 'file';
+        type: "file";
       } & ActivityLogFileEntity)
     | ({
-        type: 'file_repo';
+        type: "file_repo";
       } & ActivityLogFileRepoEntity)
     | ({
-        type: 'project';
+        type: "project";
       } & ActivityLogProjectEntity)
     | ({
-        type: 'team';
+        type: "team";
       } & ActivityLogTeamEntity)
     | ({
-        type: 'workspace';
+        type: "workspace";
       } & ActivityLogWorkspaceEntity)
     | ({
-        type: 'org';
+        type: "org";
       } & ActivityLogOrgEntity)
     | ({
-        type: 'plugin';
+        type: "plugin";
       } & ActivityLogPluginEntity)
     | ({
-        type: 'widget';
+        type: "widget";
       } & ActivityLogWidgetEntity);
   /** Contextual information about the event. */
   context: {
@@ -2346,7 +2342,7 @@ export interface PaymentStatus {
    * - `PAID`: user has an active purchase on the resource
    * - `TRIAL`: user is in the trial period for a subscription resource
    */
-  type?: 'UNPAID' | 'PAID' | 'TRIAL';
+  type?: "UNPAID" | "PAID" | "TRIAL";
 }
 
 /** An object describing a user's payment information for a plugin, widget, or Community file. */
@@ -2356,7 +2352,7 @@ export interface PaymentInformation {
   /** The ID of the plugin, widget, or Community file that was queried. Can be used to verify the validity of a response. */
   resource_id: string;
   /** The type of the resource. */
-  resource_type: 'PLUGIN' | 'WIDGET' | 'COMMUNITY_FILE';
+  resource_type: "PLUGIN" | "WIDGET" | "COMMUNITY_FILE";
   /** An object describing the user's payment status. */
   payment_status: PaymentStatus;
   /**
@@ -2406,28 +2402,28 @@ export interface PaymentInformation {
  * - `EFFECT_COLOR`
  */
 export enum VariableScope {
-  ALL_SCOPES = 'ALL_SCOPES',
-  TEXT_CONTENT = 'TEXT_CONTENT',
-  CORNER_RADIUS = 'CORNER_RADIUS',
-  WIDTH_HEIGHT = 'WIDTH_HEIGHT',
-  GAP = 'GAP',
-  ALL_FILLS = 'ALL_FILLS',
-  FRAME_FILL = 'FRAME_FILL',
-  SHAPE_FILL = 'SHAPE_FILL',
-  TEXT_FILL = 'TEXT_FILL',
-  STROKE_COLOR = 'STROKE_COLOR',
-  STROKE_FLOAT = 'STROKE_FLOAT',
-  EFFECT_FLOAT = 'EFFECT_FLOAT',
-  EFFECT_COLOR = 'EFFECT_COLOR',
-  OPACITY = 'OPACITY',
-  FONT_FAMILY = 'FONT_FAMILY',
-  FONT_STYLE = 'FONT_STYLE',
-  FONT_WEIGHT = 'FONT_WEIGHT',
-  FONT_SIZE = 'FONT_SIZE',
-  LINE_HEIGHT = 'LINE_HEIGHT',
-  LETTER_SPACING = 'LETTER_SPACING',
-  PARAGRAPH_SPACING = 'PARAGRAPH_SPACING',
-  PARAGRAPH_INDENT = 'PARAGRAPH_INDENT',
+  ALL_SCOPES = "ALL_SCOPES",
+  TEXT_CONTENT = "TEXT_CONTENT",
+  CORNER_RADIUS = "CORNER_RADIUS",
+  WIDTH_HEIGHT = "WIDTH_HEIGHT",
+  GAP = "GAP",
+  ALL_FILLS = "ALL_FILLS",
+  FRAME_FILL = "FRAME_FILL",
+  SHAPE_FILL = "SHAPE_FILL",
+  TEXT_FILL = "TEXT_FILL",
+  STROKE_COLOR = "STROKE_COLOR",
+  STROKE_FLOAT = "STROKE_FLOAT",
+  EFFECT_FLOAT = "EFFECT_FLOAT",
+  EFFECT_COLOR = "EFFECT_COLOR",
+  OPACITY = "OPACITY",
+  FONT_FAMILY = "FONT_FAMILY",
+  FONT_STYLE = "FONT_STYLE",
+  FONT_WEIGHT = "FONT_WEIGHT",
+  FONT_SIZE = "FONT_SIZE",
+  LINE_HEIGHT = "LINE_HEIGHT",
+  LETTER_SPACING = "LETTER_SPACING",
+  PARAGRAPH_SPACING = "PARAGRAPH_SPACING",
+  PARAGRAPH_INDENT = "PARAGRAPH_INDENT",
 }
 
 /** An object containing platform-specific code syntax definitions for a variable. All platforms are optional. */
@@ -2476,7 +2472,7 @@ export interface LocalVariable {
   /** The id of the variable collection that contains this variable. */
   variableCollectionId: string;
   /** The resolved type of the variable. */
-  resolvedType: 'BOOLEAN' | 'FLOAT' | 'STRING' | 'COLOR';
+  resolvedType: "BOOLEAN" | "FLOAT" | "STRING" | "COLOR";
   /** The values for each mode of this variable. */
   valuesByMode: Record<string, boolean | number | string | RGBA | VariableAlias>;
   /** Whether this variable is remote. */
@@ -2531,7 +2527,7 @@ export interface PublishedVariable {
   /** The id of the variable collection that contains this variable. */
   variableCollectionId: string;
   /** The resolved type of the variable. */
-  resolvedDataType: 'BOOLEAN' | 'FLOAT' | 'STRING' | 'COLOR';
+  resolvedDataType: "BOOLEAN" | "FLOAT" | "STRING" | "COLOR";
   /**
    * The UTC ISO 8601 time at which the variable was last updated.
    * @format date-time
@@ -2542,7 +2538,7 @@ export interface PublishedVariable {
 /** An object that contains details about creating a `VariableCollection`. */
 export interface VariableCollectionCreate {
   /** The action to perform for the variable collection. */
-  action: 'CREATE';
+  action: "CREATE";
   /** A temporary id for this variable collection. */
   id?: string;
   /** The name of this variable collection. */
@@ -2559,7 +2555,7 @@ export interface VariableCollectionCreate {
 /** An object that contains details about updating a `VariableCollection`. */
 export interface VariableCollectionUpdate {
   /** The action to perform for the variable collection. */
-  action: 'UPDATE';
+  action: "UPDATE";
   /** The id of the variable collection to update. */
   id: string;
   /** The name of this variable collection. */
@@ -2574,26 +2570,26 @@ export interface VariableCollectionUpdate {
 /** An object that contains details about deleting a `VariableCollection`. */
 export interface VariableCollectionDelete {
   /** The action to perform for the variable collection. */
-  action: 'DELETE';
+  action: "DELETE";
   /** The id of the variable collection to delete. */
   id: string;
 }
 
 export type VariableCollectionChange =
   | ({
-      action: 'CREATE';
+      action: "CREATE";
     } & VariableCollectionCreate)
   | ({
-      action: 'UPDATE';
+      action: "UPDATE";
     } & VariableCollectionUpdate)
   | ({
-      action: 'DELETE';
+      action: "DELETE";
     } & VariableCollectionDelete);
 
 /** An object that contains details about creating a `VariableMode`. */
 export interface VariableModeCreate {
   /** The action to perform for the variable mode. */
-  action: 'CREATE';
+  action: "CREATE";
   /** A temporary id for this variable mode. */
   id?: string;
   /** The name of this variable mode. */
@@ -2605,7 +2601,7 @@ export interface VariableModeCreate {
 /** An object that contains details about updating a `VariableMode`. */
 export interface VariableModeUpdate {
   /** The action to perform for the variable mode. */
-  action: 'UPDATE';
+  action: "UPDATE";
   /** The id of the variable mode to update. */
   id: string;
   /** The name of this variable mode. */
@@ -2617,26 +2613,26 @@ export interface VariableModeUpdate {
 /** An object that contains details about deleting a `VariableMode`. */
 export interface VariableModeDelete {
   /** The action to perform for the variable mode. */
-  action: 'DELETE';
+  action: "DELETE";
   /** The id of the variable mode to delete. */
   id: string;
 }
 
 export type VariableModeChange =
   | ({
-      action: 'CREATE';
+      action: "CREATE";
     } & VariableModeCreate)
   | ({
-      action: 'UPDATE';
+      action: "UPDATE";
     } & VariableModeUpdate)
   | ({
-      action: 'DELETE';
+      action: "DELETE";
     } & VariableModeDelete);
 
 /** An object that contains details about creating a `Variable`. */
 export interface VariableCreate {
   /** The action to perform for the variable. */
-  action: 'CREATE';
+  action: "CREATE";
   /** A temporary id for this variable. */
   id?: string;
   /** The name of this variable. */
@@ -2644,7 +2640,7 @@ export interface VariableCreate {
   /** The variable collection that will contain the variable. You can use the temporary id of a variable collection. */
   variableCollectionId: string;
   /** The resolved type of the variable. */
-  resolvedType: 'BOOLEAN' | 'FLOAT' | 'STRING' | 'COLOR';
+  resolvedType: "BOOLEAN" | "FLOAT" | "STRING" | "COLOR";
   /** The description of this variable. */
   description?: string;
   /**
@@ -2661,7 +2657,7 @@ export interface VariableCreate {
 /** An object that contains details about updating a `Variable`. */
 export interface VariableUpdate {
   /** The action to perform for the variable. */
-  action: 'UPDATE';
+  action: "UPDATE";
   /** The id of the variable to update. */
   id: string;
   /** The name of this variable. */
@@ -2682,20 +2678,20 @@ export interface VariableUpdate {
 /** An object that contains details about deleting a `Variable`. */
 export interface VariableDelete {
   /** The action to perform for the variable. */
-  action: 'DELETE';
+  action: "DELETE";
   /** The id of the variable to delete. */
   id: string;
 }
 
 export type VariableChange =
   | ({
-      action: 'CREATE';
+      action: "CREATE";
     } & VariableCreate)
   | ({
-      action: 'UPDATE';
+      action: "UPDATE";
     } & VariableUpdate)
   | ({
-      action: 'DELETE';
+      action: "DELETE";
     } & VariableDelete);
 
 /** An object that represents a value for a given mode of a variable. All properties are required. */
@@ -2811,98 +2807,1345 @@ export interface ErrorResponsePayloadWithErrorBoolean {
   message: string;
 }
 
-export interface PostCommentRequestBody {
-  /** The text contents of the comment to post. */
-  message: string;
-  /** The ID of the comment to reply to, if any. This must be a root comment. You cannot reply to other replies (a comment that has a parent_id). */
-  comment_id?: string;
-  /** The position where to place the comment. */
-  client_meta?: Vector | FrameOffset | Region | FrameOffsetRegion;
+export namespace V1 {
+  /**
+   * @description Returns the document identified by `file_key` as a JSON object. The file key can be parsed from any Figma file url: `https://www.figma.com/file/{file_key}/{title}`. The `document` property contains a node of type `DOCUMENT`. The `components` property contains a mapping from node IDs to component metadata. This is to help you determine which components each instance comes from.
+   * @tags Files
+   * @name GetFile
+   * @summary Get file JSON
+   * @request GET:/v1/files/{file_key}
+   * @secure
+   */
+  export namespace GetFile {
+    export type RequestParams = {
+      /** File to export JSON from. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
+      fileKey: string;
+    };
+    export type RequestQuery = {
+      /** A specific version ID to get. Omitting this will get the current version of the file. */
+      version?: string;
+      /**
+       * Comma separated list of nodes that you care about in the document. If specified, only a subset of the document will be returned corresponding to the nodes listed, their children, and everything between the root node and the listed nodes.
+       *
+       * Note: There may be other nodes included in the returned JSON that are outside the ancestor chains of the desired nodes. The response may also include dependencies of anything in the nodes' subtrees. For example, if a node subtree contains an instance of a local component that lives elsewhere in that file, that component and its ancestor chain will also be included.
+       *
+       * For historical reasons, top-level canvas nodes are always returned, regardless of whether they are listed in the `ids` parameter. This quirk may be removed in a future version of the API.
+       */
+      ids?: string;
+      /** Positive integer representing how deep into the document tree to traverse. For example, setting this to 1 returns only Pages, setting it to 2 returns Pages and all top level objects on each page. Not setting this parameter returns all nodes. */
+      depth?: number;
+      /** Set to "paths" to export vector data. */
+      geometry?: string;
+      /** A comma separated list of plugin IDs and/or the string "shared". Any data present in the document written by those plugins will be included in the result in the `pluginData` and `sharedPluginData` properties. */
+      plugin_data?: string;
+      /**
+       * Returns branch metadata for the requested file. If the file is a branch, the main file's key will be included in the returned response. If the file has branches, their metadata will be included in the returned response. Default: false.
+       * @default false
+       */
+      branch_data?: boolean;
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The name of the file as it appears in the editor. */
+      name: string;
+      /** The role of the user making the API request in relation to the file. */
+      role: "owner" | "editor" | "viewer";
+      /**
+       * The UTC ISO 8601 time at which the file was last modified.
+       * @format date-time
+       */
+      lastModified: string;
+      /** The type of editor associated with this file. */
+      editorType: "figma" | "figjam";
+      /** A URL to a thumbnail image of the file. */
+      thumbnailUrl?: string;
+      /** The version number of the file. This number is incremented when a file is modified and can be used to check if the file has changed between requests. */
+      version: string;
+      document: DocumentNode;
+      /** A mapping from component IDs to component metadata. */
+      components: Record<string, Component>;
+      /** A mapping from component set IDs to component set metadata. */
+      componentSets: Record<string, ComponentSet>;
+      /**
+       * The version of the file schema that this file uses.
+       * @default 0
+       */
+      schemaVersion: number;
+      /** A mapping from style IDs to style metadata. */
+      styles: Record<string, Style>;
+      /** The key of the main file for this file. If present, this file is a component or component set. */
+      mainFileKey?: string;
+      /** A list of branches for this file. */
+      branches?: {
+        /** The key of the branch. */
+        key: string;
+        /** The name of the branch. */
+        name: string;
+        /** A URL to a thumbnail image of the branch. */
+        thumbnail_url: string;
+        /**
+         * The UTC ISO 8601 time at which the branch was last modified.
+         * @format date-time
+         */
+        last_modified: string;
+      }[];
+    };
+  }
+
+  /**
+   * @description Returns the nodes referenced to by `ids` as a JSON object. The nodes are retrieved from the Figma file referenced to by `file_key`. The node ID and file key can be parsed from any Figma node url: `https://www.figma.com/file/{file_key}/{title}?node-id={id}` The `name`, `lastModified`, `thumbnailUrl`, `editorType`, and `version` attributes are all metadata of the specified file. The `linkAccess` field describes the file link share permission level. There are 5 types of permissions a shared link can have: `"inherit"`, `"view"`, `"edit"`, `"org_view"`, and `"org_edit"`. `"inherit"` is the default permission applied to files created in a team project, and will inherit the project's permissions. `"org_view"` and `"org_edit"` restrict the link to org users. The `document` attribute contains a Node of type `DOCUMENT`. The `components` key contains a mapping from node IDs to component metadata. This is to help you determine which components each instance comes from. By default, no vector data is returned. To return vector data, pass the geometry=paths parameter to the endpoint. Each node can also inherit properties from applicable styles. The styles key contains a mapping from style IDs to style metadata. Important: the nodes map may contain values that are `null`. This may be due to the node id not existing within the specified file.
+   * @tags Files
+   * @name GetFileNodes
+   * @summary Get file JSON for specific nodes
+   * @request GET:/v1/files/{file_key}/nodes
+   * @secure
+   */
+  export namespace GetFileNodes {
+    export type RequestParams = {
+      /** File to export JSON from. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
+      fileKey: string;
+    };
+    export type RequestQuery = {
+      /** A comma separated list of node IDs to retrieve and convert. */
+      ids: string;
+      /** A specific version ID to get. Omitting this will get the current version of the file. */
+      version?: string;
+      /**
+       * Positive integer representing how deep into the node tree to traverse. For example, setting this to 1 will return only the children directly underneath the desired nodes. Not setting this parameter returns all nodes.
+       *
+       * Note: this parameter behaves differently from the same parameter in the `GET /v1/files/:key` endpoint. In this endpoint, the depth will be counted starting from the desired node rather than the document root node.
+       */
+      depth?: number;
+      /** Set to "paths" to export vector data. */
+      geometry?: string;
+      /** A comma separated list of plugin IDs and/or the string "shared". Any data present in the document written by those plugins will be included in the result in the `pluginData` and `sharedPluginData` properties. */
+      plugin_data?: string;
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The name of the file as it appears in the editor. */
+      name: string;
+      /** The role of the user making the API request in relation to the file. */
+      role: "owner" | "editor" | "viewer";
+      /**
+       * The UTC ISO 8601 time at which the file was last modified.
+       * @format date-time
+       */
+      lastModified: string;
+      /** The type of editor associated with this file. */
+      editorType: "figma" | "figjam";
+      /** A URL to a thumbnail image of the file. */
+      thumbnailUrl: string;
+      /** The version number of the file. This number is incremented when a file is modified and can be used to check if the file has changed between requests. */
+      version: string;
+      /** A mapping from node IDs to node metadata. */
+      nodes: Record<
+        string,
+        {
+          document: Node;
+          /** A mapping from component IDs to component metadata. */
+          components: Record<string, Component>;
+          /** A mapping from component set IDs to component set metadata. */
+          componentSets: Record<string, ComponentSet>;
+          /**
+           * The version of the file schema that this file uses.
+           * @default 0
+           */
+          schemaVersion: number;
+          /** A mapping from style IDs to style metadata. */
+          styles: Record<string, Style>;
+        }
+      >;
+    };
+  }
+
+  /**
+   * @description Renders images from a file. If no error occurs, `"images"` will be populated with a map from node IDs to URLs of the rendered images, and `"status"` will be omitted. The image assets will expire after 30 days. Images up to 32 megapixels can be exported. Any images that are larger will be scaled down. Important: the image map may contain values that are `null`. This indicates that rendering of that specific node has failed. This may be due to the node id not existing, or other reasons such has the node having no renderable components. It is guaranteed that any node that was requested for rendering will be represented in this map whether or not the render succeeded. To render multiple images from the same file, use the `ids` query parameter to specify multiple node ids. ``` GET /v1/images/:key?ids=1:2,1:3,1:4 ```
+   * @tags Files
+   * @name GetImages
+   * @summary Render images of file nodes
+   * @request GET:/v1/images/{file_key}
+   * @secure
+   */
+  export namespace GetImages {
+    export type RequestParams = {
+      /** File to export images from. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
+      fileKey: string;
+    };
+    export type RequestQuery = {
+      /** A comma separated list of node IDs to render. */
+      ids: string;
+      /** A specific version ID to get. Omitting this will get the current version of the file. */
+      version?: string;
+      /**
+       * A number between 0.01 and 4, the image scaling factor.
+       * @min 0.01
+       * @max 4
+       */
+      scale?: number;
+      /**
+       * A string enum for the image output format.
+       * @default "png"
+       */
+      format?: "jpg" | "png" | "svg" | "pdf";
+      /**
+       * Whether text elements are rendered as outlines (vector paths) or as `<text>` elements in SVGs.
+       *
+       * Rendering text elements as outlines guarantees that the text looks exactly the same in the SVG as it does in the browser/inside Figma.
+       *
+       * Exporting as `<text>` allows text to be selectable inside SVGs and generally makes the SVG easier to read. However, this relies on the browser's rendering engine which can vary between browsers and/or operating systems. As such, visual accuracy is not guaranteed as the result could look different than in Figma.
+       * @default true
+       */
+      svg_outline_text?: boolean;
+      /**
+       * Whether to include id attributes for all SVG elements. Adds the layer name to the `id` attribute of an svg element.
+       * @default false
+       */
+      svg_include_id?: boolean;
+      /**
+       * Whether to include node id attributes for all SVG elements. Adds the node id to a `data-node-id` attribute of an svg element.
+       * @default false
+       */
+      svg_include_node_id?: boolean;
+      /**
+       * Whether to simplify inside/outside strokes and use stroke attribute if possible instead of `<mask>`.
+       * @default true
+       */
+      svg_simplify_stroke?: boolean;
+      /**
+       * Whether content that overlaps the node should be excluded from rendering. Passing false (i.e., rendering overlaps) may increase processing time, since more of the document must be included in rendering.
+       * @default true
+       */
+      contents_only?: boolean;
+      /**
+       * Use the full dimensions of the node regardless of whether or not it is cropped or the space around it is empty. Use this to export text nodes without cropping.
+       * @default false
+       */
+      use_absolute_bounds?: boolean;
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** For successful requests, this value is always `null`. */
+      err: null;
+      /** A map from node IDs to URLs of the rendered images. */
+      images: Record<string, string | null>;
+    };
+  }
+
+  /**
+   * @description Returns download links for all images present in image fills in a document. Image fills are how Figma represents any user supplied images. When you drag an image into Figma, we create a rectangle with a single fill that represents the image, and the user is able to transform the rectangle (and properties on the fill) as they wish. This endpoint returns a mapping from image references to the URLs at which the images may be download. Image URLs will expire after no more than 14 days. Image references are located in the output of the GET files endpoint under the `imageRef` attribute in a `Paint`.
+   * @tags Files
+   * @name GetImageFills
+   * @summary Get image fills
+   * @request GET:/v1/files/{file_key}/images
+   * @secure
+   */
+  export namespace GetImageFills {
+    export type RequestParams = {
+      /** File to get image URLs from. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
+      fileKey: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** For successful requests, this value is always `false`. */
+      error: false;
+      /** Status code */
+      status: 200;
+      meta: {
+        /** A map of image references to URLs of the image fills. */
+        images: Record<string, string>;
+      };
+    };
+  }
+
+  /**
+   * @description You can use this endpoint to get a list of all the Projects within the specified team. This will only return projects visible to the authenticated user or owner of the developer token. Note: it is not currently possible to programmatically obtain the team id of a user just from a token. To obtain a team id, navigate to a team page of a team you are a part of. The team id will be present in the URL after the word team and before your team name.
+   * @tags Projects
+   * @name GetTeamProjects
+   * @summary Get projects in a team
+   * @request GET:/v1/teams/{team_id}/projects
+   * @secure
+   */
+  export namespace GetTeamProjects {
+    export type RequestParams = {
+      /** ID of the team to list projects from */
+      teamId: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The team's name. */
+      name: string;
+      /** An array of projects. */
+      projects: Project[];
+    };
+  }
+
+  /**
+   * @description Get a list of all the Files within the specified project.
+   * @tags Projects
+   * @name GetProjectFiles
+   * @summary Get files in a project
+   * @request GET:/v1/projects/{project_id}/files
+   * @secure
+   */
+  export namespace GetProjectFiles {
+    export type RequestParams = {
+      /** ID of the project to list files from */
+      projectId: string;
+    };
+    export type RequestQuery = {
+      /**
+       * Returns branch metadata in the response for each main file with a branch inside the project.
+       * @default false
+       */
+      branch_data?: boolean;
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The project's name. */
+      name: string;
+      /** An array of files. */
+      files: {
+        /** The file's key. */
+        key: string;
+        /** The file's name. */
+        name: string;
+        /** The file's thumbnail URL. */
+        thumbnail_url?: string;
+        /**
+         * The UTC ISO 8601 time at which the file was last modified.
+         * @format date-time
+         */
+        last_modified: string;
+      }[];
+    };
+  }
+
+  /**
+   * @description This endpoint fetches the version history of a file, allowing you to see the progression of a file over time. You can then use this information to render a specific version of the file, via another endpoint.
+   * @tags Files
+   * @name GetFileVersions
+   * @summary Get versions of a file
+   * @request GET:/v1/files/{file_key}/versions
+   * @secure
+   */
+  export namespace GetFileVersions {
+    export type RequestParams = {
+      /** File to get version history from. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
+      fileKey: string;
+    };
+    export type RequestQuery = {
+      /**
+       * The number of items returned in a page of the response. If not included, `page_size` is `30`.
+       * @max 50
+       */
+      page_size?: number;
+      /** A version ID for one of the versions in the history. Gets versions before this ID. Used for paginating. If the response is not paginated, this link returns the same data in the current response. */
+      before?: number;
+      /** A version ID for one of the versions in the history. Gets versions after this ID. Used for paginating. If the response is not paginated, this property is not included. */
+      after?: number;
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** An array of versions. */
+      versions: Version[];
+      /** If pagination is needed due to the length of the response, identifies the next and previous pages. */
+      pagination: ResponsePagination;
+    };
+  }
+
+  /**
+   * @description Gets a list of comments left on the file.
+   * @tags Comments
+   * @name GetComments
+   * @summary Get comments in a file
+   * @request GET:/v1/files/{file_key}/comments
+   * @secure
+   */
+  export namespace GetComments {
+    export type RequestParams = {
+      /** File to get comments from. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
+      fileKey: string;
+    };
+    export type RequestQuery = {
+      /** If enabled, will return comments as their markdown equivalents when applicable. */
+      as_md?: boolean;
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** An array of comments. */
+      comments: Comment[];
+    };
+  }
+
+  /**
+   * @description Posts a new comment on the file.
+   * @tags Comments
+   * @name PostComment
+   * @summary Add a comment to a file
+   * @request POST:/v1/files/{file_key}/comments
+   * @secure
+   */
+  export namespace PostComment {
+    export type RequestParams = {
+      /** File to add comments in. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
+      fileKey: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = {
+      /** The text contents of the comment to post. */
+      message: string;
+      /** The ID of the comment to reply to, if any. This must be a root comment. You cannot reply to other replies (a comment that has a parent_id). */
+      comment_id?: string;
+      /** The position where to place the comment. */
+      client_meta?: Vector | FrameOffset | Region | FrameOffsetRegion;
+    };
+    export type RequestHeaders = {};
+    export type ResponseBody = Comment;
+  }
+
+  /**
+   * @description Deletes a specific comment. Only the person who made the comment is allowed to delete it.
+   * @tags Comments
+   * @name DeleteComment
+   * @summary Delete a comment
+   * @request DELETE:/v1/files/{file_key}/comments/{comment_id}
+   * @secure
+   */
+  export namespace DeleteComment {
+    export type RequestParams = {
+      /** File to delete comment from. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
+      fileKey: string;
+      /** Comment id of comment to delete */
+      commentId: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The status of the request. */
+      status: 200;
+      /** For successful requests, this value is always `false`. */
+      error: false;
+    };
+  }
+
+  /**
+   * @description Gets a paginated list of reactions left on the comment.
+   * @tags Comment Reactions
+   * @name GetCommentReactions
+   * @summary Get reactions for a comment
+   * @request GET:/v1/files/{file_key}/comments/{comment_id}/reactions
+   * @secure
+   */
+  export namespace GetCommentReactions {
+    export type RequestParams = {
+      /** File to get comment containing reactions from. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
+      fileKey: string;
+      /** ID of comment to get reactions from. */
+      commentId: string;
+    };
+    export type RequestQuery = {
+      /** Cursor for pagination, retrieved from the response of the previous call. */
+      cursor?: string;
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** An array of reactions. */
+      reactions: Reaction[];
+      /** If pagination is needed due to the length of the response, identifies the next and previous pages. */
+      pagination: ResponsePagination;
+    };
+  }
+
+  /**
+   * @description Posts a new comment reaction on a file comment.
+   * @tags Comment Reactions
+   * @name PostCommentReaction
+   * @summary Add a reaction to a comment
+   * @request POST:/v1/files/{file_key}/comments/{comment_id}/reactions
+   * @secure
+   */
+  export namespace PostCommentReaction {
+    export type RequestParams = {
+      /** File to post comment reactions to. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
+      fileKey: string;
+      /** ID of comment to react to. */
+      commentId: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = {
+      /** The emoji type of reaction as shortcode (e.g. `:heart:`, `:+1::skin-tone-2:`). The list of accepted emoji shortcodes can be found in [this file](https://raw.githubusercontent.com/missive/emoji-mart/main/packages/emoji-mart-data/sets/14/native.json) under the top-level emojis and aliases fields, with optional skin tone modifiers when applicable. */
+      emoji: Emoji;
+    };
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The status of the request. */
+      status: 200;
+      /** For successful requests, this value is always `false`. */
+      error: false;
+    };
+  }
+
+  /**
+   * @description Deletes a specific comment reaction. Only the person who made the reaction is allowed to delete it.
+   * @tags Comment Reactions
+   * @name DeleteCommentReaction
+   * @summary Delete a reaction
+   * @request DELETE:/v1/files/{file_key}/comments/{comment_id}/reactions
+   * @secure
+   */
+  export namespace DeleteCommentReaction {
+    export type RequestParams = {
+      /** File to delete comment reaction from. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
+      fileKey: string;
+      /** ID of comment to delete reaction from. */
+      commentId: string;
+    };
+    export type RequestQuery = {
+      /** The emoji type of reaction as shortcode (e.g. `:heart:`, `:+1::skin-tone-2:`). The list of accepted emoji shortcodes can be found in [this file](https://raw.githubusercontent.com/missive/emoji-mart/main/packages/emoji-mart-data/sets/14/native.json) under the top-level emojis and aliases fields, with optional skin tone modifiers when applicable. */
+      emoji: Emoji;
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The status of the request. */
+      status: 200;
+      /** For successful requests, this value is always `false`. */
+      error: false;
+    };
+  }
+
+  /**
+   * @description Returns the user information for the currently authenticated user.
+   * @tags Users
+   * @name GetMe
+   * @summary Get current user
+   * @request GET:/v1/me
+   * @secure
+   */
+  export namespace GetMe {
+    export type RequestParams = {};
+    export type RequestQuery = {};
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = User & {
+      /** Email associated with the user's account. This property is only present on the /v1/me endpoint. */
+      email: string;
+    };
+  }
+
+  /**
+   * @description Get a paginated list of published components within a team library.
+   * @tags Components
+   * @name GetTeamComponents
+   * @summary Get team components
+   * @request GET:/v1/teams/{team_id}/components
+   * @secure
+   */
+  export namespace GetTeamComponents {
+    export type RequestParams = {
+      /** Id of the team to list components from. */
+      teamId: string;
+    };
+    export type RequestQuery = {
+      /**
+       * Number of items to return in a paged list of results. Defaults to 30.
+       * @default 30
+       */
+      page_size?: number;
+      /** Cursor indicating which id after which to start retrieving components for. Exclusive with before. The cursor value is an internally tracked integer that doesn't correspond to any Ids. */
+      after?: number;
+      /** Cursor indicating which id before which to start retrieving components for. Exclusive with after. The cursor value is an internally tracked integer that doesn't correspond to any Ids. */
+      before?: number;
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The status of the request. */
+      status: 200;
+      /** For successful requests, this value is always `false`. */
+      error: false;
+      meta: {
+        components: PublishedComponent[];
+        /** Pagination cursor */
+        cursor?: ResponseCursor;
+      };
+    };
+  }
+
+  /**
+   * @description Get a list of published components within a file library.
+   * @tags Components
+   * @name GetFileComponents
+   * @summary Get file components
+   * @request GET:/v1/files/{file_key}/components
+   * @secure
+   */
+  export namespace GetFileComponents {
+    export type RequestParams = {
+      /** File to list components from. This must be a main file key, not a branch key, as it is not possible to publish from branches. */
+      fileKey: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The status of the request. */
+      status: 200;
+      /** For successful requests, this value is always `false`. */
+      error: false;
+      meta: {
+        components: PublishedComponent[];
+      };
+    };
+  }
+
+  /**
+   * @description Get metadata on a component by key.
+   * @tags Components
+   * @name GetComponent
+   * @summary Get component
+   * @request GET:/v1/components/{key}
+   * @secure
+   */
+  export namespace GetComponent {
+    export type RequestParams = {
+      /** The unique identifier of the component. */
+      key: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The status of the request. */
+      status: 200;
+      /** For successful requests, this value is always `false`. */
+      error: false;
+      /** An arrangement of published UI elements that can be instantiated across figma files. */
+      meta: PublishedComponent;
+    };
+  }
+
+  /**
+   * @description Get a paginated list of published component sets within a team library.
+   * @tags Component Sets
+   * @name GetTeamComponentSets
+   * @summary Get team component sets
+   * @request GET:/v1/teams/{team_id}/component_sets
+   * @secure
+   */
+  export namespace GetTeamComponentSets {
+    export type RequestParams = {
+      /** Id of the team to list component sets from. */
+      teamId: string;
+    };
+    export type RequestQuery = {
+      /**
+       * Number of items to return in a paged list of results. Defaults to 30.
+       * @default 30
+       */
+      page_size?: number;
+      /** Cursor indicating which id after which to start retrieving component sets for. Exclusive with before. The cursor value is an internally tracked integer that doesn't correspond to any Ids. */
+      after?: number;
+      /** Cursor indicating which id before which to start retrieving component sets for. Exclusive with after. The cursor value is an internally tracked integer that doesn't correspond to any Ids. */
+      before?: number;
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The status of the request. */
+      status: 200;
+      /** For successful requests, this value is always `false`. */
+      error: false;
+      meta: {
+        component_sets: PublishedComponentSet[];
+        /** Pagination cursor */
+        cursor?: ResponseCursor;
+      };
+    };
+  }
+
+  /**
+   * @description Get a list of published component sets within a file library.
+   * @tags Component Sets
+   * @name GetFileComponentSets
+   * @summary Get file component sets
+   * @request GET:/v1/files/{file_key}/component_sets
+   * @secure
+   */
+  export namespace GetFileComponentSets {
+    export type RequestParams = {
+      /** File to list component sets from. This must be a main file key, not a branch key, as it is not possible to publish from branches. */
+      fileKey: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The status of the request. */
+      status: 200;
+      /** For successful requests, this value is always `false`. */
+      error: false;
+      meta: {
+        component_sets: PublishedComponentSet[];
+      };
+    };
+  }
+
+  /**
+   * @description Get metadata on a component set by key.
+   * @tags Component Sets
+   * @name GetComponentSet
+   * @summary Get component set
+   * @request GET:/v1/component_sets/{key}
+   * @secure
+   */
+  export namespace GetComponentSet {
+    export type RequestParams = {
+      /** The unique identifier of the component set. */
+      key: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The status of the request. */
+      status: 200;
+      /** For successful requests, this value is always `false`. */
+      error: false;
+      /** A node containing a set of variants of a component. */
+      meta: PublishedComponentSet;
+    };
+  }
+
+  /**
+   * @description Get a paginated list of published styles within a team library.
+   * @tags Styles
+   * @name GetTeamStyles
+   * @summary Get team styles
+   * @request GET:/v1/teams/{team_id}/styles
+   * @secure
+   */
+  export namespace GetTeamStyles {
+    export type RequestParams = {
+      /** Id of the team to list styles from. */
+      teamId: string;
+    };
+    export type RequestQuery = {
+      /**
+       * Number of items to return in a paged list of results. Defaults to 30.
+       * @default 30
+       */
+      page_size?: number;
+      /** Cursor indicating which id after which to start retrieving styles for. Exclusive with before. The cursor value is an internally tracked integer that doesn't correspond to any Ids. */
+      after?: number;
+      /** Cursor indicating which id before which to start retrieving styles for. Exclusive with after. The cursor value is an internally tracked integer that doesn't correspond to any Ids. */
+      before?: number;
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The status of the request. */
+      status: 200;
+      /** For successful requests, this value is always `false`. */
+      error: false;
+      meta: {
+        styles: PublishedStyle[];
+        /** Pagination cursor */
+        cursor?: ResponseCursor;
+      };
+    };
+  }
+
+  /**
+   * @description Get a list of published styles within a file library.
+   * @tags Styles
+   * @name GetFileStyles
+   * @summary Get file styles
+   * @request GET:/v1/files/{file_key}/styles
+   * @secure
+   */
+  export namespace GetFileStyles {
+    export type RequestParams = {
+      /** File to list styles from. This must be a main file key, not a branch key, as it is not possible to publish from branches. */
+      fileKey: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The status of the request. */
+      status: 200;
+      /** For successful requests, this value is always `false`. */
+      error: false;
+      meta: {
+        styles: PublishedStyle[];
+      };
+    };
+  }
+
+  /**
+   * @description Get metadata on a style by key.
+   * @tags Styles
+   * @name GetStyle
+   * @summary Get style
+   * @request GET:/v1/styles/{key}
+   * @secure
+   */
+  export namespace GetStyle {
+    export type RequestParams = {
+      /** The unique identifier of the style. */
+      key: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The status of the request. */
+      status: 200;
+      /** For successful requests, this value is always `false`. */
+      error: false;
+      /** A set of published properties that can be applied to nodes. */
+      meta: PublishedStyle;
+    };
+  }
+
+  /**
+   * @description Returns a list of activity log events
+   * @tags Activity Logs
+   * @name GetActivityLogs
+   * @summary Get activity logs
+   * @request GET:/v1/activity_logs
+   * @secure
+   */
+  export namespace GetActivityLogs {
+    export type RequestParams = {};
+    export type RequestQuery = {
+      /** Event type(s) to include in the response. Can have multiple values separated by comma. All events are returned by default. */
+      events?: string;
+      /** Unix timestamp of the least recent event to include. This param defaults to one year ago if unspecified. Events prior to one year ago are not available. */
+      start_time?: number;
+      /** Unix timestamp of the most recent event to include. This param defaults to the current timestamp if unspecified. */
+      end_time?: number;
+      /** Maximum number of events to return. This param defaults to 1000 if unspecified. */
+      limit?: number;
+      /**
+       * Event order by timestamp. This param can be either "asc" (default) or "desc".
+       * @default "asc"
+       */
+      order?: "asc" | "desc";
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The response status code. */
+      status?: 200;
+      /** For successful requests, this value is always `false`. */
+      error?: false;
+      meta?: {
+        /** An array of activity logs sorted by timestamp in ascending order by default. */
+        activity_logs?: ActivityLog[];
+        /** Encodes the last event (the most recent event) */
+        cursor?: string;
+        /** Whether there is a next page of events */
+        next_page?: boolean;
+      };
+    };
+  }
+
+  /**
+   * @description There are two methods to query for a user's payment information on a plugin, widget, or Community file. The first method, using plugin payment tokens, is typically used when making queries from a plugin's or widget's code. The second method, providing a user ID and resource ID, is typically used when making queries from anywhere else. Note that you can only query for resources that you own. In most cases, this means that you can only query resources that you originally created.
+   * @tags Payments
+   * @name GetPayments
+   * @summary Get payments
+   * @request GET:/v1/payments
+   * @secure
+   */
+  export namespace GetPayments {
+    export type RequestParams = {};
+    export type RequestQuery = {
+      /** Short-lived token returned from "getPluginPaymentTokenAsync" in the plugin payments API and used to authenticate to this endpoint. Read more about generating this token through "Calling the Payments REST API from a plugin or widget" below. */
+      plugin_payment_token?: string;
+      /** The ID of the user to query payment information about. You can get the user ID by having the user OAuth2 to the Figma REST API. */
+      user_id?: number;
+      /** The ID of the Community file to query a user's payment information on. You can get the Community file ID from the file's Community page (look for the number after "file/" in the URL). Provide exactly one of "community_file_id", "plugin_id", or "widget_id". */
+      community_file_id?: number;
+      /** The ID of the plugin to query a user's payment information on. You can get the plugin ID from the plugin's manifest, or from the plugin's Community page (look for the number after "plugin/" in the URL). Provide exactly one of "community_file_id", "plugin_id", or "widget_id". */
+      plugin_id?: number;
+      /** The ID of the widget to query a user's payment information on. You can get the widget ID from the widget's manifest, or from the widget's Community page (look for the number after "widget/" in the URL). Provide exactly one of "community_file_id", "plugin_id", or "widget_id". */
+      widget_id?: number;
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The response status code. */
+      status: 200;
+      /** For successful requests, this value is always `false`. */
+      error: false;
+      /** An object describing a user's payment information for a plugin, widget, or Community file. */
+      meta: PaymentInformation;
+    };
+  }
+
+  /**
+   * @description **This API is available to full members of Enterprise orgs.** The `GET /v1/files/:file_key/variables/local` endpoint lets you enumerate local variables created in the file and remote variables used in the file. Remote variables are referenced by their `subscribed_id`. As a part of the Variables related API additions, the `GET /v1/files/:file_key` endpoint now returns a `boundVariables` property, containing the `variableId` of the bound variable. The `GET /v1/files/:file_key/variables/local` endpoint can be used to get the full variable or variable collection object. Note that `GET /v1/files/:file_key/variables/published` does not return modes. Instead, you will need to use the `GET /v1/files/:file_key/variables/local` endpoint, in the same file, to examine the mode values.
+   * @tags Variables
+   * @name GetLocalVariables
+   * @summary Get local variables
+   * @request GET:/v1/files/{file_key}/variables/local
+   * @secure
+   */
+  export namespace GetLocalVariables {
+    export type RequestParams = {
+      /** File to get variables from. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
+      fileKey: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The response status code. */
+      status: 200;
+      /** For successful requests, this value is always `false`. */
+      error: false;
+      meta: {
+        /** A map of variable ids to variables */
+        variables: Record<string, LocalVariable>;
+        /** A map of variable collection ids to variable collections */
+        variableCollections: Record<string, LocalVariableCollection>;
+      };
+    };
+  }
+
+  /**
+   * @description **This API is available to full members of Enterprise orgs.** The `GET /v1/files/:file_key/variables/published` endpoint returns the variables that are published from the given file. The response for this endpoint contains some key differences compared to the `GET /v1/files/:file_key/variables/local` endpoint: - Each variable and variable collection contains a `subscribed_id`. - Modes are omitted for published variable collections Published variables have two ids: an id that is assigned in the file where it is created (`id`), and an id that is used by subscribing files (`subscribed_id`). The `id` and `key` are stable over the lifetime of the variable. The `subscribed_id` changes every time the variable is modified and published. The same is true for variable collections. The `updatedAt` fields are ISO 8601 timestamps that indicate the last time that a change to a variable was published. For variable collections, this timestamp will change any time a variable in the collection is changed.
+   * @tags Variables
+   * @name GetPublishedVariables
+   * @summary Get published variables
+   * @request GET:/v1/files/{file_key}/variables/published
+   * @secure
+   */
+  export namespace GetPublishedVariables {
+    export type RequestParams = {
+      /** File to get variables from. This must be a main file key, not a branch key, as it is not possible to publish from branches. */
+      fileKey: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The response status code. */
+      status: 200;
+      /** For successful requests, this value is always `false`. */
+      error: false;
+      meta: {
+        /** A map of variable ids to variables */
+        variables: Record<string, PublishedVariable>;
+        /** A map of variable collection ids to variable collections */
+        variableCollections: Record<string, PublishedVariableCollection>;
+      };
+    };
+  }
+
+  /**
+   * @description **This API is available to full members of Enterprise orgs with Editor seats.** The `POST /v1/files/:file_key/variables` endpoint lets you bulk create, update, and delete variables and variable collections. The request body supports the following 4 top-level arrays. Changes from these arrays will be applied in the below order, and within each array, by array order. - **variableCollections**: For creating, updating, and deleting variable collections - **variableModes**: For creating, updating, and deleting modes within variable collections - Each collection can have a maximum of 40 modes - Mode names cannot be longer than 40 characters - **variables**: For creating, updating, and deleting variables - Each collection can have a maximum of 5000 variables - Variable names must be unique within a collection and cannot contain certain special characters such as `.{}` - **variableModeValues**: For setting a variable value under a specific mode. - When setting aliases, a variable cannot be aliased to itself or form an alias cycle Temporary ids can be used to reference an object later in the same POST request body. They can be used at create time in the `id` property of variable collections, modes, variables, and in the `initialModeId` property of variable collections. They are scoped to a single request body, and must be unique within the body. The mapping of temporary ids to real ids is returned in the response. This endpoint has the following key behaviors: - The request body must be 4MB or less. - Must include an `action` property for collections, modes, and variables to tell the API whether to create, update, or delete the object. - When creating a collection, mode, or variable, you can include a temporary `id` that can be referenced in dependent objects in the same request. For example, you can create a new collection with the id `"my_new_collection"`. You can then set `variableCollectionId` to `"my_new_collection"` in new modes or variables. Temporary ids must be unique in the request body. - New collections always come with one mode. You can reference this mode by setting `initialModeId` to a temporary id in the request body. This is useful if you want to set values for variables in the mode in the `variableModeValues` array. - The `tempIdToRealId` array returns a mapping of the temporary ids in the request, to the real ids of the newly created objects. - When adding new modes or variables, default variable values will be applied, consistent with what happens in the UI. - Everything to be created, updated, and deleted in the request body is treated as one atomic operation. If there is any validation failure, you will get a 400 status code response, and no changes will be persisted. - You will not be able to update remote variables or variable collections. You can only update variables in the file where they were originally created.
+   * @tags Variables
+   * @name PostVariables
+   * @summary Create/modify/delete variables
+   * @request POST:/v1/files/{file_key}/variables
+   * @secure
+   */
+  export namespace PostVariables {
+    export type RequestParams = {
+      /** File to modify variables in. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
+      fileKey: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = {
+      /** For creating, updating, and deleting variable collections. */
+      variableCollections?: VariableCollectionChange[];
+      /** For creating, updating, and deleting modes within variable collections. */
+      variableModes?: VariableModeChange[];
+      /** For creating, updating, and deleting variables. */
+      variables?: VariableChange[];
+      /** For setting a specific value, given a variable and a mode. */
+      variableModeValues?: VariableModeValue[];
+    };
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The response status code. */
+      status: 200;
+      /** For successful requests, this value is always `false`. */
+      error: false;
+      meta: {
+        /** A map of temporary ids in the request to the real ids of the newly created objects */
+        tempIdToRealId: Record<string, string>;
+      };
+    };
+  }
+
+  /**
+   * @description Get dev resources in a file
+   * @tags Dev Resources
+   * @name GetDevResources
+   * @summary Get dev resources
+   * @request GET:/v1/files/{file_key}/dev_resources
+   * @secure
+   */
+  export namespace GetDevResources {
+    export type RequestParams = {
+      /** The file to get the dev resources from. This must be a main file key, not a branch key. */
+      fileKey: string;
+    };
+    export type RequestQuery = {
+      /** Comma separated list of nodes that you care about in the document. If specified, only dev resources attached to these nodes will be returned. If not specified, all dev resources in the file will be returned. */
+      node_ids?: string;
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** An array of dev resources. */
+      dev_resources: DevResource[];
+    };
+  }
+
+  /**
+   * @description Bulk create dev resources across multiple files. Dev resources that are successfully created will show up in the links_created array in the response. If there are any dev resources that cannot be created, you may still get a 200 response. These resources will show up in the errors array. Some reasons a dev resource cannot be created include: - Resource points to a `file_key` that cannot be found. - The node already has the maximum of 10 dev resources. - Another dev resource for the node has the same url.
+   * @tags Dev Resources
+   * @name PostDevResources
+   * @summary Create dev resources
+   * @request POST:/v1/dev_resources
+   * @secure
+   */
+  export namespace PostDevResources {
+    export type RequestParams = {};
+    export type RequestQuery = {};
+    export type RequestBody = {
+      /** An array of dev resources. */
+      dev_resources: {
+        /** The name of the dev resource. */
+        name: string;
+        /** The URL of the dev resource. */
+        url: string;
+        /** The file key where the dev resource belongs. */
+        file_key: string;
+        /** The target node to attach the dev resource to. */
+        node_id: string;
+      }[];
+    };
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** An array of links created. */
+      links_created: DevResource[];
+      /** An array of errors. */
+      errors?: {
+        /** The file key. */
+        file_key?: string | null;
+        /** The node id. */
+        node_id?: string | null;
+        /** The error message. */
+        error: string;
+      }[];
+    };
+  }
+
+  /**
+   * @description Bulk update dev resources across multiple files. Ids for dev resources that are successfully updated will show up in the `links_updated` array in the response. If there are any dev resources that cannot be updated, you may still get a 200 response. These resources will show up in the `errors` array.
+   * @tags Dev Resources
+   * @name PutDevResources
+   * @summary Update dev resources
+   * @request PUT:/v1/dev_resources
+   * @secure
+   */
+  export namespace PutDevResources {
+    export type RequestParams = {};
+    export type RequestQuery = {};
+    export type RequestBody = {
+      /** An array of dev resources. */
+      dev_resources: {
+        /** Unique identifier of the dev resource */
+        id: string;
+        /** The name of the dev resource. */
+        name?: string;
+        /** The URL of the dev resource. */
+        url?: string;
+      }[];
+    };
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** An array of links updated. */
+      links_updated?: DevResource[];
+      /** An array of errors. */
+      errors?: {
+        /** The id of the dev resource. */
+        id?: string;
+        /** The error message. */
+        error: string;
+      }[];
+    };
+  }
+
+  /**
+   * @description Delete a dev resource from a file
+   * @tags Dev Resources
+   * @name DeleteDevResource
+   * @summary Delete dev resource
+   * @request DELETE:/v1/files/{file_key}/dev_resources/{dev_resource_id}
+   * @secure
+   */
+  export namespace DeleteDevResource {
+    export type RequestParams = {
+      /** The file to delete the dev resource from. This must be a main file key, not a branch key. */
+      fileKey: string;
+      /** The id of the dev resource to delete. */
+      devResourceId: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = any;
+  }
+
+  /**
+   * @description Returns a list of library analytics actions data broken down by the requested dimension.
+   * @tags Library Analytics
+   * @name GetLibraryAnalyticsActions
+   * @summary Get library analytics action data.
+   * @request GET:/v1/analytics/libraries/{file_key}/actions
+   * @secure
+   */
+  export namespace GetLibraryAnalyticsActions {
+    export type RequestParams = {
+      /** File key of the library to fetch analytics data for. */
+      fileKey: string;
+    };
+    export type RequestQuery = {
+      /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
+      cursor?: string;
+      /** A dimension to group returned analytics data by. Accepts "component" or "team". */
+      group_by: "component" | "team";
+      /** ISO 8601 date string (YYYY-MM-DD) of the earliest week to include. Dates are rounded back to the nearest start of a week. Defaults to one year prior. */
+      start_date?: string;
+      /** ISO 8601 date string (YYYY-MM-DD) of the latest week to include. Dates are rounded forward to the nearest end of a week. Defaults to the latest computed week. */
+      end_date?: string;
+      /**
+       * How to order response rows by week. This param can be either "asc" or "desc" (default).
+       * @default "desc"
+       */
+      order?: "asc" | "desc";
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** An array of analytics data. */
+      rows: LibraryAnalyticsActionsByComponent[] | LibraryAnalyticsActionsByTeam[];
+      /** Whether there is a next page of data that can be fetched. */
+      next_page: boolean;
+      /** The cursor to use to fetch the next page of data. */
+      cursor?: string;
+    };
+  }
+
+  /**
+   * @description Returns a list of library analytics usage data broken down by the requested dimension.
+   * @tags Library Analytics
+   * @name GetLibraryAnalyticsUsages
+   * @summary Get library analytics usage data.
+   * @request GET:/v1/analytics/libraries/{file_key}/usages
+   * @secure
+   */
+  export namespace GetLibraryAnalyticsUsages {
+    export type RequestParams = {
+      /** File key of the library to fetch analytics data for. */
+      fileKey: string;
+    };
+    export type RequestQuery = {
+      /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
+      cursor?: string;
+      /** A dimension to group returned analytics data by. Accepts "component" or "file". */
+      group_by: "component" | "file";
+      /**
+       * How to order response rows by number of instances. This param can be either "asc" or "desc" (default).
+       * @default "desc"
+       */
+      order?: "asc" | "desc";
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** An array of analytics data when breaking down usage by component. */
+      components?: LibraryAnalyticsUsagesByComponent[];
+      /** An array of analytics data when breaking down usage by file. */
+      files?: LibraryAnalyticsUsagesByFile[];
+      /** Whether there is a next page of data that can be fetched. */
+      next_page: boolean;
+      /** The cursor to use to fetch the next page of data. */
+      cursor?: string;
+    };
+  }
 }
 
-export interface PostCommentReactionRequestBody {
-  /** The emoji type of reaction as shortcode (e.g. `:heart:`, `:+1::skin-tone-2:`). The list of accepted emoji shortcodes can be found in [this file](https://raw.githubusercontent.com/missive/emoji-mart/main/packages/emoji-mart-data/sets/14/native.json) under the top-level emojis and aliases fields, with optional skin tone modifiers when applicable. */
-  emoji: Emoji;
+export namespace V2 {
+  /**
+   * @description Create a new webhook which will call the specified endpoint when the event triggers. By default, this webhook will automatically send a PING event to the endpoint when it is created. If this behavior is not desired, you can create the webhook and set the status to PAUSED and reactivate it later.
+   * @tags Webhooks
+   * @name PostWebhook
+   * @summary Create a webhook
+   * @request POST:/v2/webhooks
+   * @secure
+   */
+  export namespace PostWebhook {
+    export type RequestParams = {};
+    export type RequestQuery = {};
+    export type RequestBody = {
+      /** An enum representing the possible events that a webhook can subscribe to */
+      event_type: WebhookV2Event;
+      /** Team id to receive updates about */
+      team_id: string;
+      /** The HTTP endpoint that will receive a POST request when the event triggers. Max length 2048 characters. */
+      endpoint: string;
+      /** String that will be passed back to your webhook endpoint to verify that it is being called by Figma. Max length 100 characters. */
+      passcode: string;
+      /** State of the webhook, including any error state it may be in */
+      status?: WebhookV2Status;
+      /** User provided description or name for the webhook. Max length 150 characters. */
+      description?: string;
+    };
+    export type RequestHeaders = {};
+    export type ResponseBody = WebhookV2;
+  }
+
+  /**
+   * @description Get a webhook by ID.
+   * @tags Webhooks
+   * @name GetWebhook
+   * @summary Get a webhook
+   * @request GET:/v2/webhooks/{webhook_id}
+   * @secure
+   */
+  export namespace GetWebhook {
+    export type RequestParams = {
+      /** ID of webhook to get */
+      webhookId: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = WebhookV2;
+  }
+
+  /**
+   * @description Update a webhook by ID.
+   * @tags Webhooks
+   * @name PutWebhook
+   * @summary Update a webhook
+   * @request PUT:/v2/webhooks/{webhook_id}
+   * @secure
+   */
+  export namespace PutWebhook {
+    export type RequestParams = {
+      /** ID of webhook to update */
+      webhookId: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = {
+      /** An enum representing the possible events that a webhook can subscribe to */
+      event_type: WebhookV2Event;
+      /** The HTTP endpoint that will receive a POST request when the event triggers. Max length 2048 characters. */
+      endpoint: string;
+      /** String that will be passed back to your webhook endpoint to verify that it is being called by Figma. Max length 100 characters. */
+      passcode: string;
+      /** State of the webhook, including any error state it may be in */
+      status?: WebhookV2Status;
+      /** User provided description or name for the webhook. Max length 150 characters. */
+      description?: string;
+    };
+    export type RequestHeaders = {};
+    export type ResponseBody = WebhookV2;
+  }
+
+  /**
+   * @description Deletes the specified webhook. This operation cannot be reversed.
+   * @tags Webhooks
+   * @name DeleteWebhook
+   * @summary Delete a webhook
+   * @request DELETE:/v2/webhooks/{webhook_id}
+   * @secure
+   */
+  export namespace DeleteWebhook {
+    export type RequestParams = {
+      /** ID of webhook to delete */
+      webhookId: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = WebhookV2;
+  }
+
+  /**
+   * @description Returns all webhooks registered under the specified team.
+   * @tags Webhooks
+   * @name GetTeamWebhooks
+   * @summary Get team webhooks
+   * @request GET:/v2/teams/{team_id}/webhooks
+   * @secure
+   */
+  export namespace GetTeamWebhooks {
+    export type RequestParams = {
+      /** ID of team to get webhooks for */
+      teamId: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** An array of webhooks. */
+      webhooks: WebhookV2[];
+    };
+  }
+
+  /**
+   * @description Returns all webhook requests sent within the last week. Useful for debugging.
+   * @tags Webhooks
+   * @name GetWebhookRequests
+   * @summary Get webhook requests
+   * @request GET:/v2/webhooks/{webhook_id}/requests
+   * @secure
+   */
+  export namespace GetWebhookRequests {
+    export type RequestParams = {
+      /** The id of the webhook subscription you want to see events from */
+      webhookId: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** An array of webhook requests. */
+      requests: WebhookV2Request[];
+    };
+  }
 }
 
-export interface PostWebhookRequestBody {
-  /** An enum representing the possible events that a webhook can subscribe to */
-  event_type: WebhookV2Event;
-  /** Team id to receive updates about */
-  team_id: string;
-  /** The HTTP endpoint that will receive a POST request when the event triggers. Max length 2048 characters. */
-  endpoint: string;
-  /** String that will be passed back to your webhook endpoint to verify that it is being called by Figma. Max length 100 characters. */
-  passcode: string;
-  /** State of the webhook, including any error state it may be in */
-  status?: WebhookV2Status;
-  /** User provided description or name for the webhook. Max length 150 characters. */
-  description?: string;
-}
-
-export interface PutWebhookRequestBody {
-  /** An enum representing the possible events that a webhook can subscribe to */
-  event_type: WebhookV2Event;
-  /** The HTTP endpoint that will receive a POST request when the event triggers. Max length 2048 characters. */
-  endpoint: string;
-  /** String that will be passed back to your webhook endpoint to verify that it is being called by Figma. Max length 100 characters. */
-  passcode: string;
-  /** State of the webhook, including any error state it may be in */
-  status?: WebhookV2Status;
-  /** User provided description or name for the webhook. Max length 150 characters. */
-  description?: string;
-}
-
-export interface PostVariablesRequestBody {
-  /** For creating, updating, and deleting variable collections. */
-  variableCollections?: VariableCollectionChange[];
-  /** For creating, updating, and deleting modes within variable collections. */
-  variableModes?: VariableModeChange[];
-  /** For creating, updating, and deleting variables. */
-  variables?: VariableChange[];
-  /** For setting a specific value, given a variable and a mode. */
-  variableModeValues?: VariableModeValue[];
-}
-
-export interface PostDevResourcesRequestBody {
-  /** An array of dev resources. */
-  dev_resources: {
-    /** The name of the dev resource. */
-    name: string;
-    /** The URL of the dev resource. */
-    url: string;
-    /** The file key where the dev resource belongs. */
-    file_key: string;
-    /** The target node to attach the dev resource to. */
-    node_id: string;
-  }[];
-}
-
-export interface PutDevResourcesRequestBody {
-  /** An array of dev resources. */
-  dev_resources: {
-    /** Unique identifier of the dev resource */
-    id: string;
-    /** The name of the dev resource. */
-    name?: string;
-    /** The URL of the dev resource. */
-    url?: string;
-  }[];
-}
-
-import type {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  HeadersDefaults,
-  ResponseType,
-} from 'axios';
-import axios from 'axios';
+import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, HeadersDefaults, ResponseType } from "axios";
+import axios from "axios";
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams
-  extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
+export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -2917,10 +4160,9 @@ export interface FullRequestParams
   body?: unknown;
 }
 
-export type RequestParams = Omit<FullRequestParams, 'body' | 'method' | 'query' | 'path'>;
+export type RequestParams = Omit<FullRequestParams, "body" | "method" | "query" | "path">;
 
-export interface ApiConfig<SecurityDataType = unknown>
-  extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
   securityWorker?: (
     securityData: SecurityDataType | null,
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
@@ -2929,29 +4171,21 @@ export interface ApiConfig<SecurityDataType = unknown>
 }
 
 export enum ContentType {
-  Json = 'application/json',
-  FormData = 'multipart/form-data',
-  UrlEncoded = 'application/x-www-form-urlencoded',
-  Text = 'text/plain',
+  Json = "application/json",
+  FormData = "multipart/form-data",
+  UrlEncoded = "application/x-www-form-urlencoded",
+  Text = "text/plain",
 }
 
 export class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
+  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
   private secure?: boolean;
   private format?: ResponseType;
 
-  constructor({
-    securityWorker,
-    secure,
-    format,
-    ...axiosConfig
-  }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({
-      ...axiosConfig,
-      baseURL: axiosConfig.baseURL || 'https://api.figma.com',
-    });
+  constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
+    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "https://api.figma.com" });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -2961,10 +4195,7 @@ export class HttpClient<SecurityDataType = unknown> {
     this.securityData = data;
   };
 
-  protected mergeRequestParams(
-    params1: AxiosRequestConfig,
-    params2?: AxiosRequestConfig,
-  ): AxiosRequestConfig {
+  protected mergeRequestParams(params1: AxiosRequestConfig, params2?: AxiosRequestConfig): AxiosRequestConfig {
     const method = params1.method || (params2 && params2.method);
 
     return {
@@ -2972,9 +4203,7 @@ export class HttpClient<SecurityDataType = unknown> {
       ...params1,
       ...(params2 || {}),
       headers: {
-        ...((method &&
-          this.instance.defaults.headers[method.toLowerCase() as keyof HeadersDefaults]) ||
-          {}),
+        ...((method && this.instance.defaults.headers[method.toLowerCase() as keyof HeadersDefaults]) || {}),
         ...(params1.headers || {}),
         ...((params2 && params2.headers) || {}),
       },
@@ -2982,7 +4211,7 @@ export class HttpClient<SecurityDataType = unknown> {
   }
 
   protected stringifyFormItem(formItem: unknown) {
-    if (typeof formItem === 'object' && formItem !== null) {
+    if (typeof formItem === "object" && formItem !== null) {
       return JSON.stringify(formItem);
     } else {
       return `${formItem}`;
@@ -3016,18 +4245,18 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<AxiosResponse<T>> => {
     const secureParams =
-      ((typeof secure === 'boolean' ? secure : this.secure) &&
+      ((typeof secure === "boolean" ? secure : this.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = format || this.format || undefined;
 
-    if (type === ContentType.FormData && body && body !== null && typeof body === 'object') {
+    if (type === ContentType.FormData && body && body !== null && typeof body === "object") {
       body = this.createFormData(body as Record<string, unknown>);
     }
 
-    if (type === ContentType.Text && body && body !== null && typeof body !== 'string') {
+    if (type === ContentType.Text && body && body !== null && typeof body !== "string") {
       body = JSON.stringify(body);
     }
 
@@ -3035,7 +4264,7 @@ export class HttpClient<SecurityDataType = unknown> {
       ...requestParams,
       headers: {
         ...(requestParams.headers || {}),
-        ...(type ? { 'Content-Type': type } : {}),
+        ...(type ? { "Content-Type": type } : {}),
       },
       params: query,
       responseType: responseFormat,
@@ -3069,10 +4298,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @secure
      */
     getFile: (
-      {
-        fileKey,
-        ...query
-      }: {
+      fileKey: string,
+      query?: {
         /** A specific version ID to get. Omitting this will get the current version of the file. */
         version?: string;
         /**
@@ -3094,10 +4321,6 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
          * @default false
          */
         branch_data?: boolean;
-        /** File to export JSON from. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
-        fileKey: string;
-        /** Cache parameter for the axios-cache-interceptor middleware. */
-        cache?: boolean;
       },
       params: RequestParams = {},
     ) =>
@@ -3106,14 +4329,14 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           /** The name of the file as it appears in the editor. */
           name: string;
           /** The role of the user making the API request in relation to the file. */
-          role: 'owner' | 'editor' | 'viewer';
+          role: "owner" | "editor" | "viewer";
           /**
            * The UTC ISO 8601 time at which the file was last modified.
            * @format date-time
            */
           lastModified: string;
           /** The type of editor associated with this file. */
-          editorType: 'figma' | 'figjam';
+          editorType: "figma" | "figjam";
           /** A URL to a thumbnail image of the file. */
           thumbnailUrl?: string;
           /** The version number of the file. This number is incremented when a file is modified and can be used to check if the file has changed between requests. */
@@ -3169,7 +4392,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/files/${fileKey}`,
-        method: 'GET',
+        method: "GET",
         query: query,
         secure: true,
         ...params,
@@ -3185,10 +4408,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @secure
      */
     getFileNodes: (
-      {
-        fileKey,
-        ...query
-      }: {
+      fileKey: string,
+      query: {
         /** A comma separated list of node IDs to retrieve and convert. */
         ids: string;
         /** A specific version ID to get. Omitting this will get the current version of the file. */
@@ -3203,10 +4424,6 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         geometry?: string;
         /** A comma separated list of plugin IDs and/or the string "shared". Any data present in the document written by those plugins will be included in the result in the `pluginData` and `sharedPluginData` properties. */
         plugin_data?: string;
-        /** File to export JSON from. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
-        fileKey: string;
-        /** Cache parameter for the axios-cache-interceptor middleware. */
-        cache?: boolean;
       },
       params: RequestParams = {},
     ) =>
@@ -3215,14 +4432,14 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           /** The name of the file as it appears in the editor. */
           name: string;
           /** The role of the user making the API request in relation to the file. */
-          role: 'owner' | 'editor' | 'viewer';
+          role: "owner" | "editor" | "viewer";
           /**
            * The UTC ISO 8601 time at which the file was last modified.
            * @format date-time
            */
           lastModified: string;
           /** The type of editor associated with this file. */
-          editorType: 'figma' | 'figjam';
+          editorType: "figma" | "figjam";
           /** A URL to a thumbnail image of the file. */
           thumbnailUrl: string;
           /** The version number of the file. This number is incremented when a file is modified and can be used to check if the file has changed between requests. */
@@ -3268,7 +4485,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/files/${fileKey}/nodes`,
-        method: 'GET',
+        method: "GET",
         query: query,
         secure: true,
         ...params,
@@ -3284,10 +4501,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @secure
      */
     getImages: (
-      {
-        fileKey,
-        ...query
-      }: {
+      fileKey: string,
+      query: {
         /** A comma separated list of node IDs to render. */
         ids: string;
         /** A specific version ID to get. Omitting this will get the current version of the file. */
@@ -3302,7 +4517,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
          * A string enum for the image output format.
          * @default "png"
          */
-        format?: 'jpg' | 'png' | 'svg' | 'pdf';
+        format?: "jpg" | "png" | "svg" | "pdf";
         /**
          * Whether text elements are rendered as outlines (vector paths) or as `<text>` elements in SVGs.
          *
@@ -3337,10 +4552,6 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
          * @default false
          */
         use_absolute_bounds?: boolean;
-        /** File to export images from. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
-        fileKey: string;
-        /** Cache parameter for the axios-cache-interceptor middleware. */
-        cache?: boolean;
       },
       params: RequestParams = {},
     ) =>
@@ -3373,7 +4584,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/images/${fileKey}`,
-        method: 'GET',
+        method: "GET",
         query: query,
         secure: true,
         ...params,
@@ -3422,7 +4633,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/files/${fileKey}/images`,
-        method: 'GET',
+        method: "GET",
         secure: true,
         ...params,
       }),
@@ -3462,7 +4673,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/teams/${teamId}/projects`,
-        method: 'GET',
+        method: "GET",
         secure: true,
         ...params,
       }),
@@ -3477,19 +4688,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @secure
      */
     getProjectFiles: (
-      {
-        projectId,
-        ...query
-      }: {
+      projectId: string,
+      query?: {
         /**
          * Returns branch metadata in the response for each main file with a branch inside the project.
          * @default false
          */
         branch_data?: boolean;
-        /** ID of the project to list files from */
-        projectId: string;
-        /** Cache parameter for the axios-cache-interceptor middleware. */
-        cache?: boolean;
       },
       params: RequestParams = {},
     ) =>
@@ -3530,7 +4735,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/projects/${projectId}/files`,
-        method: 'GET',
+        method: "GET",
         query: query,
         secure: true,
         ...params,
@@ -3546,10 +4751,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @secure
      */
     getFileVersions: (
-      {
-        fileKey,
-        ...query
-      }: {
+      fileKey: string,
+      query?: {
         /**
          * The number of items returned in a page of the response. If not included, `page_size` is `30`.
          * @max 50
@@ -3559,10 +4762,6 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         before?: number;
         /** A version ID for one of the versions in the history. Gets versions after this ID. Used for paginating. If the response is not paginated, this property is not included. */
         after?: number;
-        /** File to get version history from. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
-        fileKey: string;
-        /** Cache parameter for the axios-cache-interceptor middleware. */
-        cache?: boolean;
       },
       params: RequestParams = {},
     ) =>
@@ -3591,7 +4790,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/files/${fileKey}/versions`,
-        method: 'GET',
+        method: "GET",
         query: query,
         secure: true,
         ...params,
@@ -3607,16 +4806,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @secure
      */
     getComments: (
-      {
-        fileKey,
-        ...query
-      }: {
+      fileKey: string,
+      query?: {
         /** If enabled, will return comments as their markdown equivalents when applicable. */
         as_md?: boolean;
-        /** File to get comments from. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
-        fileKey: string;
-        /** Cache parameter for the axios-cache-interceptor middleware. */
-        cache?: boolean;
       },
       params: RequestParams = {},
     ) =>
@@ -3643,7 +4836,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/files/${fileKey}/comments`,
-        method: 'GET',
+        method: "GET",
         query: query,
         secure: true,
         ...params,
@@ -3658,7 +4851,18 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @request POST:/v1/files/{file_key}/comments
      * @secure
      */
-    postComment: (fileKey: string, data: PostCommentRequestBody, params: RequestParams = {}) =>
+    postComment: (
+      fileKey: string,
+      data: {
+        /** The text contents of the comment to post. */
+        message: string;
+        /** The ID of the comment to reply to, if any. This must be a root comment. You cannot reply to other replies (a comment that has a parent_id). */
+        comment_id?: string;
+        /** The position where to place the comment. */
+        client_meta?: Vector | FrameOffset | Region | FrameOffsetRegion;
+      },
+      params: RequestParams = {},
+    ) =>
       this.request<
         Comment,
         | (ErrorResponsePayloadWithErrorBoolean & {
@@ -3683,7 +4887,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/files/${fileKey}/comments`,
-        method: 'POST',
+        method: "POST",
         body: data,
         secure: true,
         type: ContentType.Json,
@@ -3725,7 +4929,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/files/${fileKey}/comments/${commentId}`,
-        method: 'DELETE',
+        method: "DELETE",
         secure: true,
         ...params,
       }),
@@ -3740,19 +4944,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @secure
      */
     getCommentReactions: (
-      {
-        fileKey,
-        commentId,
-        ...query
-      }: {
+      fileKey: string,
+      commentId: string,
+      query?: {
         /** Cursor for pagination, retrieved from the response of the previous call. */
         cursor?: string;
-        /** File to get comment containing reactions from. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
-        fileKey: string;
-        /** ID of comment to get reactions from. */
-        commentId: string;
-        /** Cache parameter for the axios-cache-interceptor middleware. */
-        cache?: boolean;
       },
       params: RequestParams = {},
     ) =>
@@ -3781,7 +4977,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/files/${fileKey}/comments/${commentId}/reactions`,
-        method: 'GET',
+        method: "GET",
         query: query,
         secure: true,
         ...params,
@@ -3799,7 +4995,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     postCommentReaction: (
       fileKey: string,
       commentId: string,
-      data: PostCommentReactionRequestBody,
+      data: {
+        /** The emoji type of reaction as shortcode (e.g. `:heart:`, `:+1::skin-tone-2:`). The list of accepted emoji shortcodes can be found in [this file](https://raw.githubusercontent.com/missive/emoji-mart/main/packages/emoji-mart-data/sets/14/native.json) under the top-level emojis and aliases fields, with optional skin tone modifiers when applicable. */
+        emoji: Emoji;
+      },
       params: RequestParams = {},
     ) =>
       this.request<
@@ -3831,7 +5030,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/files/${fileKey}/comments/${commentId}/reactions`,
-        method: 'POST',
+        method: "POST",
         body: data,
         secure: true,
         type: ContentType.Json,
@@ -3848,19 +5047,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @secure
      */
     deleteCommentReaction: (
-      {
-        fileKey,
-        commentId,
-        ...query
-      }: {
+      fileKey: string,
+      commentId: string,
+      query: {
         /** The emoji type of reaction as shortcode (e.g. `:heart:`, `:+1::skin-tone-2:`). The list of accepted emoji shortcodes can be found in [this file](https://raw.githubusercontent.com/missive/emoji-mart/main/packages/emoji-mart-data/sets/14/native.json) under the top-level emojis and aliases fields, with optional skin tone modifiers when applicable. */
         emoji: Emoji;
-        /** File to delete comment reaction from. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
-        fileKey: string;
-        /** ID of comment to delete reaction from. */
-        commentId: string;
-        /** Cache parameter for the axios-cache-interceptor middleware. */
-        cache?: boolean;
       },
       params: RequestParams = {},
     ) =>
@@ -3889,7 +5080,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/files/${fileKey}/comments/${commentId}/reactions`,
-        method: 'DELETE',
+        method: "DELETE",
         query: query,
         secure: true,
         ...params,
@@ -3924,7 +5115,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/me`,
-        method: 'GET',
+        method: "GET",
         secure: true,
         ...params,
       }),
@@ -3939,10 +5130,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @secure
      */
     getTeamComponents: (
-      {
-        teamId,
-        ...query
-      }: {
+      teamId: string,
+      query?: {
         /**
          * Number of items to return in a paged list of results. Defaults to 30.
          * @default 30
@@ -3952,10 +5141,6 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         after?: number;
         /** Cursor indicating which id before which to start retrieving components for. Exclusive with after. The cursor value is an internally tracked integer that doesn't correspond to any Ids. */
         before?: number;
-        /** Id of the team to list components from. */
-        teamId: string;
-        /** Cache parameter for the axios-cache-interceptor middleware. */
-        cache?: boolean;
       },
       params: RequestParams = {},
     ) =>
@@ -3993,7 +5178,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/teams/${teamId}/components`,
-        method: 'GET',
+        method: "GET",
         query: query,
         secure: true,
         ...params,
@@ -4041,7 +5226,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/files/${fileKey}/components`,
-        method: 'GET',
+        method: "GET",
         secure: true,
         ...params,
       }),
@@ -4087,7 +5272,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/components/${key}`,
-        method: 'GET',
+        method: "GET",
         secure: true,
         ...params,
       }),
@@ -4102,10 +5287,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @secure
      */
     getTeamComponentSets: (
-      {
-        teamId,
-        ...query
-      }: {
+      teamId: string,
+      query?: {
         /**
          * Number of items to return in a paged list of results. Defaults to 30.
          * @default 30
@@ -4115,10 +5298,6 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         after?: number;
         /** Cursor indicating which id before which to start retrieving component sets for. Exclusive with after. The cursor value is an internally tracked integer that doesn't correspond to any Ids. */
         before?: number;
-        /** Id of the team to list component sets from. */
-        teamId: string;
-        /** Cache parameter for the axios-cache-interceptor middleware. */
-        cache?: boolean;
       },
       params: RequestParams = {},
     ) =>
@@ -4156,7 +5335,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/teams/${teamId}/component_sets`,
-        method: 'GET',
+        method: "GET",
         query: query,
         secure: true,
         ...params,
@@ -4204,7 +5383,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/files/${fileKey}/component_sets`,
-        method: 'GET',
+        method: "GET",
         secure: true,
         ...params,
       }),
@@ -4250,7 +5429,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/component_sets/${key}`,
-        method: 'GET',
+        method: "GET",
         secure: true,
         ...params,
       }),
@@ -4265,10 +5444,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @secure
      */
     getTeamStyles: (
-      {
-        teamId,
-        ...query
-      }: {
+      teamId: string,
+      query?: {
         /**
          * Number of items to return in a paged list of results. Defaults to 30.
          * @default 30
@@ -4278,10 +5455,6 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         after?: number;
         /** Cursor indicating which id before which to start retrieving styles for. Exclusive with after. The cursor value is an internally tracked integer that doesn't correspond to any Ids. */
         before?: number;
-        /** Id of the team to list styles from. */
-        teamId: string;
-        /** Cache parameter for the axios-cache-interceptor middleware. */
-        cache?: boolean;
       },
       params: RequestParams = {},
     ) =>
@@ -4319,7 +5492,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/teams/${teamId}/styles`,
-        method: 'GET',
+        method: "GET",
         query: query,
         secure: true,
         ...params,
@@ -4367,7 +5540,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/files/${fileKey}/styles`,
-        method: 'GET',
+        method: "GET",
         secure: true,
         ...params,
       }),
@@ -4413,7 +5586,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/styles/${key}`,
-        method: 'GET',
+        method: "GET",
         secure: true,
         ...params,
       }),
@@ -4428,7 +5601,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @secure
      */
     getActivityLogs: (
-      query: {
+      query?: {
         /** Event type(s) to include in the response. Can have multiple values separated by comma. All events are returned by default. */
         events?: string;
         /** Unix timestamp of the least recent event to include. This param defaults to one year ago if unspecified. Events prior to one year ago are not available. */
@@ -4441,9 +5614,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
          * Event order by timestamp. This param can be either "asc" (default) or "desc".
          * @default "asc"
          */
-        order?: 'asc' | 'desc';
-        /** Cache parameter for the axios-cache-interceptor middleware. */
-        cache?: boolean;
+        order?: "asc" | "desc";
       },
       params: RequestParams = {},
     ) =>
@@ -4484,7 +5655,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/activity_logs`,
-        method: 'GET',
+        method: "GET",
         query: query,
         secure: true,
         ...params,
@@ -4500,7 +5671,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @secure
      */
     getPayments: (
-      query: {
+      query?: {
         /** Short-lived token returned from "getPluginPaymentTokenAsync" in the plugin payments API and used to authenticate to this endpoint. Read more about generating this token through "Calling the Payments REST API from a plugin or widget" below. */
         plugin_payment_token?: string;
         /** The ID of the user to query payment information about. You can get the user ID by having the user OAuth2 to the Figma REST API. */
@@ -4511,8 +5682,6 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         plugin_id?: number;
         /** The ID of the widget to query a user's payment information on. You can get the widget ID from the widget's manifest, or from the widget's Community page (look for the number after "widget/" in the URL). Provide exactly one of "community_file_id", "plugin_id", or "widget_id". */
         widget_id?: number;
-        /** Cache parameter for the axios-cache-interceptor middleware. */
-        cache?: boolean;
       },
       params: RequestParams = {},
     ) =>
@@ -4539,7 +5708,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/payments`,
-        method: 'GET',
+        method: "GET",
         query: query,
         secure: true,
         ...params,
@@ -4590,7 +5759,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/files/${fileKey}/variables/local`,
-        method: 'GET',
+        method: "GET",
         secure: true,
         ...params,
       }),
@@ -4640,7 +5809,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/files/${fileKey}/variables/published`,
-        method: 'GET',
+        method: "GET",
         secure: true,
         ...params,
       }),
@@ -4654,7 +5823,20 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @request POST:/v1/files/{file_key}/variables
      * @secure
      */
-    postVariables: (fileKey: string, data: PostVariablesRequestBody, params: RequestParams = {}) =>
+    postVariables: (
+      fileKey: string,
+      data: {
+        /** For creating, updating, and deleting variable collections. */
+        variableCollections?: VariableCollectionChange[];
+        /** For creating, updating, and deleting modes within variable collections. */
+        variableModes?: VariableModeChange[];
+        /** For creating, updating, and deleting variables. */
+        variables?: VariableChange[];
+        /** For setting a specific value, given a variable and a mode. */
+        variableModeValues?: VariableModeValue[];
+      },
+      params: RequestParams = {},
+    ) =>
       this.request<
         {
           /** The response status code. */
@@ -4692,7 +5874,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/files/${fileKey}/variables`,
-        method: 'POST',
+        method: "POST",
         body: data,
         secure: true,
         type: ContentType.Json,
@@ -4709,16 +5891,10 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @secure
      */
     getDevResources: (
-      {
-        fileKey,
-        ...query
-      }: {
+      fileKey: string,
+      query?: {
         /** Comma separated list of nodes that you care about in the document. If specified, only dev resources attached to these nodes will be returned. If not specified, all dev resources in the file will be returned. */
         node_ids?: string;
-        /** The file to get the dev resources from. This must be a main file key, not a branch key. */
-        fileKey: string;
-        /** Cache parameter for the axios-cache-interceptor middleware. */
-        cache?: boolean;
       },
       params: RequestParams = {},
     ) =>
@@ -4753,7 +5929,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/files/${fileKey}/dev_resources`,
-        method: 'GET',
+        method: "GET",
         query: query,
         secure: true,
         ...params,
@@ -4768,7 +5944,22 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @request POST:/v1/dev_resources
      * @secure
      */
-    postDevResources: (data: PostDevResourcesRequestBody, params: RequestParams = {}) =>
+    postDevResources: (
+      data: {
+        /** An array of dev resources. */
+        dev_resources: {
+          /** The name of the dev resource. */
+          name: string;
+          /** The URL of the dev resource. */
+          url: string;
+          /** The file key where the dev resource belongs. */
+          file_key: string;
+          /** The target node to attach the dev resource to. */
+          node_id: string;
+        }[];
+      },
+      params: RequestParams = {},
+    ) =>
       this.request<
         {
           /** An array of links created. */
@@ -4805,7 +5996,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/dev_resources`,
-        method: 'POST',
+        method: "POST",
         body: data,
         secure: true,
         type: ContentType.Json,
@@ -4821,7 +6012,20 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @request PUT:/v1/dev_resources
      * @secure
      */
-    putDevResources: (data: PutDevResourcesRequestBody, params: RequestParams = {}) =>
+    putDevResources: (
+      data: {
+        /** An array of dev resources. */
+        dev_resources: {
+          /** Unique identifier of the dev resource */
+          id: string;
+          /** The name of the dev resource. */
+          name?: string;
+          /** The URL of the dev resource. */
+          url?: string;
+        }[];
+      },
+      params: RequestParams = {},
+    ) =>
       this.request<
         {
           /** An array of links updated. */
@@ -4856,7 +6060,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/dev_resources`,
-        method: 'PUT',
+        method: "PUT",
         body: data,
         secure: true,
         type: ContentType.Json,
@@ -4897,7 +6101,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/files/${fileKey}/dev_resources/${devResourceId}`,
-        method: 'DELETE',
+        method: "DELETE",
         secure: true,
         ...params,
       }),
@@ -4912,14 +6116,12 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @secure
      */
     getLibraryAnalyticsActions: (
-      {
-        fileKey,
-        ...query
-      }: {
+      fileKey: string,
+      query: {
         /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
         cursor?: string;
         /** A dimension to group returned analytics data by. Accepts "component" or "team". */
-        group_by: 'component' | 'team';
+        group_by: "component" | "team";
         /** ISO 8601 date string (YYYY-MM-DD) of the earliest week to include. Dates are rounded back to the nearest start of a week. Defaults to one year prior. */
         start_date?: string;
         /** ISO 8601 date string (YYYY-MM-DD) of the latest week to include. Dates are rounded forward to the nearest end of a week. Defaults to the latest computed week. */
@@ -4928,11 +6130,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
          * How to order response rows by week. This param can be either "asc" or "desc" (default).
          * @default "desc"
          */
-        order?: 'asc' | 'desc';
-        /** File key of the library to fetch analytics data for. */
-        fileKey: string;
-        /** Cache parameter for the axios-cache-interceptor middleware. */
-        cache?: boolean;
+        order?: "asc" | "desc";
       },
       params: RequestParams = {},
     ) =>
@@ -4967,7 +6165,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/analytics/libraries/${fileKey}/actions`,
-        method: 'GET',
+        method: "GET",
         query: query,
         secure: true,
         ...params,
@@ -4983,23 +6181,17 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @secure
      */
     getLibraryAnalyticsUsages: (
-      {
-        fileKey,
-        ...query
-      }: {
+      fileKey: string,
+      query: {
         /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
         cursor?: string;
         /** A dimension to group returned analytics data by. Accepts "component" or "file". */
-        group_by: 'component' | 'file';
+        group_by: "component" | "file";
         /**
          * How to order response rows by number of instances. This param can be either "asc" or "desc" (default).
          * @default "desc"
          */
-        order?: 'asc' | 'desc';
-        /** File key of the library to fetch analytics data for. */
-        fileKey: string;
-        /** Cache parameter for the axios-cache-interceptor middleware. */
-        cache?: boolean;
+        order?: "asc" | "desc";
       },
       params: RequestParams = {},
     ) =>
@@ -5036,7 +6228,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/analytics/libraries/${fileKey}/usages`,
-        method: 'GET',
+        method: "GET",
         query: query,
         secure: true,
         ...params,
@@ -5052,7 +6244,23 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @request POST:/v2/webhooks
      * @secure
      */
-    postWebhook: (data: PostWebhookRequestBody, params: RequestParams = {}) =>
+    postWebhook: (
+      data: {
+        /** An enum representing the possible events that a webhook can subscribe to */
+        event_type: WebhookV2Event;
+        /** Team id to receive updates about */
+        team_id: string;
+        /** The HTTP endpoint that will receive a POST request when the event triggers. Max length 2048 characters. */
+        endpoint: string;
+        /** String that will be passed back to your webhook endpoint to verify that it is being called by Figma. Max length 100 characters. */
+        passcode: string;
+        /** State of the webhook, including any error state it may be in */
+        status?: WebhookV2Status;
+        /** User provided description or name for the webhook. Max length 150 characters. */
+        description?: string;
+      },
+      params: RequestParams = {},
+    ) =>
       this.request<
         WebhookV2,
         | (ErrorResponsePayloadWithErrorBoolean & {
@@ -5073,7 +6281,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v2/webhooks`,
-        method: 'POST',
+        method: "POST",
         body: data,
         secure: true,
         type: ContentType.Json,
@@ -5114,7 +6322,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v2/webhooks/${webhookId}`,
-        method: 'GET',
+        method: "GET",
         secure: true,
         ...params,
       }),
@@ -5128,7 +6336,22 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @request PUT:/v2/webhooks/{webhook_id}
      * @secure
      */
-    putWebhook: (webhookId: string, data: PutWebhookRequestBody, params: RequestParams = {}) =>
+    putWebhook: (
+      webhookId: string,
+      data: {
+        /** An enum representing the possible events that a webhook can subscribe to */
+        event_type: WebhookV2Event;
+        /** The HTTP endpoint that will receive a POST request when the event triggers. Max length 2048 characters. */
+        endpoint: string;
+        /** String that will be passed back to your webhook endpoint to verify that it is being called by Figma. Max length 100 characters. */
+        passcode: string;
+        /** State of the webhook, including any error state it may be in */
+        status?: WebhookV2Status;
+        /** User provided description or name for the webhook. Max length 150 characters. */
+        description?: string;
+      },
+      params: RequestParams = {},
+    ) =>
       this.request<
         WebhookV2,
         | (ErrorResponsePayloadWithErrorBoolean & {
@@ -5153,7 +6376,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v2/webhooks/${webhookId}`,
-        method: 'PUT',
+        method: "PUT",
         body: data,
         secure: true,
         type: ContentType.Json,
@@ -5194,7 +6417,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v2/webhooks/${webhookId}`,
-        method: 'DELETE',
+        method: "DELETE",
         secure: true,
         ...params,
       }),
@@ -5232,7 +6455,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v2/teams/${teamId}/webhooks`,
-        method: 'GET',
+        method: "GET",
         secure: true,
         ...params,
       }),
@@ -5274,7 +6497,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v2/webhooks/${webhookId}/requests`,
-        method: 'GET',
+        method: "GET",
         secure: true,
         ...params,
       }),

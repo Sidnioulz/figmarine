@@ -11,11 +11,7 @@ await generateApi({
   output: path.resolve(import.meta.dirname, '../src/__generated__'),
   spec,
   httpClientType: 'axios',
-  extractRequestParams: true,
-  extractRequestBody: true,
-  extractingOptions: {
-    requestBodySuffix: ['RequestBody'],
-  },
+  generateRouteTypes: true,
   hooks: {
     /** Hack used to make it possible to pass `cache: false` to request params. */
     onCreateRequestParams: (data) => {
