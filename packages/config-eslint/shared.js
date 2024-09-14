@@ -2,6 +2,7 @@ import prettier from 'eslint-plugin-prettier/recommended';
 import tseslint from 'typescript-eslint';
 import json from '@eslint/json';
 import turbo from 'eslint-plugin-turbo';
+import vitest from "@vitest/eslint-plugin";
 
 export function ignoreJson(conf) {
   return {
@@ -42,4 +43,13 @@ export const configs = [
   },
   prettier,
   ...tseslint.configs.recommended.map(ignoreJson),
+  {
+    files: ['__tests__/*.spec.ts'],
+    plugins: {
+      vitest
+    },
+    rules: {
+      ...vitest.configs.all.rules,
+    },
+  },
 ];
