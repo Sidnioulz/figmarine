@@ -1,0 +1,58 @@
+{
+  "name": "@figmarine/cuttings",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "description": "Library to cache arbitrary data to disk for arbitrarily long",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sidnioulz/figmarine",
+    "directory": "packages/cuttings"
+  },
+  "bugs": {
+    "url": "https://github.com/Sidnioulz/figmarine/issues"
+  },
+  "keywords": [
+    "figma",
+    "figmarine",
+    "nursery",
+    "cuttings"
+  ],
+  "author": "Steve Dodier-Lazaro",
+  "homepage": "https://github.com/Sidnioulz/figmarine",
+  "scripts": {
+    "build": "tsc && tsup --env.NODE_ENV production",
+    "dev": "tsc-watch --onSuccess \"tsup --env.NODE_ENV production\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "vitest run",
+    "test:coverage": "vitest --coverage",
+    "test:dev": "vitest dev",
+    "typecheck": "tsc --noEmit"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
+  "devDependencies": {
+    "@figmarine/config-eslint": "workspace:*",
+    "@figmarine/config-prettier": "workspace:*",
+    "@figmarine/config-tsup": "workspace:*",
+    "@figmarine/config-typescript": "workspace:*",
+    "@figmarine/config-vitest": "workspace:*",
+    "@types/node": "^22.5.0",
+    "@vitest/coverage-v8": "^2.1.1",
+    "axios": "^1.7.4",
+    "tsc-watch": "^6.2.0",
+    "tsup": "^8.2.4",
+    "typescript": "latest",
+    "vitest": "^2.1.1"
+  },
+  "dependencies": {
+    "@figmarine/logger": "workspace:*",
+    "@figmarine/rest": "workspace:*",
+    "zod": "^3.23.8"
+  }
+}
