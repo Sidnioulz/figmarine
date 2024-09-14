@@ -24,7 +24,9 @@
   "scripts": {
     "api:regen": "node ./scripts/regenFigmaRestApi.mjs",
     "build": "tsc && tsup --env.NODE_ENV production",
+    "build:debug": "tsc && tsup --entry src/debug.ts --entry src/index.ts --env.NODE_ENV development",
     "dev": "tsc-watch --onSuccess \"tsup --env.NODE_ENV production\"",
+    "dev:debug": "tsc-watch --onSuccess \"tsup --entry src/debug.ts --entry src/index.ts --env.NODE_ENV development\"",
     "docs:build": "echo 'TODO: vitepress build docs'",
     "docs:dev": "echo 'TODO: vitepress dev docs --port 1227'",
     "docs:serve": "echo 'TODO: vitepress serve docs'",
