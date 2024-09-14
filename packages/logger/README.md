@@ -102,6 +102,8 @@ Check that tests run as you make changes
 ## :dart: Roadmap
 
 - [ ] Add log levels (error, warn, info, debug)
+- [ ] Automate caller identification
+- [ ] Switch to template literal format and auto-colour params with chalk
 - [ ] Add unit tests for log levels
 
 ## :wave: Contributing
