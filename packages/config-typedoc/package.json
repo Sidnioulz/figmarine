@@ -1,0 +1,35 @@
+{
+  "name": "@figmarine/config-typedoc",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "description": "TypeDoc config package for the Figmarine monorepo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sidnioulz/figmarine",
+    "directory": "packages/config-typedoc"
+  },
+  "bugs": {
+    "url": "https://github.com/Sidnioulz/figmarine/issues"
+  },
+  "keywords": [
+    "config",
+    "typedoc"
+  ],
+  "author": "Steve Dodier-Lazaro",
+  "homepage": "https://github.com/Sidnioulz/figmarine",
+  "files": [
+    "index.js"
+  ],
+  "exports": {
+    ".": {
+      "default": "./index.js"
+    }
+  },
+  "dependencies": {
+    "typedoc": "^0.26.6",
+    "typedoc-plugin-markdown": "^4.2.5",
+    "typedoc-vitepress-theme": "^1.0.1"
+  }
+}
