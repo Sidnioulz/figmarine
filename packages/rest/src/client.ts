@@ -1,5 +1,6 @@
 import { buildStorage, defaultKeyGenerator, setupCache } from 'axios-cache-interceptor';
 import { type DiskCache, makeCache, MakeCacheOptions } from '@figmarine/cache';
+import type { AxiosRequestConfig } from 'axios';
 import { log } from '@figmarine/logger';
 
 import { Api, type Api as ApiInterface } from './__generated__/figmaRestApi';
@@ -75,15 +76,11 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
         return;
       }
 
-      const headers = {};
+      const headers: AxiosRequestConfig['headers'] = {};
       if (personalAccessToken) {
-        // FIXME
-        // @ts-expect-error will debug asap
         headers['X-Figma-Token'] = securityData.personalAccessToken;
       }
       if (oauthToken) {
-        // FIXME
-        // @ts-expect-error will debug asap
         headers['Authorization'] = `Bearer ${securityData.oauthToken}`;
       }
 
