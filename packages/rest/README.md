@@ -41,7 +41,6 @@
   - [Usage](#eyes-usage)
     - [Environment Variables](#eyes-environment-variables)
   - [Run Locally](#running-run-locally)
-  - [Roadmap](#dart-roadmap)
   - [Contributing](#wave-contributing)
   - [License](#warning-license)
   - [Support](#sos-support)
@@ -109,26 +108,6 @@ Check that tests run as you make changes
 ```bash
   pnpm test:dev
 ```
-
-## :dart: Roadmap
-
-### API generation
-- [ ] Test the dependabot automation once https://github.com/figma/rest-api-spec/pull/18 is merged
-- [ ] Fix cosmiconfig failing to import ESM prettier config file
-- [ ] Use codegen template to create a type export file without the API client, for re-export
-- [ ] Use [openapi-zod-client](https://github.com/astahmer/openapi-zod-client) or a homebrew solution to generate Zod schemas
-
-### Client
-- [ ] Support 429 incremental delays in rate limiter
-- [ ] Add `rateLimitSafeguard` option ('off', 'reactive' 429 only, 'preemptive' 429 and slow down)
-- [ ] Add CLI scripts to clear cache from a consumer perspective
-- [ ] Iterate on the cache key generator and cache invalidation strategy
-
-### Tooling and QA
-- [ ] Add unit tests
-- [ ] Document the client options
-- [ ] Document the REST API
-- [ ] Automatically release the package
 
 ## :wave: Contributing
 
