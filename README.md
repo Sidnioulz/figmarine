@@ -72,16 +72,16 @@
 <table>
   <tr>
     <td>
-      <h3><a href="./apps/nursery/">Nursery</a></h3>
-      <div>A library for fetching and storing cuttings, which are JSON representations of Figma files.</div>
-    </td>
-    <td>
       <h3><a href="./packages/rest/">REST API Client</a></h3>
       <div>A fully-typed JS client for the REST API, generated from an OpenAPI Spec.</div>
     </td>
     <td>
-      <h3><a href="./packages/graphql/">GraphQL Client</a></h3>
-      <div>A GraphQL client for the REST API, also generated from an OpenAPI Spec.</div>
+      <h3><a href="./packages/cuttings/">Cuttings</a></h3>
+      <div>A library that creates JSON representations of Figma content (files, components, etc.).</div>
+    </td>
+    <td>
+      <h3><a href="./apps/nursery/">Nursery</a></h3>
+      <div>A library for fetching, storing and rehydrating cuttings.</div>
     </td>
     <td>
       <h3><a href="./packages/eslint-plugin-figma/">ESLint Plugin</a></h3>
@@ -89,6 +89,11 @@
     </td>
   </tr>
 </table>
+
+<!-- linum (Linum usitatissimum) -->
+<!-- oauth server -->
+<!-- oauth helper lib -->
+<!-- graphql -->
 
 ## :package: Contributing
 
