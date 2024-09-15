@@ -69,8 +69,8 @@ export function makeCache(opts: MakeCacheOptions) {
 
   const refreshErrorHandler = refreshThreshold
     ? (error: Error) => {
-      log(error);
-    }
+        log(error);
+      }
     : undefined;
 
   const diskCache = createCache(
