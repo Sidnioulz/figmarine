@@ -5,60 +5,34 @@
       "cache": false
     },
     "build": {
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env*"
-      ],
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "build/**",
-        "dist/**"
-      ]
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "dependsOn": ["^build"],
+      "outputs": ["build/**", "dist/**"]
     },
     "clean": {
       "cache": false
     },
     "dev": {
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": ["^build"],
       "cache": false,
       "persistent": true
     },
     "lint": {
-      "dependsOn": [
-        "^build",
-        "^lint"
-      ]
+      "dependsOn": ["^build", "^lint"]
     },
     "lint:fix": {
-      "dependsOn": [
-        "lint"
-      ]
+      "dependsOn": ["^build", "^lint:fix"]
     },
     "test": {
-      "outputs": [
-        "coverage/**"
-      ],
-      "dependsOn": [
-        "^build",
-        "^test"
-      ]
+      "outputs": ["coverage/**"],
+      "dependsOn": ["^build", "^test"]
     },
     "test:dev": {
-      "outputs": [
-        "coverage/**"
-      ],
-      "dependsOn": [
-        "test"
-      ]
+      "outputs": ["coverage/**"],
+      "dependsOn": ["test"]
     },
     "typecheck": {
-      "dependsOn": [
-        "^build"
-      ]
+      "dependsOn": ["^build"]
     }
   }
 }
