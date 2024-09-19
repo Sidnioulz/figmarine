@@ -1,5 +1,5 @@
 import { buildStorage, defaultKeyGenerator, setupCache } from 'axios-cache-interceptor';
-import { type DiskCache, makeCache, MakeCacheOptions } from '@figmarine/cache';
+import { makeCache, MakeCacheOptions } from '@figmarine/cache';
 import type { AxiosRequestConfig } from 'axios';
 import { log } from '@figmarine/logger';
 
@@ -93,7 +93,7 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
     personalAccessToken,
   });
 
-  let diskCache: DiskCache;
+  let diskCache: ReturnType<typeof makeCache>['diskCache'];
   if ((isDevelopment && cache !== false) || cache) {
     if (isDevelopment) {
       log(`Development mode: enabling API cache by default.`);
@@ -129,11 +129,11 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
         },
         async remove(key) {
           log(`API cache middleware: removing '${key}'.`);
-          await diskCache.del(key);
+          await diskCache.delete(key);
         },
         async clear() {
           log('API cache middleware: resetting.');
-          await diskCache.reset();
+          await diskCache.clear();
         },
       }),
     });

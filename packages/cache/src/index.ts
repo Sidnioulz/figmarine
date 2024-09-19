@@ -1,10 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { createCache } from 'cache-manager';
-import type { MemoryCache as DiskCache } from 'cache-manager';
-export type { MemoryCache as DiskCache } from 'cache-manager';
-import { DiskStore } from 'cache-manager-fs-hash';
+import { Cacheable } from 'cacheable';
+import { Keyv } from 'keyv';
+import { KeyvFile } from 'keyv-file';
+import KeyvGzip from '@keyv/compress-gzip';
 import { log } from '@figmarine/logger';
 
 import { DEFAULT_CACHE_PATH, YEAR_IN_SECONDS } from './constants';
@@ -21,22 +21,6 @@ export interface MakeCacheOptions {
   location: string;
 
   /**
-   * Maximum number of items to keep in the cache.
-   * @type {number}
-   * @default 200
-   */
-  max?: number;
-
-  /**
-   * Refresh threshold. If `ttl` is lower as a file is fetched, it will
-   * be refreshed asynchronously.
-   * @see https://github.com/jaredwray/cacheable/tree/main/packages/cache-manager#refresh-cache-keys-in-background
-   * @type {number}
-   * @default 3
-   */
-  refreshThreshold?: number;
-
-  /**
    * TTL, in seconds, for the cache.
    * Pass -1 to keep files for as long as a year.
    * @type {number}
@@ -45,66 +29,37 @@ export interface MakeCacheOptions {
   ttl?: number;
 }
 
-/**
- * Creates a new disk cache, with options to control the location, TTL,
- * maximum size and refresh threshold of the cache.
- *
- * Also provides a wrapper function that can wrap arbitrary callbacks'
- * return value into the cache so long as callback parameters are a
- * serialisable object.
- *
- * @param {MakeCacheOptions} opts The options for the cache to create.
- * @returns {object} An object with two properties:
- * - `diskCache` is the underlying [cache-manager](https://www.npmjs.com/package/cache-manager?activeTab=readme) instance.
- * - `cacheWrapper` is the function used to wrap callbacks.
- */
 export function makeCache(opts: MakeCacheOptions) {
-  const { ttl = -1, location, max = 200, refreshThreshold = undefined } = opts;
+  const { ttl = -1, location } = opts;
 
-  log(`Initialising / reloading cache from location ${DEFAULT_CACHE_PATH}`);
-  const finalCachePath = path.isAbsolute(location)
+  const finalCacheDirname = path.isAbsolute(location)
     ? location
     : path.join(DEFAULT_CACHE_PATH, location);
-  fs.mkdirSync(finalCachePath, { recursive: true });
+  const finalCacheFilename = path.join(finalCacheDirname, 'cache.json.gz');
+  log(`Initialising / reloading cache from location ${finalCacheFilename}`);
+  fs.mkdirSync(finalCacheDirname, { recursive: true });
 
-  const refreshErrorHandler = refreshThreshold
-    ? (error: Error) => {
-        log(error);
-      }
-    : undefined;
+  const computedTtl = 1000 * (ttl === -1 ? YEAR_IN_SECONDS : ttl);
 
-  const diskCache = createCache(
-    new DiskStore({
-      path: finalCachePath,
-      max,
-      refreshThreshold,
-      onBackgroundRefreshError: refreshErrorHandler,
-      ttl: 1000 * (ttl === -1 ? YEAR_IN_SECONDS : ttl),
-    }),
-  ) satisfies DiskCache;
+  const store = new KeyvFile({
+    filename: finalCacheFilename,
+    expiredCheckDelay: computedTtl,
+    writeDelay: 100,
+  });
+
+  // TODO: Enable stats, and use stats to boast about how much time was saved in `shutdownGracefully`.
+
+  const shutdownGracefully = async () => {
+    // TODO: connect to PRE_SET hook.
+    // TODO: wait for 3x writeDelay, while we wait, store every ongoing set.
+    // TODO: for every ongoing set, wait for ERROR OR POST_SET.
+    // Only then, let go.
+  };
+
+  const primary = new Keyv({ compression: new KeyvGzip(), store, ttl: computedTtl });
+  const diskCache = new Cacheable({ primary });
+
   log(`Created cache with ${ttl === -1 ? 'infinite TTL (dev mode)' : `${ttl} second TTL`}`);
 
-  /**
-   * Creates a wrapped version of a callback, so that when the callback is
-   * called, the associated cache is first checked for a return value, and
-   * so that callback return values are stored in the cache.
-   * @param {string} prefix A prefix to use to compute the cache key for the
-   * wrapped callback. The rest of the cache key is obtained by serialising
-   * the callback parameters.
-   * @param {Function} callback A callback with a single parameter typed `U`,
-   * which must be serialisable, and an arbitrary return value of type `T`.
-   * @returns {Function} A function with the same signature as {@link callback}
-   * but wrapped in the cache made by {@link makeCache}.
-   */
-  function cacheWrapper<T, U>(prefix: string, callback: (params: U) => Promise<T>) {
-    log(`Creating a new cache-wrapped function with prefix ${prefix}`);
-    return async (cbParams: U) => {
-      const key = `${prefix}:${JSON.stringify(cbParams)}`;
-      log(`Cache-wrapped function '${prefix} called with params: ${cbParams}`);
-
-      return await diskCache.wrap<T>(key, () => callback(cbParams));
-    };
-  }
-
-  return { diskCache, cacheWrapper };
+  return { diskCache, shutdownGracefully };
 }
