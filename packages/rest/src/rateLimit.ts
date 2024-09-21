@@ -107,9 +107,9 @@ export async function interceptRequest(requestCost: number): Promise<void> {
   }
 }
 
-export async function interceptResponse() {
-  // In case of unexpected 429, record it so we can delay the next requests.
-  // TODO
-  // Return the response to the caller.
-  // TODO
-}
+// export async function interceptResponse() {
+// In case of unexpected 429, record it so we can delay the next requests.
+// TODO
+// Return the response to the caller.
+// TODO
+// }

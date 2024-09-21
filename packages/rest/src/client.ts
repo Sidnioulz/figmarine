@@ -1,10 +1,11 @@
-import { buildStorage, defaultKeyGenerator, setupCache } from 'axios-cache-interceptor';
+import { defaultKeyGenerator, setupCache } from 'axios-cache-interceptor';
 import { makeCache, MakeCacheOptions } from '@figmarine/cache';
-import type { AxiosRequestConfig } from 'axios';
 import { log } from '@figmarine/logger';
 
 import { Api, type Api as ApiInterface } from './__generated__/figmaRestApi';
-import { interceptRequest } from './rateLimit';
+import { rateLimitRequestInterceptor } from './interceptors';
+import { securityWorker } from './securityWorker';
+import { storage } from './storage';
 
 export interface ClientOptions {
   /**
@@ -37,7 +38,7 @@ export interface ClientOptions {
    * Whether to slow down API calls so that the Figma REST API's rate limit
    * policy isn't violated. Prevents errors when doing multiple consecutive calls.
    */
-  rateLimit?: true;
+  rateLimit?: boolean;
 }
 
 export type ClientInterface = Omit<ApiInterface<ClientOptions>, 'setSecurityData'>;
@@ -52,9 +53,10 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
   } = opts;
 
   const isDevelopment = mode === 'development';
+  log(`Creating client in ${mode} mode.`);
 
   if (!personalAccessToken && !oauthToken) {
-    log('Cannot authenticate to client, no token passed');
+    log('Cannot authenticate to client, no token passed.');
     throw new Error(
       'You must set the environment variable FIGMA_PERSONAL_ACCESS_TOKEN or FIGMA_OAUTH_TOKEN, or pass `personalAccessToken` or `oauthToken` to this function.',
     );
@@ -70,30 +72,13 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
     );
   }
 
-  const api = new Api<ClientOptions>({
-    securityWorker: (securityData) => {
-      if (!securityData) {
-        return;
-      }
-
-      const headers: AxiosRequestConfig['headers'] = {};
-      if (personalAccessToken) {
-        headers['X-Figma-Token'] = securityData.personalAccessToken;
-      }
-      if (oauthToken) {
-        headers['Authorization'] = `Bearer ${securityData.oauthToken}`;
-      }
-
-      return { headers };
-    },
-  });
-
+  const api = new Api<ClientOptions>({ securityWorker });
   api.setSecurityData({
     oauthToken,
     personalAccessToken,
   });
 
-  let diskCache: ReturnType<typeof makeCache>['diskCache'];
+  let diskCache: ReturnType<typeof makeCache>['diskCache'] | undefined = undefined;
   if ((isDevelopment && cache !== false) || cache) {
     if (isDevelopment) {
       log(`Development mode: enabling API cache by default.`);
@@ -116,26 +101,7 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
        * the Axios cache, allowing us to save API results to disk
        * between two runs of the program in development mode.
        */
-      storage: buildStorage({
-        async find(key) {
-          const value = await diskCache.get<string>(key);
-          log(`API cache middleware: looked up '${key}', cache ${value ? 'hit' : 'miss'}.`);
-
-          return value ? JSON.parse(value) : undefined;
-        },
-        async set(key, value) {
-          log(`API cache middleware: setting '${key}'.`);
-          await diskCache.set(key, JSON.stringify(value));
-        },
-        async remove(key) {
-          log(`API cache middleware: removing '${key}'.`);
-          await diskCache.delete(key);
-        },
-        async clear() {
-          log('API cache middleware: resetting.');
-          await diskCache.clear();
-        },
-      }),
+      storage: storage(diskCache),
     });
   }
 
@@ -149,19 +115,9 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
   if (rateLimit) {
     log(`Applying rate limit proxy to API client.`);
 
-    api.instance.interceptors.request.use(async function (config) {
-      // If we have cache for the request, no need to consider rate limiting.
-      const cacheHit = diskCache && (await diskCache.get<string>(defaultKeyGenerator(config)));
-
-      if (!cacheHit) {
-        // Until Figma shed light on their actual rate limit implementation, all
-        // requests have the same cost. Wait for the request to be allowed to run
-        // to exit the Axios interceptor.
-        await interceptRequest(1);
-      }
-
-      return config;
-    });
+    api.instance.interceptors.request.use(
+      rateLimitRequestInterceptor(defaultKeyGenerator, diskCache),
+    );
   }
 
   // TODO: add response interceptor for 429 handling.

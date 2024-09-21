@@ -1,6 +1,7 @@
 import { interceptRequest } from '../rateLimit';
 import type { Log } from '../rateLimit.config';
 
+/* Mock rate limit config. */
 const { mockedConfig, mockedConfigActualImplementation } = vi.hoisted(() => {
   return {
     mockedConfig: vi.fn(),
@@ -20,7 +21,7 @@ vi.mock(import('../rateLimit.config'), async (importOriginal) => {
 
 describe('@figmarine/rest - rateLimit', () => {
   describe('interceptRequest', () => {
-    beforeEach(async () => {
+    beforeEach(() => {
       vi.useFakeTimers();
       vi.setSystemTime(609401000);
       vi.spyOn(global, 'setTimeout');
