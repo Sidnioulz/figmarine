@@ -24,12 +24,14 @@
       "dependsOn": ["^build", "^lint:fix"]
     },
     "test": {
-      "outputs": ["coverage/**"],
       "dependsOn": ["^build", "^test"]
     },
     "test:dev": {
+      "dependsOn": ["^build", "^test:dev"]
+    },
+    "test:coverage": {
       "outputs": ["coverage/**"],
-      "dependsOn": ["test"]
+      "dependsOn": ["^build", "^test:coverage"]
     },
     "typecheck": {
       "dependsOn": ["^build"]
