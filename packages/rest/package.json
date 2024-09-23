@@ -51,7 +51,7 @@
     "dist/**"
   ],
   "devDependencies": {
-    "@figma/rest-api-spec": "^0.16.0",
+    "@figma/rest-api-spec": "^0.18.0",
     "@figmarine/config-eslint": "workspace:*",
     "@figmarine/config-prettier": "workspace:*",
     "@figmarine/config-tsup": "workspace:*",
