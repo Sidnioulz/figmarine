@@ -1,3 +1,6 @@
+import os from 'node:os';
+import path from 'node:path';
+
 import * as cacheModule from '@figmarine/cache';
 import * as loggerModule from '@figmarine/logger';
 import { test as base } from 'vitest';
@@ -35,12 +38,14 @@ const it = base.extend<ClientFixtures>({
   },
 });
 
+const tmpDir = os.tmpdir();
+
 // TODO mock oas serv and write extra tests
 
 describe('@figmarine/rest - client', () => {
   beforeEach(() => {
     vol.reset();
-    vol.fromJSON({ '/tmp': null });
+    vol.fromJSON({ [tmpDir]: null });
   });
   afterEach(() => {
     vi.restoreAllMocks();
@@ -54,7 +59,7 @@ describe('@figmarine/rest - client', () => {
 
       await Client();
 
-      const folder = vol.lstatSync('/tmp/@figmarine/cache');
+      const folder = vol.lstatSync(path.join(tmpDir, '@figmarine/cache'));
 
       expect(folder.isDirectory).toBeTruthy();
     });
@@ -63,7 +68,7 @@ describe('@figmarine/rest - client', () => {
       mockedEnv();
       await Client();
 
-      const hasFolder = vol.existsSync('/tmp/@figmarine/cache');
+      const hasFolder = vol.existsSync(path.join(tmpDir, '@figmarine/cache'));
 
       expect(hasFolder).toBeFalsy();
     });
@@ -75,7 +80,7 @@ describe('@figmarine/rest - client', () => {
 
       await Client({ cache: false });
 
-      const hasFolder = vol.existsSync('/tmp/@figmarine/cache');
+      const hasFolder = vol.existsSync(path.join(tmpDir, '@figmarine/cache'));
 
       expect(hasFolder).toBeFalsy();
     });
@@ -97,7 +102,7 @@ describe('@figmarine/rest - client', () => {
 
       const hasFolderRelativeToCwd = vol.existsSync(location);
       const hasFolderRelativeToDefaultLocation = vol.existsSync(
-        `/tmp/@figmarine/cache/${location}`,
+        path.join(tmpDir, `@figmarine/cache/${location}`),
       );
 
       expect(hasFolderRelativeToCwd).toBeFalsy();
