@@ -1,3 +1,6 @@
+import os from 'node:os';
+import path from 'node:path';
+
 import * as constants from '../constants';
 
 describe('@figmarine/cache - constants', () => {
@@ -6,7 +9,7 @@ describe('@figmarine/cache - constants', () => {
       expect(constants).toHaveProperty('DEFAULT_CACHE_PATH');
     });
     it('scopes cache content with the package name', () => {
-      expect(constants.DEFAULT_CACHE_PATH.startsWith('/tmp/@figmarine')).toBeTruthy();
+      expect(constants.DEFAULT_CACHE_PATH.startsWith(path.join(os.tmpdir()))).toBeTruthy();
     });
   });
   describe('YEAR_IN_SECONDS', () => {
