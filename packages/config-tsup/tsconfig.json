@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "allowJs": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "skipLibCheck": true
+  },
+  "include": ["index.js"]
+}
