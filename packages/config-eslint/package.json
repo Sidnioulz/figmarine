@@ -10,6 +10,9 @@
     "url": "https://github.com/Sidnioulz/figmarine",
     "directory": "packages/config-eslint"
   },
+  "scripts": {
+    "build": "tsc"
+  },
   "bugs": {
     "url": "https://github.com/Sidnioulz/figmarine/issues"
   },
@@ -23,8 +26,14 @@
     "*.js"
   ],
   "exports": {
-    ".": "./index.js",
-    "./*": "./*.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./index.js"
+    },
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "default": "./*.js"
+    }
   },
   "dependencies": {
     "@eslint/json": "^0.4.0",
