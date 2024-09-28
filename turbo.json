@@ -20,6 +20,10 @@
     "lint": {
       "dependsOn": ["^build", "^lint"]
     },
+    "lint:staged": {
+      "dependsOn": ["^lint:staged"],
+      "cache": false
+    },
     "lint:fix": {
       "dependsOn": ["^build", "^lint:fix"]
     },
@@ -28,6 +32,10 @@
     },
     "test:dev": {
       "dependsOn": ["^build", "^test:dev"]
+    },
+    "test:changed": {
+      "dependsOn": ["^test:changed"],
+      "cache": false
     },
     "test:coverage": {
       "outputs": ["coverage/**"],
