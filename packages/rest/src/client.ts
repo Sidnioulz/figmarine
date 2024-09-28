@@ -1,8 +1,10 @@
+import axiosRetry, { exponentialDelay, isNetworkOrIdempotentRequestError } from 'axios-retry';
 import { defaultKeyGenerator, setupCache } from 'axios-cache-interceptor';
 import { makeCache, MakeCacheOptions } from '@figmarine/cache';
 import { log } from '@figmarine/logger';
 
 import { Api, type Api as ApiInterface } from './__generated__/figmaRestApi';
+import { get429Config } from './rateLimit.config';
 import { rateLimitRequestInterceptor } from './interceptors';
 import { securityWorker } from './securityWorker';
 import { storage } from './storage';
@@ -93,7 +95,7 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
        * Ignore "don't cache" headers from Figma by default.
        * Let the cache package handle TTL for us, and cache
        * invalidation logic clear stale cache.
-       * @returns {number} A 999999999999 seconds TTL.
+       * @returns A 999999999999 seconds TTL.
        */
       headerInterpreter: () => 999999999999,
       /**
@@ -103,6 +105,12 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
        */
       storage: storage(diskCache),
     });
+  }
+
+  /* Support changing the base URL so this package can be tested
+   * against a mock server. */
+  if (process.env.FIGMA_API_BASE_URL) {
+    api.instance.defaults.baseURL = process.env.FIGMA_API_BASE_URL;
   }
 
   // TODO: add endpoints to download arbitrary image URLs returned by
@@ -118,9 +126,29 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
     api.instance.interceptors.request.use(
       rateLimitRequestInterceptor(defaultKeyGenerator, diskCache),
     );
-  }
 
-  // TODO: add response interceptor for 429 handling.
+    // Add response interceptor for 429 handling.
+    const rlConfig = get429Config();
+    axiosRetry(api.instance, {
+      onMaxRetryTimesExceeded: (error) => {
+        log(
+          `Client: 429 Too Many Requests on '${error.request.url}'. Aborting after too many retries.`,
+        );
+      },
+      onRetry: (retryCount, _, requestConfig) => {
+        log(
+          `Client: 429 Too Many Requests on '${requestConfig.url}'. Will retry automatically in ${2 ** retryCount / 2} seconds.`,
+        );
+      },
+      retries: 6,
+      retryCondition: (error) =>
+        isNetworkOrIdempotentRequestError(error) ||
+        error.status === 429 ||
+        error.response?.status === 429,
+      retryDelay: (retryCount, error) =>
+        exponentialDelay(retryCount, error, rlConfig.INITIAL_DELAY),
+    });
+  }
 
   log(`Created Figma REST API client successfully.`);
 

@@ -17,20 +17,10 @@ type LogEntry = {
 export type Log = LogEntry[];
 
 /*
- * Single event queue for number of requests in the last minute. Note that the Plugin API
- * rate limit seems to use two sliding windows: one per minute and one per day.
- * TODO: find a good storage place for these.
+ * Single event queue for number of requests in the last minute.
  * TODO: ensure these logs are disk-cached and well restored across client runs.
  */
 const reqLog: Log = [];
-
-/**
- * Log of previous Error 429 events. When we get a 429, we apply a multiplier to our budget
- * calculations to slow future requests down for a while, in an attempt to limit the risk
- * of further 429 errors.
- */
-// TODO: implement
-// const error429Log: Log = [];
 
 /**
  * Returns singleton objects and constants for the rate limit algorithm.
@@ -44,5 +34,17 @@ export function getConfig() {
     WINDOW_LENGTH,
     ERROR_WAIT_DURATION,
     RATE_DECREASE_LENGTH,
+  };
+}
+
+/**
+ * Returns singleton objects and constants for the exponential delay algorithm on 429 errors.
+ * Exposed this way for mockability in tests.
+ * @returns 429 retry algorithm config data
+ */
+export function get429Config() {
+  return {
+    // We want a one second initial delay, but axios-retry uses 2^count, so 2^1 * 500 = 1000ms for the initial retry.
+    INITIAL_DELAY: 500,
   };
 }

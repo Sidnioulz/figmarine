@@ -29,7 +29,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest run",
-    "test:coverage": "vitest --coverage",
+    "test:coverage": "vitest --coverage run",
     "test:dev": "vitest dev",
     "typecheck": "tsc --noEmit"
   },

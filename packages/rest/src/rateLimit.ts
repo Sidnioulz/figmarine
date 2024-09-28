@@ -92,8 +92,6 @@ export async function interceptRequest(requestCost: number): Promise<void> {
   // budget we'll need to run the call.
   reqLog.push({ timestamp: runNextRequest, budget: requestCost });
 
-  // TODO read the 429 log for additional delays.
-
   // Now wait if necessary.
   if (timeDelta > 0) {
     log(`Waiting ${timeDelta} seconds to respect API rate limits.\n`);
@@ -106,10 +104,3 @@ export async function interceptRequest(requestCost: number): Promise<void> {
     log(`Rate limit: sending request immediately\n`);
   }
 }
-
-// export async function interceptResponse() {
-// In case of unexpected 429, record it so we can delay the next requests.
-// TODO
-// Return the response to the caller.
-// TODO
-// }
