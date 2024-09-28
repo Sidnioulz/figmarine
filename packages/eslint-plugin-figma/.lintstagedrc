@@ -1,0 +1,3 @@
+{
+  "*.{js,jsx,mjs,cjs,ts,tsx}": ["pnpm lint:files"]
+}
