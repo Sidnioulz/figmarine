@@ -33,8 +33,8 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2
       cacheable:
-        specifier: ^0.8.0
-        version: 0.8.0
+        specifier: ^1.7.1
+        version: 1.7.1
       keyv:
         specifier: ^5.0.3
         version: 5.0.3
@@ -218,8 +218,8 @@ importers:
   packages/eslint-plugin-figma:
     dependencies:
       '@eslint/core':
-        specifier: ^0.4.0
-        version: 0.4.0
+        specifier: ^0.6.0
+        version: 0.6.0
       '@eslint/json':
         specifier: ^0.4.1
         version: 0.4.1
@@ -334,8 +334,8 @@ importers:
         version: 4.5.0(axios@1.7.7)
     devDependencies:
       '@figma/rest-api-spec':
-        specifier: ^0.16.0
-        version: 0.16.0
+        specifier: ^0.18.0
+        version: 0.18.0
       '@figmarine/config-eslint':
         specifier: workspace:*
         version: link:../config-eslint
@@ -361,8 +361,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1(vitest@2.1.1(@types/node@22.7.4)(jsdom@20.0.3))
       cacheable:
-        specifier: ^0.8.0
-        version: 0.8.0
+        specifier: ^1.7.1
+        version: 1.7.1
       keyv:
         specifier: ^5.0.3
         version: 5.0.3
@@ -770,10 +770,6 @@ packages:
     resolution: {integrity: sha512-fTxvnS1sRMu3+JjXwJG0j/i4RT9u4qJ+lqS/yCGap4lH4zZGzQ7tu+xZqQmcMZq5OBZDL4QRxQzRjkWcGt8IVw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@eslint/core@0.4.0':
-    resolution: {integrity: sha512-dJzhhN5oSbpaoFWmfA1iEBTINf7gYyt3ZNjqDm0xw1UMz6QlA1YjcclWhPhGQSR1XbwAIon00y259kaBmjFgNg==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
   '@eslint/core@0.6.0':
     resolution: {integrity: sha512-8I2Q8ykA4J0x0o7cg67FPVnehcqWTBehu/lmY+bolPFHGjh49YzGBMXTvpqVgEbBdvNCSxj6iFgiIyHzf03lzg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -809,8 +805,8 @@ packages:
     resolution: {integrity: sha512-lWrrK4QNlFSU+13PL9jMbMKLJYXDFu3tQfayBsMXX7KL/GiQeqfB1CzHkqD5UHBUtPAuPo6XwGbMFNdVMZObRA==}
     engines: {node: '>=18.0.0', npm: '>=9.0.0'}
 
-  '@figma/rest-api-spec@0.16.0':
-    resolution: {integrity: sha512-J/u7LIHGIKpm9jcJpoAcfUAEfgtuWTtNgIS94mhfdie3p1tgJSZxrJMQxg8u4V7T7SKMpjlqtMr1LwkWf1iC/A==}
+  '@figma/rest-api-spec@0.18.0':
+    resolution: {integrity: sha512-IBBZ0yenAOOAzM0ZyXQJRjWNDg3P349SNID7G/YGgkRPSKITut9ae/kOO7UMlwgkrnuefToTlMpGM4xKEIGX9w==}
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -1261,8 +1257,8 @@ packages:
   cache-parser@1.2.5:
     resolution: {integrity: sha512-Md/4VhAHByQ9frQ15WD6LrMNiVw9AEl/J7vWIXw+sxT6fSOpbtt6LHTp76vy8+bOESPBO94117Hm2bIjlI7XjA==}
 
-  cacheable@0.8.0:
-    resolution: {integrity: sha512-Yo5JxlV97Q6t+yX+xe3GfsmGaXlAgF5roCTk3VxZqb0d9i6IDeLpxziHVH0hmRSxKJXNhEtfqusNqZc7mDUnbQ==}
+  cacheable@1.7.1:
+    resolution: {integrity: sha512-wlUCvLy406Y/D1aT+vw+lTqErY7VUGXFyg5zUcNWc2Q9RmC7wX4qaPqDokiDlDLH+gZQfxp+N4qm/wBNyhzxdg==}
 
   call-me-maybe@1.0.2:
     resolution: {integrity: sha512-HpX65o1Hnr9HH25ojC1YGs7HCQLq0GCOibSaWER0eNpgJ/Z1MZv2mTc7+xh6WOPxbRVcmgbv4hGU+uSQ/2xFZQ==}
@@ -1450,10 +1446,6 @@ packages:
 
   electron-to-chromium@1.5.29:
     resolution: {integrity: sha512-PF8n2AlIhCKXQ+gTpiJi0VhcHDb69kYX4MtCiivctc2QD3XuNZ/XIOlbGzt7WAjjEev0TtaH6Cu3arZExm5DOw==}
-
-  emittery@1.0.3:
-    resolution: {integrity: sha512-tJdCJitoy2lrC2ldJcqN4vkqJ00lT+tOWNT1hBJjO/3FDMJa5TTIiYGCKGkn/WfCyOzUMObeohbVTj00fhiLiA==}
-    engines: {node: '>=14.16'}
 
   emoji-regex@10.4.0:
     resolution: {integrity: sha512-EC+0oUMY1Rqm4O6LLrgjtYDvcVYTy7chDnM4Q7030tP4Kwj3u/pR6gP9ygnp2CJMK5Gq+9Q2oqmrFJAz01DXjw==}
@@ -1789,8 +1781,8 @@ packages:
   hast-util-whitespace@3.0.0:
     resolution: {integrity: sha512-88JUN06ipLwsnv+dVn+OIYOvAuvBMy/Qoi6O7mQHxdPXpjy+Cd6xRkWwux7DKO+4sYILtLBRIKgsdpS2gQc7qw==}
 
-  hookified@0.7.1:
-    resolution: {integrity: sha512-AefYGsVTMR1+Qp1VWyPTJIrxE5egJMUBuuBxKZIywusBNlMKwh3QsVwR1F2llS1vVuWF0cyKlNW4EG0Urfi6FQ==}
+  hookified@1.1.0:
+    resolution: {integrity: sha512-/OqDmsW7CTHUXcMegyLkTXijkKirTK3UjB3X/GrfjFdxQMiAXkXsM2o4z/VtsH5br1VjKDUIbcwcqAkGa5c2LA==}
     engines: {node: '>=20'}
 
   html-encoding-sniffer@3.0.0:
@@ -3279,8 +3271,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@eslint/core@0.4.0': {}
-
   '@eslint/core@0.6.0': {}
 
   '@eslint/eslintrc@3.1.0':
@@ -3318,7 +3308,7 @@ snapshots:
 
   '@faker-js/faker@9.0.3': {}
 
-  '@figma/rest-api-spec@0.16.0': {}
+  '@figma/rest-api-spec@0.18.0': {}
 
   '@humanwhocodes/module-importer@1.0.1': {}
 
@@ -3787,9 +3777,9 @@ snapshots:
 
   cache-parser@1.2.5: {}
 
-  cacheable@0.8.0:
+  cacheable@1.7.1:
     dependencies:
-      hookified: 0.7.1
+      hookified: 1.1.0
       keyv: 5.0.3
 
   call-me-maybe@1.0.2: {}
@@ -3956,8 +3946,6 @@ snapshots:
   eastasianwidth@0.2.0: {}
 
   electron-to-chromium@1.5.29: {}
-
-  emittery@1.0.3: {}
 
   emoji-regex@10.4.0: {}
 
@@ -4357,9 +4345,7 @@ snapshots:
     dependencies:
       '@types/hast': 3.0.4
 
-  hookified@0.7.1:
-    dependencies:
-      emittery: 1.0.3
+  hookified@1.1.0: {}
 
   html-encoding-sniffer@3.0.0:
     dependencies:
