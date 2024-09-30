@@ -1,13 +1,12 @@
 import axiosRetry, { exponentialDelay, isNetworkOrIdempotentRequestError } from 'axios-retry';
-import { defaultKeyGenerator, setupCache } from 'axios-cache-interceptor';
-import { makeCache, MakeCacheOptions } from '@figmarine/cache';
+import { defaultKeyGenerator } from 'axios-cache-interceptor';
 import { log } from '@figmarine/logger';
 
 import { Api, type Api as ApiInterface } from './__generated__/figmaRestApi';
+import { Cache, type ClientCacheOptions } from './cache';
 import { get429Config } from './rateLimit.config';
 import { rateLimitRequestInterceptor } from './interceptors';
 import { securityWorker } from './securityWorker';
-import { storage } from './storage';
 
 export interface ClientOptions {
   /**
@@ -16,9 +15,7 @@ export interface ClientOptions {
    * @see https://github.com/Sidnioulz/figmarine/blob/main/packages/cache/README.md
    * @type {object | boolean}
    */
-  cache?:
-    | false
-    | (Exclude<MakeCacheOptions, 'location'> & { location?: MakeCacheOptions['location'] });
+  cache?: ClientCacheOptions;
   /**
    * Whether the REST API is used in a development or production project.
    * In development, API calls are cached by default to help you get work
@@ -43,7 +40,9 @@ export interface ClientOptions {
   rateLimit?: boolean;
 }
 
-export type ClientInterface = Omit<ApiInterface<ClientOptions>, 'setSecurityData'>;
+export type ClientInterface = Omit<ApiInterface<ClientOptions>, 'setSecurityData'> & {
+  cacheInstance?: Cache;
+};
 
 export async function Client(opts: ClientOptions = {}): Promise<ClientInterface> {
   const {
@@ -80,31 +79,14 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
     personalAccessToken,
   });
 
-  let diskCache: ReturnType<typeof makeCache>['diskCache'] | undefined = undefined;
+  let cacheInstance: Cache | undefined = undefined;
   if ((isDevelopment && cache !== false) || cache) {
     if (isDevelopment) {
       log(`Development mode: enabling API cache by default.`);
     } else {
       log(`Cache options passed: enabling API cache.`);
     }
-    diskCache = makeCache({ location: 'rest', ttl: -1, ...(cache ?? {}) }).diskCache;
-
-    log(`Setting up cache interceptor on Axios client.`);
-    setupCache(api.instance, {
-      /**
-       * Ignore "don't cache" headers from Figma by default.
-       * Let the cache package handle TTL for us, and cache
-       * invalidation logic clear stale cache.
-       * @returns A 999999999999 seconds TTL.
-       */
-      headerInterpreter: () => 999999999999,
-      /**
-       * Our cache package is used as a storage middleware for
-       * the Axios cache, allowing us to save API results to disk
-       * between two runs of the program in development mode.
-       */
-      storage: storage(diskCache),
-    });
+    cacheInstance = new Cache(api, cache);
   }
 
   /* Support changing the base URL so this package can be tested
@@ -124,7 +106,7 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
     log(`Applying rate limit proxy to API client.`);
 
     api.instance.interceptors.request.use(
-      rateLimitRequestInterceptor(defaultKeyGenerator, diskCache),
+      rateLimitRequestInterceptor(defaultKeyGenerator, cacheInstance?.getCache()),
     );
 
     // Add response interceptor for 429 handling.
@@ -152,5 +134,8 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
 
   log(`Created Figma REST API client successfully.`);
 
-  return api;
+  return {
+    ...api,
+    cacheInstance,
+  };
 }
