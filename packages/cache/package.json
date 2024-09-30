@@ -38,29 +38,29 @@
     "dist/**"
   ],
   "devDependencies": {
-    "@faker-js/faker": "^9.0.1",
+    "@faker-js/faker": "^9.0.3",
     "@figmarine/config-eslint": "workspace:*",
     "@figmarine/config-prettier": "workspace:*",
     "@figmarine/config-tsup": "workspace:*",
     "@figmarine/config-typescript": "workspace:*",
     "@figmarine/config-vitest": "workspace:*",
-    "@types/node": "^22.5.0",
+    "@types/node": "^22.7.4",
     "@vitest/coverage-istanbul": "^2.1.1",
     "@vitest/coverage-v8": "^2.1.1",
     "lint-staged": "^15.2.10",
     "lockfile": "^1.0.4",
-    "memfs": "^4.11.1",
+    "memfs": "^4.12.0",
     "tsc-watch": "^6.2.0",
-    "tsup": "^8.2.4",
+    "tsup": "^8.3.0",
     "typescript": "latest",
-    "vite": "^5.4.5",
+    "vite": "^5.4.8",
     "vitest": "^2.1.1"
   },
   "dependencies": {
     "@figmarine/logger": "workspace:*",
     "@keyv/compress-gzip": "^2.0.2",
     "cacheable": "^0.8.0",
-    "keyv": "^5.0.1",
+    "keyv": "^5.0.3",
     "keyv-file": "^5.0.3"
   }
 }
