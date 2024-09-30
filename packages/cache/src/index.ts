@@ -57,9 +57,9 @@ export function makeCache(opts: MakeCacheOptions) {
   };
 
   const primary = new Keyv({ compression: new KeyvGzip(), store, ttl: computedTtl });
-  const diskCache = new Cacheable({ primary });
+  const cache = new Cacheable({ primary });
 
   log(`Created cache with ${ttl === -1 ? 'infinite TTL (dev mode)' : `${ttl} second TTL`}`);
 
-  return { diskCache, shutdownGracefully };
+  return { cache, primary, shutdownGracefully };
 }
