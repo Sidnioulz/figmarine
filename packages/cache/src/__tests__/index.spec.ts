@@ -36,21 +36,21 @@ describe('@figmarine/cache - index', () => {
     });
 
     it("doesn't contain content that was never cached", async () => {
-      const { diskCache, shutdownGracefully } = makeCache({
+      const { cache, shutdownGracefully } = makeCache({
         location: faker.string.alphanumeric(5),
       });
-      const neverSet = await diskCache.get('key');
+      const neverSet = await cache.get('key');
 
       expect(neverSet).not.toBeDefined();
       await shutdownGracefully();
     });
 
     it('contains content after it was cached', async () => {
-      const { diskCache, shutdownGracefully } = makeCache({
+      const { cache, shutdownGracefully } = makeCache({
         location: faker.string.alphanumeric(5),
       });
-      await diskCache.set('key', 'value');
-      const existing = await diskCache.get('key');
+      await cache.set('key', 'value');
+      const existing = await cache.get('key');
 
       expect(existing).toBe('value');
       await shutdownGracefully();
@@ -60,16 +60,16 @@ describe('@figmarine/cache - index', () => {
       vi.useFakeTimers({ shouldAdvanceTime: true });
 
       const ttl = 1;
-      const { diskCache, shutdownGracefully } = makeCache({
+      const { cache, shutdownGracefully } = makeCache({
         location: faker.string.alphanumeric(5),
         ttl,
       });
 
-      await diskCache.set('key', 'value');
-      expect(await diskCache.get('key')).toBe('value');
+      await cache.set('key', 'value');
+      expect(await cache.get('key')).toBe('value');
 
       vi.advanceTimersByTime(1000 * (ttl * 2));
-      expect(await diskCache.get('key')).not.toBeDefined();
+      expect(await cache.get('key')).not.toBeDefined();
 
       await shutdownGracefully();
       vi.runAllTimers();
@@ -77,17 +77,17 @@ describe('@figmarine/cache - index', () => {
     });
 
     it('contains content until a cache reset, but not after', async () => {
-      const { diskCache, shutdownGracefully } = makeCache({
+      const { cache, shutdownGracefully } = makeCache({
         location: faker.string.alphanumeric(5),
       });
-      await diskCache.set('key', 'value');
+      await cache.set('key', 'value');
 
-      const existing = await diskCache.get('key');
+      const existing = await cache.get('key');
       expect(existing).toBe('value');
 
-      await diskCache.clear();
+      await cache.clear();
 
-      const nowGone = await diskCache.get('key');
+      const nowGone = await cache.get('key');
       expect(nowGone).not.toBeDefined();
 
       await shutdownGracefully();
@@ -96,11 +96,11 @@ describe('@figmarine/cache - index', () => {
     it('contains content across runs', async () => {
       const location = faker.string.alphanumeric(5);
       const c1 = makeCache({ location });
-      await c1.diskCache.set('key', 'value');
+      await c1.cache.set('key', 'value');
       await c1.shutdownGracefully();
 
       const c2 = makeCache({ location });
-      expect(await c2.diskCache.get('key')).toBe('value');
+      expect(await c2.cache.get('key')).toBe('value');
       await c2.shutdownGracefully();
     });
   });

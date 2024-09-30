@@ -11,6 +11,7 @@ import { vol } from 'memfs';
 
 import * as interceptorsModule from '../interceptors';
 import { Client, ClientInterface } from '../client';
+import { Cache } from '../cache';
 
 /* Mock rate limit config. */
 const { mockedConfig, mocked429Config } = vi.hoisted(() => {
@@ -103,21 +104,22 @@ describe('@figmarine/rest - client', () => {
       mockedEnv({
         NODE_ENV: 'development',
       });
-
-      await Client();
+      const c = await Client();
 
       const folder = vol.lstatSync(path.join(tmpDir, '@figmarine/cache'));
 
       expect(folder.isDirectory).toBeTruthy();
+      expect(c.cacheInstance).toBeInstanceOf(Cache);
     });
 
     it('has no cache by default in production mode', async ({ mockedEnv }) => {
       mockedEnv();
-      await Client();
+      const c = await Client();
 
       const hasFolder = vol.existsSync(path.join(tmpDir, '@figmarine/cache'));
 
       expect(hasFolder).toBeFalsy();
+      expect(c.cacheInstance).toBeUndefined();
     });
 
     it('does not have cache when false is passed', async ({ mockedEnv }) => {

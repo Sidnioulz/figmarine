@@ -363,6 +363,9 @@ importers:
       cacheable:
         specifier: ^0.8.0
         version: 0.8.0
+      keyv:
+        specifier: ^5.0.1
+        version: 5.0.1
       lint-staged:
         specifier: ^15.2.10
         version: 15.2.10

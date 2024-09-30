@@ -1,13 +1,15 @@
 /*
  * Rate limits for the REST API are unknown, and Figma has declined to communicate
  * on them. We suspect bursts are tolerated, and some folks say 10 requests per
- * minute are the most that can be sent. The only official advice is to wait one
- * minute after a 429.
- */
+ * minute are the most that can be sent. */
 const WINDOW_BUDGET = 10;
 const WINDOW_LENGTH = 60;
-const ERROR_WAIT_DURATION = 60;
-const RATE_DECREASE_LENGTH = 900;
+
+/*
+ * The only official advice is to wait one minute after a 429. We want a one
+ * second initial delay, but axios-retry uses 2^count, so 2^1 * 500 = 1000ms
+ * for the initial retry. */
+const INITIAL_DELAY = 500;
 
 type LogEntry = {
   timestamp: number;
@@ -32,8 +34,6 @@ export function getConfig() {
     reqLog,
     WINDOW_BUDGET,
     WINDOW_LENGTH,
-    ERROR_WAIT_DURATION,
-    RATE_DECREASE_LENGTH,
   };
 }
 
@@ -44,7 +44,6 @@ export function getConfig() {
  */
 export function get429Config() {
   return {
-    // We want a one second initial delay, but axios-retry uses 2^count, so 2^1 * 500 = 1000ms for the initial retry.
-    INITIAL_DELAY: 500,
+    INITIAL_DELAY,
   };
 }

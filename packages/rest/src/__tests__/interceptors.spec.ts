@@ -7,12 +7,12 @@ import { Basic200 } from '../__fixtures__/storage';
 import { fileRequest } from '../__fixtures__/fileRequest';
 import { rateLimitRequestInterceptor } from '../interceptors';
 
-/* Mock diskCache. */
+/* Mock cache. */
 interface StorageFixtures {
-  diskCache: Cacheable;
+  cache: Cacheable;
 }
 const it = base.extend<StorageFixtures>({
-  diskCache: async ({}, use) => {
+  cache: async ({}, use) => {
     const c = new Cacheable({});
     c.set('existing', JSON.stringify(Basic200));
     await use(c);
@@ -21,21 +21,21 @@ const it = base.extend<StorageFixtures>({
 
 describe('@figmarine/rest - interceptors', () => {
   describe('rateLimitRequestInterceptor', () => {
-    it('returns a function when called', ({ diskCache }) => {
-      const interceptor = rateLimitRequestInterceptor(defaultKeyGenerator, diskCache);
+    it('returns a function when called', ({ cache }) => {
+      const interceptor = rateLimitRequestInterceptor(defaultKeyGenerator, cache);
       expect(typeof interceptor).toBe('function');
     });
 
-    it('rate limits requests that do not hit cache', async ({ diskCache }) => {
+    it('rate limits requests that do not hit cache', async ({ cache }) => {
       const rlSpy = vi.spyOn(rateLimitModule, 'interceptRequest');
-      const interceptor = rateLimitRequestInterceptor(defaultKeyGenerator, diskCache);
+      const interceptor = rateLimitRequestInterceptor(defaultKeyGenerator, cache);
       await interceptor(fileRequest);
       expect(rlSpy).toHaveBeenCalled();
     });
-    it('skip rate limiting for requests that do hit cache', async ({ diskCache }) => {
+    it('skip rate limiting for requests that do hit cache', async ({ cache }) => {
       const rlSpy = vi.spyOn(rateLimitModule, 'interceptRequest');
-      await diskCache.set(defaultKeyGenerator(fileRequest), 'someResponse');
-      const interceptor = rateLimitRequestInterceptor(defaultKeyGenerator, diskCache);
+      await cache.set(defaultKeyGenerator(fileRequest), 'someResponse');
+      const interceptor = rateLimitRequestInterceptor(defaultKeyGenerator, cache);
       await interceptor(fileRequest);
       expect(rlSpy).not.toHaveBeenCalled();
     });
