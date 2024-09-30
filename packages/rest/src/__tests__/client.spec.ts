@@ -305,13 +305,16 @@ describe('@figmarine/rest - client', () => {
   });
 
   describe('Options - rateLimit', () => {
-    it('rate limits by default', async ({ mockedEnv }) => {
+    // Note that we cannot easily spy on axiosRetry because it's a default export.
+    it('only applies 429 exponential retry by default', async ({ mockedEnv }) => {
       const logSpy = vi.spyOn(loggerModule, 'log');
       const rlSpy = vi.spyOn(interceptorsModule, 'rateLimitRequestInterceptor');
       mockedEnv({});
       await Client();
-      expect(logSpy).toHaveBeenCalledWith('Applying rate limit proxy to API client.');
-      expect(rlSpy).toHaveBeenCalled();
+      expect(logSpy).toHaveBeenCalledWith('Applying rate limit safeguards to API client.');
+      expect(logSpy).toHaveBeenCalledWith('Applying exponential retry on Error 429.');
+      expect(logSpy).not.toHaveBeenCalledWith('Applying proactive rate limit (limiting req/s).');
+      expect(rlSpy).not.toHaveBeenCalled();
     });
 
     it('does not rate limit when false', async ({ mockedEnv }) => {
@@ -319,16 +322,42 @@ describe('@figmarine/rest - client', () => {
       const rlSpy = vi.spyOn(interceptorsModule, 'rateLimitRequestInterceptor');
       mockedEnv({});
       await Client({ rateLimit: false });
-      expect(logSpy).not.toHaveBeenCalledWith('Applying rate limit proxy to API client.');
+      expect(logSpy).not.toHaveBeenCalledWith('Applying rate limit safeguards to API client.');
+      expect(logSpy).not.toHaveBeenCalledWith('Applying exponential retry on Error 429.');
+      expect(logSpy).not.toHaveBeenCalledWith('Applying proactive rate limit (limiting req/s).');
       expect(rlSpy).not.toHaveBeenCalled();
     });
 
-    it('does rate limit when true', async ({ mockedEnv }) => {
+    it('does rate limit with all options when true', async ({ mockedEnv }) => {
       const logSpy = vi.spyOn(loggerModule, 'log');
       const rlSpy = vi.spyOn(interceptorsModule, 'rateLimitRequestInterceptor');
       mockedEnv({});
       await Client({ rateLimit: true });
-      expect(logSpy).toHaveBeenCalledWith('Applying rate limit proxy to API client.');
+      expect(logSpy).toHaveBeenCalledWith('Applying rate limit safeguards to API client.');
+      expect(logSpy).toHaveBeenCalledWith('Applying exponential retry on Error 429.');
+      expect(logSpy).toHaveBeenCalledWith('Applying proactive rate limit (limiting req/s).');
+      expect(rlSpy).toHaveBeenCalled();
+    });
+
+    it('only applies 429 exponential retry when set to "reactive"', async ({ mockedEnv }) => {
+      const logSpy = vi.spyOn(loggerModule, 'log');
+      const rlSpy = vi.spyOn(interceptorsModule, 'rateLimitRequestInterceptor');
+      mockedEnv({});
+      await Client({ rateLimit: 'reactive' });
+      expect(logSpy).toHaveBeenCalledWith('Applying rate limit safeguards to API client.');
+      expect(logSpy).toHaveBeenCalledWith('Applying exponential retry on Error 429.');
+      expect(logSpy).not.toHaveBeenCalledWith('Applying proactive rate limit (limiting req/s).');
+      expect(rlSpy).not.toHaveBeenCalled();
+    });
+
+    it('does rate limit with all options when set to "proactive"', async ({ mockedEnv }) => {
+      const logSpy = vi.spyOn(loggerModule, 'log');
+      const rlSpy = vi.spyOn(interceptorsModule, 'rateLimitRequestInterceptor');
+      mockedEnv({});
+      await Client({ rateLimit: 'proactive' });
+      expect(logSpy).toHaveBeenCalledWith('Applying rate limit safeguards to API client.');
+      expect(logSpy).toHaveBeenCalledWith('Applying exponential retry on Error 429.');
+      expect(logSpy).toHaveBeenCalledWith('Applying proactive rate limit (limiting req/s).');
       expect(rlSpy).toHaveBeenCalled();
     });
   });
