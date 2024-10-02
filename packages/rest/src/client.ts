@@ -37,7 +37,7 @@ export interface ClientOptions {
    * Whether to slow down API calls so that the Figma REST API's rate limit
    * policy isn't violated. Prevents errors when doing multiple consecutive calls.
    */
-  rateLimit?: boolean;
+  rateLimit?: boolean | 'reactive' | 'proactive';
 }
 
 export type ClientInterface = Omit<ApiInterface<ClientOptions>, 'setSecurityData'> & {
@@ -50,7 +50,7 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
     mode = process.env.NODE_ENV,
     oauthToken = process.env.FIGMA_OAUTH_TOKEN,
     personalAccessToken = process.env.FIGMA_PERSONAL_ACCESS_TOKEN,
-    rateLimit = true,
+    rateLimit = 'reactive',
   } = opts;
 
   const isDevelopment = mode === 'development';
@@ -103,13 +103,17 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
    * We do this without a loop because of TypeScript limitations,
    * so this must be maintained on every major API version release. */
   if (rateLimit) {
-    log(`Applying rate limit proxy to API client.`);
+    log('Applying rate limit safeguards to API client.');
 
-    api.instance.interceptors.request.use(
-      rateLimitRequestInterceptor(defaultKeyGenerator, cacheInstance?.getCache()),
-    );
+    if (rateLimit === true || rateLimit === 'proactive') {
+      log('Applying proactive rate limit (limiting req/s).');
+      api.instance.interceptors.request.use(
+        rateLimitRequestInterceptor(defaultKeyGenerator, cacheInstance?.getCache()),
+      );
+    }
 
     // Add response interceptor for 429 handling.
+    log('Applying exponential retry on Error 429.');
     const rlConfig = get429Config();
     axiosRetry(api.instance, {
       onMaxRetryTimesExceeded: (error) => {
