@@ -2,17 +2,15 @@ import { interceptRequest } from '../rateLimit';
 import type { Log } from '../rateLimit.config';
 
 /* Mock rate limit config. */
-const { mockedConfig, mockedConfigActualImplementation } = vi.hoisted(() => {
+const { mockedConfig } = vi.hoisted(() => {
   return {
     mockedConfig: vi.fn(),
-    mockedConfigActualImplementation: vi.fn(),
   };
 });
 
 vi.mock(import('../rateLimit.config'), async (importOriginal) => {
   const mod = await importOriginal();
 
-  mockedConfigActualImplementation.mockImplementation(mod.getConfig);
   return {
     ...mod,
     getConfig: mockedConfig,
@@ -25,34 +23,26 @@ describe('@figmarine/rest - rateLimit', () => {
       vi.useFakeTimers();
       vi.setSystemTime(609401000);
       vi.spyOn(global, 'setTimeout');
-      mockedConfig.mockImplementation(mockedConfigActualImplementation);
     });
     afterEach(() => {
       vi.restoreAllMocks();
     });
 
     it('does not wait when the rate limiting request log is empty', async () => {
+      mockedConfig.mockReturnValue({
+        reqLog: [],
+        WINDOW_BUDGET: 10,
+        WINDOW_LENGTH: 60,
+      });
+
+      await interceptRequest(1);
+      await interceptRequest(1);
+      await interceptRequest(1);
+      await interceptRequest(1);
       await interceptRequest(1);
       vi.runAllTimers();
-      expect(mockedConfig).toHaveBeenCalledTimes(1);
+      expect(mockedConfig).toHaveBeenCalledTimes(5);
       expect(setTimeout).not.toHaveBeenCalled();
-    });
-
-    it.todo(
-      'does not wait when the rate limiting request log is not empty and there is enough budget',
-      async () => {
-        // await interceptRequest(1);
-        // vi.runAllTimers();
-        // expect(mockedConfig).toHaveBeenCalledTimes(1);
-        // expect(setTimeout).not.toHaveBeenCalled();
-      },
-    );
-
-    it.todo('clears the request log with stale requests upon receiving a new one', async () => {
-      // await interceptRequest(1);
-      // vi.runAllTimers();
-      // expect(mockedConfig).toHaveBeenCalledTimes(1);
-      // expect(setTimeout).not.toHaveBeenCalled();
     });
 
     it('crashes if the budget is smaller than a request cost', async () => {
@@ -155,6 +145,36 @@ describe('@figmarine/rest - rateLimit', () => {
       interceptRequest(1);
       vi.runAllTimers();
       expect(setTimeout).toHaveBeenCalledTimes(1);
+    });
+
+    it('does not wait when the rate limiting request log is not empty and there is enough budget', async () => {
+      const reqLog: Log = [{ timestamp: 242424, budget: 1 }];
+      mockedConfig.mockReturnValue({
+        reqLog,
+        WINDOW_BUDGET: 10,
+        WINDOW_LENGTH: 10,
+      });
+
+      interceptRequest(1);
+      vi.runAllTimers();
+      expect(setTimeout).toHaveBeenCalledTimes(0);
+    });
+
+    it('clears stale requests from reqLog upon receiving a new one', async () => {
+      const reqLog: Log = [];
+      mockedConfig.mockReturnValue({
+        reqLog,
+        WINDOW_BUDGET: 10,
+        WINDOW_LENGTH: 10,
+      });
+
+      interceptRequest(1);
+      expect(reqLog).toHaveLength(1);
+
+      vi.advanceTimersByTime(20000);
+      interceptRequest(1);
+      console.log(reqLog);
+      expect(reqLog).toHaveLength(1);
     });
   });
 });
