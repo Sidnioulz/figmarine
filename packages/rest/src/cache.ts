@@ -9,10 +9,9 @@ import type { Cacheable } from 'cacheable';
 import type { ClientInterface } from './client';
 import type { Keyv } from 'keyv';
 import { log } from '@figmarine/logger';
+import { PartialBy } from './types/utils';
 
-export type ClientCacheOptions =
-  | false
-  | (Exclude<MakeCacheOptions, 'location'> & { location?: MakeCacheOptions['location'] });
+export type ClientCacheOptions = PartialBy<MakeCacheOptions, 'location'>;
 
 const KEY_SEPARATOR = ' @ ';
 

@@ -333,9 +333,12 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0(axios@1.7.7)
     devDependencies:
+      '@faker-js/faker':
+        specifier: ^9.0.3
+        version: 9.0.3
       '@figma/rest-api-spec':
-        specifier: ^0.18.0
-        version: 0.18.0
+        specifier: ^0.16.0
+        version: 0.16.0
       '@figmarine/config-eslint':
         specifier: workspace:*
         version: link:../config-eslint
@@ -805,8 +808,8 @@ packages:
     resolution: {integrity: sha512-lWrrK4QNlFSU+13PL9jMbMKLJYXDFu3tQfayBsMXX7KL/GiQeqfB1CzHkqD5UHBUtPAuPo6XwGbMFNdVMZObRA==}
     engines: {node: '>=18.0.0', npm: '>=9.0.0'}
 
-  '@figma/rest-api-spec@0.18.0':
-    resolution: {integrity: sha512-IBBZ0yenAOOAzM0ZyXQJRjWNDg3P349SNID7G/YGgkRPSKITut9ae/kOO7UMlwgkrnuefToTlMpGM4xKEIGX9w==}
+  '@figma/rest-api-spec@0.16.0':
+    resolution: {integrity: sha512-J/u7LIHGIKpm9jcJpoAcfUAEfgtuWTtNgIS94mhfdie3p1tgJSZxrJMQxg8u4V7T7SKMpjlqtMr1LwkWf1iC/A==}
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -3308,7 +3311,7 @@ snapshots:
 
   '@faker-js/faker@9.0.3': {}
 
-  '@figma/rest-api-spec@0.18.0': {}
+  '@figma/rest-api-spec@0.16.0': {}
 
   '@humanwhocodes/module-importer@1.0.1': {}
 
