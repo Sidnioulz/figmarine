@@ -36,10 +36,14 @@ function getNextRequestLegalTime(
     ({ timestamp }) => timestamp > startOfWindow,
   );
 
-  // Purge any request before that one, as they're expired.
-  if (indexOfFirstRelevantRequest > 0) {
+  if (indexOfFirstRelevantRequest > -1) {
+    // Purge any request before that one, as they're expired.
     reqLog.splice(0, indexOfFirstRelevantRequest);
+  } else {
+    // If no relevant request is found, the whole log is stale.
+    reqLog.splice(0, reqLog.length);
   }
+
   log(
     `Rate limit: sliding window starts at ${startOfWindow}, request log contains ${reqLog.length} relevant${
       indexOfFirstRelevantRequest > 0 ? ` and ${indexOfFirstRelevantRequest} stale` : ''
