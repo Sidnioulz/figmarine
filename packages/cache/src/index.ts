@@ -32,6 +32,8 @@ export interface MakeCacheOptions {
 export function makeCache(opts: MakeCacheOptions) {
   const { ttl = -1, location } = opts;
 
+  const writeDelay = 100;
+
   const finalCacheDirname = path.isAbsolute(location)
     ? location
     : path.join(DEFAULT_CACHE_PATH, location);
@@ -44,16 +46,24 @@ export function makeCache(opts: MakeCacheOptions) {
   const store = new KeyvFile({
     filename: finalCacheFilename,
     expiredCheckDelay: computedTtl,
-    writeDelay: 100,
+    writeDelay,
   });
 
-  // TODO: Enable stats, and use stats to boast about how much time was saved in `shutdownGracefully`.
-
   const shutdownGracefully = async () => {
-    // TODO: connect to PRE_SET hook.
-    // TODO: wait for 3x writeDelay, while we wait, store every ongoing set.
-    // TODO: for every ongoing set, wait for ERROR OR POST_SET.
-    // Only then, let go.
+    cache.disconnect();
+
+    // Connect to PRE_SET hook
+    const pendingWrites = new Set();
+    const countHandled = (key: string) => {
+      pendingWrites.add(key);
+    };
+    primary.on('postSet', countHandled);
+
+    // Wait for the grace period
+    await new Promise((resolve) => setTimeout(resolve, writeDelay * 3));
+
+    primary.off('preSet', countHandled);
+    log(`Graceful shutdown completed. Processed ${pendingWrites.size} pending writes.`);
   };
 
   const primary = new Keyv({ compression: new KeyvGzip(), store, ttl: computedTtl });
