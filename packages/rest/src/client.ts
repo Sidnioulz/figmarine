@@ -1,11 +1,10 @@
 import axiosRetry, { exponentialDelay, isNetworkOrIdempotentRequestError } from 'axios-retry';
-import { defaultKeyGenerator } from 'axios-cache-interceptor';
 import { log } from '@figmarine/logger';
 
 import { Api, type Api as ApiInterface } from './__generated__/figmaRestApi';
 import { Cache, type ClientCacheOptions } from './cache';
+import { cacheInvalidationRequestInterceptor, rateLimitRequestInterceptor } from './interceptors';
 import { get429Config } from './rateLimit.config';
-import { rateLimitRequestInterceptor } from './interceptors';
 import { securityWorker } from './securityWorker';
 
 export interface ClientOptions {
@@ -15,7 +14,7 @@ export interface ClientOptions {
    * @see https://github.com/Sidnioulz/figmarine/blob/main/packages/cache/README.md
    * @type {object | boolean}
    */
-  cache?: ClientCacheOptions;
+  cache?: boolean | (ClientCacheOptions & { autoInvalidate?: boolean });
   /**
    * Whether the REST API is used in a development or production project.
    * In development, API calls are cached by default to help you get work
@@ -86,7 +85,14 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
     } else {
       log(`Cache options passed: enabling API cache.`);
     }
-    cacheInstance = new Cache(api, cache);
+
+    const autoInvalidate = typeof cache === 'object' ? (cache?.autoInvalidate ?? true) : true;
+    cacheInstance = new Cache(api, typeof cache === 'object' ? cache : undefined);
+
+    if (autoInvalidate) {
+      log(`Enabling automatic cache invalidation.`);
+      api.instance.interceptors.request.use(cacheInvalidationRequestInterceptor(cacheInstance));
+    }
   }
 
   /* Support changing the base URL so this package can be tested
@@ -107,9 +113,7 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
 
     if (rateLimit === true || rateLimit === 'proactive') {
       log('Applying proactive rate limit (limiting req/s).');
-      api.instance.interceptors.request.use(
-        rateLimitRequestInterceptor(defaultKeyGenerator, cacheInstance),
-      );
+      api.instance.interceptors.request.use(rateLimitRequestInterceptor(cacheInstance));
     }
 
     // Add response interceptor for 429 handling.

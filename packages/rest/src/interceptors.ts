@@ -1,13 +1,27 @@
 import type { InternalAxiosRequestConfig } from 'axios';
-import type { KeyGenerator } from 'axios-cache-interceptor';
+import { log } from '@figmarine/logger';
 
-import { Cache } from './cache';
+import { Cache, generatePredictableKey } from './cache';
 import { interceptRequest } from './rateLimit';
 
-export function rateLimitRequestInterceptor(keyGenerator: KeyGenerator, cache: Cache | undefined) {
+export function cacheInvalidationRequestInterceptor(cache: Cache) {
+  return async function (config: InternalAxiosRequestConfig) {
+    const normalisedMethod = config.method?.toLowerCase() ?? 'get';
+    if (normalisedMethod !== 'get') {
+      log(
+        `Cache Invalidation: request ${config.method} ${config.url} may have changed some remote data, invalidating local request cache.`,
+      );
+      cache.clear();
+    }
+
+    return config;
+  };
+}
+
+export function rateLimitRequestInterceptor(cache: Cache | undefined) {
   return async function (config: InternalAxiosRequestConfig) {
     // If we have cache for the request, no need to consider rate limiting.
-    const cacheHit = cache && (await cache.get(keyGenerator(config)));
+    const cacheHit = cache && (await cache.has(generatePredictableKey(config)));
 
     if (!cacheHit) {
       // Until Figma shed light on their actual rate limit implementation, all

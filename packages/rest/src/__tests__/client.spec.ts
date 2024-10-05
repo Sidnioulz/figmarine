@@ -170,6 +170,37 @@ describe('@figmarine/rest - client', () => {
 
       expect(spy).toHaveBeenCalledWith(cacheOpts);
     });
+
+    describe('autoInvalidate', () => {
+      it('auto-invalidates cache by default', async ({ mockedEnv }) => {
+        const logSpy = vi.spyOn(loggerModule, 'log');
+        const ciSpy = vi.spyOn(interceptorsModule, 'cacheInvalidationRequestInterceptor');
+        mockedEnv({});
+        await Client({ cache: { location: 'foo' } });
+        expect(logSpy).toHaveBeenCalledWith('Enabling automatic cache invalidation.');
+        expect(ciSpy).toHaveBeenCalled();
+      });
+
+      it('does not auto-invalidate cache if autoInvalidate is set to false', async ({
+        mockedEnv,
+      }) => {
+        const logSpy = vi.spyOn(loggerModule, 'log');
+        const ciSpy = vi.spyOn(interceptorsModule, 'cacheInvalidationRequestInterceptor');
+        mockedEnv({});
+        await Client({ cache: { autoInvalidate: false } });
+        expect(logSpy).not.toHaveBeenCalledWith('Enabling automatic cache invalidation.');
+        expect(ciSpy).not.toHaveBeenCalled();
+      });
+
+      it('auto-invalidates cache if autoInvalidate is set to true', async ({ mockedEnv }) => {
+        const logSpy = vi.spyOn(loggerModule, 'log');
+        const ciSpy = vi.spyOn(interceptorsModule, 'cacheInvalidationRequestInterceptor');
+        mockedEnv({});
+        await Client({ cache: { autoInvalidate: true } });
+        expect(logSpy).toHaveBeenCalledWith('Enabling automatic cache invalidation.');
+        expect(ciSpy).toHaveBeenCalled();
+      });
+    });
   });
 
   describe('Options - mode', () => {
