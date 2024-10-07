@@ -45,8 +45,8 @@
     "@figmarine/config-typescript": "workspace:*",
     "@figmarine/config-vitest": "workspace:*",
     "@types/node": "^22.7.4",
-    "@vitest/coverage-istanbul": "^2.1.1",
-    "@vitest/coverage-v8": "^2.1.1",
+    "@vitest/coverage-istanbul": "^2.1.2",
+    "@vitest/coverage-v8": "^2.1.2",
     "lint-staged": "^15.2.10",
     "lockfile": "^1.0.4",
     "memfs": "^4.12.0",
@@ -54,13 +54,13 @@
     "tsup": "^8.3.0",
     "typescript": "latest",
     "vite": "^5.4.8",
-    "vitest": "^2.1.1"
+    "vitest": "^2.1.2"
   },
   "dependencies": {
     "@figmarine/logger": "workspace:*",
     "@keyv/compress-gzip": "^2.0.2",
-    "cacheable": "^1.7.1",
-    "keyv": "^5.0.3",
+    "cacheable": "^1.8.0",
+    "keyv": "^5.1.0",
     "keyv-file": "^5.0.3"
   }
 }
