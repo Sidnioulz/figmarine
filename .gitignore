@@ -12,6 +12,7 @@ server/dist
 public/dist
 coverage
 *cutting.figmarine.json
+.npmrc
 
 # Debug files for local testing
 packages/cuttings/src/debug.ts
