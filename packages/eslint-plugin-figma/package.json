@@ -50,19 +50,19 @@
     "@figmarine/config-tsup": "workspace:*",
     "@figmarine/config-typescript": "workspace:*",
     "@figmarine/config-vitest": "workspace:*",
-    "@types/node": "^22.7.4",
-    "@vitest/coverage-istanbul": "^2.1.1",
-    "@vitest/coverage-v8": "^2.1.1",
+    "@types/node": "^22.7.5",
+    "@vitest/coverage-istanbul": "^2.1.2",
+    "@vitest/coverage-v8": "^2.1.2",
     "eslint-plugin-eslint-plugin": "^6.2.0",
     "lint-staged": "^15.2.10",
     "tsc-watch": "^6.2.0",
     "tsup": "^8.3.0",
     "typescript": "latest",
-    "vitest": "^2.1.1"
+    "vitest": "^2.1.2"
   },
   "dependencies": {
     "@eslint/core": "^0.6.0",
-    "@eslint/json": "^0.4.1",
+    "@eslint/json": "^0.5.0",
     "@figmarine/logger": "workspace:*"
   },
   "peerDependencies": {
