@@ -28,8 +28,8 @@
     }
   },
   "dependencies": {
-    "typedoc": "^0.26.7",
-    "typedoc-plugin-markdown": "^4.2.8",
-    "typedoc-vitepress-theme": "^1.0.1"
+    "typedoc": "^0.26.9",
+    "typedoc-plugin-markdown": "^4.2.9",
+    "typedoc-vitepress-theme": "^1.0.2"
   }
 }
