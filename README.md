@@ -55,7 +55,7 @@
   - [REST API Client](#rest-api-client)
   - [GraphQL Client](#graphql-client)
   - [ESLint Plugin](#eslint-plugin)
-- [Contributing](#package-contributing)
+- [Contributing](#woman_technologist-contributing)
   - [Code of Conduct](#code-of-conduct)
   - [Contributor License Agreement](#contributor-license-agreement)
   - [Getting Started](#getting-started)
@@ -95,7 +95,7 @@
 <!-- oauth helper lib -->
 <!-- graphql -->
 
-## :package: Contributing
+## :woman_technologist: Contributing
 
 ### Code of Conduct
 
