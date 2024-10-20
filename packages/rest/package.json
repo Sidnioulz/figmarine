@@ -1,6 +1,6 @@
 {
   "name": "@figmarine/rest",
-  "version": "0.0.0",
+  "version": "0.0.0-semantically-released",
   "license": "MIT",
   "type": "module",
   "description": "Fully-typed JS client for the Figma REST API",
