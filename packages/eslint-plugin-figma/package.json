@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-figma",
-  "version": "0.0.1",
+  "version": "0.0.0-semantically-released",
   "license": "MIT",
   "type": "module",
   "description": "ESLint plugin that can parse Figmarine cuttings",
@@ -17,6 +17,9 @@
     "eslint-plugin",
     "figmarine"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Steve Dodier-Lazaro",
   "homepage": "https://github.com/Sidnioulz/figmarine",
   "scripts": {

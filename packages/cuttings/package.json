@@ -1,7 +1,6 @@
 {
   "name": "@figmarine/cuttings",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.0.0-semantically-released",
   "license": "MIT",
   "type": "module",
   "description": "Library to cache arbitrary data to disk for arbitrarily long",
@@ -19,6 +18,9 @@
     "nursery",
     "cuttings"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Steve Dodier-Lazaro",
   "homepage": "https://github.com/Sidnioulz/figmarine",
   "scripts": {

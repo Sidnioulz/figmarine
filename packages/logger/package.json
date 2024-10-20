@@ -15,6 +15,9 @@
   "keywords": [
     "log"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc && tsup --env.NODE_ENV production",
     "dev": "tsc-watch --onSuccess \"tsup --env.NODE_ENV production\"",

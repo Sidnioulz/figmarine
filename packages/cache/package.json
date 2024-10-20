@@ -15,6 +15,9 @@
   "keywords": [
     "cache"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Steve Dodier-Lazaro",
   "homepage": "https://github.com/Sidnioulz/figmarine",
   "scripts": {
