@@ -40,7 +40,6 @@
   - [Package Details](#star2-package-details)
   - [Usage](#eyes-usage)
   - [Run Locally](#running-run-locally)
-  - [Roadmap](#dart-roadmap)
   - [Contributing](#wave-contributing)
   - [License](#warning-license)
   - [Support](#sos-support)
@@ -71,7 +70,7 @@ Then, import `makeCache` and call it:
 ```javascript
 import { makeCache, type MakeCacheOptions } from '@figmarine/cache';
 
-const { diskCache, cacheWrapper } = makeCache({
+const { cache, shutdownGracefully } = makeCache({
   // A relative path creates a subfolder in /tmp/@figmarine/cache.
   location: 'rest',
   // Pass -1 to push the TTL to its limit (one year TTL).
@@ -82,24 +81,24 @@ const { diskCache, cacheWrapper } = makeCache({
 You can use the disk cache directly if you want to write into it and handle it manually.
 
 ```javascript
-await diskCache.set('myKey', 'My value');
+await cache.set('myKey', 'My value');
 
-const value = await diskCache.get<string>('myKey');
+const value = await cache.get<string>('myKey');
 console.log(value); // 'My value'
 
-await diskCache.del(key);
-const value = await diskCache.get<string>('myKey');
+await cache.delete(key);
+const value = await cache.get<string>('myKey');
 console.log(value); // 'undefined'
 ```
 
-You can also wrap existing functions with `cacheWrapper`. When a wrapped function is called,
+You can also wrap existing functions with `.getCache().wrap()`. When a wrapped function is called,
 its return value is cached using the function parameters as a cache key. On the second call
 with the same parameters, the cached value will be returned instantly and the function body
 won't need to be called ( provided the cached content hasn't expired).
 
 ```javascript
 const queryFoo = (key) => axios.get(`/foo?ID=${key}`);
-const cachedQueryFoo = cacheWrapper('foo', queryFoo);
+const cachedQueryFoo = cache.getCache().wrap(queryFoo, { key: 'uniqueKeyForThisFunction' });
 
 console.time('First call');
 const first = cachedQueryFoo('1234');
@@ -144,12 +143,6 @@ Check that tests run as you make changes
   pnpm test:dev
 ```
 
-## :dart: Roadmap
-
-- [x] Make typedoc compatible
-- [ ] Add manual invalidator for the wrapper function
-- [ ] Add unit tests
-- [ ] Document package
 
 ## :wave: Contributing
 
