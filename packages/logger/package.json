@@ -1,7 +1,6 @@
 {
   "name": "@figmarine/logger",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.0.0-semantically-released",
   "license": "MIT",
   "type": "module",
   "description": "Logger package for the Figmarine monorepo",
