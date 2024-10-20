@@ -3,7 +3,12 @@ export default {
   plugins: [
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
-    '@anolilab/semantic-release-pnpm',
+    [
+      '@anolilab/semantic-release-pnpm',
+      {
+        npmPublish: false,
+      },
+    ],
     '@semantic-release/github',
   ],
 };
