@@ -34,6 +34,7 @@
     "lint:files": "eslint --",
     "lint:fix": "eslint . --fix",
     "lint:staged": "lint-staged",
+    "prepublish": "pnpm build",
     "test": "vitest run",
     "test:changed": "vitest run --changed HEAD~1",
     "test:coverage": "vitest --coverage run",
