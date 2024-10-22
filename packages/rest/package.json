@@ -3,7 +3,7 @@
   "version": "0.0.0-semantically-released",
   "license": "MIT",
   "type": "module",
-  "description": "Fully-typed JS client for the Figma REST API",
+  "description": "Fully-typed, always up-to-date JS client for the Figma REST API",
   "repository": {
     "type": "git",
     "url": "https://github.com/Sidnioulz/figmarine",
@@ -12,13 +12,7 @@
   "bugs": {
     "url": "https://github.com/Sidnioulz/figmarine/issues"
   },
-  "keywords": [
-    "figma",
-    "rest",
-    "api",
-    "openapi-specification",
-    "oas"
-  ],
+  "keywords": ["figma", "rest", "api", "openapi-specification", "oas"],
   "author": "Steve Dodier-Lazaro",
   "homepage": "https://github.com/Sidnioulz/figmarine",
   "scripts": {
@@ -50,9 +44,7 @@
       "default": "./dist/*.js"
     }
   },
-  "files": [
-    "dist/**"
-  ],
+  "files": ["dist/**"],
   "publishConfig": {
     "access": "public"
   },
