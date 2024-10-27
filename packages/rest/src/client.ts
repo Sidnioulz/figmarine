@@ -3,7 +3,11 @@ import { log } from '@figmarine/logger';
 
 import { Api, type Api as ApiInterface } from './__generated__/figmaRestApi';
 import { Cache, type ClientCacheOptions } from './cache';
-import { cacheInvalidationRequestInterceptor, rateLimitRequestInterceptor } from './interceptors';
+import {
+  cacheInvalidationRequestInterceptor,
+  rateLimitRequestInterceptor,
+  userAgentRequestInterceptor,
+} from './interceptors';
 import { get429Config } from './rateLimit.config';
 import { securityWorker } from './securityWorker';
 
@@ -139,6 +143,9 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
         exponentialDelay(retryCount, error, rlConfig.INITIAL_DELAY),
     });
   }
+
+  /* Add User-Agent header to all requests. */
+  api.instance.interceptors.request.use(userAgentRequestInterceptor());
 
   log(`Created Figma REST API client successfully.`);
 
