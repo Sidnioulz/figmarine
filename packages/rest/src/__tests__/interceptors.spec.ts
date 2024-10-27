@@ -7,7 +7,11 @@ import { vol } from 'memfs';
 
 import * as rateLimitModule from '../rateLimit';
 import { Cache, generatePredictableKey } from '../cache';
-import { cacheInvalidationRequestInterceptor, rateLimitRequestInterceptor } from '../interceptors';
+import {
+  cacheInvalidationRequestInterceptor,
+  rateLimitRequestInterceptor,
+  userAgentRequestInterceptor,
+} from '../interceptors';
 import { Basic200 } from '../__fixtures__/storage';
 import { Client } from '../client';
 import { fileRequest } from '../__fixtures__/fileRequest';
@@ -69,6 +73,21 @@ describe('@figmarine/rest - interceptors', () => {
   });
   afterEach(() => {
     vi.restoreAllMocks();
+  });
+
+  describe('userAgentRequestInterceptor', () => {
+    it('returns a function when called', () => {
+      const interceptor = userAgentRequestInterceptor();
+      expect(typeof interceptor).toBe('function');
+    });
+
+    it('adds a User-Agent header containing the client and runtime names', async () => {
+      const interceptor = userAgentRequestInterceptor();
+
+      expect(fileRequest.headers['User-Agent']).toMatch(/^axios\//);
+      interceptor(fileRequest);
+      expect(fileRequest.headers['User-Agent']).toMatch(/^figmarine-rest\/git/);
+    });
   });
 
   describe('cacheInvalidationRequestInterceptor', () => {

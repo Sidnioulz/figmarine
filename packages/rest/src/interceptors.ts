@@ -3,6 +3,64 @@ import { log } from '@figmarine/logger';
 
 import { Cache, generatePredictableKey } from './cache';
 import { interceptRequest } from './rateLimit';
+import manifest from '../package.json';
+
+function detectRuntime(): string {
+  if (typeof globalThis === 'undefined') {
+    return 'Unknown runtime (likely legacy)';
+  }
+
+  if ('Netlify' in globalThis) {
+    return 'netlify';
+  }
+
+  if ('__lagon__' in globalThis) {
+    return 'lagon';
+  }
+
+  if ('EdgeRuntime' in globalThis) {
+    return 'edge-light';
+  }
+
+  if ('fastly' in globalThis) {
+    return 'fastly';
+  }
+
+  // @ts-expect-error Runtime dependant global.
+  if ('Deno' in globalThis && globalThis.Deno.version.deno) {
+    // @ts-expect-error Runtime dependant global.
+    return `deno v${globalThis.Deno.version.deno}`;
+  }
+
+  // @ts-expect-error Runtime dependant global.
+  if ('Bun' in globalThis && globalThis.Bun.version) {
+    // @ts-expect-error Runtime dependant global.
+    return `bun v${globalThis.Bun.version}`;
+  }
+
+  if ('process' in globalThis && globalThis.process.versions?.node) {
+    return `node v${process.versions.node}`;
+  }
+
+  if ('window' in globalThis) {
+    return 'Browser';
+  }
+
+  return 'unknown';
+}
+
+export function userAgentRequestInterceptor() {
+  const runtime = detectRuntime();
+  const version = manifest.version.startsWith('0.0.0') ? 'git' : manifest.version;
+  const userAgent = `figmarine-rest/${version} (${runtime} runtime)`;
+  log(`Detected User-Agent: ${userAgent}.`);
+
+  return function (config: InternalAxiosRequestConfig) {
+    config.headers = config.headers || {};
+    config.headers['User-Agent'] = userAgent;
+    return config;
+  };
+}
 
 export function cacheInvalidationRequestInterceptor(cache: Cache) {
   return async function (config: InternalAxiosRequestConfig) {
