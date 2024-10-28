@@ -30,7 +30,7 @@ export function addTsUnusedRule(conf) {
 
 export const configs = [
   {
-    ignores: ['coverage/*', 'dist/*', 'node_modules/*'],
+    ignores: ['coverage/*', 'dist/*', 'node_modules/*', 'tsup.config.bundled*.mjs'],
   },
   {
     files: ['**/*.json'],

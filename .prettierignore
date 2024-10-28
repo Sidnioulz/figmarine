@@ -1,2 +1,4 @@
 README.md
 package.json
+apps/**/tsup.config.bundled*.mjs
+packages/**/tsup.config.bundled*.mjs

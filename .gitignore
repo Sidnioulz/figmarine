@@ -17,3 +17,6 @@ coverage
 # Debug files for local testing
 packages/cuttings/src/debug.ts
 packages/rest/src/debug.ts
+
+apps/**/tsup.config.bundled*.mjs
+packages/**/tsup.config.bundled*.mjs
