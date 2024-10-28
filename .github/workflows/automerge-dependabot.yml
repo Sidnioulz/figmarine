@@ -27,13 +27,15 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Regenerate API clients on OpenAPI Spec change
-        run: pnpm api:regen
+        run: |
+          pnpm api:regen
+          pnpm format
       - name: Commit regenerated API clients
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git commit -m "feat(deps): Update OpenAPI Spec generated code"
+          git config user.name github-actions-shell
+          git config user.email github-actions[bot]@users.noreply.github.com
+          git add packages/rest/src/__generated__
+          git commit -nm "feat(rest): Update OpenAPI Spec generated code"
           git push
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
@@ -41,7 +43,7 @@ jobs:
   dependabot-approve:
     needs: [dependabot-regen-api]
     runs-on: ubuntu-latest
-    if:  |
+    if: |
       always() &&
       !contains(needs.*.result, 'failure') &&
       !contains(needs.*.result, 'cancelled') &&
@@ -51,7 +53,7 @@ jobs:
         id: metadata
         uses: dependabot/fetch-metadata@v1
         with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
       - name: Approve a PR
         run: gh pr review --approve "$PR_URL"
         env:
@@ -66,7 +68,7 @@ jobs:
         id: metadata
         uses: dependabot/fetch-metadata@v1
         with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
       - name: Enable auto-merge for Dependabot PRs
         run: gh pr merge --auto --rebase "$PR_URL"
         env:
