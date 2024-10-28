@@ -7,7 +7,7 @@ export default defineConfig({
     globals: true,
     threads: false,
     setupFiles: ['./src/__tests__/setupIntegration.ts'],
-    include: ['**/__tests__/**/*.integration.ts',],
+    include: ['**/__tests__/**/*.integration.ts'],
     coverage,
   },
 });
