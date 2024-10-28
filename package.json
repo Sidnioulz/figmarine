@@ -43,8 +43,8 @@
     "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
-    "@anolilab/multi-semantic-release": "^1.1.3",
-    "@anolilab/semantic-release-pnpm": "^1.1.3",
+    "@anolilab/multi-semantic-release": "^1.1.4",
+    "@anolilab/semantic-release-pnpm": "^1.1.4",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.0",
     "@semantic-release/git": "^10.0.1",
@@ -52,8 +52,8 @@
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "prettier": "^3.3.3",
-    "semantic-release": "^24.1.3",
-    "turbo": "^2.2.1",
+    "semantic-release": "^24.2.0",
+    "turbo": "^2.2.3",
     "vitest": "^2.1.3"
   },
   "packageManager": "pnpm@9.12.2",
