@@ -487,6 +487,8 @@ export interface DevStatusTrait {
   };
 }
 
+export type AnnotationsTrait = object;
+
 export type FrameTraits = IsLayerTrait &
   HasBlendModeAndOpacityTrait &
   HasChildrenTrait &
@@ -499,7 +501,8 @@ export type FrameTraits = IsLayerTrait &
   HasMaskTrait &
   TransitionSourceTrait &
   IndividualStrokesTrait &
-  DevStatusTrait;
+  DevStatusTrait &
+  AnnotationsTrait;
 
 export type DefaultShapeTraits = IsLayerTrait &
   HasBlendModeAndOpacityTrait &
@@ -512,7 +515,10 @@ export type DefaultShapeTraits = IsLayerTrait &
 
 export type CornerRadiusShapeTraits = DefaultShapeTraits & CornerTrait;
 
-export type RectangularShapeTraits = DefaultShapeTraits & CornerTrait & IndividualStrokesTrait;
+export type RectangularShapeTraits = DefaultShapeTraits &
+  CornerTrait &
+  IndividualStrokesTrait &
+  AnnotationsTrait;
 
 export type Node =
   | ({
@@ -613,6 +619,7 @@ export type CanvasNode = {
   flowStartingPoints: FlowStartingPoint[];
   /** The device used to view a prototype. */
   prototypeDevice: PrototypeDevice;
+  measurements?: Measurement[];
 } & IsLayerTrait &
   HasExportSettingsTrait;
 
@@ -744,29 +751,34 @@ export type ComponentSetNode = {
 export type VectorNode = {
   /** The type of this node, represented by the string literal "VECTOR" */
   type: 'VECTOR';
-} & CornerRadiusShapeTraits;
+} & CornerRadiusShapeTraits &
+  AnnotationsTrait;
 
 export type StarNode = {
   /** The type of this node, represented by the string literal "STAR" */
   type: 'STAR';
-} & CornerRadiusShapeTraits;
+} & CornerRadiusShapeTraits &
+  AnnotationsTrait;
 
 export type LineNode = {
   /** The type of this node, represented by the string literal "LINE" */
   type: 'LINE';
-} & DefaultShapeTraits;
+} & DefaultShapeTraits &
+  AnnotationsTrait;
 
 export type EllipseNode = {
   /** The type of this node, represented by the string literal "ELLIPSE" */
   type: 'ELLIPSE';
   /** Information about the arc properties of an ellipse. 0° is the x axis and increasing angles rotate clockwise. */
   arcData: ArcData;
-} & DefaultShapeTraits;
+} & DefaultShapeTraits &
+  AnnotationsTrait;
 
 export type RegularPolygonNode = {
   /** The type of this node, represented by the string literal "REGULAR_POLYGON" */
   type: 'REGULAR_POLYGON';
-} & CornerRadiusShapeTraits;
+} & CornerRadiusShapeTraits &
+  AnnotationsTrait;
 
 export type RectangleNode = {
   /** The type of this node, represented by the string literal "RECTANGLE" */
@@ -777,7 +789,8 @@ export type TextNode = {
   /** The type of this node, represented by the string literal "TEXT" */
   type: 'TEXT';
 } & DefaultShapeTraits &
-  TypePropertiesTrait;
+  TypePropertiesTrait &
+  AnnotationsTrait;
 
 export type TableNode = {
   /** The type of this node, represented by the string literal "TABLE" */
@@ -2000,6 +2013,36 @@ export interface ConditionalBlock {
   actions: Action[];
 }
 
+/** A pinned distance between two nodes in Dev Mode */
+export interface Measurement {
+  id: string;
+  /** The node and side a measurement is pinned to */
+  start: MeasurementStartEnd;
+  /** The node and side a measurement is pinned to */
+  end: MeasurementStartEnd;
+  offset: MeasurementOffsetInner | MeasurementOffsetOuter;
+  /** When manually overridden, the displayed value of the measurement */
+  freeText?: string;
+}
+
+/** The node and side a measurement is pinned to */
+export interface MeasurementStartEnd {
+  nodeId: string;
+  side: 'TOP' | 'RIGHT' | 'BOTTOM' | 'LEFT';
+}
+
+/** Measurement offset relative to the inside of the start node */
+export interface MeasurementOffsetInner {
+  type: 'INNER';
+  relative: number;
+}
+
+/** Measurement offset relative to the outside of the start node */
+export interface MeasurementOffsetOuter {
+  type: 'OUTER';
+  fixed: number;
+}
+
 /** Position of a comment relative to the frame to which it is attached. */
 export interface FrameOffset {
   /** Unique id specifying the frame. */
@@ -2771,6 +2814,11 @@ export interface LocalVariable {
   scopes: VariableScope[];
   /** An object containing platform-specific code syntax definitions for a variable. All platforms are optional. */
   codeSyntax: VariableCodeSyntax;
+  /**
+   * Indicates that the variable was deleted in the editor, but the document may still contain references to the variable. References to the variable may exist through bound values or variable aliases.
+   * @default false
+   */
+  deletedButReferenced?: boolean;
 }
 
 /** A grouping of related Variable objects each with the same modes. */
@@ -4575,7 +4623,7 @@ export class HttpClient<SecurityDataType = unknown> {
 
 /**
  * @title Figma API
- * @version 0.19.0
+ * @version 0.20.0
  * @termsOfService https://www.figma.com/developer-terms/
  * @baseUrl https://api.figma.com
  * @externalDocs https://www.figma.com/developers/api
