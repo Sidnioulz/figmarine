@@ -34,7 +34,7 @@ test:
     - ./codecov upload-process -t $CODECOV_TOKEN
 
 build:
-  stage: build
+  stage: test
   script:
     - pnpm build
   artifacts:
