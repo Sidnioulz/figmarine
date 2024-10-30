@@ -28,10 +28,10 @@
       "dependsOn": ["^build", "^lint:fix"]
     },
     "test": {
-      "dependsOn": ["^build", "^test"]
+      "dependsOn": ["^build"]
     },
     "test:dev": {
-      "dependsOn": ["^build", "^test:dev"]
+      "dependsOn": ["^build"]
     },
     "test:changed": {
       "dependsOn": ["^test:changed"],
