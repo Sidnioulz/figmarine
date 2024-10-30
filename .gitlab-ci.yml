@@ -13,7 +13,7 @@ before_script:
   - corepack enable
   - corepack prepare pnpm@latest-9 --activate
   - pnpm config set store-dir .pnpm-store
- - pnpm install
+  - pnpm install
 
 stages:
   - test
