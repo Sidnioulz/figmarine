@@ -35,6 +35,7 @@
     "lint:staged": "turbo run lint:staged --filter=[HEAD^1]",
     "prepare": "husky",
     "prerelease": "turbo run build",
+    "prerelease:dry": "turbo run build",
     "release": "multi-semantic-release",
     "release:dry": "multi-semantic-release --dryRun --no-ci",
     "test": "turbo run test",

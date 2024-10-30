@@ -32,6 +32,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Build everything
+        run: pnpm build
+
       - name: Semantic Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -40,4 +43,4 @@ jobs:
           GIT_AUTHOR_EMAIL: 'github-actions[bot]@users.noreply.github.com'
           GIT_COMMITTER_NAME: 'github-actions-shell'
           GIT_COMMITTER_EMAIL: 'github-actions[bot]@users.noreply.github.com'
-        run: 'pnpm exec multi-semantic-release'
+        run: 'pnpm release'
