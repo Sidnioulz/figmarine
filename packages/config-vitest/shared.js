@@ -1,3 +1,4 @@
+/** @type {const} */
 export const coverage = {
   include: [
     '**/*.{mjs,mjsx,js,jsx,ts,tsx}',
@@ -13,4 +14,5 @@ export const coverage = {
     '!**/src/debug.ts',
   ],
   provider: 'istanbul',
+  reporter: ['text', 'json', 'html', 'cobertura'],
 };
