@@ -1,0 +1,159 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@5.1.0
+
+executors:
+  node-executor:
+    docker:
+      - image: cimg/node:22.0
+    resource_class: medium
+
+commands:
+  setup-pnpm:
+    steps:
+      - run:
+          name: Install pnpm
+          command: |
+            sudo corepack enable
+            corepack prepare pnpm@latest --activate
+
+jobs:
+  lint:
+    executor: node-executor
+    steps:
+      - checkout
+      - setup-pnpm
+      - node/install-packages:
+          pkg-manager: pnpm
+          cache-path: node_modules
+          override-ci-command: pnpm install
+      - run:
+          name: Check for linter errors
+          command: pnpm lint
+
+  test:
+    executor: node-executor
+    steps:
+      - checkout
+      - setup-pnpm
+      - node/install-packages:
+          pkg-manager: pnpm
+          cache-path: node_modules
+          override-ci-command: pnpm install
+      - run:
+          name: Run tests with coverage
+          command: pnpm test:coverage
+      - run:
+          name: Upload coverage to Codecov
+          command: |
+            curl -Os https://uploader.codecov.io/latest/linux/codecov
+            chmod +x codecov
+            ./codecov -t ${CODECOV_TOKEN}
+
+  build:
+    executor: node-executor
+    steps:
+      - checkout
+      - setup-pnpm
+      - node/install-packages:
+          pkg-manager: pnpm
+          cache-path: node_modules
+          override-ci-command: pnpm install
+      - run:
+          name: Build packages
+          command: pnpm build
+
+  semantic-release:
+    executor: node-executor
+    steps:
+      - checkout
+      - setup-pnpm
+      - node/install-packages:
+          pkg-manager: pnpm
+          cache-path: node_modules
+          override-ci-command: pnpm install
+      - run:
+          name: Build everything
+          command: pnpm build
+      - run:
+          name: Semantic Release
+          command: pnpm exec multi-semantic-release
+          environment:
+            GIT_AUTHOR_NAME: circleci-shell
+            GIT_AUTHOR_EMAIL: circleci[bot]@users.noreply.github.com
+            GIT_COMMITTER_NAME: circleci-shell
+            GIT_COMMITTER_EMAIL: circleci[bot]@users.noreply.github.com
+
+  dependabot-regen-api:
+    executor: node-executor
+    steps:
+      - checkout
+      - setup-pnpm
+      - node/install-packages:
+          pkg-manager: pnpm
+          cache-path: node_modules
+          override-ci-command: pnpm install
+      - run:
+          name: Regenerate API clients
+          command: |
+            pnpm api:regen
+            pnpm format
+      - run:
+          name: Commit regenerated API clients
+          command: |
+            git config user.name circleci-shell
+            git config user.email circleci[bot]@users.noreply.github.com
+            git add packages/rest/src/__generated__
+            git commit -nm "feat(rest): Update OpenAPI Spec generated code"
+            git push origin ${CIRCLE_BRANCH}
+
+workflows:
+  version: 2
+  ci:
+    jobs:
+      - lint:
+          filters:
+            branches:
+              ignore:
+                - dependabot/*
+      - test:
+          filters:
+            branches:
+              ignore:
+                - dependabot/*
+      - build:
+          filters:
+            branches:
+              ignore:
+                - dependabot/*
+
+  release:
+    jobs:
+      - lint:
+          filters:
+            branches:
+              only: main
+      - test:
+          filters:
+            branches:
+              only: main
+      - build:
+          filters:
+            branches:
+              only: main
+      - semantic-release:
+          requires:
+            - lint
+            - test
+            - build
+          filters:
+            branches:
+              only: main
+
+  dependabot:
+    jobs:
+      - dependabot-regen-api:
+          filters:
+            branches:
+              only: /dependabot\/.*/
