@@ -2,7 +2,6 @@ name: Semantic Release
 
 on:
   push:
-    branches: ['main', 'debug']
 
 jobs:
   release:
