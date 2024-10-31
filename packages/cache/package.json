@@ -13,7 +13,7 @@
     "url": "https://github.com/Sidnioulz/figmarine/issues"
   },
   "keywords": [
-    "cache"
+    "figmarine", "cache"
   ],
   "publishConfig": {
     "access": "public"

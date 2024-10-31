@@ -14,9 +14,9 @@
   },
   "keywords": [
     "figma",
-    "figmarine",
     "nursery",
-    "cuttings"
+    "cuttings",
+    "figmarine"
   ],
   "publishConfig": {
     "access": "public"

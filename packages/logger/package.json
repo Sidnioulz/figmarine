@@ -13,7 +13,7 @@
     "url": "https://github.com/Sidnioulz/figmarine/issues"
   },
   "keywords": [
-    "log"
+    "figmarine", "log"
   ],
   "publishConfig": {
     "access": "public"
