@@ -51,9 +51,9 @@
 
 <!-- no toc -->
 - [Key Projects](#star2-key-projects)
-  - [Nursery](#nursery)
   - [REST API Client](#rest-api-client)
-  - [GraphQL Client](#graphql-client)
+  - [Cuttings](#cuttings)
+  - [Nursery](#nursery)
   - [ESLint Plugin](#eslint-plugin)
 - [Contributing](#woman_technologist-contributing)
   - [Code of Conduct](#code-of-conduct)
@@ -77,15 +77,15 @@
     </td>
     <td>
       <h3><a href="./packages/cuttings/">Cuttings</a></h3>
-      <div>A library that creates JSON representations of Figma content (files, styles, etc.).</div>
+      <div><code role="status" aria-label="Work in progress">WIP</code> A library that creates JSON representations of Figma content (files, styles, etc.).</div>
     </td>
     <td>
       <h3><a href="./apps/nursery/">Nursery</a></h3>
-      <div>A library for fetching, storing and rehydrating cuttings automatically.</div>
+      <div><code role="status" aria-label="To do">TODO</code> A library for fetching, storing and rehydrating cuttings automatically.</div>
     </td>
     <td>
       <h3><a href="./packages/eslint-plugin-figma/">ESLint Plugin</a></h3>
-      <div>An ESLint plugin that can parse Figma cutting files and run rules against them.</div>
+      <div><code role="status" aria-label="To do">TODO</code> An ESLint plugin that can parse Figma cutting files and run rules against them.</div>
     </td>
   </tr>
 </table>

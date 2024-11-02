@@ -100,7 +100,7 @@ An [OAuth2 token](https://www.figma.com/plugin-docs/oauth-with-plugins/) to auth
 
 #### personalAccessToken `string`
 
-An [Personal Access Token](https://help.figma.com/hc/en-us/articles/8085703771159-Manage-personal-access-tokens) to authenticate to the client. It is mandatory to either pass this token or an `oauthToken`.
+A [Personal Access Token](https://help.figma.com/hc/en-us/articles/8085703771159-Manage-personal-access-tokens) to authenticate to the client. It is mandatory to either pass this token or an `oauthToken`.
 
 #### cache `boolean | object`
 
