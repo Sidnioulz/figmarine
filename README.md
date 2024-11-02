@@ -22,7 +22,7 @@
     <a href="https://github.com/Sidnioulz/figmarine/commits"><img src="https://img.shields.io/github/last-commit/Sidnioulz/figmarine" alt="last commit" /></a>
     <a href="https://github.com/Sidnioulz/figmarine/issues/"><img src="https://img.shields.io/github/issues/Sidnioulz/figmarine" alt="open issues" /></a>
     <a href="https://github.com/Sidnioulz/figmarine/actions/workflows/github-code-scanning/codeql"><img src="https://github.com/Sidnioulz/figmarine/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main" alt="CodeQL status" /></a>
-    <a href="https://github.com/Sidnioulz/figmarine/actions/workflows/continuous-integration.yml"><img src="https://github.com/Sidnioulz/figmarine/actions/workflows/continuous-integration.yml/badge.svg?branch=main" alt="CI status" /></a>
+    <a href="https://gitlab.com/sidnioulz-foss/figmarine/-/pipelines"><img src="https://gitlab.com/sidnioulz-foss/figmarine/badges/main/pipeline.svg?key_text=Continuous%20Integration&key_width=140" alt="CI status" /></a>
     <a href="https://codecov.io/gh/Sidnioulz/figmarine"><img src="https://codecov.io/gh/Sidnioulz/figmarine/graph/badge.svg?token=4SX3N57XH3" alt="code coverage" /></a>
     <a href="https://github.com/Sidnioulz/figmarine/graphs/contributors"><img src="https://img.shields.io/github/contributors/Sidnioulz/figmarine" alt="contributors" /></a>
     <a href="https://github.com/Sidnioulz/figmarine/blob/main/CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg" alt="code of conduct: contributor covenant 2.1" /></a>
@@ -157,7 +157,7 @@ Project Link: [https://github.com/Sidnioulz/figmarine](https://github.com/Sidnio
 [![Dependabot](https://img.shields.io/badge/Dependabot-025E8C?logo=dependabot&logoColor=white)](https://github.com/dependabot)
 [![ESLint](https://img.shields.io/badge/ESLint-4b32c3?logo=eslint&logoColor=white)](https://eslint.org/)
 [![Figma](https://img.shields.io/badge/Figma-a259ff?logo=figma&logoColor=white)](https://github.com/figma/rest-api-spec/)
-[![GitHub](https://img.shields.io/badge/GitHub-0d1117?logo=github&logoColor=white)](https://github.com/solutions/ci-cd)
+[![GitLab CI](https://img.shields.io/badge/GitLab--CI-0d1117?logo=gitlab&logoColor=white)](https://docs.gitlab.com/ee/ci/)
 [![Prettier](https://img.shields.io/badge/Prettier-f8bc45?logo=prettier&logoColor=black)](https://prettier.io/)
 [![tsup](https://img.shields.io/badge/tsup-fde047)](https://tsup.egoist.dev/)
 [![Turbo](https://img.shields.io/badge/Turbo-0096ff?logo=turbo&logoColor=white)](https://turbo.build/)
