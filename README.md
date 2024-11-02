@@ -157,7 +157,7 @@ Project Link: [https://github.com/Sidnioulz/figmarine](https://github.com/Sidnio
 [![Dependabot](https://img.shields.io/badge/Dependabot-025E8C?logo=dependabot&logoColor=white)](https://github.com/dependabot)
 [![ESLint](https://img.shields.io/badge/ESLint-4b32c3?logo=eslint&logoColor=white)](https://eslint.org/)
 [![Figma](https://img.shields.io/badge/Figma-a259ff?logo=figma&logoColor=white)](https://github.com/figma/rest-api-spec/)
-[![GitLab CI](https://img.shields.io/badge/GitLab--CI-0d1117?logo=gitlab&logoColor=white)](https://docs.gitlab.com/ee/ci/)
+[![GitLab CI](https://img.shields.io/badge/GitLab--CI-2f2a6b?logo=gitlab&logoColor=#fca326)](https://docs.gitlab.com/ee/ci/)
 [![Prettier](https://img.shields.io/badge/Prettier-f8bc45?logo=prettier&logoColor=black)](https://prettier.io/)
 [![tsup](https://img.shields.io/badge/tsup-fde047)](https://tsup.egoist.dev/)
 [![Turbo](https://img.shields.io/badge/Turbo-0096ff?logo=turbo&logoColor=white)](https://turbo.build/)
