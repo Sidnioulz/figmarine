@@ -3047,6 +3047,192 @@ export interface DevResource {
   node_id: string;
 }
 
+/** Library analytics component actions data broken down by asset. */
+export interface LibraryAnalyticsComponentActionsByAsset {
+  /** The date in ISO 8601 format. e.g. 2023-12-13 */
+  week: string;
+  /** Unique, stable id of the component. */
+  component_key: string;
+  /** Name of the component. */
+  component_name: string;
+  /** Unique, stable id of the component set that this component belongs to. */
+  component_set_key?: string;
+  /** Name of the component set that this component belongs to. */
+  component_set_name?: string;
+  /** The number of detach events for this period. */
+  detachments: number;
+  /** The number of insertion events for this period. */
+  insertions: number;
+}
+
+/** Library analytics action data broken down by team. */
+export interface LibraryAnalyticsComponentActionsByTeam {
+  /** The date in ISO 8601 format. e.g. 2023-12-13 */
+  week: string;
+  /** The name of the team using the library. */
+  team_name: string;
+  /** The name of the workspace that the team belongs to. */
+  workspace_name?: string;
+  /** The number of detach events for this period. */
+  detachments: number;
+  /** The number of insertion events for this period. */
+  insertions: number;
+}
+
+/** Library analytics component usage data broken down by component. */
+export interface LibraryAnalyticsComponentUsagesByAsset {
+  /** Unique, stable id of the component. */
+  component_key: string;
+  /** Name of the component. */
+  component_name: string;
+  /** Unique, stable id of the component set that this component belongs to. */
+  component_set_key?: string;
+  /** Name of the component set that this component belongs to. */
+  component_set_name?: string;
+  /** The number of instances of the component within the organization. */
+  usages: number;
+  /** The number of teams using the component within the organization. */
+  teams_using: number;
+  /** The number of files using the component within the organization. */
+  files_using: number;
+}
+
+/** Library analytics component usage data broken down by file. */
+export interface LibraryAnalyticsComponentUsagesByFile {
+  /** The name of the file using the library. */
+  file_name: string;
+  /** The name of the team the file belongs to. */
+  team_name: string;
+  /** The name of the workspace that the file belongs to. */
+  workspace_name?: string;
+  /** The number of component instances from the library used within the file. */
+  usages: number;
+}
+
+/** Library analytics style actions data broken down by asset. */
+export interface LibraryAnalyticsStyleActionsByAsset {
+  /** The date in ISO 8601 format. e.g. 2023-12-13 */
+  week: string;
+  /** Unique, stable id of the style. */
+  style_key: string;
+  /** The name of the style. */
+  style_name: string;
+  /** The type of the style. */
+  style_type: string;
+  /** The number of detach events for this period. */
+  detachments: number;
+  /** The number of insertion events for this period. */
+  insertions: number;
+}
+
+/** Library analytics style action data broken down by team. */
+export interface LibraryAnalyticsStyleActionsByTeam {
+  /** The date in ISO 8601 format. e.g. 2023-12-13 */
+  week: string;
+  /** The name of the team using the library. */
+  team_name: string;
+  /** The name of the workspace that the team belongs to. */
+  workspace_name?: string;
+  /** The number of detach events for this period. */
+  detachments: number;
+  /** The number of insertion events for this period. */
+  insertions: number;
+}
+
+/** Library analytics style usage data broken down by component. */
+export interface LibraryAnalyticsStyleUsagesByAsset {
+  /** Unique, stable id of the style. */
+  style_key: string;
+  /** The name of the style. */
+  style_name: string;
+  /** The type of the style. */
+  style_type: string;
+  /** The number of usages of the style within the organization. */
+  usages: number;
+  /** The number of teams using the style within the organization. */
+  teams_using: number;
+  /** The number of files using the style within the organization. */
+  files_using: number;
+}
+
+/** Library analytics style usage data broken down by file. */
+export interface LibraryAnalyticsStyleUsagesByFile {
+  /** The name of the file using the library. */
+  file_name: string;
+  /** The name of the team the file belongs to. */
+  team_name: string;
+  /** The name of the workspace that the file belongs to. */
+  workspace_name?: string;
+  /** The number of times styles from this library are used within the file. */
+  usages: number;
+}
+
+/** Library analytics variable actions data broken down by asset. */
+export interface LibraryAnalyticsVariableActionsByAsset {
+  /** The date in ISO 8601 format. e.g. 2023-12-13 */
+  week: string;
+  /** Unique, stable id of the variable. */
+  variable_key: string;
+  /** The name of the variable. */
+  variable_name: string;
+  /** The type of the variable. */
+  variable_type: string;
+  /** Unique, stable id of the collection the variable belongs to. */
+  collection_key: string;
+  /** The name of the collection the variable belongs to. */
+  collection_name: string;
+  /** The number of detach events for this period. */
+  detachments: number;
+  /** The number of insertion events for this period. */
+  insertions: number;
+}
+
+/** Library analytics variable action data broken down by team. */
+export interface LibraryAnalyticsVariableActionsByTeam {
+  /** The date in ISO 8601 format. e.g. 2023-12-13 */
+  week: string;
+  /** The name of the team using the library. */
+  team_name: string;
+  /** The name of the workspace that the team belongs to. */
+  workspace_name?: string;
+  /** The number of detach events for this period. */
+  detachments: number;
+  /** The number of insertion events for this period. */
+  insertions: number;
+}
+
+/** Library analytics variable usage data broken down by component. */
+export interface LibraryAnalyticsVariableUsagesByAsset {
+  /** Unique, stable id of the variable. */
+  variable_key: string;
+  /** The name of the variable. */
+  variable_name: string;
+  /** The type of the variable. */
+  variable_type: string;
+  /** Unique, stable id of the collection the variable belongs to. */
+  collection_key: string;
+  /** The name of the collection the variable belongs to. */
+  collection_name: string;
+  /** The number of usages of the variable within the organization. */
+  usages: number;
+  /** The number of teams using the variable within the organization. */
+  teams_using: number;
+  /** The number of files using the variable within the organization. */
+  files_using: number;
+}
+
+/** Library analytics variable usage data broken down by file. */
+export interface LibraryAnalyticsVariableUsagesByFile {
+  /** The name of the file using the library. */
+  file_name: string;
+  /** The name of the team the file belongs to. */
+  team_name: string;
+  /** The name of the workspace that the file belongs to. */
+  workspace_name?: string;
+  /** The number of times variables from this library are used within the file. */
+  usages: number;
+}
+
 /** Library analytics actions data broken down by component. */
 export interface LibraryAnalyticsActionsByComponent {
   /** The date in ISO 8601 format. e.g. 2023-12-13 */
@@ -4245,6 +4431,204 @@ export namespace V1 {
   }
 
   /**
+   * @description Returns a list of library analytics component actions data broken down by the requested dimension.
+   * @tags Library Analytics
+   * @name GetLibraryAnalyticsComponentActions
+   * @summary Get library analytics component action data.
+   * @request GET:/v1/analytics/libraries/{file_key}/component/actions
+   * @secure
+   */
+  export namespace GetLibraryAnalyticsComponentActions {
+    export type RequestParams = {
+      /** File key of the library to fetch analytics data for. */
+      fileKey: string;
+    };
+    export type RequestQuery = {
+      /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
+      cursor?: string;
+      /** A dimension to group returned analytics data by. */
+      group_by: 'component' | 'team';
+      /** ISO 8601 date string (YYYY-MM-DD) of the earliest week to include. Dates are rounded back to the nearest start of a week. Defaults to one year prior. */
+      start_date?: string;
+      /** ISO 8601 date string (YYYY-MM-DD) of the latest week to include. Dates are rounded forward to the nearest end of a week. Defaults to the latest computed week. */
+      end_date?: string;
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** An array of analytics data. */
+      rows: LibraryAnalyticsComponentActionsByAsset[] | LibraryAnalyticsComponentActionsByTeam[];
+      /** Whether there is a next page of data that can be fetched. */
+      next_page: boolean;
+      /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
+      cursor?: string;
+    };
+  }
+
+  /**
+   * @description Returns a list of library analytics component usage data broken down by the requested dimension.
+   * @tags Library Analytics
+   * @name GetLibraryAnalyticsComponentUsages
+   * @summary Get library analytics component usage data.
+   * @request GET:/v1/analytics/libraries/{file_key}/component/usages
+   * @secure
+   */
+  export namespace GetLibraryAnalyticsComponentUsages {
+    export type RequestParams = {
+      /** File key of the library to fetch analytics data for. */
+      fileKey: string;
+    };
+    export type RequestQuery = {
+      /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
+      cursor?: string;
+      /** A dimension to group returned analytics data by. */
+      group_by: 'component' | 'file';
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** An array of analytics data. */
+      rows: LibraryAnalyticsComponentUsagesByAsset[] | LibraryAnalyticsComponentUsagesByFile[];
+      /** Whether there is a next page of data that can be fetched. */
+      next_page: boolean;
+      /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
+      cursor?: string;
+    };
+  }
+
+  /**
+   * @description Returns a list of library analytics style actions data broken down by the requested dimension.
+   * @tags Library Analytics
+   * @name GetLibraryAnalyticsStyleActions
+   * @summary Get library analytics style action data.
+   * @request GET:/v1/analytics/libraries/{file_key}/style/actions
+   * @secure
+   */
+  export namespace GetLibraryAnalyticsStyleActions {
+    export type RequestParams = {
+      /** File key of the library to fetch analytics data for. */
+      fileKey: string;
+    };
+    export type RequestQuery = {
+      /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
+      cursor?: string;
+      /** A dimension to group returned analytics data by. */
+      group_by: 'style' | 'team';
+      /** ISO 8601 date string (YYYY-MM-DD) of the earliest week to include. Dates are rounded back to the nearest start of a week. Defaults to one year prior. */
+      start_date?: string;
+      /** ISO 8601 date string (YYYY-MM-DD) of the latest week to include. Dates are rounded forward to the nearest end of a week. Defaults to the latest computed week. */
+      end_date?: string;
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** An array of analytics data. */
+      rows: LibraryAnalyticsStyleActionsByAsset[] | LibraryAnalyticsStyleActionsByTeam[];
+      /** Whether there is a next page of data that can be fetched. */
+      next_page: boolean;
+      /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
+      cursor?: string;
+    };
+  }
+
+  /**
+   * @description Returns a list of library analytics style usage data broken down by the requested dimension.
+   * @tags Library Analytics
+   * @name GetLibraryAnalyticsStyleUsages
+   * @summary Get library analytics style usage data.
+   * @request GET:/v1/analytics/libraries/{file_key}/style/usages
+   * @secure
+   */
+  export namespace GetLibraryAnalyticsStyleUsages {
+    export type RequestParams = {
+      /** File key of the library to fetch analytics data for. */
+      fileKey: string;
+    };
+    export type RequestQuery = {
+      /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
+      cursor?: string;
+      /** A dimension to group returned analytics data by. */
+      group_by: 'style' | 'file';
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** An array of analytics data. */
+      rows: LibraryAnalyticsStyleUsagesByAsset[] | LibraryAnalyticsStyleUsagesByFile[];
+      /** Whether there is a next page of data that can be fetched. */
+      next_page: boolean;
+      /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
+      cursor?: string;
+    };
+  }
+
+  /**
+   * @description Returns a list of library analytics variable actions data broken down by the requested dimension.
+   * @tags Library Analytics
+   * @name GetLibraryAnalyticsVariableActions
+   * @summary Get library analytics variable action data.
+   * @request GET:/v1/analytics/libraries/{file_key}/variable/actions
+   * @secure
+   */
+  export namespace GetLibraryAnalyticsVariableActions {
+    export type RequestParams = {
+      /** File key of the library to fetch analytics data for. */
+      fileKey: string;
+    };
+    export type RequestQuery = {
+      /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
+      cursor?: string;
+      /** A dimension to group returned analytics data by. */
+      group_by: 'variable' | 'team';
+      /** ISO 8601 date string (YYYY-MM-DD) of the earliest week to include. Dates are rounded back to the nearest start of a week. Defaults to one year prior. */
+      start_date?: string;
+      /** ISO 8601 date string (YYYY-MM-DD) of the latest week to include. Dates are rounded forward to the nearest end of a week. Defaults to the latest computed week. */
+      end_date?: string;
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** An array of analytics data. */
+      rows: LibraryAnalyticsVariableActionsByAsset[] | LibraryAnalyticsVariableActionsByTeam[];
+      /** Whether there is a next page of data that can be fetched. */
+      next_page: boolean;
+      /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
+      cursor?: string;
+    };
+  }
+
+  /**
+   * @description Returns a list of library analytics variable usage data broken down by the requested dimension.
+   * @tags Library Analytics
+   * @name GetLibraryAnalyticsVariableUsages
+   * @summary Get library analytics variable usage data.
+   * @request GET:/v1/analytics/libraries/{file_key}/variable/usages
+   * @secure
+   */
+  export namespace GetLibraryAnalyticsVariableUsages {
+    export type RequestParams = {
+      /** File key of the library to fetch analytics data for. */
+      fileKey: string;
+    };
+    export type RequestQuery = {
+      /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
+      cursor?: string;
+      /** A dimension to group returned analytics data by. */
+      group_by: 'variable' | 'file';
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** An array of analytics data. */
+      rows: LibraryAnalyticsVariableUsagesByAsset[] | LibraryAnalyticsVariableUsagesByFile[];
+      /** Whether there is a next page of data that can be fetched. */
+      next_page: boolean;
+      /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
+      cursor?: string;
+    };
+  }
+
+  /**
    * @description Returns a list of library analytics actions data broken down by the requested dimension.
    * @tags Library Analytics
    * @name GetLibraryAnalyticsActions
@@ -4279,7 +4663,7 @@ export namespace V1 {
       rows: LibraryAnalyticsActionsByComponent[] | LibraryAnalyticsActionsByTeam[];
       /** Whether there is a next page of data that can be fetched. */
       next_page: boolean;
-      /** The cursor to use to fetch the next page of data. */
+      /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
       cursor?: string;
     };
   }
@@ -4317,7 +4701,7 @@ export namespace V1 {
       files?: LibraryAnalyticsUsagesByFile[];
       /** Whether there is a next page of data that can be fetched. */
       next_page: boolean;
-      /** The cursor to use to fetch the next page of data. */
+      /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
       cursor?: string;
     };
   }
@@ -4623,7 +5007,7 @@ export class HttpClient<SecurityDataType = unknown> {
 
 /**
  * @title Figma API
- * @version 0.20.0
+ * @version 0.21.0
  * @termsOfService https://www.figma.com/developer-terms/
  * @baseUrl https://api.figma.com
  * @externalDocs https://www.figma.com/developers/api
@@ -6454,6 +6838,356 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       }),
 
     /**
+     * @description Returns a list of library analytics component actions data broken down by the requested dimension.
+     *
+     * @tags Library Analytics
+     * @name GetLibraryAnalyticsComponentActions
+     * @summary Get library analytics component action data.
+     * @request GET:/v1/analytics/libraries/{file_key}/component/actions
+     * @secure
+     */
+    getLibraryAnalyticsComponentActions: (
+      fileKey: string,
+      query: {
+        /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
+        cursor?: string;
+        /** A dimension to group returned analytics data by. */
+        group_by: 'component' | 'team';
+        /** ISO 8601 date string (YYYY-MM-DD) of the earliest week to include. Dates are rounded back to the nearest start of a week. Defaults to one year prior. */
+        start_date?: string;
+        /** ISO 8601 date string (YYYY-MM-DD) of the latest week to include. Dates are rounded forward to the nearest end of a week. Defaults to the latest computed week. */
+        end_date?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          /** An array of analytics data. */
+          rows:
+            | LibraryAnalyticsComponentActionsByAsset[]
+            | LibraryAnalyticsComponentActionsByTeam[];
+          /** Whether there is a next page of data that can be fetched. */
+          next_page: boolean;
+          /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
+          cursor?: string;
+        },
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 400;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 401;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 403;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 429;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 500;
+          })
+      >({
+        path: `/v1/analytics/libraries/${fileKey}/component/actions`,
+        method: 'GET',
+        query: query,
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * @description Returns a list of library analytics component usage data broken down by the requested dimension.
+     *
+     * @tags Library Analytics
+     * @name GetLibraryAnalyticsComponentUsages
+     * @summary Get library analytics component usage data.
+     * @request GET:/v1/analytics/libraries/{file_key}/component/usages
+     * @secure
+     */
+    getLibraryAnalyticsComponentUsages: (
+      fileKey: string,
+      query: {
+        /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
+        cursor?: string;
+        /** A dimension to group returned analytics data by. */
+        group_by: 'component' | 'file';
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          /** An array of analytics data. */
+          rows: LibraryAnalyticsComponentUsagesByAsset[] | LibraryAnalyticsComponentUsagesByFile[];
+          /** Whether there is a next page of data that can be fetched. */
+          next_page: boolean;
+          /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
+          cursor?: string;
+        },
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 400;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 401;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 403;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 429;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 500;
+          })
+      >({
+        path: `/v1/analytics/libraries/${fileKey}/component/usages`,
+        method: 'GET',
+        query: query,
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * @description Returns a list of library analytics style actions data broken down by the requested dimension.
+     *
+     * @tags Library Analytics
+     * @name GetLibraryAnalyticsStyleActions
+     * @summary Get library analytics style action data.
+     * @request GET:/v1/analytics/libraries/{file_key}/style/actions
+     * @secure
+     */
+    getLibraryAnalyticsStyleActions: (
+      fileKey: string,
+      query: {
+        /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
+        cursor?: string;
+        /** A dimension to group returned analytics data by. */
+        group_by: 'style' | 'team';
+        /** ISO 8601 date string (YYYY-MM-DD) of the earliest week to include. Dates are rounded back to the nearest start of a week. Defaults to one year prior. */
+        start_date?: string;
+        /** ISO 8601 date string (YYYY-MM-DD) of the latest week to include. Dates are rounded forward to the nearest end of a week. Defaults to the latest computed week. */
+        end_date?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          /** An array of analytics data. */
+          rows: LibraryAnalyticsStyleActionsByAsset[] | LibraryAnalyticsStyleActionsByTeam[];
+          /** Whether there is a next page of data that can be fetched. */
+          next_page: boolean;
+          /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
+          cursor?: string;
+        },
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 400;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 401;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 403;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 429;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 500;
+          })
+      >({
+        path: `/v1/analytics/libraries/${fileKey}/style/actions`,
+        method: 'GET',
+        query: query,
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * @description Returns a list of library analytics style usage data broken down by the requested dimension.
+     *
+     * @tags Library Analytics
+     * @name GetLibraryAnalyticsStyleUsages
+     * @summary Get library analytics style usage data.
+     * @request GET:/v1/analytics/libraries/{file_key}/style/usages
+     * @secure
+     */
+    getLibraryAnalyticsStyleUsages: (
+      fileKey: string,
+      query: {
+        /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
+        cursor?: string;
+        /** A dimension to group returned analytics data by. */
+        group_by: 'style' | 'file';
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          /** An array of analytics data. */
+          rows: LibraryAnalyticsStyleUsagesByAsset[] | LibraryAnalyticsStyleUsagesByFile[];
+          /** Whether there is a next page of data that can be fetched. */
+          next_page: boolean;
+          /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
+          cursor?: string;
+        },
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 400;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 401;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 403;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 429;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 500;
+          })
+      >({
+        path: `/v1/analytics/libraries/${fileKey}/style/usages`,
+        method: 'GET',
+        query: query,
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * @description Returns a list of library analytics variable actions data broken down by the requested dimension.
+     *
+     * @tags Library Analytics
+     * @name GetLibraryAnalyticsVariableActions
+     * @summary Get library analytics variable action data.
+     * @request GET:/v1/analytics/libraries/{file_key}/variable/actions
+     * @secure
+     */
+    getLibraryAnalyticsVariableActions: (
+      fileKey: string,
+      query: {
+        /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
+        cursor?: string;
+        /** A dimension to group returned analytics data by. */
+        group_by: 'variable' | 'team';
+        /** ISO 8601 date string (YYYY-MM-DD) of the earliest week to include. Dates are rounded back to the nearest start of a week. Defaults to one year prior. */
+        start_date?: string;
+        /** ISO 8601 date string (YYYY-MM-DD) of the latest week to include. Dates are rounded forward to the nearest end of a week. Defaults to the latest computed week. */
+        end_date?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          /** An array of analytics data. */
+          rows: LibraryAnalyticsVariableActionsByAsset[] | LibraryAnalyticsVariableActionsByTeam[];
+          /** Whether there is a next page of data that can be fetched. */
+          next_page: boolean;
+          /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
+          cursor?: string;
+        },
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 400;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 401;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 403;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 429;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 500;
+          })
+      >({
+        path: `/v1/analytics/libraries/${fileKey}/variable/actions`,
+        method: 'GET',
+        query: query,
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * @description Returns a list of library analytics variable usage data broken down by the requested dimension.
+     *
+     * @tags Library Analytics
+     * @name GetLibraryAnalyticsVariableUsages
+     * @summary Get library analytics variable usage data.
+     * @request GET:/v1/analytics/libraries/{file_key}/variable/usages
+     * @secure
+     */
+    getLibraryAnalyticsVariableUsages: (
+      fileKey: string,
+      query: {
+        /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
+        cursor?: string;
+        /** A dimension to group returned analytics data by. */
+        group_by: 'variable' | 'file';
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          /** An array of analytics data. */
+          rows: LibraryAnalyticsVariableUsagesByAsset[] | LibraryAnalyticsVariableUsagesByFile[];
+          /** Whether there is a next page of data that can be fetched. */
+          next_page: boolean;
+          /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
+          cursor?: string;
+        },
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 400;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 401;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 403;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 429;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 500;
+          })
+      >({
+        path: `/v1/analytics/libraries/${fileKey}/variable/usages`,
+        method: 'GET',
+        query: query,
+        secure: true,
+        ...params,
+      }),
+
+    /**
      * @description Returns a list of library analytics actions data broken down by the requested dimension.
      *
      * @tags Library Analytics
@@ -6487,7 +7221,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           rows: LibraryAnalyticsActionsByComponent[] | LibraryAnalyticsActionsByTeam[];
           /** Whether there is a next page of data that can be fetched. */
           next_page: boolean;
-          /** The cursor to use to fetch the next page of data. */
+          /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
           cursor?: string;
         },
         | (ErrorResponsePayloadWithErrorBoolean & {
@@ -6550,7 +7284,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           files?: LibraryAnalyticsUsagesByFile[];
           /** Whether there is a next page of data that can be fetched. */
           next_page: boolean;
-          /** The cursor to use to fetch the next page of data. */
+          /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
           cursor?: string;
         },
         | (ErrorResponsePayloadWithErrorBoolean & {
