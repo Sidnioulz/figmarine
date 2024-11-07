@@ -22,7 +22,7 @@ export class FigLanguage {
   parse(file: File): ParseResult<FigmaFileNode> {
     const result: ParseResult<DocumentNode> = new JSONLanguage({
       mode: 'json',
-    }).parse(file);
+    }).parse(file, { languageOptions: { allowTrailingCommas: false } });
     console.log(result);
     return result as ParseResult<FigmaFileNode>;
 
