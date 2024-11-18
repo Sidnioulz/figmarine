@@ -71,5 +71,8 @@
   },
   "peerDependencies": {
     "eslint": ">=9.0.0"
+  },
+  "resolutions": {
+    "@eslint/plugin-kit": "^0.2.3"
   }
 }
