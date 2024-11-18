@@ -58,7 +58,8 @@
     "vitest": "^2.1.5"
   },
   "resolutions": {
-    "@eslint/plugin-kit": "^0.2.3"
+    "@eslint/plugin-kit": ">=0.2.3",
+    "cross-spawn": ">=7.0.5"
   },
   "packageManager": "pnpm@9.12.2",
   "engines": {
