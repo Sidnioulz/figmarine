@@ -54,8 +54,8 @@
     "lint-staged": "^15.2.10",
     "prettier": "^3.3.3",
     "semantic-release": "^24.2.0",
-    "turbo": "^2.2.3",
-    "vitest": "^2.1.4"
+    "turbo": "^2.3.0",
+    "vitest": "^2.1.5"
   },
   "packageManager": "pnpm@9.12.2",
   "engines": {
