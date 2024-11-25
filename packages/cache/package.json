@@ -46,7 +46,7 @@
     "@figmarine/config-tsup": "workspace:*",
     "@figmarine/config-typescript": "workspace:*",
     "@figmarine/config-vitest": "workspace:*",
-    "@types/node": "^22.9.0",
+    "@types/node": "^22.9.3",
     "@vitest/coverage-istanbul": "^2.1.5",
     "@vitest/coverage-v8": "^2.1.5",
     "lint-staged": "^15.2.10",
@@ -61,7 +61,7 @@
   "dependencies": {
     "@figmarine/logger": "workspace:*",
     "@keyv/compress-gzip": "^2.0.2",
-    "cacheable": "^1.8.4",
+    "cacheable": "^1.8.5",
     "keyv": "^5.2.1",
     "keyv-file": "^5.0.3"
   }
