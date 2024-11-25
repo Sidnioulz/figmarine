@@ -56,10 +56,10 @@
     "@figmarine/config-tsup": "workspace:*",
     "@figmarine/config-typescript": "workspace:*",
     "@figmarine/config-vitest": "workspace:*",
-    "@types/node": "^22.9.0",
+    "@types/node": "^22.9.3",
     "@vitest/coverage-istanbul": "^2.1.5",
     "@vitest/coverage-v8": "^2.1.5",
-    "cacheable": "^1.8.4",
+    "cacheable": "^1.8.5",
     "keyv": "^5.2.1",
     "lint-staged": "^15.2.10",
     "memfs": "^4.14.0",
@@ -70,7 +70,7 @@
     "tsup": "^8.3.5",
     "typescript": "latest",
     "vitest": "^2.1.5",
-    "yaml": "^2.6.0"
+    "yaml": "^2.6.1"
   },
   "dependencies": {
     "@figmarine/cache": "workspace:*",
