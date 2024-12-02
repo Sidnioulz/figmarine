@@ -46,17 +46,17 @@
     "@figmarine/config-tsup": "workspace:*",
     "@figmarine/config-typescript": "workspace:*",
     "@figmarine/config-vitest": "workspace:*",
-    "@types/node": "^22.9.3",
-    "@vitest/coverage-istanbul": "^2.1.5",
-    "@vitest/coverage-v8": "^2.1.5",
+    "@types/node": "^22.10.1",
+    "@vitest/coverage-istanbul": "^2.1.7",
+    "@vitest/coverage-v8": "^2.1.7",
     "lint-staged": "^15.2.10",
     "lockfile": "^1.0.4",
-    "memfs": "^4.14.0",
+    "memfs": "^4.14.1",
     "tsc-watch": "^6.2.1",
     "tsup": "^8.3.5",
     "typescript": "latest",
-    "vite": "^5.4.11",
-    "vitest": "^2.1.5"
+    "vite": "^6.0.2",
+    "vitest": "^2.1.7"
   },
   "dependencies": {
     "@figmarine/logger": "workspace:*",
