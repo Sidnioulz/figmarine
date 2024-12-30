@@ -49,20 +49,20 @@
     "@types/node": "^22.10.2",
     "@vitest/coverage-istanbul": "^2.1.8",
     "@vitest/coverage-v8": "^2.1.8",
-    "lint-staged": "^15.2.11",
+    "lint-staged": "^15.3.0",
     "lockfile": "^1.0.4",
     "memfs": "^4.15.0",
     "tsc-watch": "^6.2.1",
     "tsup": "^8.3.5",
     "typescript": "latest",
-    "vite": "^6.0.3",
+    "vite": "^6.0.6",
     "vitest": "^2.1.8"
   },
   "dependencies": {
     "@figmarine/logger": "workspace:*",
     "@keyv/compress-gzip": "^2.0.2",
-    "cacheable": "^1.8.6",
-    "keyv": "^5.2.2",
+    "cacheable": "^1.8.7",
+    "keyv": "^5.2.3",
     "keyv-file": "^5.1.1"
   }
 }

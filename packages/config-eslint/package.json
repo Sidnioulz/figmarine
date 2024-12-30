@@ -41,10 +41,10 @@
     "eslint-plugin-n": "^17.15.0",
     "eslint-plugin-only-warn": "^1.1.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "typescript-eslint": "^8.18.0"
+    "typescript-eslint": "^8.18.2"
   },
   "devDependencies": {
-    "@vitest/eslint-plugin": "^1.1.16",
+    "@vitest/eslint-plugin": "^1.1.21",
     "typescript": "^5.7.2"
   }
 }
