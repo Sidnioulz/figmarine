@@ -51,7 +51,7 @@
     "@vitest/coverage-v8": "^2.1.8",
     "lint-staged": "^15.3.0",
     "lockfile": "^1.0.4",
-    "memfs": "^4.15.3",
+    "memfs": "^4.17.0",
     "tsc-watch": "^6.2.1",
     "tsup": "^8.3.5",
     "typescript": "latest",
