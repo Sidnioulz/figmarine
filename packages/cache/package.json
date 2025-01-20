@@ -40,23 +40,23 @@
     "dist/**"
   ],
   "devDependencies": {
-    "@faker-js/faker": "^9.3.0",
+    "@faker-js/faker": "^9.4.0",
     "@figmarine/config-eslint": "workspace:*",
     "@figmarine/config-prettier": "workspace:*",
     "@figmarine/config-tsup": "workspace:*",
     "@figmarine/config-typescript": "workspace:*",
     "@figmarine/config-vitest": "workspace:*",
-    "@types/node": "^22.10.5",
-    "@vitest/coverage-istanbul": "^2.1.8",
-    "@vitest/coverage-v8": "^2.1.8",
-    "lint-staged": "^15.3.0",
+    "@types/node": "^22.10.7",
+    "@vitest/coverage-istanbul": "^3.0.2",
+    "@vitest/coverage-v8": "^3.0.2",
+    "lint-staged": "^15.4.1",
     "lockfile": "^1.0.4",
     "memfs": "^4.17.0",
     "tsc-watch": "^6.2.1",
     "tsup": "^8.3.5",
     "typescript": "latest",
-    "vite": "^6.0.7",
-    "vitest": "^2.1.8"
+    "vite": "^6.0.9",
+    "vitest": "^3.0.2"
   },
   "dependencies": {
     "@figmarine/logger": "workspace:*",
