@@ -55,7 +55,7 @@
     "tsc-watch": "^6.2.1",
     "tsup": "^8.3.5",
     "typescript": "latest",
-    "vite": "^6.0.7",
+    "vite": "^6.0.9",
     "vitest": "^2.1.8"
   },
   "dependencies": {
