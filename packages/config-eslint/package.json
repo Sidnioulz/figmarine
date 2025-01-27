@@ -36,8 +36,8 @@
     }
   },
   "dependencies": {
-    "@eslint/json": "^0.9.1",
-    "eslint-config-turbo": "^2.3.3",
+    "@eslint/json": "^0.10.0",
+    "eslint-config-turbo": "^2.3.4",
     "eslint-plugin-n": "^17.15.0",
     "eslint-plugin-only-warn": "^1.1.0",
     "eslint-plugin-prettier": "^5.2.3",
