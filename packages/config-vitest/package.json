@@ -37,7 +37,7 @@
     }
   },
   "dependencies": {
-    "vitest": "^3.0.3"
+    "vitest": "^3.0.4"
   },
   "devDependencies": {
     "typescript": "^5.7.3",
