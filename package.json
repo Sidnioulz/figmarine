@@ -44,18 +44,18 @@
     "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
-    "@anolilab/multi-semantic-release": "^1.1.9",
-    "@anolilab/semantic-release-pnpm": "^1.1.9",
+    "@anolilab/multi-semantic-release": "^1.1.10",
+    "@anolilab/semantic-release-pnpm": "^1.1.10",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/release-notes-generator": "^14.0.3",
     "husky": "^9.1.7",
-    "lint-staged": "^15.4.1",
-    "prettier": "^3.4.2",
-    "semantic-release": "^24.2.1",
-    "turbo": "^2.3.3",
-    "vitest": "^3.0.3"
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.5.1",
+    "semantic-release": "^24.2.3",
+    "turbo": "^2.4.2",
+    "vitest": "^3.0.5"
   },
   "resolutions": {
     "@eslint/plugin-kit": ">=0.2.3",
