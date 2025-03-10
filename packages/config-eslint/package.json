@@ -36,15 +36,15 @@
     }
   },
   "dependencies": {
-    "@eslint/json": "^0.9.1",
-    "eslint-config-turbo": "^2.3.3",
-    "eslint-plugin-n": "^17.15.0",
+    "@eslint/json": "^0.10.0",
+    "eslint-config-turbo": "^2.4.4",
+    "eslint-plugin-n": "^17.16.2",
     "eslint-plugin-only-warn": "^1.1.0",
     "eslint-plugin-prettier": "^5.2.3",
-    "typescript-eslint": "^8.21.0"
+    "typescript-eslint": "^8.26.0"
   },
   "devDependencies": {
-    "@vitest/eslint-plugin": "^1.1.25",
-    "typescript": "^5.7.3"
+    "@vitest/eslint-plugin": "^1.1.36",
+    "typescript": "^5.8.2"
   }
 }
