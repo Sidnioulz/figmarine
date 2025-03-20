@@ -78,7 +78,7 @@
     "tsc-watch": "^6.2.1",
     "tsup": "^8.4.0",
     "typescript": "latest",
-    "vitest": "^3.0.9",
+    "vitest": "^3.0.5",
     "yaml": "^2.7.0"
   },
   "dependencies": {
