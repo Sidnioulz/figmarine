@@ -52,7 +52,7 @@
     "@types/node": "^22.10.9",
     "@vitest/coverage-istanbul": "^3.0.3",
     "@vitest/coverage-v8": "^3.0.3",
-    "axios": "^1.7.9",
+    "axios": "^1.8.2",
     "lint-staged": "^15.4.1",
     "memfs": "^4.17.0",
     "tsc-watch": "^6.2.1",

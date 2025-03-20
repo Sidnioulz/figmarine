@@ -75,7 +75,7 @@
   "dependencies": {
     "@figmarine/cache": "workspace:*",
     "@figmarine/logger": "workspace:*",
-    "axios": "^1.7.9",
+    "axios": "^1.8.2",
     "axios-cache-interceptor": "^1.6.2",
     "axios-retry": "^4.5.0"
   }
