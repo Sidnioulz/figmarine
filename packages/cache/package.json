@@ -57,7 +57,7 @@
     "tsup": "^8.4.0",
     "typescript": "latest",
     "vite": "^6.2.2",
-    "vitest": "^3.0.9"
+    "vitest": "^3.0.5"
   },
   "dependencies": {
     "@figmarine/logger": "workspace:*",

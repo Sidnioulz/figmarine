@@ -62,7 +62,7 @@
     "tsc-watch": "^6.2.1",
     "tsup": "^8.3.5",
     "typescript": "latest",
-    "vitest": "^3.0.3"
+    "vitest": "^3.0.5"
   },
   "dependencies": {
     "@eslint/core": "^0.10.0",
