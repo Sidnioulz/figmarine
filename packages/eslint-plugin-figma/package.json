@@ -12,12 +12,7 @@
   "bugs": {
     "url": "https://github.com/Sidnioulz/figmarine/issues"
   },
-  "keywords": [
-    "figma",
-    "eslint",
-    "eslint-plugin",
-    "figmarine"
-  ],
+  "keywords": ["figma", "eslint", "eslint-plugin", "figmarine"],
   "publishConfig": {
     "access": "public"
   },
@@ -45,9 +40,7 @@
       "default": "./dist/*.js"
     }
   },
-  "files": [
-    "dist/**"
-  ],
+  "files": ["dist/**"],
   "devDependencies": {
     "@figmarine/config-eslint": "workspace:*",
     "@figmarine/config-prettier": "workspace:*",
@@ -71,8 +64,5 @@
   },
   "peerDependencies": {
     "eslint": ">=9.0.0"
-  },
-  "resolutions": {
-    "@eslint/plugin-kit": "^0.2.3"
   }
 }

@@ -46,10 +46,13 @@
     "@types/node": "^22.13.10",
     "@vitest/coverage-istanbul": "^3.0.9",
     "@vitest/coverage-v8": "^3.0.9",
+    "acorn-jsx": "^5.3.2",
+    "eslint-scope": "^8.3.0",
     "lint-staged": "^15.5.0",
     "tsc-watch": "^6.2.1",
     "tsup": "^8.4.0",
     "typescript": "latest",
+    "universal": "link:@eslint/eslintrc/universal",
     "vitest": "^3.0.5"
   }
 }
