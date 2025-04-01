@@ -1,0 +1,86 @@
+# Inspired by https://github.com/vercel/turborepo/blob/main/.github/workflows/examples-autoapprove-and-automerge.yml
+# Auto-approves and auto-merges Dependabot PRs.
+# If PRs involve an OpenAPI Spec package, also auto-regens generated API code before merging.
+name: Dependabot automerge
+on: pull_request
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  dependabot-regen-api:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22]
+    if: github.actor == 'dependabot[bot]' && contains(github.event.pull_request.title, 'Bump the oas group')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          ref: ${{ github.head_ref }}
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Regenerate API clients on OpenAPI Spec change
+        run: |
+          pnpm api:regen
+          pnpm format
+
+      - name: Commit regenerated API clients
+        run: |
+          git config user.name github-actions-shell
+          git config user.email github-actions[bot]@users.noreply.github.com
+          git add packages/rest/src/__generated__
+          git commit -nm "feat(rest): Update OpenAPI Spec generated code"
+          git push
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+  dependabot-approve:
+    needs: [dependabot-regen-api]
+    runs-on: ubuntu-latest
+    if: |
+      always() &&
+      !contains(needs.*.result, 'failure') &&
+      !contains(needs.*.result, 'cancelled') &&
+      github.actor == 'dependabot[bot]'
+    steps:
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v1
+        with:
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
+      - name: Approve a PR
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  dependabot-merge:
+    needs: [dependabot-approve]
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]'
+    steps:
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v1
+        with:
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
+      - name: Enable auto-merge for Dependabot PRs
+        run: gh pr merge --auto --rebase "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
