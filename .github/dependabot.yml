@@ -6,7 +6,7 @@ updates:
       - "/apps/*"
       - "/packages/*"
     schedule:
-      interval: "weekly"
+      interval: "daily"
     versioning-strategy: increase
     assignees:
       - "sidnioulz"
