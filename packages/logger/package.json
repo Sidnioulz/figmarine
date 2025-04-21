@@ -44,8 +44,8 @@
     "@figmarine/config-typescript": "workspace:*",
     "@figmarine/config-vitest": "workspace:*",
     "@types/node": "^22.14.1",
-    "@vitest/coverage-istanbul": "^3.1.1",
-    "@vitest/coverage-v8": "^3.1.1",
+    "@vitest/coverage-istanbul": "^3.1.2",
+    "@vitest/coverage-v8": "^3.1.2",
     "acorn-jsx": "^5.3.2",
     "eslint-scope": "^8.3.0",
     "lint-staged": "^15.5.1",
@@ -53,6 +53,6 @@
     "tsup": "^8.4.0",
     "typescript": "latest",
     "universal": "link:@eslint/eslintrc/universal",
-    "vitest": "^3.1.1"
+    "vitest": "^3.1.2"
   }
 }
