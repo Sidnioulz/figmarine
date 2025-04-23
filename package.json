@@ -21,8 +21,7 @@
   "homepage": "https://github.com/Sidnioulz/figmarine",
   "workspaces": [
     "apps/*",
-    "packages/*",
-    "!packages/config-*"
+    "packages/*"
   ],
   "scripts": {
     "api:regen": "turbo run api:regen",
