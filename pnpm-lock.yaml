@@ -13,11 +13,11 @@ importers:
   .:
     devDependencies:
       '@anolilab/multi-semantic-release':
-        specifier: ^1.1.10
-        version: 1.1.10(semantic-release@24.2.3(typescript@5.8.3))(typescript@5.8.3)
+        specifier: '=1.1.9'
+        version: 1.1.9(semantic-release@24.2.3(typescript@5.8.3))(typescript@5.8.3)
       '@anolilab/semantic-release-pnpm':
-        specifier: ^1.1.10
-        version: 1.1.10(@types/node@22.14.1)(yaml@2.7.1)
+        specifier: '=1.1.9'
+        version: 1.1.9(@types/node@22.14.1)(yaml@2.7.1)
       '@semantic-release/changelog':
         specifier: ^6.0.3
         version: 6.0.3(semantic-release@24.2.3(typescript@5.8.3))
@@ -355,11 +355,11 @@ importers:
   packages/rest:
     dependencies:
       '@figmarine/cache':
-        specifier: workspace:*
-        version: link:../cache
+        specifier: latest
+        version: 1.0.3
       '@figmarine/logger':
-        specifier: workspace:*
-        version: link:../logger
+        specifier: latest
+        version: 1.0.2
       axios:
         specifier: ^1.8.4
         version: 1.8.4
@@ -443,20 +443,20 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==, tarball: https://registry.npmjs.org/@ampproject/remapping/-/remapping-2.3.0.tgz}
     engines: {node: '>=6.0.0'}
 
-  '@anolilab/multi-semantic-release@1.1.10':
-    resolution: {integrity: sha512-00eUBYDMEBWzZygcMYi7ek0gJJD2hKldSucDY4VVEbyd3K1tJU3N8Tmx6EZ2HYu7tzrlMLQGnHgbyrJA6TyZ0w==, tarball: https://registry.npmjs.org/@anolilab/multi-semantic-release/-/multi-semantic-release-1.1.10.tgz}
+  '@anolilab/multi-semantic-release@1.1.9':
+    resolution: {integrity: sha512-jKJJZ209nlROgQQL5iyTs7JO9gHThunwTIFNQ0UVF/94GaB9ufDdKhsgRl9///3pvaixhzGT+8D33Kc6GFqB1g==, tarball: https://registry.npmjs.org/@anolilab/multi-semantic-release/-/multi-semantic-release-1.1.9.tgz}
     engines: {node: '>=18 || >=20.6.1'}
     os: [darwin, linux, win32]
     hasBin: true
     peerDependencies:
       semantic-release: ^20.0 || ^21.0 || >=22.0.3
 
-  '@anolilab/rc@1.1.6':
-    resolution: {integrity: sha512-jqalzF9dYCN8EYVgqCeZG9IEMFIgi3A8xv8bIsXIxrBW9hapJIzpa0ZT0JS1XQUVxOh7mV51dLFHmjevCGu6xg==, tarball: https://registry.npmjs.org/@anolilab/rc/-/rc-1.1.6.tgz}
+  '@anolilab/rc@1.1.5':
+    resolution: {integrity: sha512-Vay1Yt88B8lWZt5tHkyNziiJ4cVNYAmkRu2gTFdV7z6W/KfuqfY9XyLIUJJ1q4qWMjk8uoTB2K+c24+HclBn4w==, tarball: https://registry.npmjs.org/@anolilab/rc/-/rc-1.1.5.tgz}
     engines: {node: '>=18.* <=23.*'}
 
-  '@anolilab/semantic-release-pnpm@1.1.10':
-    resolution: {integrity: sha512-gvZx4eKjDyAZF52pjiQc6ic8TKJ1IyT7UYy5dyIrx8rQhOC2mTL6EwNh9ayxS7TmPED5nK5qvz77u+1GH4f9fA==, tarball: https://registry.npmjs.org/@anolilab/semantic-release-pnpm/-/semantic-release-pnpm-1.1.10.tgz}
+  '@anolilab/semantic-release-pnpm@1.1.9':
+    resolution: {integrity: sha512-2ymGZcTEqbOzDl3Czle/Scly1/tV5d2ZRnaq2WoKpRkES+f5VEnYrJDFg6wCgzIEOOkCutlqzBX25pZOO8b18A==, tarball: https://registry.npmjs.org/@anolilab/semantic-release-pnpm/-/semantic-release-pnpm-1.1.9.tgz}
     engines: {node: '>=18.* <=23.*'}
 
   '@antfu/install-pkg@1.0.0':
@@ -949,6 +949,12 @@ packages:
   '@figma/rest-api-spec@0.28.0':
     resolution: {integrity: sha512-WOUX4lXCDNeK6lbGQlLQcbcMkVetj9wsNf8WMJgjbRovJPSBmmNPqa8JzDBezmjTiRBsj176/Y0oM5yNnhyBJw==, tarball: https://registry.npmjs.org/@figma/rest-api-spec/-/rest-api-spec-0.28.0.tgz}
 
+  '@figmarine/cache@1.0.3':
+    resolution: {integrity: sha512-nS0V1B69Eky0dDdLtpqIF9A9jal6JEITuCvkZ1HU0rAkq/XrhNVIeq1y0SoCmaWhhhVT+MP581J1IaUMEFfKeg==, tarball: https://registry.npmjs.org/@figmarine/cache/-/cache-1.0.3.tgz}
+
+  '@figmarine/logger@1.0.2':
+    resolution: {integrity: sha512-NZnqK2nUjmohIsNT7ptiEVViEltAru6DAqz811fo4kVgz/cVKDocUZ6g6g/Sa9HFhmYZH56CBQtG8YJVt20zQA==, tarball: https://registry.npmjs.org/@figmarine/logger/-/logger-1.0.2.tgz}
+
   '@gerrit0/mini-shiki@3.2.3':
     resolution: {integrity: sha512-yemSYr0Oiqk5NAQRfbD5DKUTlThiZw1MxTMx/YpQTg6m4QRJDtV2JTYSuNevgx1ayy/O7x+uwDjh3IgECGFY/Q==, tarball: https://registry.npmjs.org/@gerrit0/mini-shiki/-/mini-shiki-3.2.3.tgz}
 
@@ -1393,6 +1399,11 @@ packages:
     resolution: {integrity: sha512-RGLh5CRaUEf02viP5c1Vh1cMGffQscyHe7HPAzGpfmfflFg1wUz2rYxd+OZqwpeypYvZ8UxSxuIpF++fmOzEcg==, tarball: https://registry.npmjs.org/@typescript-eslint/visitor-keys/-/visitor-keys-8.29.1.tgz}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
+  '@visulima/fs@2.3.8':
+    resolution: {integrity: sha512-IuMtqidiv8KBmZGLOm0FIBbYsCR4JwwnyO8bPS4wkR8oUcjlUAnhEWrxgHL5DjzpYwncS+1uZuxoJf3CkCdi0w==, tarball: https://registry.npmjs.org/@visulima/fs/-/fs-2.3.8.tgz}
+    engines: {node: '>=18.* <=23.*'}
+    os: [darwin, linux, win32]
+
   '@visulima/fs@3.1.2':
     resolution: {integrity: sha512-LZ9GLLxVfuaFzOGb2zp4GOqyT7TcLmnEShayrb1S2n0WuA3Pfig8fx42xaHyPTZ1p4pI3ncDNTmbyg1BIYM9rw==, tarball: https://registry.npmjs.org/@visulima/fs/-/fs-3.1.2.tgz}
     engines: {node: '>=18.0.0 <=23.x'}
@@ -1406,6 +1417,11 @@ packages:
   '@visulima/package@3.5.4':
     resolution: {integrity: sha512-o1XfzHvVmHS7hJ1hUnF3OJtEyXO12KTna1fTCv4ml9tpHS5w9bMoMNpKYaHNR25tduTo0BXGGxuLH+L8Up5lRw==, tarball: https://registry.npmjs.org/@visulima/package/-/package-3.5.4.tgz}
     engines: {node: '>=18.0.0 <=23.x'}
+    os: [darwin, linux, win32]
+
+  '@visulima/path@1.3.3':
+    resolution: {integrity: sha512-fZtkhILqLAJXmMAaT5ifodd6MZ7vy77o4/cAeXyhD7vbbyjQXyntNbjEb46TpnbGr/nysc1maNPOXg78DYw7Hw==, tarball: https://registry.npmjs.org/@visulima/path/-/path-1.3.3.tgz}
+    engines: {node: '>=18.* <=23.*'}
     os: [darwin, linux, win32]
 
   '@visulima/path@1.3.5':
@@ -4160,7 +4176,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.8
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@anolilab/multi-semantic-release@1.1.10(semantic-release@24.2.3(typescript@5.8.3))(typescript@5.8.3)':
+  '@anolilab/multi-semantic-release@1.1.9(semantic-release@24.2.3(typescript@5.8.3))(typescript@5.8.3)':
     dependencies:
       '@semrel-extra/topo': 1.14.1
       blork: 9.3.0
@@ -4181,20 +4197,18 @@ snapshots:
       - supports-color
       - typescript
 
-  '@anolilab/rc@1.1.6(yaml@2.7.1)':
+  '@anolilab/rc@1.1.5':
     dependencies:
-      '@visulima/fs': 3.1.2(yaml@2.7.1)
+      '@visulima/fs': 2.3.8
       '@visulima/path': 1.3.5
       ini: 5.0.0
       ts-deepmerge: 7.0.2
-    transitivePeerDependencies:
-      - yaml
 
-  '@anolilab/semantic-release-pnpm@1.1.10(@types/node@22.14.1)(yaml@2.7.1)':
+  '@anolilab/semantic-release-pnpm@1.1.9(@types/node@22.14.1)(yaml@2.7.1)':
     dependencies:
-      '@anolilab/rc': 1.1.6(yaml@2.7.1)
+      '@anolilab/rc': 1.1.5
       '@semantic-release/error': 4.0.0
-      '@visulima/fs': 3.1.2(yaml@2.7.1)
+      '@visulima/fs': 2.3.8
       '@visulima/package': 3.5.4(@types/node@22.14.1)(yaml@2.7.1)
       '@visulima/path': 1.3.5
       execa: 9.5.2
@@ -4568,6 +4582,16 @@ snapshots:
   '@faker-js/faker@9.7.0': {}
 
   '@figma/rest-api-spec@0.28.0': {}
+
+  '@figmarine/cache@1.0.3':
+    dependencies:
+      '@figmarine/logger': 1.0.2
+      '@keyv/compress-gzip': 2.0.2
+      cacheable: 1.8.10
+      keyv: 5.3.2
+      keyv-file: 5.1.2
+
+  '@figmarine/logger@1.0.2': {}
 
   '@gerrit0/mini-shiki@3.2.3':
     dependencies:
@@ -5067,6 +5091,11 @@ snapshots:
       '@typescript-eslint/types': 8.29.1
       eslint-visitor-keys: 4.2.0
 
+  '@visulima/fs@2.3.8':
+    dependencies:
+      '@visulima/path': 1.3.3
+      yaml: 2.7.1
+
   '@visulima/fs@3.1.2(yaml@2.7.1)':
     dependencies:
       '@visulima/path': 1.3.5
@@ -5083,6 +5112,8 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
       - yaml
+
+  '@visulima/path@1.3.3': {}
 
   '@visulima/path@1.3.5': {}
 
