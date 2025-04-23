@@ -19,6 +19,11 @@
   ],
   "author": "Steve Dodier-Lazaro",
   "homepage": "https://github.com/Sidnioulz/figmarine",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "!packages/config-*"
+  ],
   "scripts": {
     "api:regen": "turbo run api:regen",
     "build": "turbo run build",
