@@ -55,7 +55,7 @@
     "prettier": "^3.5.3",
     "semantic-release": "^24.2.3",
     "turbo": "^2.5.0",
-    "vitest": "^3.1.1"
+    "vitest": "^3.1.2"
   },
   "resolutions": {
     "@eslint/plugin-kit": ">=0.2.3",
