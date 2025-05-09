@@ -37,10 +37,10 @@
     }
   },
   "dependencies": {
-    "vitest": "^3.1.1"
+    "vitest": "^3.1.3"
   },
   "devDependencies": {
     "typescript": "^5.8.3",
-    "vite": "^6.2.7"
+    "vite": "^6.3.5"
   }
 }
