@@ -374,8 +374,8 @@ importers:
         specifier: ^9.7.0
         version: 9.7.0
       '@figma/rest-api-spec':
-        specifier: ^0.28.0
-        version: 0.28.0
+        specifier: ^0.31.0
+        version: 0.31.0
       '@figmarine/config-eslint':
         specifier: workspace:*
         version: link:../config-eslint
@@ -946,8 +946,8 @@ packages:
     resolution: {integrity: sha512-aozo5vqjCmDoXLNUJarFZx2IN/GgGaogY4TMJ6so/WLZOWpSV7fvj2dmrV6sEAnUm1O7aCrhTibjpzeDFgNqbg==}
     engines: {node: '>=18.0.0', npm: '>=9.0.0'}
 
-  '@figma/rest-api-spec@0.28.0':
-    resolution: {integrity: sha512-WOUX4lXCDNeK6lbGQlLQcbcMkVetj9wsNf8WMJgjbRovJPSBmmNPqa8JzDBezmjTiRBsj176/Y0oM5yNnhyBJw==}
+  '@figma/rest-api-spec@0.31.0':
+    resolution: {integrity: sha512-Mk9hAZjA71etfnydoj6J3f6VL1nYWII50547o0ybz3YqMT61Q/GWsPmZNulPtR6+EYngiZ+Jq2LvJuB5MSaYPA==}
 
   '@gerrit0/mini-shiki@3.2.3':
     resolution: {integrity: sha512-yemSYr0Oiqk5NAQRfbD5DKUTlThiZw1MxTMx/YpQTg6m4QRJDtV2JTYSuNevgx1ayy/O7x+uwDjh3IgECGFY/Q==}
@@ -4640,7 +4640,7 @@ snapshots:
 
   '@faker-js/faker@9.7.0': {}
 
-  '@figma/rest-api-spec@0.28.0': {}
+  '@figma/rest-api-spec@0.31.0': {}
 
   '@gerrit0/mini-shiki@3.2.3':
     dependencies:

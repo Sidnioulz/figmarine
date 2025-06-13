@@ -12,14 +12,7 @@
   "bugs": {
     "url": "https://github.com/Sidnioulz/figmarine/issues"
   },
-  "keywords": [
-    "figma",
-    "rest",
-    "api",
-    "openapi-specification",
-    "oas",
-    "figmarine"
-  ],
+  "keywords": ["figma", "rest", "api", "openapi-specification", "oas", "figmarine"],
   "author": "Steve Dodier-Lazaro",
   "homepage": "https://github.com/Sidnioulz/figmarine",
   "scripts": {
@@ -51,15 +44,13 @@
       "default": "./dist/*.js"
     }
   },
-  "files": [
-    "dist/**"
-  ],
+  "files": ["dist/**"],
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
     "@faker-js/faker": "^9.7.0",
-    "@figma/rest-api-spec": "^0.28.0",
+    "@figma/rest-api-spec": "^0.31.0",
     "@figmarine/config-eslint": "workspace:*",
     "@figmarine/config-prettier": "workspace:*",
     "@figmarine/config-tsup": "workspace:*",
