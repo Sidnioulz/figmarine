@@ -1,15 +1,16 @@
 import fs from 'node:fs';
 
-import { DocumentNode, JSONLanguage, JSONNode, JSONSourceCode } from '@eslint/json';
-import type { File, LanguageOptions, OkParseResult, ParseResult, SourceCode } from '@eslint/core';
+import type { File, LanguageOptions, SourceCode } from '@eslint/core';
+import { JSONLanguage, JSONOkParseResult, JSONParseResult, JSONSourceCode } from '@eslint/json';
 
 import { isArray, isNonNullObject } from './utils';
 
 const manifest = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
 
-interface FigmaFileNode extends JSONNode {
-  type: 'FigmaFile';
-}
+// TODO
+// interface FigmaFileNode {
+//   type: 'FigmaFile';
+// }
 
 /**
  * Language object for the Figmarine API virtual document.
@@ -19,12 +20,12 @@ export class FigLanguage {
   /* TODO */
   // visitorKeys?: Record<string, string[]> | undefined;
 
-  parse(file: File): ParseResult<FigmaFileNode> {
-    const result: ParseResult<DocumentNode> = new JSONLanguage({
+  parse(file: File): JSONParseResult {
+    const result: JSONParseResult = new JSONLanguage({
       mode: 'json',
     }).parse(file, { languageOptions: { allowTrailingCommas: false } });
     console.log(result);
-    return result as ParseResult<FigmaFileNode>;
+    return result;
 
     // TODO
     // const convertedResult: ParseResult<FigmaFileNode> = {}
@@ -61,12 +62,12 @@ export class FigLanguage {
    * @param {OkParseResult}   input The result returned from `parse()`.
    * @returns {FigSourceCode} The new `FigSourceCode` object.
    */
-  createSourceCode(file: File, input: OkParseResult<FigmaFileNode>): SourceCode {
+  createSourceCode(file: File, input: JSONOkParseResult): SourceCode {
     return new JSONSourceCode({
       // FIXME/TODO: explore whether this is ok.
       text: file.body as string,
       // FIXME/TODO: explore whether this is ok.
-      ast: input.ast as unknown as DocumentNode,
+      ast: input.ast,
     });
   }
 }

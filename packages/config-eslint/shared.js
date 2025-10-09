@@ -7,7 +7,7 @@ import vitest from '@vitest/eslint-plugin';
 export function ignoreJson(conf) {
   return {
     ...conf,
-    ignores: [...(conf.ignores ?? []), '**/*.json'],
+    ignores: [...(conf?.ignores ?? []), '**/*.json'],
   };
 }
 export function addTsUnusedRule(conf) {

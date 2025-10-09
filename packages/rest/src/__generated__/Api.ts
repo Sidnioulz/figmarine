@@ -10,6 +10,22 @@
  * ---------------------------------------------------------------
  */
 
+/** The role of the user making the API request in relation to the resource. */
+export enum Role {
+  Owner = "owner",
+  Editor = "editor",
+  Viewer = "viewer",
+}
+
+/** Access policy for users who have the link to the resource. */
+export enum LinkAccess {
+  View = "view",
+  Edit = "edit",
+  OrgView = "org_view",
+  OrgEdit = "org_edit",
+  Inherit = "inherit",
+}
+
 /**
  * Scopes allow a variable to be shown or hidden in the variable picker for various fields. This declutters the Figma UI if you have a large number of variables. Variable scopes are currently supported on `FLOAT`, `STRING`, and `COLOR` variables.
  *
@@ -160,6 +176,7 @@ export enum Navigation {
 export enum ConnectorLineType {
   STRAIGHT = "STRAIGHT",
   ELBOWED = "ELBOWED",
+  CURVED = "CURVED",
 }
 
 /** Geometric shape type. */
@@ -495,6 +512,48 @@ export interface HasLayoutTrait {
    * - `FILL`: only valid on auto-layout frame children
    */
   layoutSizingVertical?: "FIXED" | "HUG" | "FILL";
+  /** The number of rows in the grid layout. This property is only applicable for auto-layout frames with `layoutMode: "GRID"`. */
+  gridRowCount?: number;
+  /** The number of columns in the grid layout. This property is only applicable for auto-layout frames with `layoutMode: "GRID"`. */
+  gridColumnCount?: number;
+  /**
+   * The distance between rows in the grid layout. This property is only applicable for auto-layout frames with `layoutMode: "GRID"`.
+   * @default 0
+   */
+  gridRowGap?: number;
+  /**
+   * The distance between columns in the grid layout. This property is only applicable for auto-layout frames with `layoutMode: "GRID"`.
+   * @default 0
+   */
+  gridColumnGap?: number;
+  /** The string for the CSS grid-template-columns property. This property is only applicable for auto-layout frames with `layoutMode: "GRID"`. */
+  gridColumnsSizing?: string;
+  /** The string for the CSS grid-template-rows property. This property is only applicable for auto-layout frames with `layoutMode: "GRID"`. */
+  gridRowsSizing?: string;
+  /** Determines how a GRID frame's child should be aligned in the horizontal direction within its grid area. This property is only applicable for direct children of frames with `layoutMode: "GRID"`. */
+  gridChildHorizontalAlign?: "AUTO" | "MIN" | "CENTER" | "MAX";
+  /** Determines how a GRID frame's child should be aligned in the vertical direction within its grid area. This property is only applicable for direct children of frames with `layoutMode: "GRID"`. */
+  gridChildVerticalAlign?: "AUTO" | "MIN" | "CENTER" | "MAX";
+  /**
+   * The number of rows that a GRID frame's child should span. This property is only applicable for direct children of frames with `layoutMode: "GRID"`.
+   * @default 1
+   */
+  gridRowSpan?: number;
+  /**
+   * The number of columns that a GRID frame's child should span. This property is only applicable for direct children of frames with `layoutMode: "GRID"`.
+   * @default 1
+   */
+  gridColumnSpan?: number;
+  /**
+   * The index of the row that a GRID frame's child should be anchored to. This property is only applicable for direct children of frames with `layoutMode: "GRID"`.
+   * @default 0
+   */
+  gridRowAnchorIndex?: number;
+  /**
+   * The index of the column that a GRID frame's child should be anchored to. This property is only applicable for direct children of frames with `layoutMode: "GRID"`.
+   * @default 0
+   */
+  gridColumnAnchorIndex?: number;
 }
 
 export interface HasFramePropertiesTrait {
@@ -525,7 +584,7 @@ export interface HasFramePropertiesTrait {
    * Whether this layer uses auto-layout to position its children.
    * @default "NONE"
    */
-  layoutMode?: "NONE" | "HORIZONTAL" | "VERTICAL";
+  layoutMode?: "NONE" | "HORIZONTAL" | "VERTICAL" | "GRID";
   /**
    * Whether the primary axis has a fixed length (determined by the user) or an automatic length (determined by the layout engine). This property is only applicable for auto-layout frames.
    * @default "AUTO"
@@ -611,7 +670,7 @@ export interface HasExportSettingsTrait {
 
 export type HasGeometryTrait = MinimalFillsTrait &
   MinimalStrokesTrait & {
-    /** Map from ID to PaintOverride for looking up fill overrides. To see which regions are overriden, you must use the `geometry=paths` option. Each path returned may have an `overrideID` which maps to this table. */
+    /** Map from ID to PaintOverride for looking up fill overrides. To see which regions are overridden, you must use the `geometry=paths` option. Each path returned may have an `overrideID` which maps to this table. */
     fillOverrideTable?: Record<string, PaintOverride | null>;
     /** Only specified if parameter `geometry=paths` is used. An array of paths representing the object fill. */
     fillGeometry?: Path[];
@@ -1696,6 +1755,8 @@ export type ProgressiveBlurEffect = {
 export interface TextureEffect {
   /** The string literal 'TEXTURE' representing the effect's type. Always check the type before reading other properties. */
   type: "TEXTURE";
+  /** Whether the texture effect is visible. */
+  visible: boolean;
   /** The size of the texture effect */
   noiseSize: number;
   /** The radius of the texture effect */
@@ -1730,6 +1791,10 @@ export type DuotoneNoiseEffect = {
 export interface BaseNoiseEffect {
   /** The string literal 'NOISE' representing the effect's type. Always check the type before reading other properties. */
   type: "NOISE";
+  /** The color of the noise effect */
+  color: RGBA;
+  /** Whether the noise effect is visible. */
+  visible: boolean;
   /** Blend mode of the noise effect */
   blendMode: BlendMode;
   /** The size of the noise effect */
@@ -1855,7 +1920,13 @@ export interface BaseTypeStyle {
   /** Font size in px. */
   fontSize?: number;
   /** Text casing applied to the node, default is the original casing. */
-  textCase?: "UPPER" | "LOWER" | "TITLE" | "SMALL_CAPS" | "SMALL_CAPS_FORCED";
+  textCase?:
+    | "ORIGINAL"
+    | "UPPER"
+    | "LOWER"
+    | "TITLE"
+    | "SMALL_CAPS"
+    | "SMALL_CAPS_FORCED";
   /** Horizontal text alignment as string enum. */
   textAlignHorizontal?: "LEFT" | "RIGHT" | "CENTER" | "JUSTIFIED";
   /** Vertical text alignment as string enum. */
@@ -2791,7 +2862,7 @@ export interface ActivityLogFileEntity {
   /** Indicates if the object is a file on Figma Design or FigJam. */
   editor_type: "figma" | "figjam";
   /** Access policy for users who have the link to the file. */
-  link_access: "view" | "edit" | "org_view" | "org_edit" | "inherit";
+  link_access: LinkAccess;
   /** Access policy for users who have the link to the file's prototype. */
   proto_link_access: "view" | "org_view" | "inherit";
 }
@@ -3017,7 +3088,7 @@ export interface LocalVariable {
   /** The id of the variable collection that contains this variable. */
   variableCollectionId: string;
   /** The resolved type of the variable. */
-  resolvedType: "BOOLEAN" | "FLOAT" | "STRING" | "COLOR";
+  resolvedType: VariableResolvedDataType;
   /** The values for each mode of this variable. */
   valuesByMode: Record<
     string,
@@ -3080,7 +3151,7 @@ export interface PublishedVariable {
   /** The id of the variable collection that contains this variable. */
   variableCollectionId: string;
   /** The resolved type of the variable. */
-  resolvedDataType: "BOOLEAN" | "FLOAT" | "STRING" | "COLOR";
+  resolvedDataType: VariableResolvedDataType;
   /**
    * The UTC ISO 8601 time at which the variable was last updated.
    * @format date-time
@@ -3193,7 +3264,7 @@ export interface VariableCreate {
   /** The variable collection that will contain the variable. You can use the temporary id of a variable collection. */
   variableCollectionId: string;
   /** The resolved type of the variable. */
-  resolvedType: "BOOLEAN" | "FLOAT" | "STRING" | "COLOR";
+  resolvedType: VariableResolvedDataType;
   /** The description of this variable. */
   description?: string;
   /**
@@ -3541,7 +3612,7 @@ export namespace V1 {
       /** The name of the file as it appears in the editor. */
       name: string;
       /** The role of the user making the API request in relation to the file. */
-      role: "owner" | "editor" | "viewer";
+      role: Role;
       /**
        * The UTC ISO 8601 time at which the file was last modified.
        * @format date-time
@@ -3621,7 +3692,7 @@ export namespace V1 {
       /** The name of the file as it appears in the editor. */
       name: string;
       /** The role of the user making the API request in relation to the file. */
-      role: "owner" | "editor" | "viewer";
+      role: Role;
       /**
        * The UTC ISO 8601 time at which the file was last modified.
        * @format date-time
@@ -3789,11 +3860,11 @@ export namespace V1 {
       /** A URL to a thumbnail image of the file. */
       thumbnail_url?: string;
       /** The type of editor associated with this file. */
-      editorType: "figma" | "figjam" | "slides";
+      editorType: "figma" | "figjam" | "slides" | "buzz" | "sites" | "make";
       /** The role of the user making the API request in relation to the file. */
-      role?: "owner" | "editor" | "viewer";
+      role?: Role;
       /** Access policy for users who have the link to the file. */
-      link_access?: "view" | "edit" | "org_view" | "org_edit" | "inherit";
+      link_access?: LinkAccess;
       /** The URL of the file. */
       url?: string;
       /** The version number of the file. This number is incremented when a file is modified and can be used to check if the file has changed between requests. */
@@ -4099,7 +4170,7 @@ export namespace V1 {
     };
     export type RequestQuery = {
       /**
-       * Number of items to return in a paged list of results. Defaults to 30.
+       * Number of items to return in a paged list of results. Defaults to 30. Maximum of 1000.
        * @default 30
        */
       page_size?: number;
@@ -5224,7 +5295,7 @@ export class HttpClient<SecurityDataType = unknown> {
 
 /**
  * @title Figma API
- * @version 0.31.0
+ * @version 0.34.0
  * @termsOfService https://www.figma.com/developer-terms/
  * @baseUrl https://api.figma.com
  * @externalDocs https://www.figma.com/developers/api
@@ -5279,7 +5350,7 @@ export class Api<
           /** The name of the file as it appears in the editor. */
           name: string;
           /** The role of the user making the API request in relation to the file. */
-          role: "owner" | "editor" | "viewer";
+          role: Role;
           /**
            * The UTC ISO 8601 time at which the file was last modified.
            * @format date-time
@@ -5384,7 +5455,7 @@ export class Api<
           /** The name of the file as it appears in the editor. */
           name: string;
           /** The role of the user making the API request in relation to the file. */
-          role: "owner" | "editor" | "viewer";
+          role: Role;
           /**
            * The UTC ISO 8601 time at which the file was last modified.
            * @format date-time
@@ -5618,11 +5689,11 @@ export class Api<
           /** A URL to a thumbnail image of the file. */
           thumbnail_url?: string;
           /** The type of editor associated with this file. */
-          editorType: "figma" | "figjam" | "slides";
+          editorType: "figma" | "figjam" | "slides" | "buzz" | "sites" | "make";
           /** The role of the user making the API request in relation to the file. */
-          role?: "owner" | "editor" | "viewer";
+          role?: Role;
           /** Access policy for users who have the link to the file. */
-          link_access?: "view" | "edit" | "org_view" | "org_edit" | "inherit";
+          link_access?: LinkAccess;
           /** The URL of the file. */
           url?: string;
           /** The version number of the file. This number is incremented when a file is modified and can be used to check if the file has changed between requests. */
@@ -6154,7 +6225,7 @@ export class Api<
       teamId: string,
       query?: {
         /**
-         * Number of items to return in a paged list of results. Defaults to 30.
+         * Number of items to return in a paged list of results. Defaults to 30. Maximum of 1000.
          * @default 30
          */
         page_size?: number;
