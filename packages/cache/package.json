@@ -12,10 +12,7 @@
   "bugs": {
     "url": "https://github.com/Sidnioulz/figmarine/issues"
   },
-  "keywords": [
-    "figmarine",
-    "cache"
-  ],
+  "keywords": ["figmarine", "cache"],
   "publishConfig": {
     "access": "public"
   },
@@ -37,9 +34,7 @@
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist/**"
-  ],
+  "files": ["dist/**"],
   "devDependencies": {
     "@faker-js/faker": "catalog:",
     "@figmarine/config-eslint": "workspace:*",
