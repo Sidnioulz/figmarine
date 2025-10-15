@@ -12,12 +12,7 @@
   "bugs": {
     "url": "https://github.com/Sidnioulz/figmarine/issues"
   },
-  "keywords": [
-    "figma",
-    "nursery",
-    "cuttings",
-    "figmarine"
-  ],
+  "keywords": ["figma", "nursery", "cuttings", "figmarine"],
   "publishConfig": {
     "access": "public"
   },
@@ -40,9 +35,7 @@
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist/**"
-  ],
+  "files": ["dist/**"],
   "devDependencies": {
     "@figmarine/config-eslint": "workspace:*",
     "@figmarine/config-prettier": "workspace:*",
