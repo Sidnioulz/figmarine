@@ -66,7 +66,7 @@ export const configs = [
   {
     settings: {
       node: {
-        version: '22.0',
+        version: '22.16',
       },
     },
   },
