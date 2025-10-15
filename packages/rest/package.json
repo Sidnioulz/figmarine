@@ -12,6 +12,9 @@
   "bugs": {
     "url": "https://github.com/Sidnioulz/figmarine/issues"
   },
+  "engines": {
+    "node": ">=22.16.0"
+  },
   "keywords": ["figma", "rest", "api", "openapi-specification", "oas", "figmarine"],
   "author": "Steve Dodier-Lazaro",
   "homepage": "https://github.com/Sidnioulz/figmarine",
