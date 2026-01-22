@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "@faker-js/faker": "catalog:",
-    "@figma/rest-api-spec": "^0.34.0",
+    "@figma/rest-api-spec": "^0.36.0",
     "@figmarine/config-eslint": "workspace:*",
     "@figmarine/config-prettier": "workspace:*",
     "@figmarine/config-tsup": "workspace:*",
