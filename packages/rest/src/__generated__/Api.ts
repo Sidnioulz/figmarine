@@ -12,18 +12,18 @@
 
 /** The role of the user making the API request in relation to the resource. */
 export enum Role {
-  Owner = "owner",
-  Editor = "editor",
-  Viewer = "viewer",
+  Owner = 'owner',
+  Editor = 'editor',
+  Viewer = 'viewer',
 }
 
 /** Access policy for users who have the link to the resource. */
 export enum LinkAccess {
-  View = "view",
-  Edit = "edit",
-  OrgView = "org_view",
-  OrgEdit = "org_edit",
-  Inherit = "inherit",
+  View = 'view',
+  Edit = 'edit',
+  OrgView = 'org_view',
+  OrgEdit = 'org_edit',
+  Inherit = 'inherit',
 }
 
 /**
@@ -64,29 +64,29 @@ export enum LinkAccess {
  * - `EFFECT_COLOR`
  */
 export enum VariableScope {
-  ALL_SCOPES = "ALL_SCOPES",
-  TEXT_CONTENT = "TEXT_CONTENT",
-  CORNER_RADIUS = "CORNER_RADIUS",
-  WIDTH_HEIGHT = "WIDTH_HEIGHT",
-  GAP = "GAP",
-  ALL_FILLS = "ALL_FILLS",
-  FRAME_FILL = "FRAME_FILL",
-  SHAPE_FILL = "SHAPE_FILL",
-  TEXT_FILL = "TEXT_FILL",
-  STROKE_COLOR = "STROKE_COLOR",
-  STROKE_FLOAT = "STROKE_FLOAT",
-  EFFECT_FLOAT = "EFFECT_FLOAT",
-  EFFECT_COLOR = "EFFECT_COLOR",
-  OPACITY = "OPACITY",
-  FONT_FAMILY = "FONT_FAMILY",
-  FONT_STYLE = "FONT_STYLE",
-  FONT_WEIGHT = "FONT_WEIGHT",
-  FONT_SIZE = "FONT_SIZE",
-  LINE_HEIGHT = "LINE_HEIGHT",
-  LETTER_SPACING = "LETTER_SPACING",
-  PARAGRAPH_SPACING = "PARAGRAPH_SPACING",
-  PARAGRAPH_INDENT = "PARAGRAPH_INDENT",
-  FONT_VARIATIONS = "FONT_VARIATIONS",
+  ALL_SCOPES = 'ALL_SCOPES',
+  TEXT_CONTENT = 'TEXT_CONTENT',
+  CORNER_RADIUS = 'CORNER_RADIUS',
+  WIDTH_HEIGHT = 'WIDTH_HEIGHT',
+  GAP = 'GAP',
+  ALL_FILLS = 'ALL_FILLS',
+  FRAME_FILL = 'FRAME_FILL',
+  SHAPE_FILL = 'SHAPE_FILL',
+  TEXT_FILL = 'TEXT_FILL',
+  STROKE_COLOR = 'STROKE_COLOR',
+  STROKE_FLOAT = 'STROKE_FLOAT',
+  EFFECT_FLOAT = 'EFFECT_FLOAT',
+  EFFECT_COLOR = 'EFFECT_COLOR',
+  OPACITY = 'OPACITY',
+  FONT_FAMILY = 'FONT_FAMILY',
+  FONT_STYLE = 'FONT_STYLE',
+  FONT_WEIGHT = 'FONT_WEIGHT',
+  FONT_SIZE = 'FONT_SIZE',
+  LINE_HEIGHT = 'LINE_HEIGHT',
+  LETTER_SPACING = 'LETTER_SPACING',
+  PARAGRAPH_SPACING = 'PARAGRAPH_SPACING',
+  PARAGRAPH_INDENT = 'PARAGRAPH_INDENT',
+  FONT_VARIATIONS = 'FONT_VARIATIONS',
 }
 
 /**
@@ -95,64 +95,64 @@ export enum VariableScope {
  * - `PAUSED`: The webhook is paused and will not receive any events
  */
 export enum WebhookV2Status {
-  ACTIVE = "ACTIVE",
-  PAUSED = "PAUSED",
+  ACTIVE = 'ACTIVE',
+  PAUSED = 'PAUSED',
 }
 
 /** An enum representing the possible events that a webhook can subscribe to */
 export enum WebhookV2Event {
-  PING = "PING",
-  FILE_UPDATE = "FILE_UPDATE",
-  FILE_VERSION_UPDATE = "FILE_VERSION_UPDATE",
-  FILE_DELETE = "FILE_DELETE",
-  LIBRARY_PUBLISH = "LIBRARY_PUBLISH",
-  FILE_COMMENT = "FILE_COMMENT",
-  DEV_MODE_STATUS_UPDATE = "DEV_MODE_STATUS_UPDATE",
+  PING = 'PING',
+  FILE_UPDATE = 'FILE_UPDATE',
+  FILE_VERSION_UPDATE = 'FILE_VERSION_UPDATE',
+  FILE_DELETE = 'FILE_DELETE',
+  LIBRARY_PUBLISH = 'LIBRARY_PUBLISH',
+  FILE_COMMENT = 'FILE_COMMENT',
+  DEV_MODE_STATUS_UPDATE = 'DEV_MODE_STATUS_UPDATE',
 }
 
 /** The type of style */
 export enum StyleType {
-  FILL = "FILL",
-  TEXT = "TEXT",
-  EFFECT = "EFFECT",
-  GRID = "GRID",
+  FILL = 'FILL',
+  TEXT = 'TEXT',
+  EFFECT = 'EFFECT',
+  GRID = 'GRID',
 }
 
 /** Defines the list of operators available to use in an Expression. */
 export enum ExpressionFunction {
-  ADDITION = "ADDITION",
-  SUBTRACTION = "SUBTRACTION",
-  MULTIPLICATION = "MULTIPLICATION",
-  DIVISION = "DIVISION",
-  EQUALS = "EQUALS",
-  NOT_EQUAL = "NOT_EQUAL",
-  LESS_THAN = "LESS_THAN",
-  LESS_THAN_OR_EQUAL = "LESS_THAN_OR_EQUAL",
-  GREATER_THAN = "GREATER_THAN",
-  GREATER_THAN_OR_EQUAL = "GREATER_THAN_OR_EQUAL",
-  AND = "AND",
-  OR = "OR",
-  VAR_MODE_LOOKUP = "VAR_MODE_LOOKUP",
-  NEGATE = "NEGATE",
-  NOT = "NOT",
+  ADDITION = 'ADDITION',
+  SUBTRACTION = 'SUBTRACTION',
+  MULTIPLICATION = 'MULTIPLICATION',
+  DIVISION = 'DIVISION',
+  EQUALS = 'EQUALS',
+  NOT_EQUAL = 'NOT_EQUAL',
+  LESS_THAN = 'LESS_THAN',
+  LESS_THAN_OR_EQUAL = 'LESS_THAN_OR_EQUAL',
+  GREATER_THAN = 'GREATER_THAN',
+  GREATER_THAN_OR_EQUAL = 'GREATER_THAN_OR_EQUAL',
+  AND = 'AND',
+  OR = 'OR',
+  VAR_MODE_LOOKUP = 'VAR_MODE_LOOKUP',
+  NEGATE = 'NEGATE',
+  NOT = 'NOT',
 }
 
 /** Defines the types of data a VariableData object can eventually equal */
 export enum VariableResolvedDataType {
-  BOOLEAN = "BOOLEAN",
-  FLOAT = "FLOAT",
-  STRING = "STRING",
-  COLOR = "COLOR",
+  BOOLEAN = 'BOOLEAN',
+  FLOAT = 'FLOAT',
+  STRING = 'STRING',
+  COLOR = 'COLOR',
 }
 
 /** Defines the types of data a VariableData object can hold */
 export enum VariableDataType {
-  BOOLEAN = "BOOLEAN",
-  FLOAT = "FLOAT",
-  STRING = "STRING",
-  COLOR = "COLOR",
-  VARIABLE_ALIAS = "VARIABLE_ALIAS",
-  EXPRESSION = "EXPRESSION",
+  BOOLEAN = 'BOOLEAN',
+  FLOAT = 'FLOAT',
+  STRING = 'STRING',
+  COLOR = 'COLOR',
+  VARIABLE_ALIAS = 'VARIABLE_ALIAS',
+  EXPRESSION = 'EXPRESSION',
 }
 
 /**
@@ -165,60 +165,60 @@ export enum VariableDataType {
  * - `"CHANGE_TO"`: Changes the closest ancestor instance of source node to the specified variant.
  */
 export enum Navigation {
-  NAVIGATE = "NAVIGATE",
-  SWAP = "SWAP",
-  OVERLAY = "OVERLAY",
-  SCROLL_TO = "SCROLL_TO",
-  CHANGE_TO = "CHANGE_TO",
+  NAVIGATE = 'NAVIGATE',
+  SWAP = 'SWAP',
+  OVERLAY = 'OVERLAY',
+  SCROLL_TO = 'SCROLL_TO',
+  CHANGE_TO = 'CHANGE_TO',
 }
 
 /** Connector line type. */
 export enum ConnectorLineType {
-  STRAIGHT = "STRAIGHT",
-  ELBOWED = "ELBOWED",
-  CURVED = "CURVED",
+  STRAIGHT = 'STRAIGHT',
+  ELBOWED = 'ELBOWED',
+  CURVED = 'CURVED',
 }
 
 /** Geometric shape type. */
 export enum ShapeType {
-  SQUARE = "SQUARE",
-  ELLIPSE = "ELLIPSE",
-  ROUNDED_RECTANGLE = "ROUNDED_RECTANGLE",
-  DIAMOND = "DIAMOND",
-  TRIANGLE_UP = "TRIANGLE_UP",
-  TRIANGLE_DOWN = "TRIANGLE_DOWN",
-  PARALLELOGRAM_RIGHT = "PARALLELOGRAM_RIGHT",
-  PARALLELOGRAM_LEFT = "PARALLELOGRAM_LEFT",
-  ENG_DATABASE = "ENG_DATABASE",
-  ENG_QUEUE = "ENG_QUEUE",
-  ENG_FILE = "ENG_FILE",
-  ENG_FOLDER = "ENG_FOLDER",
-  TRAPEZOID = "TRAPEZOID",
-  PREDEFINED_PROCESS = "PREDEFINED_PROCESS",
-  SHIELD = "SHIELD",
-  DOCUMENT_SINGLE = "DOCUMENT_SINGLE",
-  DOCUMENT_MULTIPLE = "DOCUMENT_MULTIPLE",
-  MANUAL_INPUT = "MANUAL_INPUT",
-  HEXAGON = "HEXAGON",
-  CHEVRON = "CHEVRON",
-  PENTAGON = "PENTAGON",
-  OCTAGON = "OCTAGON",
-  STAR = "STAR",
-  PLUS = "PLUS",
-  ARROW_LEFT = "ARROW_LEFT",
-  ARROW_RIGHT = "ARROW_RIGHT",
-  SUMMING_JUNCTION = "SUMMING_JUNCTION",
-  OR = "OR",
-  SPEECH_BUBBLE = "SPEECH_BUBBLE",
-  INTERNAL_STORAGE = "INTERNAL_STORAGE",
+  SQUARE = 'SQUARE',
+  ELLIPSE = 'ELLIPSE',
+  ROUNDED_RECTANGLE = 'ROUNDED_RECTANGLE',
+  DIAMOND = 'DIAMOND',
+  TRIANGLE_UP = 'TRIANGLE_UP',
+  TRIANGLE_DOWN = 'TRIANGLE_DOWN',
+  PARALLELOGRAM_RIGHT = 'PARALLELOGRAM_RIGHT',
+  PARALLELOGRAM_LEFT = 'PARALLELOGRAM_LEFT',
+  ENG_DATABASE = 'ENG_DATABASE',
+  ENG_QUEUE = 'ENG_QUEUE',
+  ENG_FILE = 'ENG_FILE',
+  ENG_FOLDER = 'ENG_FOLDER',
+  TRAPEZOID = 'TRAPEZOID',
+  PREDEFINED_PROCESS = 'PREDEFINED_PROCESS',
+  SHIELD = 'SHIELD',
+  DOCUMENT_SINGLE = 'DOCUMENT_SINGLE',
+  DOCUMENT_MULTIPLE = 'DOCUMENT_MULTIPLE',
+  MANUAL_INPUT = 'MANUAL_INPUT',
+  HEXAGON = 'HEXAGON',
+  CHEVRON = 'CHEVRON',
+  PENTAGON = 'PENTAGON',
+  OCTAGON = 'OCTAGON',
+  STAR = 'STAR',
+  PLUS = 'PLUS',
+  ARROW_LEFT = 'ARROW_LEFT',
+  ARROW_RIGHT = 'ARROW_RIGHT',
+  SUMMING_JUNCTION = 'SUMMING_JUNCTION',
+  OR = 'OR',
+  SPEECH_BUBBLE = 'SPEECH_BUBBLE',
+  INTERNAL_STORAGE = 'INTERNAL_STORAGE',
 }
 
 /** Component property type. */
 export enum ComponentPropertyType {
-  BOOLEAN = "BOOLEAN",
-  INSTANCE_SWAP = "INSTANCE_SWAP",
-  TEXT = "TEXT",
-  VARIANT = "VARIANT",
+  BOOLEAN = 'BOOLEAN',
+  INSTANCE_SWAP = 'INSTANCE_SWAP',
+  TEXT = 'TEXT',
+  VARIANT = 'VARIANT',
 }
 
 /**
@@ -239,19 +239,19 @@ export enum ComponentPropertyType {
  * - `CUSTOM_SPRING`: User-defined spring animation.
  */
 export enum EasingType {
-  EASE_IN = "EASE_IN",
-  EASE_OUT = "EASE_OUT",
-  EASE_IN_AND_OUT = "EASE_IN_AND_OUT",
-  LINEAR = "LINEAR",
-  EASE_IN_BACK = "EASE_IN_BACK",
-  EASE_OUT_BACK = "EASE_OUT_BACK",
-  EASE_IN_AND_OUT_BACK = "EASE_IN_AND_OUT_BACK",
-  CUSTOM_CUBIC_BEZIER = "CUSTOM_CUBIC_BEZIER",
-  GENTLE = "GENTLE",
-  QUICK = "QUICK",
-  BOUNCY = "BOUNCY",
-  SLOW = "SLOW",
-  CUSTOM_SPRING = "CUSTOM_SPRING",
+  EASE_IN = 'EASE_IN',
+  EASE_OUT = 'EASE_OUT',
+  EASE_IN_AND_OUT = 'EASE_IN_AND_OUT',
+  LINEAR = 'LINEAR',
+  EASE_IN_BACK = 'EASE_IN_BACK',
+  EASE_OUT_BACK = 'EASE_OUT_BACK',
+  EASE_IN_AND_OUT_BACK = 'EASE_IN_AND_OUT_BACK',
+  CUSTOM_CUBIC_BEZIER = 'CUSTOM_CUBIC_BEZIER',
+  GENTLE = 'GENTLE',
+  QUICK = 'QUICK',
+  BOUNCY = 'BOUNCY',
+  SLOW = 'SLOW',
+  CUSTOM_SPRING = 'CUSTOM_SPRING',
 }
 
 /**
@@ -289,26 +289,245 @@ export enum EasingType {
  * - `LUMINOSITY`
  */
 export enum BlendMode {
-  PASS_THROUGH = "PASS_THROUGH",
-  NORMAL = "NORMAL",
-  DARKEN = "DARKEN",
-  MULTIPLY = "MULTIPLY",
-  LINEAR_BURN = "LINEAR_BURN",
-  COLOR_BURN = "COLOR_BURN",
-  LIGHTEN = "LIGHTEN",
-  SCREEN = "SCREEN",
-  LINEAR_DODGE = "LINEAR_DODGE",
-  COLOR_DODGE = "COLOR_DODGE",
-  OVERLAY = "OVERLAY",
-  SOFT_LIGHT = "SOFT_LIGHT",
-  HARD_LIGHT = "HARD_LIGHT",
-  DIFFERENCE = "DIFFERENCE",
-  EXCLUSION = "EXCLUSION",
-  HUE = "HUE",
-  SATURATION = "SATURATION",
-  COLOR = "COLOR",
-  LUMINOSITY = "LUMINOSITY",
+  PASS_THROUGH = 'PASS_THROUGH',
+  NORMAL = 'NORMAL',
+  DARKEN = 'DARKEN',
+  MULTIPLY = 'MULTIPLY',
+  LINEAR_BURN = 'LINEAR_BURN',
+  COLOR_BURN = 'COLOR_BURN',
+  LIGHTEN = 'LIGHTEN',
+  SCREEN = 'SCREEN',
+  LINEAR_DODGE = 'LINEAR_DODGE',
+  COLOR_DODGE = 'COLOR_DODGE',
+  OVERLAY = 'OVERLAY',
+  SOFT_LIGHT = 'SOFT_LIGHT',
+  HARD_LIGHT = 'HARD_LIGHT',
+  DIFFERENCE = 'DIFFERENCE',
+  EXCLUSION = 'EXCLUSION',
+  HUE = 'HUE',
+  SATURATION = 'SATURATION',
+  COLOR = 'COLOR',
+  LUMINOSITY = 'LUMINOSITY',
 }
+
+export type VariableChange =
+  | ({
+      action: 'CREATE';
+    } & VariableCreate)
+  | ({
+      action: 'UPDATE';
+    } & VariableUpdate)
+  | ({
+      action: 'DELETE';
+    } & VariableDelete);
+
+export type VariableModeChange =
+  | ({
+      action: 'CREATE';
+    } & VariableModeCreate)
+  | ({
+      action: 'UPDATE';
+    } & VariableModeUpdate)
+  | ({
+      action: 'DELETE';
+    } & VariableModeDelete);
+
+export type VariableCollectionChange =
+  | ({
+      action: 'CREATE';
+    } & VariableCollectionCreate)
+  | ({
+      action: 'UPDATE';
+    } & VariableCollectionUpdate)
+  | ({
+      action: 'DELETE';
+    } & VariableCollectionDelete);
+
+export type Effect =
+  | ({
+      type: 'DROP_SHADOW';
+    } & DropShadowEffect)
+  | ({
+      type: 'INNER_SHADOW';
+    } & InnerShadowEffect)
+  | ({
+      type: 'LAYER_BLUR';
+    } & BlurEffect)
+  | ({
+      type: 'BACKGROUND_BLUR';
+    } & BlurEffect)
+  | ({
+      type: 'TEXTURE';
+    } & TextureEffect)
+  | ({
+      type: 'NOISE';
+    } & NoiseEffect);
+
+export type SubcanvasNode =
+  | ({
+      type: 'BOOLEAN_OPERATION';
+    } & BooleanOperationNode)
+  | ({
+      type: 'COMPONENT';
+    } & ComponentNode)
+  | ({
+      type: 'COMPONENT_SET';
+    } & ComponentSetNode)
+  | ({
+      type: 'CONNECTOR';
+    } & ConnectorNode)
+  | ({
+      type: 'ELLIPSE';
+    } & EllipseNode)
+  | ({
+      type: 'EMBED';
+    } & EmbedNode)
+  | ({
+      type: 'FRAME';
+    } & FrameNode)
+  | ({
+      type: 'GROUP';
+    } & GroupNode)
+  | ({
+      type: 'INSTANCE';
+    } & InstanceNode)
+  | ({
+      type: 'LINE';
+    } & LineNode)
+  | ({
+      type: 'LINK_UNFURL';
+    } & LinkUnfurlNode)
+  | ({
+      type: 'RECTANGLE';
+    } & RectangleNode)
+  | ({
+      type: 'REGULAR_POLYGON';
+    } & RegularPolygonNode)
+  | ({
+      type: 'SECTION';
+    } & SectionNode)
+  | ({
+      type: 'SHAPE_WITH_TEXT';
+    } & ShapeWithTextNode)
+  | ({
+      type: 'SLICE';
+    } & SliceNode)
+  | ({
+      type: 'STAR';
+    } & StarNode)
+  | ({
+      type: 'STICKY';
+    } & StickyNode)
+  | ({
+      type: 'TABLE';
+    } & TableNode)
+  | ({
+      type: 'TABLE_CELL';
+    } & TableCellNode)
+  | ({
+      type: 'TEXT';
+    } & TextNode)
+  | ({
+      type: 'TEXT_PATH';
+    } & TextPathNode)
+  | ({
+      type: 'TRANSFORM_GROUP';
+    } & TransformGroupNode)
+  | ({
+      type: 'VECTOR';
+    } & VectorNode)
+  | ({
+      type: 'WASHI_TAPE';
+    } & WashiTapeNode)
+  | ({
+      type: 'WIDGET';
+    } & WidgetNode);
+
+export type Node =
+  | ({
+      type: 'BOOLEAN_OPERATION';
+    } & BooleanOperationNode)
+  | ({
+      type: 'COMPONENT';
+    } & ComponentNode)
+  | ({
+      type: 'COMPONENT_SET';
+    } & ComponentSetNode)
+  | ({
+      type: 'CONNECTOR';
+    } & ConnectorNode)
+  | ({
+      type: 'ELLIPSE';
+    } & EllipseNode)
+  | ({
+      type: 'EMBED';
+    } & EmbedNode)
+  | ({
+      type: 'FRAME';
+    } & FrameNode)
+  | ({
+      type: 'GROUP';
+    } & GroupNode)
+  | ({
+      type: 'INSTANCE';
+    } & InstanceNode)
+  | ({
+      type: 'LINE';
+    } & LineNode)
+  | ({
+      type: 'LINK_UNFURL';
+    } & LinkUnfurlNode)
+  | ({
+      type: 'RECTANGLE';
+    } & RectangleNode)
+  | ({
+      type: 'REGULAR_POLYGON';
+    } & RegularPolygonNode)
+  | ({
+      type: 'SECTION';
+    } & SectionNode)
+  | ({
+      type: 'SHAPE_WITH_TEXT';
+    } & ShapeWithTextNode)
+  | ({
+      type: 'SLICE';
+    } & SliceNode)
+  | ({
+      type: 'STAR';
+    } & StarNode)
+  | ({
+      type: 'STICKY';
+    } & StickyNode)
+  | ({
+      type: 'TABLE';
+    } & TableNode)
+  | ({
+      type: 'TABLE_CELL';
+    } & TableCellNode)
+  | ({
+      type: 'TEXT';
+    } & TextNode)
+  | ({
+      type: 'TEXT_PATH';
+    } & TextPathNode)
+  | ({
+      type: 'TRANSFORM_GROUP';
+    } & TransformGroupNode)
+  | ({
+      type: 'VECTOR';
+    } & VectorNode)
+  | ({
+      type: 'WASHI_TAPE';
+    } & WashiTapeNode)
+  | ({
+      type: 'WIDGET';
+    } & WidgetNode)
+  | ({
+      type: 'DOCUMENT';
+    } & DocumentNode)
+  | ({
+      type: 'CANVAS';
+    } & CanvasNode);
 
 export interface IsLayerTrait {
   /** A string uniquely identifying this node within the document. */
@@ -337,7 +556,7 @@ export interface IsLayerTrait {
    * How layer should be treated when the frame is resized
    * @default "SCROLLS"
    */
-  scrollBehavior: "SCROLLS" | "FIXED" | "STICKY_SCROLLS";
+  scrollBehavior: 'SCROLLS' | 'FIXED' | 'STICKY_SCROLLS';
   /**
    * The rotation of the node, if not 0.
    * @default 0
@@ -467,7 +686,7 @@ export interface HasLayoutTrait {
    *
    * In horizontal auto-layout frames, "MIN" and "MAX" correspond to "TOP" and "BOTTOM". In vertical auto-layout frames, "MIN" and "MAX" correspond to "LEFT" and "RIGHT".
    */
-  layoutAlign?: "INHERIT" | "STRETCH" | "MIN" | "CENTER" | "MAX";
+  layoutAlign?: 'INHERIT' | 'STRETCH' | 'MIN' | 'CENTER' | 'MAX';
   /**
    * This property is applicable only for direct children of auto-layout frames, ignored otherwise. Determines whether a layer should stretch along the parent's primary axis. A `0` corresponds to a fixed size and `1` corresponds to stretch.
    * @default 0
@@ -477,7 +696,7 @@ export interface HasLayoutTrait {
    * Determines whether a layer's size and position should be determined by auto-layout settings or manually adjustable.
    * @default "AUTO"
    */
-  layoutPositioning?: "AUTO" | "ABSOLUTE";
+  layoutPositioning?: 'AUTO' | 'ABSOLUTE';
   /**
    * The minimum width of the frame. This property is only applicable for auto-layout frames or direct children of auto-layout frames.
    * @default 0
@@ -504,14 +723,14 @@ export interface HasLayoutTrait {
    * - `HUG`: only valid on auto-layout frames and text nodes
    * - `FILL`: only valid on auto-layout frame children
    */
-  layoutSizingHorizontal?: "FIXED" | "HUG" | "FILL";
+  layoutSizingHorizontal?: 'FIXED' | 'HUG' | 'FILL';
   /**
    * The vertical sizing setting on this auto-layout frame or frame child.
    * - `FIXED`
    * - `HUG`: only valid on auto-layout frames and text nodes
    * - `FILL`: only valid on auto-layout frame children
    */
-  layoutSizingVertical?: "FIXED" | "HUG" | "FILL";
+  layoutSizingVertical?: 'FIXED' | 'HUG' | 'FILL';
   /** The number of rows in the grid layout. This property is only applicable for auto-layout frames with `layoutMode: "GRID"`. */
   gridRowCount?: number;
   /** The number of columns in the grid layout. This property is only applicable for auto-layout frames with `layoutMode: "GRID"`. */
@@ -531,9 +750,9 @@ export interface HasLayoutTrait {
   /** The string for the CSS grid-template-rows property. This property is only applicable for auto-layout frames with `layoutMode: "GRID"`. */
   gridRowsSizing?: string;
   /** Determines how a GRID frame's child should be aligned in the horizontal direction within its grid area. This property is only applicable for direct children of frames with `layoutMode: "GRID"`. */
-  gridChildHorizontalAlign?: "AUTO" | "MIN" | "CENTER" | "MAX";
+  gridChildHorizontalAlign?: 'AUTO' | 'MIN' | 'CENTER' | 'MAX';
   /** Determines how a GRID frame's child should be aligned in the vertical direction within its grid area. This property is only applicable for direct children of frames with `layoutMode: "GRID"`. */
-  gridChildVerticalAlign?: "AUTO" | "MIN" | "CENTER" | "MAX";
+  gridChildVerticalAlign?: 'AUTO' | 'MIN' | 'CENTER' | 'MAX';
   /**
    * The number of rows that a GRID frame's child should span. This property is only applicable for direct children of frames with `layoutMode: "GRID"`.
    * @default 1
@@ -576,35 +795,35 @@ export interface HasFramePropertiesTrait {
    * @default "NONE"
    */
   overflowDirection?:
-    | "HORIZONTAL_SCROLLING"
-    | "VERTICAL_SCROLLING"
-    | "HORIZONTAL_AND_VERTICAL_SCROLLING"
-    | "NONE";
+    | 'HORIZONTAL_SCROLLING'
+    | 'VERTICAL_SCROLLING'
+    | 'HORIZONTAL_AND_VERTICAL_SCROLLING'
+    | 'NONE';
   /**
    * Whether this layer uses auto-layout to position its children.
    * @default "NONE"
    */
-  layoutMode?: "NONE" | "HORIZONTAL" | "VERTICAL" | "GRID";
+  layoutMode?: 'NONE' | 'HORIZONTAL' | 'VERTICAL' | 'GRID';
   /**
    * Whether the primary axis has a fixed length (determined by the user) or an automatic length (determined by the layout engine). This property is only applicable for auto-layout frames.
    * @default "AUTO"
    */
-  primaryAxisSizingMode?: "FIXED" | "AUTO";
+  primaryAxisSizingMode?: 'FIXED' | 'AUTO';
   /**
    * Whether the counter axis has a fixed length (determined by the user) or an automatic length (determined by the layout engine). This property is only applicable for auto-layout frames.
    * @default "AUTO"
    */
-  counterAxisSizingMode?: "FIXED" | "AUTO";
+  counterAxisSizingMode?: 'FIXED' | 'AUTO';
   /**
    * Determines how the auto-layout frame's children should be aligned in the primary axis direction. This property is only applicable for auto-layout frames.
    * @default "MIN"
    */
-  primaryAxisAlignItems?: "MIN" | "CENTER" | "MAX" | "SPACE_BETWEEN";
+  primaryAxisAlignItems?: 'MIN' | 'CENTER' | 'MAX' | 'SPACE_BETWEEN';
   /**
    * Determines how the auto-layout frame's children should be aligned in the counter axis direction. This property is only applicable for auto-layout frames.
    * @default "MIN"
    */
-  counterAxisAlignItems?: "MIN" | "CENTER" | "MAX" | "BASELINE";
+  counterAxisAlignItems?: 'MIN' | 'CENTER' | 'MAX' | 'BASELINE';
   /**
    * The padding between the left border of the frame and its children. This property is only applicable for auto-layout frames.
    * @default 0
@@ -641,14 +860,14 @@ export interface HasFramePropertiesTrait {
    */
   strokesIncludedInLayout?: boolean;
   /** Whether this auto-layout frame has wrapping enabled. */
-  layoutWrap?: "NO_WRAP" | "WRAP";
+  layoutWrap?: 'NO_WRAP' | 'WRAP';
   /** The distance between wrapped tracks of an auto-layout frame. This property is only applicable for auto-layout frames with `layoutWrap: "WRAP"` */
   counterAxisSpacing?: number;
   /**
    * Determines how the auto-layout frame’s wrapped tracks should be aligned in the counter axis direction. This property is only applicable for auto-layout frames with `layoutWrap: "WRAP"`.
    * @default "AUTO"
    */
-  counterAxisAlignContent?: "AUTO" | "SPACE_BETWEEN";
+  counterAxisAlignContent?: 'AUTO' | 'SPACE_BETWEEN';
 }
 
 export interface HasBlendModeAndOpacityTrait {
@@ -681,20 +900,20 @@ export type HasGeometryTrait = MinimalFillsTrait &
      * @default "NONE"
      */
     strokeCap?:
-      | "NONE"
-      | "ROUND"
-      | "SQUARE"
-      | "LINE_ARROW"
-      | "TRIANGLE_ARROW"
-      | "DIAMOND_FILLED"
-      | "CIRCLE_FILLED"
-      | "TRIANGLE_FILLED"
-      | "WASHI_TAPE_1"
-      | "WASHI_TAPE_2"
-      | "WASHI_TAPE_3"
-      | "WASHI_TAPE_4"
-      | "WASHI_TAPE_5"
-      | "WASHI_TAPE_6";
+      | 'NONE'
+      | 'ROUND'
+      | 'SQUARE'
+      | 'LINE_ARROW'
+      | 'TRIANGLE_ARROW'
+      | 'DIAMOND_FILLED'
+      | 'CIRCLE_FILLED'
+      | 'TRIANGLE_FILLED'
+      | 'WASHI_TAPE_1'
+      | 'WASHI_TAPE_2'
+      | 'WASHI_TAPE_3'
+      | 'WASHI_TAPE_4'
+      | 'WASHI_TAPE_5'
+      | 'WASHI_TAPE_6';
     /**
      * Only valid if `strokeJoin` is "MITER". The corner angle, in degrees, below which `strokeJoin` will be set to "BEVEL" to avoid super sharp corners. By default this is 28.96 degrees.
      * @default 28.96
@@ -724,12 +943,12 @@ export interface MinimalStrokesTrait {
    * - `OUTSIDE`: stroke drawn outside the shape boundary
    * - `CENTER`: stroke drawn centered along the shape boundary
    */
-  strokeAlign?: "INSIDE" | "OUTSIDE" | "CENTER";
+  strokeAlign?: 'INSIDE' | 'OUTSIDE' | 'CENTER';
   /**
    * A string enum with value of "MITER", "BEVEL", or "ROUND", describing how corners in vector paths are rendered.
    * @default "MITER"
    */
-  strokeJoin?: "MITER" | "BEVEL" | "ROUND";
+  strokeJoin?: 'MITER' | 'BEVEL' | 'ROUND';
   /**
    * An array of floating point numbers describing the pattern of dash length and gap lengths that the vector stroke will use when drawn.
    *
@@ -742,6 +961,10 @@ export interface IndividualStrokesTrait {
   /** An object including the top, bottom, left, and right stroke weights. Only returned if individual stroke weights are used. */
   individualStrokeWeights?: StrokeWeights;
 }
+
+export type VariableWidthStrokesTrait = object;
+
+export type ComplexStrokesTrait = object;
 
 export interface CornerTrait {
   /**
@@ -779,7 +1002,7 @@ export interface HasMaskTrait {
    * - VECTOR: if the mask node has visible fill paints, every pixel inside the node's fill regions will be fully visible in the masked result. If the mask has visible stroke paints, every pixel inside the node's stroke regions will be fully visible in the masked result.
    * - LUMINANCE: the luminance value of each pixel of the mask node will be used to determine the opacity of that pixel in the masked result.
    */
-  maskType?: "ALPHA" | "VECTOR" | "LUMINANCE";
+  maskType?: 'ALPHA' | 'VECTOR' | 'LUMINANCE';
   /**
    * True if maskType is VECTOR. This field is deprecated; use maskType instead.
    * @deprecated
@@ -811,7 +1034,7 @@ export interface TypePropertiesTrait {
    * - `ORDERED`: Text is an ordered list (numbered).
    * - `UNORDERED`: Text is an unordered list (bulleted).
    */
-  lineTypes: ("NONE" | "ORDERED" | "UNORDERED")[];
+  lineTypes: ('NONE' | 'ORDERED' | 'UNORDERED')[];
   /** An array with the same number of elements as lines in the text node, where lines are delimited by newline or paragraph separator characters. Each element in the array corresponds to the indentation level of a specific line. */
   lineIndentations: number[];
 }
@@ -847,13 +1070,15 @@ export interface TransitionSourceTrait {
 export interface DevStatusTrait {
   /** Represents whether or not a node has a particular handoff (or dev) status applied to it. */
   devStatus?: {
-    type: "NONE" | "READY_FOR_DEV" | "COMPLETED";
+    type: 'NONE' | 'READY_FOR_DEV' | 'COMPLETED';
     /** An optional field where the designer can add more information about the design and what has changed. */
     description?: string;
   };
 }
 
 export type AnnotationsTrait = object;
+
+export type TransformModifiersTrait = object;
 
 export type FrameTraits = IsLayerTrait &
   HasBlendModeAndOpacityTrait &
@@ -867,6 +1092,8 @@ export type FrameTraits = IsLayerTrait &
   HasMaskTrait &
   TransitionSourceTrait &
   IndividualStrokesTrait &
+  VariableWidthStrokesTrait &
+  ComplexStrokesTrait &
   DevStatusTrait &
   AnnotationsTrait;
 
@@ -877,7 +1104,9 @@ export type DefaultShapeTraits = IsLayerTrait &
   HasExportSettingsTrait &
   HasEffectsTrait &
   HasMaskTrait &
-  TransitionSourceTrait;
+  TransitionSourceTrait &
+  VariableWidthStrokesTrait &
+  ComplexStrokesTrait;
 
 export type CornerRadiusShapeTraits = DefaultShapeTraits & CornerTrait;
 
@@ -886,99 +1115,13 @@ export type RectangularShapeTraits = DefaultShapeTraits &
   IndividualStrokesTrait &
   AnnotationsTrait;
 
-export type Node =
-  | ({
-      type: "BOOLEAN_OPERATION";
-    } & BooleanOperationNode)
-  | ({
-      type: "COMPONENT";
-    } & ComponentNode)
-  | ({
-      type: "COMPONENT_SET";
-    } & ComponentSetNode)
-  | ({
-      type: "CONNECTOR";
-    } & ConnectorNode)
-  | ({
-      type: "ELLIPSE";
-    } & EllipseNode)
-  | ({
-      type: "EMBED";
-    } & EmbedNode)
-  | ({
-      type: "FRAME";
-    } & FrameNode)
-  | ({
-      type: "GROUP";
-    } & GroupNode)
-  | ({
-      type: "INSTANCE";
-    } & InstanceNode)
-  | ({
-      type: "LINE";
-    } & LineNode)
-  | ({
-      type: "LINK_UNFURL";
-    } & LinkUnfurlNode)
-  | ({
-      type: "RECTANGLE";
-    } & RectangleNode)
-  | ({
-      type: "REGULAR_POLYGON";
-    } & RegularPolygonNode)
-  | ({
-      type: "SECTION";
-    } & SectionNode)
-  | ({
-      type: "SHAPE_WITH_TEXT";
-    } & ShapeWithTextNode)
-  | ({
-      type: "SLICE";
-    } & SliceNode)
-  | ({
-      type: "STAR";
-    } & StarNode)
-  | ({
-      type: "STICKY";
-    } & StickyNode)
-  | ({
-      type: "TABLE";
-    } & TableNode)
-  | ({
-      type: "TABLE_CELL";
-    } & TableCellNode)
-  | ({
-      type: "TEXT";
-    } & TextNode)
-  | ({
-      type: "TEXT_PATH";
-    } & TextPathNode)
-  | ({
-      type: "TRANSFORM_GROUP";
-    } & TransformGroupNode)
-  | ({
-      type: "VECTOR";
-    } & VectorNode)
-  | ({
-      type: "WASHI_TAPE";
-    } & WashiTapeNode)
-  | ({
-      type: "WIDGET";
-    } & WidgetNode)
-  | ({
-      type: "DOCUMENT";
-    } & DocumentNode)
-  | ({
-      type: "CANVAS";
-    } & CanvasNode);
-
 export type DocumentNode = {
-  type: "DOCUMENT";
+  type: 'DOCUMENT';
   children: CanvasNode[];
 } & IsLayerTrait;
 
 export type CanvasNode = {
-  type: "CANVAS";
+  type: 'CANVAS';
   children: SubcanvasNode[];
   /** Background color of the canvas. */
   backgroundColor: RGBA;
@@ -997,91 +1140,11 @@ export type CanvasNode = {
 } & IsLayerTrait &
   HasExportSettingsTrait;
 
-export type SubcanvasNode =
-  | ({
-      type: "BOOLEAN_OPERATION";
-    } & BooleanOperationNode)
-  | ({
-      type: "COMPONENT";
-    } & ComponentNode)
-  | ({
-      type: "COMPONENT_SET";
-    } & ComponentSetNode)
-  | ({
-      type: "CONNECTOR";
-    } & ConnectorNode)
-  | ({
-      type: "ELLIPSE";
-    } & EllipseNode)
-  | ({
-      type: "EMBED";
-    } & EmbedNode)
-  | ({
-      type: "FRAME";
-    } & FrameNode)
-  | ({
-      type: "GROUP";
-    } & GroupNode)
-  | ({
-      type: "INSTANCE";
-    } & InstanceNode)
-  | ({
-      type: "LINE";
-    } & LineNode)
-  | ({
-      type: "LINK_UNFURL";
-    } & LinkUnfurlNode)
-  | ({
-      type: "RECTANGLE";
-    } & RectangleNode)
-  | ({
-      type: "REGULAR_POLYGON";
-    } & RegularPolygonNode)
-  | ({
-      type: "SECTION";
-    } & SectionNode)
-  | ({
-      type: "SHAPE_WITH_TEXT";
-    } & ShapeWithTextNode)
-  | ({
-      type: "SLICE";
-    } & SliceNode)
-  | ({
-      type: "STAR";
-    } & StarNode)
-  | ({
-      type: "STICKY";
-    } & StickyNode)
-  | ({
-      type: "TABLE";
-    } & TableNode)
-  | ({
-      type: "TABLE_CELL";
-    } & TableCellNode)
-  | ({
-      type: "TEXT";
-    } & TextNode)
-  | ({
-      type: "TEXT_PATH";
-    } & TextPathNode)
-  | ({
-      type: "TRANSFORM_GROUP";
-    } & TransformGroupNode)
-  | ({
-      type: "VECTOR";
-    } & VectorNode)
-  | ({
-      type: "WASHI_TAPE";
-    } & WashiTapeNode)
-  | ({
-      type: "WIDGET";
-    } & WidgetNode);
-
 export type BooleanOperationNode = {
   /** The type of this node, represented by the string literal "BOOLEAN_OPERATION" */
-  type: "BOOLEAN_OPERATION";
+  type: 'BOOLEAN_OPERATION';
   /** A string enum indicating the type of boolean operation applied. */
-  booleanOperation: "UNION" | "INTERSECT" | "SUBTRACT" | "EXCLUDE";
+  booleanOperation: 'UNION' | 'INTERSECT' | 'SUBTRACT' | 'EXCLUDE';
 } & IsLayerTrait &
   HasBlendModeAndOpacityTrait &
   HasChildrenTrait &
@@ -1094,7 +1157,7 @@ export type BooleanOperationNode = {
 
 export type SectionNode = {
   /** The type of this node, represented by the string literal "SECTION" */
-  type: "SECTION";
+  type: 'SECTION';
   /**
    * Whether the contents of the section are visible
    * @default false
@@ -1108,47 +1171,47 @@ export type SectionNode = {
 
 export type FrameNode = {
   /** The type of this node, represented by the string literal "FRAME" */
-  type: "FRAME";
+  type: 'FRAME';
 } & FrameTraits;
 
 export type GroupNode = {
   /** The type of this node, represented by the string literal "GROUP" */
-  type: "GROUP";
+  type: 'GROUP';
 } & FrameTraits;
 
 export type ComponentNode = {
   /** The type of this node, represented by the string literal "COMPONENT" */
-  type: "COMPONENT";
+  type: 'COMPONENT';
 } & FrameTraits &
   ComponentPropertiesTrait;
 
 export type ComponentSetNode = {
   /** The type of this node, represented by the string literal "COMPONENT_SET" */
-  type: "COMPONENT_SET";
+  type: 'COMPONENT_SET';
 } & FrameTraits &
   ComponentPropertiesTrait;
 
 export type VectorNode = {
   /** The type of this node, represented by the string literal "VECTOR" */
-  type: "VECTOR";
+  type: 'VECTOR';
 } & CornerRadiusShapeTraits &
   AnnotationsTrait;
 
 export type StarNode = {
   /** The type of this node, represented by the string literal "STAR" */
-  type: "STAR";
+  type: 'STAR';
 } & CornerRadiusShapeTraits &
   AnnotationsTrait;
 
 export type LineNode = {
   /** The type of this node, represented by the string literal "LINE" */
-  type: "LINE";
+  type: 'LINE';
 } & DefaultShapeTraits &
   AnnotationsTrait;
 
 export type EllipseNode = {
   /** The type of this node, represented by the string literal "ELLIPSE" */
-  type: "ELLIPSE";
+  type: 'ELLIPSE';
   /** Information about the arc properties of an ellipse. 0° is the x axis and increasing angles rotate clockwise. */
   arcData: ArcData;
 } & DefaultShapeTraits &
@@ -1156,31 +1219,31 @@ export type EllipseNode = {
 
 export type RegularPolygonNode = {
   /** The type of this node, represented by the string literal "REGULAR_POLYGON" */
-  type: "REGULAR_POLYGON";
+  type: 'REGULAR_POLYGON';
 } & CornerRadiusShapeTraits &
   AnnotationsTrait;
 
 export type RectangleNode = {
   /** The type of this node, represented by the string literal "RECTANGLE" */
-  type: "RECTANGLE";
+  type: 'RECTANGLE';
 } & RectangularShapeTraits;
 
 export type TextNode = {
   /** The type of this node, represented by the string literal "TEXT" */
-  type: "TEXT";
+  type: 'TEXT';
 } & DefaultShapeTraits &
   TypePropertiesTrait &
   AnnotationsTrait;
 
 export type TextPathNode = {
   /** The type of this node, represented by the string literal "TEXT_PATH" */
-  type: "TEXT_PATH";
+  type: 'TEXT_PATH';
 } & DefaultShapeTraits &
   TextPathPropertiesTrait;
 
 export type TableNode = {
   /** The type of this node, represented by the string literal "TABLE" */
-  type: "TABLE";
+  type: 'TABLE';
 } & IsLayerTrait &
   HasChildrenTrait &
   HasLayoutTrait &
@@ -1191,7 +1254,7 @@ export type TableNode = {
 
 export type TableCellNode = {
   /** The type of this node, represented by the string literal "TABLE_CELL" */
-  type: "TABLE_CELL";
+  type: 'TABLE_CELL';
 } & IsLayerTrait &
   MinimalFillsTrait &
   HasLayoutTrait &
@@ -1199,17 +1262,18 @@ export type TableCellNode = {
 
 export type TransformGroupNode = {
   /** The type of this node, represented by the string literal "TRANSFORM_GROUP" */
-  type: "TRANSFORM_GROUP";
-} & FrameTraits;
+  type: 'TRANSFORM_GROUP';
+} & FrameTraits &
+  TransformModifiersTrait;
 
 export type SliceNode = {
   /** The type of this node, represented by the string literal "SLICE" */
-  type: "SLICE";
+  type: 'SLICE';
 } & IsLayerTrait;
 
 export type InstanceNode = {
   /** The type of this node, represented by the string literal "INSTANCE" */
-  type: "INSTANCE";
+  type: 'INSTANCE';
   /** ID of component that this instance came from. */
   componentId: string;
   /**
@@ -1227,19 +1291,19 @@ export type InstanceNode = {
 
 export type EmbedNode = {
   /** The type of this node, represented by the string literal "EMBED" */
-  type: "EMBED";
+  type: 'EMBED';
 } & IsLayerTrait &
   HasExportSettingsTrait;
 
 export type LinkUnfurlNode = {
   /** The type of this node, represented by the string literal "LINK_UNFURL" */
-  type: "LINK_UNFURL";
+  type: 'LINK_UNFURL';
 } & IsLayerTrait &
   HasExportSettingsTrait;
 
 export type StickyNode = {
   /** The type of this node, represented by the string literal "STICKY" */
-  type: "STICKY";
+  type: 'STICKY';
   /**
    * If true, author name is visible.
    * @default false
@@ -1256,7 +1320,7 @@ export type StickyNode = {
 
 export type ShapeWithTextNode = {
   /** The type of this node, represented by the string literal "SHAPE_WITH_TEXT" */
-  type: "SHAPE_WITH_TEXT";
+  type: 'SHAPE_WITH_TEXT';
   /** Geometric shape type. Most shape types have the same name as their tooltip but there are a few exceptions. ENG_DATABASE: Cylinder, ENG_QUEUE: Horizontal cylinder, ENG_FILE: File, ENG_FOLDER: Folder. */
   shapeType: ShapeType;
 } & IsLayerTrait &
@@ -1272,7 +1336,7 @@ export type ShapeWithTextNode = {
 
 export type ConnectorNode = {
   /** The type of this node, represented by the string literal "CONNECTOR" */
-  type: "CONNECTOR";
+  type: 'CONNECTOR';
   /** The starting point of the connector. */
   connectorStart: ConnectorEndpoint;
   /** The ending point of the connector. */
@@ -1282,23 +1346,23 @@ export type ConnectorNode = {
    * @default "NONE"
    */
   connectorStartStrokeCap:
-    | "NONE"
-    | "LINE_ARROW"
-    | "TRIANGLE_ARROW"
-    | "DIAMOND_FILLED"
-    | "CIRCLE_FILLED"
-    | "TRIANGLE_FILLED";
+    | 'NONE'
+    | 'LINE_ARROW'
+    | 'TRIANGLE_ARROW'
+    | 'DIAMOND_FILLED'
+    | 'CIRCLE_FILLED'
+    | 'TRIANGLE_FILLED';
   /**
    * A string enum describing the end cap of the end of the connector.
    * @default "NONE"
    */
   connectorEndStrokeCap:
-    | "NONE"
-    | "LINE_ARROW"
-    | "TRIANGLE_ARROW"
-    | "DIAMOND_FILLED"
-    | "CIRCLE_FILLED"
-    | "TRIANGLE_FILLED";
+    | 'NONE'
+    | 'LINE_ARROW'
+    | 'TRIANGLE_ARROW'
+    | 'DIAMOND_FILLED'
+    | 'CIRCLE_FILLED'
+    | 'TRIANGLE_FILLED';
   /** Connector line type. */
   connectorLineType: ConnectorLineType;
   /** Connector text background. */
@@ -1313,12 +1377,12 @@ export type ConnectorNode = {
 
 export type WashiTapeNode = {
   /** The type of this node, represented by the string literal "WASHI_TAPE" */
-  type: "WASHI_TAPE";
+  type: 'WASHI_TAPE';
 } & DefaultShapeTraits;
 
 export type WidgetNode = {
   /** The type of this node, represented by the string literal "WIDGET" */
-  type: "WIDGET";
+  type: 'WIDGET';
 } & IsLayerTrait &
   HasExportSettingsTrait &
   HasChildrenTrait;
@@ -1391,11 +1455,11 @@ export interface Size {
 
 /** The device used to view a prototype. */
 export interface PrototypeDevice {
-  type: "NONE" | "PRESET" | "CUSTOM" | "PRESENTATION";
+  type: 'NONE' | 'PRESET' | 'CUSTOM' | 'PRESENTATION';
   /** A width and a height. */
   size?: Size;
   presetIdentifier?: string;
-  rotation: "NONE" | "CCW_90";
+  rotation: 'NONE' | 'CCW_90';
 }
 
 /** Sizing constraint for exports. */
@@ -1407,7 +1471,7 @@ export interface Constraint {
    * - `WIDTH`: Scale proportionally and set width to `value`.
    * - `HEIGHT`: Scale proportionally and set height to `value`.
    */
-  type: "SCALE" | "WIDTH" | "HEIGHT";
+  type: 'SCALE' | 'WIDTH' | 'HEIGHT';
   /** See type property for effect of this field. */
   value: number;
 }
@@ -1415,7 +1479,7 @@ export interface Constraint {
 /** An export setting. */
 export interface ExportSetting {
   suffix: string;
-  format: "JPG" | "PNG" | "SVG" | "PDF";
+  format: 'JPG' | 'PNG' | 'SVG' | 'PDF';
   /** Sizing constraint for exports. */
   constraint: Constraint;
 }
@@ -1510,7 +1574,7 @@ export interface BasePaint {
 /** A solid color */
 export type SolidPaint = {
   /** The string literal "SOLID" representing the paint's type. Always check the `type` before reading other properties. */
-  type: "SOLID";
+  type: 'SOLID';
   /** Solid color of the paint */
   color: RGBA;
   /** The variables bound to a particular field on this paint */
@@ -1523,11 +1587,7 @@ export type SolidPaint = {
 /** A gradient */
 export type GradientPaint = {
   /** The string literal representing the paint's type. Always check the `type` before reading other properties. */
-  type:
-    | "GRADIENT_LINEAR"
-    | "GRADIENT_RADIAL"
-    | "GRADIENT_ANGULAR"
-    | "GRADIENT_DIAMOND";
+  type: 'GRADIENT_LINEAR' | 'GRADIENT_RADIAL' | 'GRADIENT_ANGULAR' | 'GRADIENT_DIAMOND';
   /** This field contains three vectors, each of which are a position in normalized object space (normalized object space is if the top left corner of the bounding box of the object is (0, 0) and the bottom right is (1,1)). The first position corresponds to the start of the gradient (value 0 for the purposes of calculating gradient stops), the second position is the end of the gradient (value 1), and the third handle position determines the width of the gradient. */
   gradientHandlePositions: Vector[];
   /** Positions of key points along the gradient axis with the colors anchored there. Colors along the gradient are interpolated smoothly between neighboring gradient stops. */
@@ -1537,9 +1597,9 @@ export type GradientPaint = {
 /** An image */
 export type ImagePaint = {
   /** The string literal "IMAGE" representing the paint's type. Always check the `type` before reading other properties. */
-  type: "IMAGE";
+  type: 'IMAGE';
   /** Image scaling mode. */
-  scaleMode: "FILL" | "FIT" | "TILE" | "STRETCH";
+  scaleMode: 'FILL' | 'FIT' | 'TILE' | 'STRETCH';
   /** A reference to an image embedded in this node. To download the image using this reference, use the `GET file images` endpoint to retrieve the mapping from image references to image URLs. */
   imageRef: string;
   /** Affine transform applied to the image, only present if `scaleMode` is `STRETCH` */
@@ -1560,19 +1620,19 @@ export type ImagePaint = {
 /** A pattern */
 export type PatternPaint = {
   /** The string literal "PATTERN" representing the paint's type. Always check the `type` before reading other properties. */
-  type: "PATTERN";
+  type: 'PATTERN';
   /** The node id of the source node for the pattern */
   sourceNodeId: string;
   /** The tile type for the pattern */
-  tileType: "RECTANGULAR" | "HORIZONTAL_HEXAGONAL" | "VERTICAL_HEXAGONAL";
+  tileType: 'RECTANGULAR' | 'HORIZONTAL_HEXAGONAL' | 'VERTICAL_HEXAGONAL';
   /** The scaling factor for the pattern */
   scalingFactor: number;
   /** The spacing for the pattern */
   spacing: Vector;
   /** The horizontal alignment for the pattern */
-  horizontalAlignment: "START" | "CENTER" | "END";
+  horizontalAlignment: 'START' | 'CENTER' | 'END';
   /** The vertical alignment for the pattern */
-  verticalAlignment: "START" | "CENTER" | "END";
+  verticalAlignment: 'START' | 'CENTER' | 'END';
 } & BasePaint;
 
 export type Paint = SolidPaint | GradientPaint | ImagePaint | PatternPaint;
@@ -1588,7 +1648,7 @@ export interface LayoutConstraint {
    * - `TOP_BOTTOM`: Both top and bottom of node are constrained relative to containing frame (node stretches with frame)
    * - `SCALE`: Node scales vertically with containing frame
    */
-  vertical: "TOP" | "BOTTOM" | "CENTER" | "TOP_BOTTOM" | "SCALE";
+  vertical: 'TOP' | 'BOTTOM' | 'CENTER' | 'TOP_BOTTOM' | 'SCALE';
   /**
    * Horizontal constraint (relative to containing frame) as an enum:
    *
@@ -1598,7 +1658,7 @@ export interface LayoutConstraint {
    * - `LEFT_RIGHT`: Both left and right of node are constrained relative to containing frame (node stretches with frame)
    * - `SCALE`: Node scales horizontally with containing frame
    */
-  horizontal: "LEFT" | "RIGHT" | "CENTER" | "LEFT_RIGHT" | "SCALE";
+  horizontal: 'LEFT' | 'RIGHT' | 'CENTER' | 'LEFT_RIGHT' | 'SCALE';
 }
 
 /** A rectangle that expresses a bounding box in absolute coordinates. */
@@ -1622,7 +1682,7 @@ export interface LayoutGrid {
    * - `ROWS`: Horizontal grid
    * - `GRID`: Square grid
    */
-  pattern: "COLUMNS" | "ROWS" | "GRID";
+  pattern: 'COLUMNS' | 'ROWS' | 'GRID';
   /** Width of column grid or height of row grid or square grid spacing. */
   sectionSize: number;
   /** Is the grid currently visible? */
@@ -1637,7 +1697,7 @@ export interface LayoutGrid {
    * - `STRETCH`: Grid is stretched to fit the frame
    * - `CENTER`: Grid is center aligned
    */
-  alignment: "MIN" | "MAX" | "STRETCH" | "CENTER";
+  alignment: 'MIN' | 'MAX' | 'STRETCH' | 'CENTER';
   /** Spacing in between columns and rows */
   gutterSize: number;
   /** Spacing before the first column or row */
@@ -1699,7 +1759,7 @@ export interface BaseShadowEffect {
 /** A drop shadow effect */
 export type DropShadowEffect = {
   /** A string literal representing the effect's type. Always check the type before reading other properties. */
-  type: "DROP_SHADOW";
+  type: 'DROP_SHADOW';
   /**
    * Whether to show the shadow behind translucent or transparent pixels
    * @default false
@@ -1710,7 +1770,7 @@ export type DropShadowEffect = {
 /** An inner shadow effect */
 export type InnerShadowEffect = {
   /** A string literal representing the effect's type. Always check the type before reading other properties. */
-  type?: "INNER_SHADOW";
+  type?: 'INNER_SHADOW';
 } & BaseShadowEffect;
 
 export type BlurEffect = NormalBlurEffect | ProgressiveBlurEffect;
@@ -1718,7 +1778,7 @@ export type BlurEffect = NormalBlurEffect | ProgressiveBlurEffect;
 /** Base properties shared by all blur effects */
 export interface BaseBlurEffect {
   /** A string literal representing the effect's type. Always check the type before reading other properties. */
-  type: "LAYER_BLUR" | "BACKGROUND_BLUR";
+  type: 'LAYER_BLUR' | 'BACKGROUND_BLUR';
   /** Whether this blur is active. */
   visible: boolean;
   /**
@@ -1736,13 +1796,13 @@ export interface BaseBlurEffect {
 /** A normal blur effect */
 export type NormalBlurEffect = {
   /** The string literal 'NORMAL' representing the blur type. Always check the blurType before reading other properties. */
-  blurType?: "NORMAL";
+  blurType?: 'NORMAL';
 } & BaseBlurEffect;
 
 /** A progressive blur effect */
 export type ProgressiveBlurEffect = {
   /** The string literal 'PROGRESSIVE' representing the blur type. Always check the blurType before reading other properties. */
-  blurType: "PROGRESSIVE";
+  blurType: 'PROGRESSIVE';
   /** The starting radius of the progressive blur */
   startRadius: number;
   /** The starting offset of the progressive blur */
@@ -1754,7 +1814,7 @@ export type ProgressiveBlurEffect = {
 /** A texture effect */
 export interface TextureEffect {
   /** The string literal 'TEXTURE' representing the effect's type. Always check the type before reading other properties. */
-  type: "TEXTURE";
+  type: 'TEXTURE';
   /** Whether the texture effect is visible. */
   visible: boolean;
   /** The size of the texture effect */
@@ -1768,13 +1828,13 @@ export interface TextureEffect {
 /** A monotone noise effect */
 export type MonotoneNoiseEffect = {
   /** The string literal 'MONOTONE' representing the noise type. */
-  noiseType: "MONOTONE";
+  noiseType: 'MONOTONE';
 } & BaseNoiseEffect;
 
 /** A multitone noise effect */
 export type MultitoneNoiseEffect = {
   /** The string literal 'MULTITONE' representing the noise type. */
-  noiseType: "MULTITONE";
+  noiseType: 'MULTITONE';
   /** The opacity of the noise effect */
   opacity: number;
 } & BaseNoiseEffect;
@@ -1782,7 +1842,7 @@ export type MultitoneNoiseEffect = {
 /** A duotone noise effect */
 export type DuotoneNoiseEffect = {
   /** The string literal 'DUOTONE' representing the noise type. */
-  noiseType: "DUOTONE";
+  noiseType: 'DUOTONE';
   /** The secondary color of the noise effect */
   secondaryColor: RGBA;
 } & BaseNoiseEffect;
@@ -1790,7 +1850,7 @@ export type DuotoneNoiseEffect = {
 /** A noise effect */
 export interface BaseNoiseEffect {
   /** The string literal 'NOISE' representing the effect's type. Always check the type before reading other properties. */
-  type: "NOISE";
+  type: 'NOISE';
   /** The color of the noise effect */
   color: RGBA;
   /** Whether the noise effect is visible. */
@@ -1803,30 +1863,7 @@ export interface BaseNoiseEffect {
   density: number;
 }
 
-export type NoiseEffect =
-  | MonotoneNoiseEffect
-  | MultitoneNoiseEffect
-  | DuotoneNoiseEffect;
-
-export type Effect =
-  | ({
-      type: "DROP_SHADOW";
-    } & DropShadowEffect)
-  | ({
-      type: "INNER_SHADOW";
-    } & InnerShadowEffect)
-  | ({
-      type: "LAYER_BLUR";
-    } & BlurEffect)
-  | ({
-      type: "BACKGROUND_BLUR";
-    } & BlurEffect)
-  | ({
-      type: "TEXTURE";
-    } & TextureEffect)
-  | ({
-      type: "NOISE";
-    } & NoiseEffect);
+export type NoiseEffect = MonotoneNoiseEffect | MultitoneNoiseEffect | DuotoneNoiseEffect;
 
 /** A set of properties that can be applied to nodes and published. Styles for a property can be created in the corresponding property's panel while editing a file. */
 export interface Style {
@@ -1867,7 +1904,7 @@ export interface Path {
   /** A series of path commands that encodes how to draw the path. */
   path: string;
   /** The winding rule for the path (same as in SVGs). This determines whether a given point in space is inside or outside the path. */
-  windingRule: "NONZERO" | "EVENODD";
+  windingRule: 'NONZERO' | 'EVENODD';
   /** If there is a per-region fill, this refers to an ID in the `fillOverrideTable`. */
   overrideID?: number;
 }
@@ -1896,7 +1933,7 @@ export interface ArcData {
 /** A link to either a URL or another frame (node) in the document. */
 export interface Hyperlink {
   /** The type of hyperlink. Can be either `URL` or `NODE`. */
-  type: "URL" | "NODE";
+  type: 'URL' | 'NODE';
   /** The URL that the hyperlink points to, if `type` is `URL`. */
   url?: string;
   /** The ID of the node that the hyperlink points to, if `type` is `NODE`. */
@@ -1920,17 +1957,11 @@ export interface BaseTypeStyle {
   /** Font size in px. */
   fontSize?: number;
   /** Text casing applied to the node, default is the original casing. */
-  textCase?:
-    | "ORIGINAL"
-    | "UPPER"
-    | "LOWER"
-    | "TITLE"
-    | "SMALL_CAPS"
-    | "SMALL_CAPS_FORCED";
+  textCase?: 'ORIGINAL' | 'UPPER' | 'LOWER' | 'TITLE' | 'SMALL_CAPS' | 'SMALL_CAPS_FORCED';
   /** Horizontal text alignment as string enum. */
-  textAlignHorizontal?: "LEFT" | "RIGHT" | "CENTER" | "JUSTIFIED";
+  textAlignHorizontal?: 'LEFT' | 'RIGHT' | 'CENTER' | 'JUSTIFIED';
   /** Vertical text alignment as string enum. */
-  textAlignVertical?: "TOP" | "CENTER" | "BOTTOM";
+  textAlignVertical?: 'TOP' | 'CENTER' | 'BOTTOM';
   /** Space between characters in px. */
   letterSpacing?: number;
   /** An array of fill paints applied to the characters. */
@@ -1940,9 +1971,9 @@ export interface BaseTypeStyle {
   /** A map of OpenType feature flags to 1 or 0, 1 if it is enabled and 0 if it is disabled. Note that some flags aren't reflected here. For example, SMCP (small caps) is still represented by the `textCase` field. */
   opentypeFlags?: Record<string, number>;
   /** Indicates how the font weight was overridden when there is a text style override. */
-  semanticWeight?: "BOLD" | "NORMAL";
+  semanticWeight?: 'BOLD' | 'NORMAL';
   /** Indicates how the font style was overridden when there is a text style override. */
-  semanticItalic?: "ITALIC" | "NORMAL";
+  semanticItalic?: 'ITALIC' | 'NORMAL';
 }
 
 /** Metadata for character formatting. */
@@ -1966,17 +1997,17 @@ export type TypeStyle = {
    * Text decoration applied to the node, default is none.
    * @default "NONE"
    */
-  textDecoration?: "NONE" | "STRIKETHROUGH" | "UNDERLINE";
+  textDecoration?: 'NONE' | 'STRIKETHROUGH' | 'UNDERLINE';
   /**
    * Dimensions along which text will auto resize, default is that the text does not auto-resize. TRUNCATE means that the text will be shortened and trailing text will be replaced with "…" if the text contents is larger than the bounds. `TRUNCATE` as a return value is deprecated and will be removed in a future version. Read from `textTruncation` instead.
    * @default "NONE"
    */
-  textAutoResize?: "NONE" | "WIDTH_AND_HEIGHT" | "HEIGHT" | "TRUNCATE";
+  textAutoResize?: 'NONE' | 'WIDTH_AND_HEIGHT' | 'HEIGHT' | 'TRUNCATE';
   /**
    * Whether this text node will truncate with an ellipsis when the text contents is larger than the text node.
    * @default "DISABLED"
    */
-  textTruncation?: "DISABLED" | "ENDING";
+  textTruncation?: 'DISABLED' | 'ENDING';
   /** When `textTruncation: "ENDING"` is set, `maxLines` determines how many lines a text node can grow to before it truncates. */
   maxLines?: number;
   /** Line height in px. */
@@ -1989,7 +2020,7 @@ export type TypeStyle = {
   /** Line height as a percentage of the font size. Only returned when `lineHeightPercent` (deprecated) is not 100. */
   lineHeightPercentFontSize?: number;
   /** The unit of the line height value specified by the user. */
-  lineHeightUnit?: "PIXELS" | "FONT_SIZE_%" | "INTRINSIC_%";
+  lineHeightUnit?: 'PIXELS' | 'FONT_SIZE_%' | 'INTRINSIC_%';
   /** Whether or not this style has overrides over a text style. The possible fields to override are semanticWeight, semanticItalic, hyperlink, and textDecoration. If this is true, then those fields are overrides if present. */
   isOverrideOverTextStyle?: boolean;
   /** The variables bound to a particular field on this style */
@@ -2035,7 +2066,7 @@ export type TextPathTypeStyle = {
 /** Instance swap preferred value. */
 export interface InstanceSwapPreferredValue {
   /** Type of node for this preferred value. */
-  type: "COMPONENT" | "COMPONENT_SET";
+  type: 'COMPONENT' | 'COMPONENT_SET';
   /** Key of this component or component set. */
   key: string;
 }
@@ -2087,7 +2118,7 @@ export type ConnectorEndpoint =
       /** Node ID that this endpoint attaches to. */
       endpointNodeId?: string;
       /** The magnet type is a string enum. */
-      magnet?: "AUTO" | "TOP" | "BOTTOM" | "LEFT" | "RIGHT" | "CENTER";
+      magnet?: 'AUTO' | 'TOP' | 'BOTTOM' | 'LEFT' | 'RIGHT' | 'CENTER';
     };
 
 export type ConnectorTextBackground = CornerTrait & MinimalFillsTrait;
@@ -2130,7 +2161,7 @@ export interface DocumentationLink {
 
 /** Contains a variable alias */
 export interface VariableAlias {
-  type: "VARIABLE_ALIAS";
+  type: 'VARIABLE_ALIAS';
   /** The id of the variable that the current variable is aliased to. This variable can be a local or remote variable, and both can be retrieved via the GET /v1/files/:file_key/variables/local endpoint. */
   id: string;
 }
@@ -2153,11 +2184,11 @@ export interface Interaction {
  */
 export type Trigger =
   | {
-      type: "ON_CLICK" | "ON_HOVER" | "ON_PRESS" | "ON_DRAG";
+      type: 'ON_CLICK' | 'ON_HOVER' | 'ON_PRESS' | 'ON_DRAG';
     }
   | AfterTimeoutTrigger
   | {
-      type: "MOUSE_ENTER" | "MOUSE_LEAVE" | "MOUSE_UP" | "MOUSE_DOWN";
+      type: 'MOUSE_ENTER' | 'MOUSE_LEAVE' | 'MOUSE_UP' | 'MOUSE_DOWN';
       delay: number;
       /**
        * Whether this is a [deprecated version](https://help.figma.com/hc/en-us/articles/360040035834-Prototype-triggers#h_01HHN04REHJNP168R26P1CMP0A) of the trigger that was left unchanged for backwards compatibility.
@@ -2168,29 +2199,29 @@ export type Trigger =
   | OnKeyDownTrigger
   | OnMediaHitTrigger
   | {
-      type: "ON_MEDIA_END";
+      type: 'ON_MEDIA_END';
     };
 
 export interface AfterTimeoutTrigger {
-  type: "AFTER_TIMEOUT";
+  type: 'AFTER_TIMEOUT';
   timeout: number;
 }
 
 export interface OnKeyDownTrigger {
-  type: "ON_KEY_DOWN";
-  device: "KEYBOARD" | "XBOX_ONE" | "PS4" | "SWITCH_PRO" | "UNKNOWN_CONTROLLER";
+  type: 'ON_KEY_DOWN';
+  device: 'KEYBOARD' | 'XBOX_ONE' | 'PS4' | 'SWITCH_PRO' | 'UNKNOWN_CONTROLLER';
   keyCodes: number[];
 }
 
 export interface OnMediaHitTrigger {
-  type: "ON_MEDIA_HIT";
+  type: 'ON_MEDIA_HIT';
   mediaHitTime: number;
 }
 
 /** An action that is performed when a trigger is activated. */
 export type Action =
   | {
-      type: "BACK" | "CLOSE";
+      type: 'BACK' | 'CLOSE';
     }
   | OpenURLAction
   | UpdateMediaRuntimeAction
@@ -2201,39 +2232,39 @@ export type Action =
 
 /** An action that opens a URL. */
 export interface OpenURLAction {
-  type: "URL";
+  type: 'URL';
   url: string;
 }
 
 /** An action that affects a video node in the Figma viewer. For example, to play, pause, or skip. */
 export type UpdateMediaRuntimeAction =
   | {
-      type: "UPDATE_MEDIA_RUNTIME";
+      type: 'UPDATE_MEDIA_RUNTIME';
       destinationId: string | null;
       mediaAction:
-        | "PLAY"
-        | "PAUSE"
-        | "TOGGLE_PLAY_PAUSE"
-        | "MUTE"
-        | "UNMUTE"
-        | "TOGGLE_MUTE_UNMUTE";
+        | 'PLAY'
+        | 'PAUSE'
+        | 'TOGGLE_PLAY_PAUSE'
+        | 'MUTE'
+        | 'UNMUTE'
+        | 'TOGGLE_MUTE_UNMUTE';
     }
   | {
-      type: "UPDATE_MEDIA_RUNTIME";
+      type: 'UPDATE_MEDIA_RUNTIME';
       destinationId?: string | null;
-      mediaAction: "SKIP_FORWARD" | "SKIP_BACKWARD";
+      mediaAction: 'SKIP_FORWARD' | 'SKIP_BACKWARD';
       amountToSkip: number;
     }
   | {
-      type: "UPDATE_MEDIA_RUNTIME";
+      type: 'UPDATE_MEDIA_RUNTIME';
       destinationId?: string | null;
-      mediaAction: "SKIP_TO";
+      mediaAction: 'SKIP_TO';
       newTimestamp: number;
     };
 
 /** An action that navigates to a specific node in the Figma viewer. */
 export interface NodeAction {
-  type: "NODE";
+  type: 'NODE';
   destinationId: string | null;
   /**
    * The method of navigation. The possible values are:
@@ -2262,7 +2293,7 @@ export type Transition = SimpleTransition | DirectionalTransition;
 
 /** Describes an animation used when navigating in a prototype. */
 export interface SimpleTransition {
-  type: "DISSOLVE" | "SMART_ANIMATE" | "SCROLL_ANIMATE";
+  type: 'DISSOLVE' | 'SMART_ANIMATE' | 'SCROLL_ANIMATE';
   /** The duration of the transition in milliseconds. */
   duration: number;
   /** The easing curve of the transition. */
@@ -2271,8 +2302,8 @@ export interface SimpleTransition {
 
 /** Describes an animation used when navigating in a prototype. */
 export interface DirectionalTransition {
-  type: "MOVE_IN" | "MOVE_OUT" | "PUSH" | "SLIDE_IN" | "SLIDE_OUT";
-  direction: "LEFT" | "RIGHT" | "TOP" | "BOTTOM";
+  type: 'MOVE_IN' | 'MOVE_OUT' | 'PUSH' | 'SLIDE_IN' | 'SLIDE_OUT';
+  direction: 'LEFT' | 'RIGHT' | 'TOP' | 'BOTTOM';
   /** The duration of the transition in milliseconds. */
   duration: number;
   /** The easing curve of the transition. */
@@ -2306,7 +2337,7 @@ export interface Easing {
 
 /** Sets a variable to a specific value. */
 export interface SetVariableAction {
-  type: "SET_VARIABLE";
+  type: 'SET_VARIABLE';
   variableId: string | null;
   /** A value to set a variable to during prototyping. */
   variableValue?: VariableData;
@@ -2314,14 +2345,14 @@ export interface SetVariableAction {
 
 /** Sets a variable to a specific mode. */
 export interface SetVariableModeAction {
-  type: "SET_VARIABLE_MODE";
+  type: 'SET_VARIABLE_MODE';
   variableCollectionId?: string | null;
   variableModeId?: string | null;
 }
 
 /** Checks if a condition is met before performing certain actions by using an if/else conditional statement. */
 export interface ConditionalAction {
-  type: "CONDITIONAL";
+  type: 'CONDITIONAL';
   conditionalBlocks: ConditionalBlock[];
 }
 
@@ -2363,18 +2394,18 @@ export interface Measurement {
 /** The node and side a measurement is pinned to */
 export interface MeasurementStartEnd {
   nodeId: string;
-  side: "TOP" | "RIGHT" | "BOTTOM" | "LEFT";
+  side: 'TOP' | 'RIGHT' | 'BOTTOM' | 'LEFT';
 }
 
 /** Measurement offset relative to the inside of the start node */
 export interface MeasurementOffsetInner {
-  type: "INNER";
+  type: 'INNER';
   relative: number;
 }
 
 /** Measurement offset relative to the outside of the start node */
 export interface MeasurementOffsetOuter {
-  type: "OUTER";
+  type: 'OUTER';
   fixed: number;
 }
 
@@ -2400,11 +2431,7 @@ export interface Region {
    * The corner of the comment region to pin to the node's corner as a string enum.
    * @default "bottom-right"
    */
-  comment_pin_corner?:
-    | "top-left"
-    | "top-right"
-    | "bottom-left"
-    | "bottom-right";
+  comment_pin_corner?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 }
 
 /** Position of a region comment relative to the frame to which it is attached. */
@@ -2421,11 +2448,7 @@ export interface FrameOffsetRegion {
    * The corner of the comment region to pin to the node's corner as a string enum.
    * @default "bottom-right"
    */
-  comment_pin_corner?:
-    | "top-left"
-    | "top-right"
-    | "bottom-left"
-    | "bottom-right";
+  comment_pin_corner?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 }
 
 /** A comment or reply left by a user. */
@@ -2730,11 +2753,11 @@ export interface WebhookBasePayload {
 }
 
 export type WebhookPingPayload = WebhookBasePayload & {
-  event_type: "PING";
+  event_type: 'PING';
 };
 
 export type WebhookFileUpdatePayload = WebhookBasePayload & {
-  event_type: "FILE_UPDATE";
+  event_type: 'FILE_UPDATE';
   /** The key of the file that was updated */
   file_key: string;
   /** The name of the file that was updated */
@@ -2742,7 +2765,7 @@ export type WebhookFileUpdatePayload = WebhookBasePayload & {
 };
 
 export type WebhookFileDeletePayload = WebhookBasePayload & {
-  event_type: "FILE_DELETE";
+  event_type: 'FILE_DELETE';
   /** The key of the file that was deleted */
   file_key: string;
   /** The name of the file that was deleted */
@@ -2752,7 +2775,7 @@ export type WebhookFileDeletePayload = WebhookBasePayload & {
 };
 
 export type WebhookFileVersionUpdatePayload = WebhookBasePayload & {
-  event_type: "FILE_VERSION_UPDATE";
+  event_type: 'FILE_VERSION_UPDATE';
   /**
    * UTC ISO 8601 timestamp of when the version was created
    * @format date-time
@@ -2771,7 +2794,7 @@ export type WebhookFileVersionUpdatePayload = WebhookBasePayload & {
 };
 
 export type WebhookLibraryPublishPayload = WebhookBasePayload & {
-  event_type: "LIBRARY_PUBLISH";
+  event_type: 'LIBRARY_PUBLISH';
   /** Components that were created by the library publish */
   created_components: LibraryItemData[];
   /** Styles that were created by the library publish */
@@ -2803,7 +2826,7 @@ export type WebhookLibraryPublishPayload = WebhookBasePayload & {
 };
 
 export type WebhookFileCommentPayload = WebhookBasePayload & {
-  event_type: "FILE_COMMENT";
+  event_type: 'FILE_COMMENT';
   /** Contents of the comment itself */
   comment: CommentFragment[];
   /** Unique identifier for comment */
@@ -2824,7 +2847,7 @@ export type WebhookFileCommentPayload = WebhookBasePayload & {
 };
 
 export type WebhookDevModeStatusUpdatePayload = WebhookBasePayload & {
-  event_type: "DEV_MODE_STATUS_UPDATE";
+  event_type: 'DEV_MODE_STATUS_UPDATE';
   /** The key of the file that was updated */
   file_key: string;
   /** The name of the file that was updated */
@@ -2842,7 +2865,7 @@ export type WebhookDevModeStatusUpdatePayload = WebhookBasePayload & {
 /** A Figma user */
 export interface ActivityLogUserEntity {
   /** The type of entity. */
-  type: "user";
+  type: 'user';
   /** Unique stable id of the user. */
   id: string;
   /** Name of the user. */
@@ -2854,23 +2877,23 @@ export interface ActivityLogUserEntity {
 /** A Figma Design or FigJam file */
 export interface ActivityLogFileEntity {
   /** The type of entity. */
-  type: "file";
+  type: 'file';
   /** Unique identifier of the file. */
   key: string;
   /** Name of the file. */
   name: string;
   /** Indicates if the object is a file on Figma Design or FigJam. */
-  editor_type: "figma" | "figjam";
+  editor_type: 'figma' | 'figjam';
   /** Access policy for users who have the link to the file. */
   link_access: LinkAccess;
   /** Access policy for users who have the link to the file's prototype. */
-  proto_link_access: "view" | "org_view" | "inherit";
+  proto_link_access: 'view' | 'org_view' | 'inherit';
 }
 
 /** A file branch that diverges from and can be merged back into the main file */
 export interface ActivityLogFileRepoEntity {
   /** The type of entity. */
-  type: "file_repo";
+  type: 'file_repo';
   /** Unique identifier of the file branch. */
   id: string;
   /** Name of the file. */
@@ -2882,7 +2905,7 @@ export interface ActivityLogFileRepoEntity {
 /** A project that a collection of Figma files are grouped under */
 export interface ActivityLogProjectEntity {
   /** The type of entity. */
-  type: "project";
+  type: 'project';
   /** Unique identifier of the project. */
   id: string;
   /** Name of the project. */
@@ -2892,7 +2915,7 @@ export interface ActivityLogProjectEntity {
 /** A Figma team that contains multiple users and projects */
 export interface ActivityLogTeamEntity {
   /** The type of entity. */
-  type: "team";
+  type: 'team';
   /** Unique identifier of the team. */
   id: string;
   /** Name of the team. */
@@ -2902,7 +2925,7 @@ export interface ActivityLogTeamEntity {
 /** Part of the organizational hierarchy of managing files and users within Figma, only available on the Enterprise Plan */
 export interface ActivityLogWorkspaceEntity {
   /** The type of entity. */
-  type: "workspace";
+  type: 'workspace';
   /** Unique identifier of the workspace. */
   id: string;
   /** Name of the workspace. */
@@ -2912,7 +2935,7 @@ export interface ActivityLogWorkspaceEntity {
 /** A Figma organization */
 export interface ActivityLogOrgEntity {
   /** The type of entity. */
-  type: "org";
+  type: 'org';
   /** Unique identifier of the organization. */
   id: string;
   /** Name of the organization. */
@@ -2922,25 +2945,25 @@ export interface ActivityLogOrgEntity {
 /** A Figma plugin */
 export interface ActivityLogPluginEntity {
   /** The type of entity. */
-  type: "plugin";
+  type: 'plugin';
   /** Unique identifier of the plugin. */
   id: string;
   /** Name of the plugin. */
   name: string;
   /** Indicates if the object is a plugin is available on Figma Design or FigJam. */
-  editor_type: "figma" | "figjam";
+  editor_type: 'figma' | 'figjam';
 }
 
 /** A Figma widget */
 export interface ActivityLogWidgetEntity {
   /** The type of entity. */
-  type: "widget";
+  type: 'widget';
   /** Unique identifier of the widget. */
   id: string;
   /** Name of the widget. */
   name: string;
   /** Indicates if the object is a widget available on Figma Design or FigJam. */
-  editor_type: "figma" | "figjam";
+  editor_type: 'figma' | 'figjam';
 }
 
 /** An event returned by the Activity Logs API. */
@@ -2952,7 +2975,7 @@ export interface ActivityLog {
   /** The user who performed the action. */
   actor: {
     /** The type of the user. */
-    type?: "user";
+    type?: 'user';
     /** The ID of the user. */
     id?: string;
     /** The name of the user. For SCIM events, the value is "SCIM Provider". For official support actions, the value is "Figma Support". */
@@ -2970,31 +2993,31 @@ export interface ActivityLog {
   /** The resource the actor took the action on. It can be a user, file, project or other resource types. */
   entity:
     | ({
-        type: "user";
+        type: 'user';
       } & ActivityLogUserEntity)
     | ({
-        type: "file";
+        type: 'file';
       } & ActivityLogFileEntity)
     | ({
-        type: "file_repo";
+        type: 'file_repo';
       } & ActivityLogFileRepoEntity)
     | ({
-        type: "project";
+        type: 'project';
       } & ActivityLogProjectEntity)
     | ({
-        type: "team";
+        type: 'team';
       } & ActivityLogTeamEntity)
     | ({
-        type: "workspace";
+        type: 'workspace';
       } & ActivityLogWorkspaceEntity)
     | ({
-        type: "org";
+        type: 'org';
       } & ActivityLogOrgEntity)
     | ({
-        type: "plugin";
+        type: 'plugin';
       } & ActivityLogPluginEntity)
     | ({
-        type: "widget";
+        type: 'widget';
       } & ActivityLogWidgetEntity);
   /** Contextual information about the event. */
   context: {
@@ -3020,7 +3043,7 @@ export interface PaymentStatus {
    * - `PAID`: user has an active purchase on the resource
    * - `TRIAL`: user is in the trial period for a subscription resource
    */
-  type?: "UNPAID" | "PAID" | "TRIAL";
+  type?: 'UNPAID' | 'PAID' | 'TRIAL';
 }
 
 /** An object describing a user's payment information for a plugin, widget, or Community file. */
@@ -3030,7 +3053,7 @@ export interface PaymentInformation {
   /** The ID of the plugin, widget, or Community file that was queried. Can be used to verify the validity of a response. */
   resource_id: string;
   /** The type of the resource. */
-  resource_type: "PLUGIN" | "WIDGET" | "COMMUNITY_FILE";
+  resource_type: 'PLUGIN' | 'WIDGET' | 'COMMUNITY_FILE';
   /** An object describing the user's payment status. */
   payment_status: PaymentStatus;
   /**
@@ -3061,6 +3084,8 @@ export interface LocalVariableCollection {
   modes: {
     /** The unique identifier of this mode. */
     modeId: string;
+    /** The unique identifier of this mode's parent mode from the parent variable collection. This will be `undefined` if this mode does not inherit from a parent mode. */
+    parentModeId?: string;
     /** The name of this mode. */
     name: string;
   }[];
@@ -3068,6 +3093,14 @@ export interface LocalVariableCollection {
   defaultModeId: string;
   /** Whether this variable collection is remote. */
   remote: boolean;
+  /** Whether this variable collection is an extension of another variable collection. */
+  isExtension?: boolean;
+  /** The id of the parent variable collection that this variable collection is an extension of. If this variable collection is not an extension, this value will be `undefined`. */
+  parentVariableCollectionId?: string;
+  /** The id of the root variable collection in the extension chain. This is the ID of the original (non-extended) collection at the top of the parent chain. For example, if Collection C extends B which extends A (root), then `rootVariableCollectionId` is A's ID. If this variable collection is not an extension, this value will be `undefined`. */
+  rootVariableCollectionId?: string;
+  /** The overrides for the variables in this variable collection as a map of variable ids to a map of mode ids to variable values. */
+  variableOverrides?: Record<string, Record<string, VariableValue>>;
   /**
    * Whether this variable collection is hidden when publishing the current file as a library.
    * @default false
@@ -3090,10 +3123,7 @@ export interface LocalVariable {
   /** The resolved type of the variable. */
   resolvedType: VariableResolvedDataType;
   /** The values for each mode of this variable. */
-  valuesByMode: Record<
-    string,
-    boolean | number | string | RGBA | VariableAlias
-  >;
+  valuesByMode: Record<string, boolean | number | string | RGBA | VariableAlias>;
   /** Whether this variable is remote. */
   remote: boolean;
   /** The description of this variable. */
@@ -3162,7 +3192,7 @@ export interface PublishedVariable {
 /** An object that contains details about creating a `VariableCollection`. */
 export interface VariableCollectionCreate {
   /** The action to perform for the variable collection. */
-  action: "CREATE";
+  action: 'CREATE';
   /** A temporary id for this variable collection. */
   id?: string;
   /** The name of this variable collection. */
@@ -3174,12 +3204,16 @@ export interface VariableCollectionCreate {
    * @default false
    */
   hiddenFromPublishing?: boolean;
+  /** The id of the parent variable collection that this variable collection is extending from. */
+  parentVariableCollectionId?: string;
+  /** Maps inherited modes from the parent variable collection to the initial mode ids on the extended variable collection. */
+  initialModeIdToParentModeIdMapping?: Record<string, string>;
 }
 
 /** An object that contains details about updating a `VariableCollection`. */
 export interface VariableCollectionUpdate {
   /** The action to perform for the variable collection. */
-  action: "UPDATE";
+  action: 'UPDATE';
   /** The id of the variable collection to update. */
   id: string;
   /** The name of this variable collection. */
@@ -3194,69 +3228,47 @@ export interface VariableCollectionUpdate {
 /** An object that contains details about deleting a `VariableCollection`. */
 export interface VariableCollectionDelete {
   /** The action to perform for the variable collection. */
-  action: "DELETE";
+  action: 'DELETE';
   /** The id of the variable collection to delete. */
   id: string;
 }
 
-export type VariableCollectionChange =
-  | ({
-      action: "CREATE";
-    } & VariableCollectionCreate)
-  | ({
-      action: "UPDATE";
-    } & VariableCollectionUpdate)
-  | ({
-      action: "DELETE";
-    } & VariableCollectionDelete);
-
 /** An object that contains details about creating a `VariableMode`. */
 export interface VariableModeCreate {
   /** The action to perform for the variable mode. */
-  action: "CREATE";
+  action: 'CREATE';
   /** A temporary id for this variable mode. */
   id?: string;
   /** The name of this variable mode. */
   name: string;
-  /** The variable collection that will contain the mode. You can use the temporary id of a variable collection. */
+  /** The variable collection that will contain the mode. You can use the temporary id of a variable collection. New modes cannot be created on extended collections. */
   variableCollectionId: string;
 }
 
 /** An object that contains details about updating a `VariableMode`. */
 export interface VariableModeUpdate {
   /** The action to perform for the variable mode. */
-  action: "UPDATE";
+  action: 'UPDATE';
   /** The id of the variable mode to update. */
   id: string;
   /** The name of this variable mode. */
   name?: string;
-  /** The variable collection that contains the mode. */
+  /** The variable collection that contains the mode. Modes cannot be updated on extended collections. */
   variableCollectionId: string;
 }
 
 /** An object that contains details about deleting a `VariableMode`. */
 export interface VariableModeDelete {
   /** The action to perform for the variable mode. */
-  action: "DELETE";
-  /** The id of the variable mode to delete. */
+  action: 'DELETE';
+  /** The id of the variable mode to delete. Modes cannot be deleted on extended collections unless its parent mode has been deleted. */
   id: string;
 }
-
-export type VariableModeChange =
-  | ({
-      action: "CREATE";
-    } & VariableModeCreate)
-  | ({
-      action: "UPDATE";
-    } & VariableModeUpdate)
-  | ({
-      action: "DELETE";
-    } & VariableModeDelete);
 
 /** An object that contains details about creating a `Variable`. */
 export interface VariableCreate {
   /** The action to perform for the variable. */
-  action: "CREATE";
+  action: 'CREATE';
   /** A temporary id for this variable. */
   id?: string;
   /** The name of this variable. */
@@ -3281,7 +3293,7 @@ export interface VariableCreate {
 /** An object that contains details about updating a `Variable`. */
 export interface VariableUpdate {
   /** The action to perform for the variable. */
-  action: "UPDATE";
+  action: 'UPDATE';
   /** The id of the variable to update. */
   id: string;
   /** The name of this variable. */
@@ -3302,21 +3314,10 @@ export interface VariableUpdate {
 /** An object that contains details about deleting a `Variable`. */
 export interface VariableDelete {
   /** The action to perform for the variable. */
-  action: "DELETE";
+  action: 'DELETE';
   /** The id of the variable to delete. */
   id: string;
 }
-
-export type VariableChange =
-  | ({
-      action: "CREATE";
-    } & VariableCreate)
-  | ({
-      action: "UPDATE";
-    } & VariableUpdate)
-  | ({
-      action: "DELETE";
-    } & VariableDelete);
 
 /** An object that represents a value for a given mode of a variable. All properties are required. */
 export interface VariableModeValue {
@@ -3324,18 +3325,12 @@ export interface VariableModeValue {
   variableId: string;
   /** Must correspond to a mode in the variable collection that contains the target variable. */
   modeId: string;
-  /** The value for the variable. The value must match the variable's type. If setting to a variable alias, the alias must resolve to this type. */
+  /** The value for the variable. The value must match the variable's type. If setting to a variable alias, the alias must resolve to this type. If overriding a value, the value type must match the variable's type. If removing an overridden value, the value must be `null`. */
   value: VariableValue;
 }
 
-/** The value for the variable. The value must match the variable's type. If setting to a variable alias, the alias must resolve to this type. */
-export type VariableValue =
-  | boolean
-  | number
-  | string
-  | RGB
-  | RGBA
-  | VariableAlias;
+/** The value for the variable. The value must match the variable's type. If setting to a variable alias, the alias must resolve to this type. If overriding a value, the value type must match the variable's type. If removing an overridden value, the value must be `null`. */
+export type VariableValue = boolean | number | string | RGB | RGBA | VariableAlias | null;
 
 /** A dev resource in a file */
 export interface DevResource {
@@ -3619,7 +3614,7 @@ export namespace V1 {
        */
       lastModified: string;
       /** The type of editor associated with this file. */
-      editorType: "figma" | "figjam";
+      editorType: 'figma' | 'figjam';
       /** A URL to a thumbnail image of the file. */
       thumbnailUrl?: string;
       /** The version number of the file. This number is incremented when a file is modified and can be used to check if the file has changed between requests. */
@@ -3699,7 +3694,7 @@ export namespace V1 {
        */
       lastModified: string;
       /** The type of editor associated with this file. */
-      editorType: "figma" | "figjam";
+      editorType: 'figma' | 'figjam';
       /** A URL to a thumbnail image of the file. */
       thumbnailUrl: string;
       /** The version number of the file. This number is incremented when a file is modified and can be used to check if the file has changed between requests. */
@@ -3753,7 +3748,7 @@ export namespace V1 {
        * A string enum for the image output format.
        * @default "png"
        */
-      format?: "jpg" | "png" | "svg" | "pdf";
+      format?: 'jpg' | 'png' | 'svg' | 'pdf';
       /**
        * Whether text elements are rendered as outlines (vector paths) or as `<text>` elements in SVGs.
        *
@@ -3860,7 +3855,7 @@ export namespace V1 {
       /** A URL to a thumbnail image of the file. */
       thumbnail_url?: string;
       /** The type of editor associated with this file. */
-      editorType: "figma" | "figjam" | "slides" | "buzz" | "sites" | "make";
+      editorType: 'figma' | 'figjam' | 'slides' | 'buzz' | 'sites' | 'make';
       /** The role of the user making the API request in relation to the file. */
       role?: Role;
       /** Access policy for users who have the link to the file. */
@@ -4454,7 +4449,7 @@ export namespace V1 {
        * Event order by timestamp. This param can be either "asc" (default) or "desc".
        * @default "asc"
        */
-      order?: "asc" | "desc";
+      order?: 'asc' | 'desc';
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
@@ -4744,7 +4739,7 @@ export namespace V1 {
       /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
       cursor?: string;
       /** A dimension to group returned analytics data by. */
-      group_by: "component" | "team";
+      group_by: 'component' | 'team';
       /** ISO 8601 date string (YYYY-MM-DD) of the earliest week to include. Dates are rounded back to the nearest start of a week. Defaults to one year prior. */
       start_date?: string;
       /** ISO 8601 date string (YYYY-MM-DD) of the latest week to include. Dates are rounded forward to the nearest end of a week. Defaults to the latest computed week. */
@@ -4754,9 +4749,7 @@ export namespace V1 {
     export type RequestHeaders = {};
     export type ResponseBody = {
       /** An array of analytics data. */
-      rows:
-        | LibraryAnalyticsComponentActionsByAsset[]
-        | LibraryAnalyticsComponentActionsByTeam[];
+      rows: LibraryAnalyticsComponentActionsByAsset[] | LibraryAnalyticsComponentActionsByTeam[];
       /** Whether there is a next page of data that can be fetched. */
       next_page: boolean;
       /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
@@ -4781,15 +4774,13 @@ export namespace V1 {
       /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
       cursor?: string;
       /** A dimension to group returned analytics data by. */
-      group_by: "component" | "file";
+      group_by: 'component' | 'file';
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
     export type ResponseBody = {
       /** An array of analytics data. */
-      rows:
-        | LibraryAnalyticsComponentUsagesByAsset[]
-        | LibraryAnalyticsComponentUsagesByFile[];
+      rows: LibraryAnalyticsComponentUsagesByAsset[] | LibraryAnalyticsComponentUsagesByFile[];
       /** Whether there is a next page of data that can be fetched. */
       next_page: boolean;
       /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
@@ -4814,7 +4805,7 @@ export namespace V1 {
       /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
       cursor?: string;
       /** A dimension to group returned analytics data by. */
-      group_by: "style" | "team";
+      group_by: 'style' | 'team';
       /** ISO 8601 date string (YYYY-MM-DD) of the earliest week to include. Dates are rounded back to the nearest start of a week. Defaults to one year prior. */
       start_date?: string;
       /** ISO 8601 date string (YYYY-MM-DD) of the latest week to include. Dates are rounded forward to the nearest end of a week. Defaults to the latest computed week. */
@@ -4824,9 +4815,7 @@ export namespace V1 {
     export type RequestHeaders = {};
     export type ResponseBody = {
       /** An array of analytics data. */
-      rows:
-        | LibraryAnalyticsStyleActionsByAsset[]
-        | LibraryAnalyticsStyleActionsByTeam[];
+      rows: LibraryAnalyticsStyleActionsByAsset[] | LibraryAnalyticsStyleActionsByTeam[];
       /** Whether there is a next page of data that can be fetched. */
       next_page: boolean;
       /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
@@ -4851,15 +4840,13 @@ export namespace V1 {
       /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
       cursor?: string;
       /** A dimension to group returned analytics data by. */
-      group_by: "style" | "file";
+      group_by: 'style' | 'file';
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
     export type ResponseBody = {
       /** An array of analytics data. */
-      rows:
-        | LibraryAnalyticsStyleUsagesByAsset[]
-        | LibraryAnalyticsStyleUsagesByFile[];
+      rows: LibraryAnalyticsStyleUsagesByAsset[] | LibraryAnalyticsStyleUsagesByFile[];
       /** Whether there is a next page of data that can be fetched. */
       next_page: boolean;
       /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
@@ -4884,7 +4871,7 @@ export namespace V1 {
       /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
       cursor?: string;
       /** A dimension to group returned analytics data by. */
-      group_by: "variable" | "team";
+      group_by: 'variable' | 'team';
       /** ISO 8601 date string (YYYY-MM-DD) of the earliest week to include. Dates are rounded back to the nearest start of a week. Defaults to one year prior. */
       start_date?: string;
       /** ISO 8601 date string (YYYY-MM-DD) of the latest week to include. Dates are rounded forward to the nearest end of a week. Defaults to the latest computed week. */
@@ -4894,9 +4881,7 @@ export namespace V1 {
     export type RequestHeaders = {};
     export type ResponseBody = {
       /** An array of analytics data. */
-      rows:
-        | LibraryAnalyticsVariableActionsByAsset[]
-        | LibraryAnalyticsVariableActionsByTeam[];
+      rows: LibraryAnalyticsVariableActionsByAsset[] | LibraryAnalyticsVariableActionsByTeam[];
       /** Whether there is a next page of data that can be fetched. */
       next_page: boolean;
       /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
@@ -4921,15 +4906,13 @@ export namespace V1 {
       /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
       cursor?: string;
       /** A dimension to group returned analytics data by. */
-      group_by: "variable" | "file";
+      group_by: 'variable' | 'file';
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
     export type ResponseBody = {
       /** An array of analytics data. */
-      rows:
-        | LibraryAnalyticsVariableUsagesByAsset[]
-        | LibraryAnalyticsVariableUsagesByFile[];
+      rows: LibraryAnalyticsVariableUsagesByAsset[] | LibraryAnalyticsVariableUsagesByFile[];
       /** Whether there is a next page of data that can be fetched. */
       next_page: boolean;
       /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
@@ -5125,13 +5108,13 @@ import type {
   AxiosResponse,
   HeadersDefaults,
   ResponseType,
-} from "axios";
-import axios from "axios";
+} from 'axios';
+import axios from 'axios';
 
 export type QueryParamsType = Record<string | number, any>;
 
 export interface FullRequestParams
-  extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
+  extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -5146,13 +5129,10 @@ export interface FullRequestParams
   body?: unknown;
 }
 
-export type RequestParams = Omit<
-  FullRequestParams,
-  "body" | "method" | "query" | "path"
->;
+export type RequestParams = Omit<FullRequestParams, 'body' | 'method' | 'query' | 'path'>;
 
 export interface ApiConfig<SecurityDataType = unknown>
-  extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
+  extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
   securityWorker?: (
     securityData: SecurityDataType | null,
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
@@ -5161,16 +5141,17 @@ export interface ApiConfig<SecurityDataType = unknown>
 }
 
 export enum ContentType {
-  Json = "application/json",
-  FormData = "multipart/form-data",
-  UrlEncoded = "application/x-www-form-urlencoded",
-  Text = "text/plain",
+  Json = 'application/json',
+  JsonApi = 'application/vnd.api+json',
+  FormData = 'multipart/form-data',
+  UrlEncoded = 'application/x-www-form-urlencoded',
+  Text = 'text/plain',
 }
 
 export class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
+  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
   private secure?: boolean;
   private format?: ResponseType;
 
@@ -5182,7 +5163,7 @@ export class HttpClient<SecurityDataType = unknown> {
   }: ApiConfig<SecurityDataType> = {}) {
     this.instance = axios.create({
       ...axiosConfig,
-      baseURL: axiosConfig.baseURL || "https://api.figma.com",
+      baseURL: axiosConfig.baseURL || 'https://api.figma.com',
     });
     this.secure = secure;
     this.format = format;
@@ -5205,9 +5186,7 @@ export class HttpClient<SecurityDataType = unknown> {
       ...(params2 || {}),
       headers: {
         ...((method &&
-          this.instance.defaults.headers[
-            method.toLowerCase() as keyof HeadersDefaults
-          ]) ||
+          this.instance.defaults.headers[method.toLowerCase() as keyof HeadersDefaults]) ||
           {}),
         ...(params1.headers || {}),
         ...((params2 && params2.headers) || {}),
@@ -5216,7 +5195,7 @@ export class HttpClient<SecurityDataType = unknown> {
   }
 
   protected stringifyFormItem(formItem: unknown) {
-    if (typeof formItem === "object" && formItem !== null) {
+    if (typeof formItem === 'object' && formItem !== null) {
       return JSON.stringify(formItem);
     } else {
       return `${formItem}`;
@@ -5229,15 +5208,11 @@ export class HttpClient<SecurityDataType = unknown> {
     }
     return Object.keys(input || {}).reduce((formData, key) => {
       const property = input[key];
-      const propertyContent: any[] =
-        property instanceof Array ? property : [property];
+      const propertyContent: any[] = property instanceof Array ? property : [property];
 
       for (const formItem of propertyContent) {
         const isFileType = formItem instanceof Blob || formItem instanceof File;
-        formData.append(
-          key,
-          isFileType ? formItem : this.stringifyFormItem(formItem),
-        );
+        formData.append(key, isFileType ? formItem : this.stringifyFormItem(formItem));
       }
 
       return formData;
@@ -5254,28 +5229,18 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<AxiosResponse<T>> => {
     const secureParams =
-      ((typeof secure === "boolean" ? secure : this.secure) &&
+      ((typeof secure === 'boolean' ? secure : this.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = format || this.format || undefined;
 
-    if (
-      type === ContentType.FormData &&
-      body &&
-      body !== null &&
-      typeof body === "object"
-    ) {
+    if (type === ContentType.FormData && body && body !== null && typeof body === 'object') {
       body = this.createFormData(body as Record<string, unknown>);
     }
 
-    if (
-      type === ContentType.Text &&
-      body &&
-      body !== null &&
-      typeof body !== "string"
-    ) {
+    if (type === ContentType.Text && body && body !== null && typeof body !== 'string') {
       body = JSON.stringify(body);
     }
 
@@ -5283,7 +5248,7 @@ export class HttpClient<SecurityDataType = unknown> {
       ...requestParams,
       headers: {
         ...(requestParams.headers || {}),
-        ...(type ? { "Content-Type": type } : {}),
+        ...(type ? { 'Content-Type': type } : {}),
       },
       params: query,
       responseType: responseFormat,
@@ -5295,7 +5260,7 @@ export class HttpClient<SecurityDataType = unknown> {
 
 /**
  * @title Figma API
- * @version 0.34.0
+ * @version 0.36.0
  * @termsOfService https://www.figma.com/developer-terms/
  * @baseUrl https://api.figma.com
  * @externalDocs https://www.figma.com/developers/api
@@ -5305,9 +5270,7 @@ export class HttpClient<SecurityDataType = unknown> {
  *
  * Note: we are releasing the OpenAPI specification as a beta given the large surface area and complexity of the REST API. If you notice any inaccuracies with the specification, please [file an issue](https://github.com/figma/rest-api-spec/issues).
  */
-export class Api<
-  SecurityDataType extends unknown,
-> extends HttpClient<SecurityDataType> {
+export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
   v1 = {
     /**
      * @description Returns the document identified by `file_key` as a JSON object. The file key can be parsed from any Figma file url: `https://www.figma.com/file/{file_key}/{title}`. The `document` property contains a node of type `DOCUMENT`. The `components` property contains a mapping from node IDs to component metadata. This is to help you determine which components each instance comes from.
@@ -5357,7 +5320,7 @@ export class Api<
            */
           lastModified: string;
           /** The type of editor associated with this file. */
-          editorType: "figma" | "figjam";
+          editorType: 'figma' | 'figjam';
           /** A URL to a thumbnail image of the file. */
           thumbnailUrl?: string;
           /** The version number of the file. This number is incremented when a file is modified and can be used to check if the file has changed between requests. */
@@ -5415,7 +5378,7 @@ export class Api<
           })
       >({
         path: `/v1/files/${fileKey}`,
-        method: "GET",
+        method: 'GET',
         query: query,
         secure: true,
         ...params,
@@ -5462,7 +5425,7 @@ export class Api<
            */
           lastModified: string;
           /** The type of editor associated with this file. */
-          editorType: "figma" | "figjam";
+          editorType: 'figma' | 'figjam';
           /** A URL to a thumbnail image of the file. */
           thumbnailUrl: string;
           /** The version number of the file. This number is incremented when a file is modified and can be used to check if the file has changed between requests. */
@@ -5508,7 +5471,7 @@ export class Api<
           })
       >({
         path: `/v1/files/${fileKey}/nodes`,
-        method: "GET",
+        method: 'GET',
         query: query,
         secure: true,
         ...params,
@@ -5540,7 +5503,7 @@ export class Api<
          * A string enum for the image output format.
          * @default "png"
          */
-        format?: "jpg" | "png" | "svg" | "pdf";
+        format?: 'jpg' | 'png' | 'svg' | 'pdf';
         /**
          * Whether text elements are rendered as outlines (vector paths) or as `<text>` elements in SVGs.
          *
@@ -5607,7 +5570,7 @@ export class Api<
           })
       >({
         path: `/v1/images/${fileKey}`,
-        method: "GET",
+        method: 'GET',
         query: query,
         secure: true,
         ...params,
@@ -5656,7 +5619,7 @@ export class Api<
           })
       >({
         path: `/v1/files/${fileKey}/images`,
-        method: "GET",
+        method: 'GET',
         secure: true,
         ...params,
       }),
@@ -5689,7 +5652,7 @@ export class Api<
           /** A URL to a thumbnail image of the file. */
           thumbnail_url?: string;
           /** The type of editor associated with this file. */
-          editorType: "figma" | "figjam" | "slides" | "buzz" | "sites" | "make";
+          editorType: 'figma' | 'figjam' | 'slides' | 'buzz' | 'sites' | 'make';
           /** The role of the user making the API request in relation to the file. */
           role?: Role;
           /** Access policy for users who have the link to the file. */
@@ -5721,7 +5684,7 @@ export class Api<
           })
       >({
         path: `/v1/files/${fileKey}/meta`,
-        method: "GET",
+        method: 'GET',
         secure: true,
         ...params,
       }),
@@ -5761,7 +5724,7 @@ export class Api<
           })
       >({
         path: `/v1/teams/${teamId}/projects`,
-        method: "GET",
+        method: 'GET',
         secure: true,
         ...params,
       }),
@@ -5823,7 +5786,7 @@ export class Api<
           })
       >({
         path: `/v1/projects/${projectId}/files`,
-        method: "GET",
+        method: 'GET',
         query: query,
         secure: true,
         ...params,
@@ -5878,7 +5841,7 @@ export class Api<
           })
       >({
         path: `/v1/files/${fileKey}/versions`,
-        method: "GET",
+        method: 'GET',
         query: query,
         secure: true,
         ...params,
@@ -5924,7 +5887,7 @@ export class Api<
           })
       >({
         path: `/v1/files/${fileKey}/comments`,
-        method: "GET",
+        method: 'GET',
         query: query,
         secure: true,
         ...params,
@@ -5975,7 +5938,7 @@ export class Api<
           })
       >({
         path: `/v1/files/${fileKey}/comments`,
-        method: "POST",
+        method: 'POST',
         body: data,
         secure: true,
         type: ContentType.Json,
@@ -5991,11 +5954,7 @@ export class Api<
      * @request DELETE:/v1/files/{file_key}/comments/{comment_id}
      * @secure
      */
-    deleteComment: (
-      fileKey: string,
-      commentId: string,
-      params: RequestParams = {},
-    ) =>
+    deleteComment: (fileKey: string, commentId: string, params: RequestParams = {}) =>
       this.request<
         {
           /** The status of the request. */
@@ -6021,7 +5980,7 @@ export class Api<
           })
       >({
         path: `/v1/files/${fileKey}/comments/${commentId}`,
-        method: "DELETE",
+        method: 'DELETE',
         secure: true,
         ...params,
       }),
@@ -6069,7 +6028,7 @@ export class Api<
           })
       >({
         path: `/v1/files/${fileKey}/comments/${commentId}/reactions`,
-        method: "GET",
+        method: 'GET',
         query: query,
         secure: true,
         ...params,
@@ -6122,7 +6081,7 @@ export class Api<
           })
       >({
         path: `/v1/files/${fileKey}/comments/${commentId}/reactions`,
-        method: "POST",
+        method: 'POST',
         body: data,
         secure: true,
         type: ContentType.Json,
@@ -6172,7 +6131,7 @@ export class Api<
           })
       >({
         path: `/v1/files/${fileKey}/comments/${commentId}/reactions`,
-        method: "DELETE",
+        method: 'DELETE',
         query: query,
         secure: true,
         ...params,
@@ -6207,7 +6166,7 @@ export class Api<
           })
       >({
         path: `/v1/me`,
-        method: "GET",
+        method: 'GET',
         secure: true,
         ...params,
       }),
@@ -6270,7 +6229,7 @@ export class Api<
           })
       >({
         path: `/v1/teams/${teamId}/components`,
-        method: "GET",
+        method: 'GET',
         query: query,
         secure: true,
         ...params,
@@ -6318,7 +6277,7 @@ export class Api<
           })
       >({
         path: `/v1/files/${fileKey}/components`,
-        method: "GET",
+        method: 'GET',
         secure: true,
         ...params,
       }),
@@ -6364,7 +6323,7 @@ export class Api<
           })
       >({
         path: `/v1/components/${key}`,
-        method: "GET",
+        method: 'GET',
         secure: true,
         ...params,
       }),
@@ -6427,7 +6386,7 @@ export class Api<
           })
       >({
         path: `/v1/teams/${teamId}/component_sets`,
-        method: "GET",
+        method: 'GET',
         query: query,
         secure: true,
         ...params,
@@ -6475,7 +6434,7 @@ export class Api<
           })
       >({
         path: `/v1/files/${fileKey}/component_sets`,
-        method: "GET",
+        method: 'GET',
         secure: true,
         ...params,
       }),
@@ -6521,7 +6480,7 @@ export class Api<
           })
       >({
         path: `/v1/component_sets/${key}`,
-        method: "GET",
+        method: 'GET',
         secure: true,
         ...params,
       }),
@@ -6584,7 +6543,7 @@ export class Api<
           })
       >({
         path: `/v1/teams/${teamId}/styles`,
-        method: "GET",
+        method: 'GET',
         query: query,
         secure: true,
         ...params,
@@ -6632,7 +6591,7 @@ export class Api<
           })
       >({
         path: `/v1/files/${fileKey}/styles`,
-        method: "GET",
+        method: 'GET',
         secure: true,
         ...params,
       }),
@@ -6678,7 +6637,7 @@ export class Api<
           })
       >({
         path: `/v1/styles/${key}`,
-        method: "GET",
+        method: 'GET',
         secure: true,
         ...params,
       }),
@@ -6706,7 +6665,7 @@ export class Api<
          * Event order by timestamp. This param can be either "asc" (default) or "desc".
          * @default "asc"
          */
-        order?: "asc" | "desc";
+        order?: 'asc' | 'desc';
       },
       params: RequestParams = {},
     ) =>
@@ -6747,7 +6706,7 @@ export class Api<
           })
       >({
         path: `/v1/activity_logs`,
-        method: "GET",
+        method: 'GET',
         query: query,
         secure: true,
         ...params,
@@ -6800,7 +6759,7 @@ export class Api<
           })
       >({
         path: `/v1/payments`,
-        method: "GET",
+        method: 'GET',
         query: query,
         secure: true,
         ...params,
@@ -6851,7 +6810,7 @@ export class Api<
           })
       >({
         path: `/v1/files/${fileKey}/variables/local`,
-        method: "GET",
+        method: 'GET',
         secure: true,
         ...params,
       }),
@@ -6901,7 +6860,7 @@ export class Api<
           })
       >({
         path: `/v1/files/${fileKey}/variables/published`,
-        method: "GET",
+        method: 'GET',
         secure: true,
         ...params,
       }),
@@ -6966,7 +6925,7 @@ export class Api<
           })
       >({
         path: `/v1/files/${fileKey}/variables`,
-        method: "POST",
+        method: 'POST',
         body: data,
         secure: true,
         type: ContentType.Json,
@@ -7021,7 +6980,7 @@ export class Api<
           })
       >({
         path: `/v1/files/${fileKey}/dev_resources`,
-        method: "GET",
+        method: 'GET',
         query: query,
         secure: true,
         ...params,
@@ -7088,7 +7047,7 @@ export class Api<
           })
       >({
         path: `/v1/dev_resources`,
-        method: "POST",
+        method: 'POST',
         body: data,
         secure: true,
         type: ContentType.Json,
@@ -7152,7 +7111,7 @@ export class Api<
           })
       >({
         path: `/v1/dev_resources`,
-        method: "PUT",
+        method: 'PUT',
         body: data,
         secure: true,
         type: ContentType.Json,
@@ -7168,11 +7127,7 @@ export class Api<
      * @request DELETE:/v1/files/{file_key}/dev_resources/{dev_resource_id}
      * @secure
      */
-    deleteDevResource: (
-      fileKey: string,
-      devResourceId: string,
-      params: RequestParams = {},
-    ) =>
+    deleteDevResource: (fileKey: string, devResourceId: string, params: RequestParams = {}) =>
       this.request<
         any,
         | (ErrorResponsePayloadWithErrorBoolean & {
@@ -7197,7 +7152,7 @@ export class Api<
           })
       >({
         path: `/v1/files/${fileKey}/dev_resources/${devResourceId}`,
-        method: "DELETE",
+        method: 'DELETE',
         secure: true,
         ...params,
       }),
@@ -7217,7 +7172,7 @@ export class Api<
         /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
         cursor?: string;
         /** A dimension to group returned analytics data by. */
-        group_by: "component" | "team";
+        group_by: 'component' | 'team';
         /** ISO 8601 date string (YYYY-MM-DD) of the earliest week to include. Dates are rounded back to the nearest start of a week. Defaults to one year prior. */
         start_date?: string;
         /** ISO 8601 date string (YYYY-MM-DD) of the latest week to include. Dates are rounded forward to the nearest end of a week. Defaults to the latest computed week. */
@@ -7258,7 +7213,7 @@ export class Api<
           })
       >({
         path: `/v1/analytics/libraries/${fileKey}/component/actions`,
-        method: "GET",
+        method: 'GET',
         query: query,
         secure: true,
         ...params,
@@ -7279,16 +7234,14 @@ export class Api<
         /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
         cursor?: string;
         /** A dimension to group returned analytics data by. */
-        group_by: "component" | "file";
+        group_by: 'component' | 'file';
       },
       params: RequestParams = {},
     ) =>
       this.request<
         {
           /** An array of analytics data. */
-          rows:
-            | LibraryAnalyticsComponentUsagesByAsset[]
-            | LibraryAnalyticsComponentUsagesByFile[];
+          rows: LibraryAnalyticsComponentUsagesByAsset[] | LibraryAnalyticsComponentUsagesByFile[];
           /** Whether there is a next page of data that can be fetched. */
           next_page: boolean;
           /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
@@ -7316,7 +7269,7 @@ export class Api<
           })
       >({
         path: `/v1/analytics/libraries/${fileKey}/component/usages`,
-        method: "GET",
+        method: 'GET',
         query: query,
         secure: true,
         ...params,
@@ -7337,7 +7290,7 @@ export class Api<
         /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
         cursor?: string;
         /** A dimension to group returned analytics data by. */
-        group_by: "style" | "team";
+        group_by: 'style' | 'team';
         /** ISO 8601 date string (YYYY-MM-DD) of the earliest week to include. Dates are rounded back to the nearest start of a week. Defaults to one year prior. */
         start_date?: string;
         /** ISO 8601 date string (YYYY-MM-DD) of the latest week to include. Dates are rounded forward to the nearest end of a week. Defaults to the latest computed week. */
@@ -7348,9 +7301,7 @@ export class Api<
       this.request<
         {
           /** An array of analytics data. */
-          rows:
-            | LibraryAnalyticsStyleActionsByAsset[]
-            | LibraryAnalyticsStyleActionsByTeam[];
+          rows: LibraryAnalyticsStyleActionsByAsset[] | LibraryAnalyticsStyleActionsByTeam[];
           /** Whether there is a next page of data that can be fetched. */
           next_page: boolean;
           /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
@@ -7378,7 +7329,7 @@ export class Api<
           })
       >({
         path: `/v1/analytics/libraries/${fileKey}/style/actions`,
-        method: "GET",
+        method: 'GET',
         query: query,
         secure: true,
         ...params,
@@ -7399,16 +7350,14 @@ export class Api<
         /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
         cursor?: string;
         /** A dimension to group returned analytics data by. */
-        group_by: "style" | "file";
+        group_by: 'style' | 'file';
       },
       params: RequestParams = {},
     ) =>
       this.request<
         {
           /** An array of analytics data. */
-          rows:
-            | LibraryAnalyticsStyleUsagesByAsset[]
-            | LibraryAnalyticsStyleUsagesByFile[];
+          rows: LibraryAnalyticsStyleUsagesByAsset[] | LibraryAnalyticsStyleUsagesByFile[];
           /** Whether there is a next page of data that can be fetched. */
           next_page: boolean;
           /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
@@ -7436,7 +7385,7 @@ export class Api<
           })
       >({
         path: `/v1/analytics/libraries/${fileKey}/style/usages`,
-        method: "GET",
+        method: 'GET',
         query: query,
         secure: true,
         ...params,
@@ -7457,7 +7406,7 @@ export class Api<
         /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
         cursor?: string;
         /** A dimension to group returned analytics data by. */
-        group_by: "variable" | "team";
+        group_by: 'variable' | 'team';
         /** ISO 8601 date string (YYYY-MM-DD) of the earliest week to include. Dates are rounded back to the nearest start of a week. Defaults to one year prior. */
         start_date?: string;
         /** ISO 8601 date string (YYYY-MM-DD) of the latest week to include. Dates are rounded forward to the nearest end of a week. Defaults to the latest computed week. */
@@ -7468,9 +7417,7 @@ export class Api<
       this.request<
         {
           /** An array of analytics data. */
-          rows:
-            | LibraryAnalyticsVariableActionsByAsset[]
-            | LibraryAnalyticsVariableActionsByTeam[];
+          rows: LibraryAnalyticsVariableActionsByAsset[] | LibraryAnalyticsVariableActionsByTeam[];
           /** Whether there is a next page of data that can be fetched. */
           next_page: boolean;
           /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
@@ -7498,7 +7445,7 @@ export class Api<
           })
       >({
         path: `/v1/analytics/libraries/${fileKey}/variable/actions`,
-        method: "GET",
+        method: 'GET',
         query: query,
         secure: true,
         ...params,
@@ -7519,16 +7466,14 @@ export class Api<
         /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
         cursor?: string;
         /** A dimension to group returned analytics data by. */
-        group_by: "variable" | "file";
+        group_by: 'variable' | 'file';
       },
       params: RequestParams = {},
     ) =>
       this.request<
         {
           /** An array of analytics data. */
-          rows:
-            | LibraryAnalyticsVariableUsagesByAsset[]
-            | LibraryAnalyticsVariableUsagesByFile[];
+          rows: LibraryAnalyticsVariableUsagesByAsset[] | LibraryAnalyticsVariableUsagesByFile[];
           /** Whether there is a next page of data that can be fetched. */
           next_page: boolean;
           /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
@@ -7556,7 +7501,7 @@ export class Api<
           })
       >({
         path: `/v1/analytics/libraries/${fileKey}/variable/usages`,
-        method: "GET",
+        method: 'GET',
         query: query,
         secure: true,
         ...params,
@@ -7602,7 +7547,7 @@ export class Api<
           })
       >({
         path: `/v2/webhooks`,
-        method: "GET",
+        method: 'GET',
         query: query,
         secure: true,
         ...params,
@@ -7661,7 +7606,7 @@ export class Api<
           })
       >({
         path: `/v2/webhooks`,
-        method: "POST",
+        method: 'POST',
         body: data,
         secure: true,
         type: ContentType.Json,
@@ -7702,7 +7647,7 @@ export class Api<
           })
       >({
         path: `/v2/webhooks/${webhookId}`,
-        method: "GET",
+        method: 'GET',
         secure: true,
         ...params,
       }),
@@ -7756,7 +7701,7 @@ export class Api<
           })
       >({
         path: `/v2/webhooks/${webhookId}`,
-        method: "PUT",
+        method: 'PUT',
         body: data,
         secure: true,
         type: ContentType.Json,
@@ -7797,7 +7742,7 @@ export class Api<
           })
       >({
         path: `/v2/webhooks/${webhookId}`,
-        method: "DELETE",
+        method: 'DELETE',
         secure: true,
         ...params,
       }),
@@ -7836,7 +7781,7 @@ export class Api<
           })
       >({
         path: `/v2/teams/${teamId}/webhooks`,
-        method: "GET",
+        method: 'GET',
         secure: true,
         ...params,
       }),
@@ -7878,7 +7823,7 @@ export class Api<
           })
       >({
         path: `/v2/webhooks/${webhookId}/requests`,
-        method: "GET",
+        method: 'GET',
         secure: true,
         ...params,
       }),
