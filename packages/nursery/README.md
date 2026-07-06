@@ -123,6 +123,13 @@ mornings and open a pull request when Figma content changed:
 
 Each template documents its own caveats in its header comments.
 
+### Driving the CLI from Claude Code
+
+The package ships a [Claude Code skill](./templates/claude-skill/figma-cuttings/SKILL.md)
+that teaches agent sessions to snapshot and refresh Figma files
+conversationally. Copy the `figma-cuttings` directory into your repository's
+`.claude/skills/` to enable it.
+
 ## :dart: Roadmap
 
 - [x] `init`, `take`, `refresh` and `status` commands
@@ -130,7 +137,7 @@ Each template documents its own caveats in its header comments.
 - [x] Publish a JSON schema for the config file
 - [x] GitHub Actions workflow template for scheduled refreshes
 - [x] CircleCI workflow template
-- [ ] Claude Code skill wrapping the CLI
+- [x] Claude Code skill wrapping the CLI
 - [x] Automate NPM releases
 
 ## :wave: Contributing
