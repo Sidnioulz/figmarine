@@ -2,6 +2,7 @@ import type { ClientInterface, V1 } from '@figmarine/rest';
 import { test as base } from 'vitest';
 
 import { API_FIXTURE_FILES, loadApiFixture } from '../__fixtures__/api';
+import { makeMockedClient, mockResponse } from '../__fixtures__/mockedClient';
 import {
   publishedComponents,
   publishedComponentSets,
@@ -17,26 +18,6 @@ vi.mock(import('@figmarine/logger'), async () => ({ log: mockedLog }));
 
 const FILE_KEY = API_FIXTURE_FILES['figma-api-debug-file'];
 const NOW = 1751791000000;
-
-/* Test fixtures: a REST client mocked with real recorded API responses. */
-function mockResponse<T>(data: T) {
-  return { status: 200, statusText: 'OK', data };
-}
-
-function makeMockedClient(label: keyof typeof API_FIXTURE_FILES = 'figma-api-debug-file') {
-  return {
-    v1: {
-      getFile: vi.fn(async () => mockResponse(loadApiFixture(label, 'GetFile'))),
-      getFileComponents: vi.fn(async () =>
-        mockResponse(loadApiFixture(label, 'GetFileComponents')),
-      ),
-      getFileComponentSets: vi.fn(async () =>
-        mockResponse(loadApiFixture(label, 'GetFileComponentSets')),
-      ),
-      getFileStyles: vi.fn(async () => mockResponse(loadApiFixture(label, 'GetFileStyles'))),
-    },
-  } as unknown as ClientInterface;
-}
 
 interface TakeFixtures {
   client: ClientInterface;

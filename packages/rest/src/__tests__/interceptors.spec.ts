@@ -170,5 +170,27 @@ describe('@figmarine/rest - interceptors', () => {
       expect(rlSpy).not.toHaveBeenCalled();
       expect(cfg.reqLog).toHaveLength(0);
     });
+
+    it('skips rate limiting for requests served by a per-request adapter', async ({ cache }) => {
+      const rlSpy = vi.spyOn(rateLimitModule, 'interceptRequest');
+      const cfg = getConfig();
+      const hasSpy = vi.spyOn(cache, 'has');
+
+      const interceptor = rateLimitRequestInterceptor(cache);
+      const locallyServed: InternalAxiosRequestConfig = {
+        ...fileRequest,
+        adapter: async (config) => ({
+          data: {},
+          status: 200,
+          statusText: 'OK',
+          headers: {},
+          config,
+        }),
+      };
+      await interceptor(locallyServed);
+      expect(rlSpy).not.toHaveBeenCalled();
+      expect(hasSpy).not.toHaveBeenCalled();
+      expect(cfg.reqLog).toHaveLength(0);
+    });
   });
 });

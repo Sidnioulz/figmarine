@@ -1,5 +1,6 @@
 export * from './schemas/cutting';
 export * from './schemas/facet';
+export * from './attach';
 export * from './figmaUrl';
 export * from './fs';
 export * from './hydrate';

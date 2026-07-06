@@ -83,6 +83,48 @@ const fresh = await hydrate({ client, cutting: stored });
 plantCutting(fresh, stored.meta.lastKnownFilePath!);
 ```
 
+### Serving API calls from cuttings
+
+Attach cuttings to a `@figmarine/rest` client and compatible API calls are
+answered from planted data instead of the network — the calling code does
+not change at all:
+
+```ts
+import { Client } from '@figmarine/rest';
+import { attachCuttings, digCutting } from '@figmarine/cuttings';
+
+const client = await Client({ personalAccessToken: process.env.FIGMA_PERSONAL_ACCESS_TOKEN });
+const cutting = digCutting('.figmarine/cuttings/design-system.cutting.figmarine.json');
+
+const detach = attachCuttings(client, [cutting]);
+
+// Served from the cutting: no network, no rate limit budget.
+const file = await client.v1.getFile(fileKey);
+
+// Not snapshotted by cuttings: falls through to the network.
+const versions = await client.v1.getFileVersions(fileKey);
+
+detach();
+```
+
+A call is served when it is a `GET` request to a snapshotted endpoint
+(`GetFile`, `GetFileComponents`, `GetFileComponentSets`, `GetFileStyles`),
+for a file key an attached cutting holds, with query parameters the stored
+data can honour. `GetFile` calls with `ids`, `depth`, `geometry` or
+`plugin_data` always fall through, and `version` must match the facet's pin
+or the stored file's version. Everything else behaves as usual, so a client
+with cuttings attached keeps working for uncovered endpoints.
+
+Served responses differ from the wire format in one documented way: file
+bodies are the stored `SlimFile` (no `thumbnailUrl`, `role` or
+`linkAccess`). They carry an `x-figmarine-cutting` response header (exported
+as `CUTTING_SOURCE_HEADER`) so tooling can tell data sources apart. Cuttings
+are authoritative regardless of age — freshness is a separate concern,
+handled with `hydrate` or `@figmarine/nursery` refresh schedules.
+
+If you configure your cuttings with `@figmarine/nursery`, prefer its
+`connectNursery(client)` helper, which digs every planted cutting for you.
+
 ### The cutting file format
 
 A cutting file is a JSON document with three top-level keys:
@@ -133,6 +175,7 @@ to the fixture files).
 - [x] Document the cutting file format
 - [ ] Support team, project and variable facets
 - [ ] Facet options (depth, geometry, plugin_data)
+- [x] Serve compatible REST client calls from cuttings
 - [x] Automate NPM releases
 
 

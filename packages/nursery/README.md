@@ -123,6 +123,39 @@ mornings and open a pull request when Figma content changed:
 
 Each template documents its own caveats in its header comments.
 
+### Serving REST API calls from the nursery
+
+Programs that use `@figmarine/rest` can read planted data transparently:
+`connectNursery` attaches every planted cutting to a client, and compatible
+API calls are then served from disk instead of the network (see the
+[cuttings documentation](../cuttings/README.md#serving-api-calls-from-cuttings)
+for what counts as compatible — everything else keeps hitting the network).
+
+```ts
+import { Client } from '@figmarine/rest';
+import { connectNursery, refresh, status } from '@figmarine/nursery';
+
+const client = await Client({ personalAccessToken: process.env.FIGMA_PERSONAL_ACCESS_TOKEN });
+
+const { disconnect } = connectNursery(client);
+const file = await client.v1.getFile(fileKey); // Served from .figmarine/cuttings/.
+disconnect();
+```
+
+Connecting never triggers network calls: planted cuttings are served as-is,
+however old, so runs are deterministic and work offline. When your use case
+needs fresh data, check and refresh explicitly before connecting — the CLI
+commands are also exported as library functions:
+
+```ts
+// Flag cuttings older than a day, re-fetch just those, then connect.
+const stale = status({ maxAgeSeconds: 86_400 }).filter((s) => s.stale);
+if (stale.length) {
+  await refresh({ names: stale.map((s) => s.name) });
+}
+connectNursery(client);
+```
+
 ### Driving the CLI from Claude Code
 
 The package ships a [Claude Code skill](./templates/claude-skill/figma-cuttings/SKILL.md)
@@ -138,6 +171,7 @@ conversationally. Copy the `figma-cuttings` directory into your repository's
 - [x] GitHub Actions workflow template for scheduled refreshes
 - [x] CircleCI workflow template
 - [x] Claude Code skill wrapping the CLI
+- [x] Serve REST client calls from planted cuttings (`connectNursery`)
 - [x] Automate NPM releases
 
 ## :wave: Contributing
