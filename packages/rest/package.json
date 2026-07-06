@@ -39,11 +39,11 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.js",
+      "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
     "./*": {
-      "types": "./dist/*.d.js",
+      "types": "./dist/*.d.ts",
       "default": "./dist/*.js"
     }
   },
@@ -62,6 +62,7 @@
     "@types/node": "catalog:",
     "@vitest/coverage-istanbul": "catalog:",
     "@vitest/coverage-v8": "catalog:",
+    "eslint": "catalog:",
     "cacheable": "catalog:",
     "keyv": "catalog:",
     "lint-staged": "catalog:",
