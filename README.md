@@ -77,11 +77,11 @@
     </td>
     <td>
       <h3><a href="./packages/cuttings/">Cuttings</a></h3>
-      <div><code role="status" aria-label="Work in progress">WIP</code> A library that creates JSON representations of Figma content (files, styles, etc.).</div>
+      <div>A library that creates JSON representations of Figma content (files, styles, etc.).</div>
     </td>
     <td>
-      <h3><a href="./apps/nursery/">Nursery</a></h3>
-      <div><code role="status" aria-label="To do">TODO</code> A library for fetching, storing and rehydrating cuttings automatically.</div>
+      <h3><a href="./packages/nursery/">Nursery</a></h3>
+      <div>A CLI for fetching, storing and rehydrating cuttings automatically.</div>
     </td>
     <td>
       <h3><a href="./packages/eslint-plugin-figma/">ESLint Plugin</a></h3>
