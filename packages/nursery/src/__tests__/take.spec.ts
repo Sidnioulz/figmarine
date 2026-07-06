@@ -38,7 +38,7 @@ describe('@figmarine/nursery - take command', () => {
   it('takes and plants every configured cutting', async () => {
     const planted = await takeCommand({ configPath: CONFIG_PATH, clientFactory });
 
-    expect(planted).toStrictEqual(['.figmarine/cuttings/debug-file.cutting.figmarine.json']);
+    expect(planted).toStrictEqual(['/repo/.figmarine/cuttings/debug-file.cutting.figmarine.json']);
     expect(mockedTake).toHaveBeenCalledExactlyOnceWith({
       client: mockedClient,
       label: 'debug file',

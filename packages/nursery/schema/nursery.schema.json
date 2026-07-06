@@ -6,7 +6,7 @@
       "type": "string"
     },
     "output": {
-      "default": ".figmarine/cuttings",
+      "default": "cuttings",
       "type": "string"
     },
     "cuttings": {
@@ -47,6 +47,9 @@
                       "GetFileStyles"
                     ]
                   }
+                },
+                "version": {
+                  "type": "string"
                 }
               },
               "required": ["url"]

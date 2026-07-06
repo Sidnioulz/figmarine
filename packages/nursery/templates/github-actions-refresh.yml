@@ -1,12 +1,21 @@
 # Scheduled Figma cutting refresh, powered by @figmarine/nursery.
 #
-# Copy this file to .github/workflows/refresh-cuttings.yml in the repository
-# that hosts your .figmarine/ directory, and add a FIGMA_PERSONAL_ACCESS_TOKEN
-# repository secret (a token with read access to the configured files).
+# Setup:
+# 1. Copy this file to .github/workflows/refresh-cuttings.yml in the
+#    repository that hosts your .figmarine/ directory.
+# 2. Add a FIGMA_PERSONAL_ACCESS_TOKEN repository secret (a token with read
+#    access to the configured files).
+# 3. Enable "Allow GitHub Actions to create and approve pull requests" in
+#    Settings → Actions → General → Workflow permissions (off by default in
+#    organizations); without it the PR creation step fails.
+# 4. Pin the @figmarine/nursery version below and let Dependabot or Renovate
+#    propose bumps: an unpinned npx run would execute whatever was last
+#    published, with your Figma token in its environment.
 #
-# Every weekday morning (and on demand), the workflow refreshes every cutting
-# and opens a pull request when their content changed, so your team reviews
-# design changes like any other diff.
+# Note: pull requests created with the default GITHUB_TOKEN do not trigger
+# `on: pull_request` workflows, so the refresh PR will show no CI checks.
+# Use a fine-grained PAT or GitHub App token in the create-pull-request
+# step's `token` input if your branch protection requires checks.
 name: Refresh Figma cuttings
 
 on:
@@ -31,7 +40,8 @@ jobs:
           node-version: '22'
 
       - name: Refresh cuttings
-        run: npx --yes @figmarine/nursery refresh
+        # Pin to the version you have vetted, e.g. @figmarine/nursery@1.2.3.
+        run: npx --yes @figmarine/nursery@latest refresh
         env:
           FIGMA_PERSONAL_ACCESS_TOKEN: ${{ secrets.FIGMA_PERSONAL_ACCESS_TOKEN }}
 

@@ -1,6 +1,12 @@
 import { vol } from 'memfs';
 
-import { cuttingPath, loadConfig, NurseryConfigSchema, saveConfig } from '../config';
+import {
+  cuttingPath,
+  loadConfig,
+  NurseryConfigSchema,
+  saveConfig,
+  selectCuttings,
+} from '../config';
 import { debugFileConfig } from '../__fixtures__/cutting';
 
 /* FS mocks. */
@@ -27,7 +33,7 @@ describe('@figmarine/nursery - config', () => {
         },
       });
 
-      expect(parsed.output).toBe('.figmarine/cuttings');
+      expect(parsed.output).toBe('cuttings');
       expect(parsed.cuttings.minimal.files[0].endpoints).toStrictEqual([
         'GetFile',
         'GetFileComponents',
@@ -65,7 +71,23 @@ describe('@figmarine/nursery - config', () => {
       const loaded = loadConfig('/repo/.figmarine/nursery.json');
 
       expect(loaded.cuttings['debug-file'].label).toBe('debug file');
-      expect(loaded.output).toBe('.figmarine/cuttings');
+      expect(loaded.output).toBe('/repo/.figmarine/cuttings');
+    });
+
+    it('resolves a relative output against the config directory', () => {
+      vol.fromJSON({ '/repo': null });
+
+      saveConfig({ ...debugFileConfig, output: 'snapshots' }, '/repo/.figmarine/nursery.json');
+
+      expect(loadConfig('/repo/.figmarine/nursery.json').output).toBe('/repo/.figmarine/snapshots');
+    });
+
+    it('keeps an absolute output as is', () => {
+      vol.fromJSON({ '/repo': null });
+
+      saveConfig({ ...debugFileConfig, output: '/var/cuttings' }, '/repo/.figmarine/nursery.json');
+
+      expect(loadConfig('/repo/.figmarine/nursery.json').output).toBe('/var/cuttings');
     });
 
     it('pretty-prints the config file', () => {
@@ -102,9 +124,34 @@ describe('@figmarine/nursery - config', () => {
     it('plants cuttings in the configured output directory', () => {
       const config = NurseryConfigSchema.parse(debugFileConfig);
 
-      expect(cuttingPath(config, 'debug-file')).toBe(
-        '.figmarine/cuttings/debug-file.cutting.figmarine.json',
+      expect(cuttingPath(config, 'debug-file')).toBe('cuttings/debug-file.cutting.figmarine.json');
+    });
+  });
+
+  describe('selectCuttings', () => {
+    const resolved = () => NurseryConfigSchema.parse(debugFileConfig);
+
+    it('selects everything when no names are passed', () => {
+      expect(selectCuttings(resolved(), undefined, 'cfg').map(([n]) => n)).toStrictEqual([
+        'debug-file',
+      ]);
+      expect(selectCuttings(resolved(), [], 'cfg')).toHaveLength(1);
+    });
+
+    it('selects by name', () => {
+      expect(selectCuttings(resolved(), ['debug-file'], 'cfg')).toHaveLength(1);
+    });
+
+    it('throws on unknown names', () => {
+      expect(() => selectCuttings(resolved(), ['nope'], 'cfg')).toThrowError(
+        'no cuttings named: nope',
       );
+    });
+
+    it('throws when the config has no cuttings', () => {
+      const empty = NurseryConfigSchema.parse({ cuttings: {} });
+
+      expect(() => selectCuttings(empty, undefined, 'cfg')).toThrowError('no cuttings configured');
     });
   });
 });

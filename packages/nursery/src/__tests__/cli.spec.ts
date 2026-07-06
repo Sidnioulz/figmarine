@@ -83,6 +83,7 @@ describe('@figmarine/nursery - cli', () => {
     expect(mockedTakeCommand).toHaveBeenCalledExactlyOnceWith({
       names: ['a', 'b'],
       configPath: undefined,
+      onProgress: expect.any(Function),
     });
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining('Planted /planted.json'));
   });
@@ -91,7 +92,11 @@ describe('@figmarine/nursery - cli', () => {
     const code = await run(['refresh']);
 
     expect(code).toBe(0);
-    expect(mockedRefresh).toHaveBeenCalledExactlyOnceWith({ names: [], configPath: undefined });
+    expect(mockedRefresh).toHaveBeenCalledExactlyOnceWith({
+      names: [],
+      configPath: undefined,
+      onProgress: expect.any(Function),
+    });
   });
 
   it('dispatches status and succeeds when nothing is stale', async () => {
@@ -121,6 +126,17 @@ describe('@figmarine/nursery - cli', () => {
 
     expect(await run(['status', '--max-age', '3600'])).toBe(1);
     expect(mockedStatus).toHaveBeenCalledWith(expect.objectContaining({ maxAgeSeconds: 3600 }));
+  });
+
+  it('rejects a non-numeric --max-age with usage and exit code 2', async () => {
+    expect(await run(['status', '--max-age', '1d'])).toBe(2);
+    expect(errorSpy).toHaveBeenCalledWith(expect.stringContaining("Invalid --max-age value '1d'"));
+    expect(mockedStatus).not.toHaveBeenCalled();
+  });
+
+  it('rejects a negative --max-age', async () => {
+    expect(await run(['status', '--max-age', '-5'])).toBe(2);
+    expect(mockedStatus).not.toHaveBeenCalled();
   });
 
   it('reports command failures on stderr with exit code 1', async () => {

@@ -50,7 +50,6 @@ export const debugFileCutting = {
  * A nursery config matching {@link debugFileCutting}.
  */
 export const debugFileConfig = {
-  output: '.figmarine/cuttings',
   cuttings: {
     'debug-file': {
       label: 'debug file',

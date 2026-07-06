@@ -1,8 +1,6 @@
 import { readFileSync } from 'node:fs';
 
-import { z } from 'zod';
-
-import { NurseryConfigSchema } from '../config';
+import { buildConfigJsonSchema } from '../schema';
 
 describe('@figmarine/nursery - published JSON schema', () => {
   it('matches the zod config schema', () => {
@@ -10,13 +8,6 @@ describe('@figmarine/nursery - published JSON schema', () => {
       readFileSync(new URL('../../schema/nursery.schema.json', import.meta.url), 'utf-8'),
     );
 
-    const generated = z.toJSONSchema(NurseryConfigSchema, { io: 'input' }) as Record<
-      string,
-      unknown
-    >;
-    generated.title = committed.title;
-    generated.description = committed.description;
-
-    expect(committed).toStrictEqual(generated);
+    expect(committed).toStrictEqual(buildConfigJsonSchema());
   });
 });

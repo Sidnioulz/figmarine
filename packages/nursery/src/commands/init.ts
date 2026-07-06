@@ -30,10 +30,13 @@ function deriveName(url: string): string {
   const ref = parseFigmaUrl(url);
   const base = ref.name ?? ref.fileKey;
 
-  return base
+  const slug = base
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
+
+  // File names without any ASCII alphanumerics slug down to nothing.
+  return slug || ref.fileKey.toLowerCase();
 }
 
 /**

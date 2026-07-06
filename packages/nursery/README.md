@@ -78,7 +78,7 @@ environment variable; tokens never live in config files.
 
 ```json
 {
-  "output": ".figmarine/cuttings",
+  "output": "cuttings",
   "cuttings": {
     "design-system": {
       "label": "Design system",
@@ -96,7 +96,11 @@ environment variable; tokens never live in config files.
 - Each named cutting snapshots one or more Figma files.
 - `endpoints` selects what to fetch per file, and defaults to the whole
   file-scoped set.
-- `output` is where cuttings are planted, relative to the working directory.
+- A `version` on a file entry pins its `GetFile` facet to a specific Figma
+  file version; refreshes then keep re-fetching that version.
+- `output` is where cuttings are planted. Relative paths resolve against
+  the directory containing the config file, so the default plants cuttings
+  in `.figmarine/cuttings/` next to `.figmarine/nursery.json`.
 - A [JSON schema](./schema/nursery.schema.json) is published with the package
   for editor validation; regenerate it with `pnpm schema:regen` after
   changing the config format.
