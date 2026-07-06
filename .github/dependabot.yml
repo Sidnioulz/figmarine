@@ -22,11 +22,13 @@ updates:
     reviewers:
       - "sidnioulz"
     groups:
-      # Bumps of the spec or of the code generator both require regenerating
-      # the REST client; the automerge workflow does so for this group.
+      # Bumps of the spec, of the code generator, or of the formatter applied
+      # to generated code all require regenerating the REST client; the
+      # automerge workflow does so for this group.
       oas:
         patterns:
         - "@figma/rest-api-spec"
+        - "prettier"
         - "swagger-typescript-api"
       all:
         patterns:

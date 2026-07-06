@@ -7,12 +7,21 @@ on:
       - completed
     branches:
       - main
+  # Fallback triggers: pushes to main made with GITHUB_TOKEN (e.g. Dependabot
+  # auto-merges enabled by the automerge workflow) never trigger the CI
+  # workflow, so the workflow_run trigger above misses them. The daily
+  # schedule guarantees such merges release within 24h; the manual dispatch
+  # lets an admin release immediately. semantic-release is idempotent, so
+  # extra runs with nothing to release are no-ops.
+  schedule:
+    - cron: '30 5 * * *'
+  workflow_dispatch:
 
 jobs:
   release:
     name: Semantic Release
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
 
     steps:
       - name: Checkout
