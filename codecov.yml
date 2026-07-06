@@ -17,6 +17,9 @@ flags:
   pkg-logger:
     paths:
       - packages/logger/
+  pkg-nursery:
+    paths:
+      - packages/nursery/
   pkg-rest:
     paths:
       - packages/rest/

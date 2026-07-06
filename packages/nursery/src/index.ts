@@ -5,3 +5,4 @@ export * from './commands/status';
 export * from './commands/take';
 export * from './config';
 export * from './plan';
+export * from './schema';

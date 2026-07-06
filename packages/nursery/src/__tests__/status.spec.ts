@@ -12,7 +12,7 @@ const { mockedLog } = vi.hoisted(() => ({ mockedLog: vi.fn() }));
 vi.mock(import('@figmarine/logger'), async () => ({ log: mockedLog }));
 
 const CONFIG_PATH = '/repo/.figmarine/nursery.json';
-const CUTTING_PATH = '.figmarine/cuttings/debug-file.cutting.figmarine.json';
+const CUTTING_PATH = '/repo/.figmarine/cuttings/debug-file.cutting.figmarine.json';
 const HYDRATION_TIME = 1751791000000;
 const NOW = HYDRATION_TIME + 3_600_000; // one hour later
 
