@@ -19,7 +19,7 @@
   "author": "Steve Dodier-Lazaro",
   "homepage": "https://github.com/Sidnioulz/figmarine",
   "scripts": {
-    "build": "tsc && tsup --env.NODE_ENV production",
+    "build": "tsc --noEmit && tsup --env.NODE_ENV production",
     "dev": "tsc-watch --onSuccess \"tsup --env.NODE_ENV production\"",
     "docs:build": "echo 'TODO",
     "docs:dev": "echo 'TODO",

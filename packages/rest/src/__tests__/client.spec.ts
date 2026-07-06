@@ -228,6 +228,25 @@ describe('@figmarine/rest - client', () => {
     });
   });
 
+  describe('API surface', () => {
+    it('exposes the v1 API namespace', async ({ mockedEnv }) => {
+      mockedEnv();
+      const c = await Client();
+      expect(c.v1).toBeDefined();
+      expect(c.v1.getFile).toBeTypeOf('function');
+      expect(c.v1.getFileMeta).toBeTypeOf('function');
+      expect(c.v1.getDeveloperLogs).toBeTypeOf('function');
+      expect(c.v1.getAiUsageDaily).toBeTypeOf('function');
+    });
+
+    it('exposes the v2 API namespace', async ({ mockedEnv }) => {
+      mockedEnv();
+      const c = await Client();
+      expect(c.v2).toBeDefined();
+      expect(c.v2.getWebhooks).toBeTypeOf('function');
+    });
+  });
+
   describe('Options - auth', () => {
     it('successfully stores a personal access token for request auth', async ({ mockedEnv }) => {
       const spy = vi.spyOn(loggerModule, 'log');
