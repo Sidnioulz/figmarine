@@ -17670,9 +17670,9 @@
   },
   "name": "Steve's Figma API debug file",
   "lastModified": "2026-07-06T07:05:48Z",
-  "thumbnailUrl": "https://s3-alpha.figma.com/thumbnails/718816b6-616d-4fb3-9433-3a58109dbd35?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQ4GOSFWCZHCZBGZX%2F20260705%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260705T120000Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=d0ce884e19844011c8ae397c44ef335c9250f5e7505ecebf931aa6a0a010db01",
+  "thumbnailUrl": "https://figma-thumbnails.example/redacted",
   "version": "2372999792189229679",
-  "role": "owner",
+  "role": "viewer",
   "editorType": "figma",
   "linkAccess": "inherit"
 }

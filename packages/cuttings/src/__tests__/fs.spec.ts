@@ -92,6 +92,32 @@ describe('@figmarine/cuttings - fs', () => {
       expect(mockedLog).toHaveBeenCalledWith(expect.stringMatching(/overwriting existing file/));
     });
 
+    it('leaves the file untouched when only timestamps changed', ({
+      fileBasic,
+      fileBasicLocation,
+    }) => {
+      plantCutting(fileBasic, fileBasicLocation);
+      const firstWrite = vol.readFileSync(fileBasicLocation, 'utf8');
+
+      const rehydrated = structuredClone(fileBasic);
+      rehydrated.facets = rehydrated.facets.map((f) => ({ ...f, lastHydrated: 999999999 }));
+      plantCutting(rehydrated, fileBasicLocation);
+
+      expect(vol.readFileSync(fileBasicLocation, 'utf8')).toStrictEqual(firstWrite);
+      expect(mockedLog).toHaveBeenCalledWith(expect.stringMatching(/content unchanged/));
+    });
+
+    it('overwrites the file when content changed', ({ fileBasic, fileBasicLocation }) => {
+      plantCutting(fileBasic, fileBasicLocation);
+
+      const changed = structuredClone(fileBasic);
+      changed.data.files.naoned.version = '45';
+      plantCutting(changed, fileBasicLocation);
+
+      const written = JSON.parse(vol.readFileSync(fileBasicLocation, 'utf8').toString());
+      expect(written.data.files.naoned.version).toBe('45');
+    });
+
     it('does not write `lastKnownFilePath` to a stored cutting', ({
       fileBasic,
       fileBasicLocation,

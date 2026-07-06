@@ -11,6 +11,19 @@ function stringifyCutting(cutting: Cutting): string {
   return `${JSON.stringify(cutting, null, 2)}\n`;
 }
 
+/**
+ * Serialises the parts of a cutting that describe Figma content, leaving
+ * out write and hydration timestamps. Two cuttings with equal content
+ * should not produce a diff when replanted.
+ */
+function contentFingerprint(cutting: Cutting): string {
+  return JSON.stringify({
+    label: cutting.meta.label,
+    facets: cutting.facets.map(({ lastHydrated: _lastHydrated, ...facet }) => facet),
+    data: cutting.data,
+  });
+}
+
 function parseCuttingString(str: string): Cutting {
   return JSON.parse(str);
 }
@@ -29,6 +42,18 @@ export function plantCutting(cutting: Cutting, location: string): void {
   }
 
   if (fs.existsSync(location)) {
+    // Keep committed cuttings diff-stable: when only timestamps would
+    // change, leave the planted file untouched so refresh loops stay
+    // quiet and reviewable diffs only ever contain content changes.
+    try {
+      const existing = JSON.parse(fs.readFileSync(location, 'utf-8')) as Cutting;
+      if (contentFingerprint(existing) === contentFingerprint(cutting)) {
+        log(`Cuttings::plantCutting: content unchanged, leaving '${location}' as is.`);
+        return;
+      }
+    } catch {
+      log(`Cuttings::plantCutting: could not compare with existing file at '${location}'.`);
+    }
     log(`Cuttings::plantCutting: overwriting existing file at '${location}'.`);
   }
 
