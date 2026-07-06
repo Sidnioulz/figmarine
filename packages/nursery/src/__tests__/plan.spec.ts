@@ -40,6 +40,17 @@ describe('@figmarine/nursery - plan', () => {
       ]);
     });
 
+    it('pins the GetFile facet to the configured version', () => {
+      const facets = planFacets({
+        files: [{ url: DEBUG_FILE_URL, endpoints: ['GetFile', 'GetFileStyles'], version: '42' }],
+      });
+
+      expect(facets).toStrictEqual([
+        { endpoint: 'GetFile', id: 'idLa6ZCXDJUeRFI5wLVNWN', version: '42' },
+        { endpoint: 'GetFileStyles', id: 'idLa6ZCXDJUeRFI5wLVNWN' },
+      ]);
+    });
+
     it('throws on invalid Figma URLs', () => {
       expect(() =>
         planFacets({ files: [{ url: 'https://example.com/nope', endpoints: ['GetFile'] }] }),

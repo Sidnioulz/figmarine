@@ -4,9 +4,8 @@ import { digCutting, hydrate, plantCutting, take } from '@figmarine/cuttings';
 import { log } from '@figmarine/logger';
 
 import { type ClientFactory, defaultClientFactory } from '../client';
-import { cuttingPath, DEFAULT_CONFIG_PATH, loadConfig } from '../config';
+import { cuttingPath, DEFAULT_CONFIG_PATH, loadConfig, selectCuttings } from '../config';
 import { facetsMatch, planFacets } from '../plan';
-import { selectCuttings } from './take';
 
 /**
  * Options for {@link refresh}.
@@ -27,6 +26,11 @@ export interface RefreshOptions {
    * Factory for the REST client. Exposed for testing.
    */
   clientFactory?: ClientFactory;
+
+  /**
+   * Called with human-readable progress messages as work proceeds.
+   */
+  onProgress?: (message: string) => void;
 }
 
 /**
@@ -41,15 +45,10 @@ export async function refresh({
   names,
   configPath = DEFAULT_CONFIG_PATH,
   clientFactory = defaultClientFactory,
+  onProgress,
 }: RefreshOptions = {}): Promise<string[]> {
   const config = loadConfig(configPath);
-  const selected = selectCuttings(config.cuttings, names);
-
-  if (!selected.length) {
-    throw new Error(
-      `Nursery::refresh: no cuttings configured in '${configPath}'. Run 'nursery init <figma url>' first.`,
-    );
-  }
+  const selected = selectCuttings(config, names, configPath);
 
   const client = await clientFactory();
   const planted: string[] = [];
@@ -61,15 +60,18 @@ export async function refresh({
     let cutting;
     if (!fs.existsSync(location)) {
       log(`Nursery::refresh: '${name}' was never planted, taking it.`);
+      onProgress?.(`Taking cutting '${name}' (${facets.length} facets)…`);
       cutting = await take({ client, facets, label: entry.label ?? name });
     } else {
       const stored = digCutting(location);
 
       if (facetsMatch(facets, stored.facets)) {
         log(`Nursery::refresh: re-hydrating '${name}'.`);
+        onProgress?.(`Re-hydrating cutting '${name}' (${facets.length} facets)…`);
         cutting = await hydrate({ client, cutting: stored });
       } else {
         log(`Nursery::refresh: config for '${name}' changed, taking it again.`);
+        onProgress?.(`Config for '${name}' changed, taking it again (${facets.length} facets)…`);
         cutting = await take({ client, facets, label: entry.label ?? name });
       }
     }

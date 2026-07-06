@@ -3,8 +3,7 @@ import fs from 'node:fs';
 import { digCutting } from '@figmarine/cuttings';
 import { log } from '@figmarine/logger';
 
-import { cuttingPath, DEFAULT_CONFIG_PATH, loadConfig } from '../config';
-import { selectCuttings } from './take';
+import { cuttingPath, DEFAULT_CONFIG_PATH, loadConfig, selectCuttings } from '../config';
 
 /**
  * The freshness report for one configured cutting.
@@ -82,7 +81,7 @@ export function status({
   now = Date.now,
 }: StatusOptions = {}): CuttingStatus[] {
   const config = loadConfig(configPath);
-  const selected = selectCuttings(config.cuttings, names);
+  const selected = selectCuttings(config, names, configPath);
 
   return selected.map(([name]) => {
     const location = cuttingPath(config, name);

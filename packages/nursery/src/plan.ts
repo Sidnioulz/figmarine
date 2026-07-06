@@ -1,24 +1,32 @@
 import { type Facet, parseFigmaUrl } from '@figmarine/cuttings';
 
-import type { NurseryCutting } from './config';
+import type { ResolvedNurseryCutting } from './config';
 
 /**
  * Derives the facets to take for a configured cutting: one facet per
  * (file, endpoint) pair, deduplicated when several URLs resolve to the
- * same file.
+ * same file. A pinned file `version` is carried onto the `GetFile` facet.
  *
- * @param entry The cutting entry from the nursery config.
+ * Expects a schema-resolved entry (as returned by `loadConfig`) so that
+ * endpoint defaults have been applied.
+ *
+ * @param entry The cutting entry from the resolved nursery config.
  * @throws When a configured URL is not a valid Figma file URL.
  * @returns The facets to pass to `take`.
  */
-export function planFacets(entry: NurseryCutting): Facet[] {
+export function planFacets(entry: ResolvedNurseryCutting): Facet[] {
   const facets = new Map<string, Facet>();
 
   for (const file of entry.files) {
     const { fileKey } = parseFigmaUrl(file.url);
 
-    for (const endpoint of file.endpoints ?? ['GetFile']) {
-      facets.set(`${endpoint}:${fileKey}`, { endpoint, id: fileKey });
+    for (const endpoint of file.endpoints) {
+      const facet: Facet =
+        endpoint === 'GetFile' && file.version !== undefined
+          ? { endpoint, id: fileKey, version: file.version }
+          : { endpoint, id: fileKey };
+
+      facets.set(`${endpoint}:${fileKey}`, facet);
     }
   }
 

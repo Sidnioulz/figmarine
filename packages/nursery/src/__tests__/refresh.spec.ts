@@ -23,7 +23,7 @@ vi.mock(import('@figmarine/cuttings'), async (importOriginal) => {
 });
 
 const CONFIG_PATH = '/repo/.figmarine/nursery.json';
-const CUTTING_PATH = '.figmarine/cuttings/debug-file.cutting.figmarine.json';
+const CUTTING_PATH = '/repo/.figmarine/cuttings/debug-file.cutting.figmarine.json';
 const mockedClient = { v1: {} } as unknown as ClientInterface;
 const clientFactory = vi.fn(async () => mockedClient);
 

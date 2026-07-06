@@ -1,4 +1,7 @@
+#!/usr/bin/env node
+import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
+import { realpathSync } from 'node:fs';
 
 import { init } from './commands/init';
 import { refresh } from './commands/refresh';
@@ -22,7 +25,7 @@ Options:
   -h, --help           Show this help message.
 
 Authentication uses the FIGMA_PERSONAL_ACCESS_TOKEN or FIGMA_OAUTH_TOKEN
-environment variable.`;
+environment variable. Set FIGMARINE_DEBUG=1 for diagnostic output.`;
 
 function formatAge(timestamp: number | undefined, now: number): string {
   if (!timestamp) {
@@ -86,24 +89,30 @@ export async function run(argv: string[]): Promise<number> {
       }
 
       case 'take': {
-        const planted = await takeCommand({ names: args, configPath });
+        const planted = await takeCommand({ names: args, configPath, onProgress: console.log });
         console.log(planted.map((p) => `Planted ${p}`).join('\n'));
         return 0;
       }
 
       case 'refresh': {
-        const planted = await refresh({ names: args, configPath });
+        const planted = await refresh({ names: args, configPath, onProgress: console.log });
         console.log(planted.map((p) => `Refreshed ${p}`).join('\n'));
         return 0;
       }
 
       case 'status': {
-        const maxAge = values['max-age'] as string | undefined;
-        const reports = status({
-          names: args,
-          configPath,
-          maxAgeSeconds: maxAge === undefined ? undefined : Number(maxAge),
-        });
+        const rawMaxAge = values['max-age'] as string | undefined;
+        let maxAgeSeconds: number | undefined;
+        if (rawMaxAge !== undefined) {
+          maxAgeSeconds = Number(rawMaxAge);
+          if (!Number.isFinite(maxAgeSeconds) || maxAgeSeconds < 0) {
+            console.error(`Invalid --max-age value '${rawMaxAge}': pass a number of seconds.`);
+            console.error(USAGE);
+            return 2;
+          }
+        }
+
+        const reports = status({ names: args, configPath, maxAgeSeconds });
 
         const now = Date.now();
         for (const report of reports) {
@@ -127,8 +136,24 @@ export async function run(argv: string[]): Promise<number> {
   }
 }
 
-/* v8 ignore next 4 -- entry point, exercised via bin not tests */
-const isDirectRun = process.argv[1] && import.meta.url === new URL(process.argv[1], 'file:').href;
-if (isDirectRun) {
+/* v8 ignore start -- entry point, exercised via the bin, not via tests */
+/**
+ * Runs when this module is the process entrypoint. Node resolves the real
+ * path of the main ES module while argv keeps the path the user invoked
+ * (often a node_modules/.bin symlink), so both sides must be realpathed.
+ */
+function isDirectRun(): boolean {
+  if (!process.argv[1]) {
+    return false;
+  }
+  try {
+    return realpathSync(process.argv[1]) === fileURLToPath(import.meta.url);
+  } catch {
+    return false;
+  }
+}
+
+if (isDirectRun()) {
   process.exitCode = await run(process.argv.slice(2));
 }
+/* v8 ignore stop */

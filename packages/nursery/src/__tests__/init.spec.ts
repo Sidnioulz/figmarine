@@ -83,6 +83,15 @@ describe('@figmarine/nursery - init', () => {
     expect(vol.existsSync(CONFIG_PATH)).toBe(false);
   });
 
+  it('falls back to the file key when the name slugs down to nothing', () => {
+    const name = init({
+      urls: ['https://www.figma.com/design/AbC123xyz/%E6%97%A5%E6%9C%AC%E8%AA%9E'],
+      configPath: CONFIG_PATH,
+    });
+
+    expect(name).toBe('abc123xyz');
+  });
+
   it('requires at least one URL', () => {
     expect(() => init({ urls: [], configPath: CONFIG_PATH })).toThrowError('at least one');
   });
