@@ -97,17 +97,29 @@ environment variable; tokens never live in config files.
 - `endpoints` selects what to fetch per file, and defaults to the whole
   file-scoped set.
 - `output` is where cuttings are planted, relative to the working directory.
+- A [JSON schema](./schema/nursery.schema.json) is published with the package
+  for editor validation; regenerate it with `pnpm schema:regen` after
+  changing the config format.
 
 Cuttings and config are designed to be committed: refreshes produce
 reviewable diffs, and analysis tools such as `eslint-plugin-figma` read the
 planted cuttings without touching the network.
 
+### Refreshing on a schedule
+
+The package ships a
+[GitHub Actions workflow template](./templates/github-actions-refresh.yml)
+that refreshes every cutting on weekday mornings and opens a pull request
+when Figma content changed. Copy it to
+`.github/workflows/refresh-cuttings.yml` and add a
+`FIGMA_PERSONAL_ACCESS_TOKEN` secret to your repository.
+
 ## :dart: Roadmap
 
 - [x] `init`, `take`, `refresh` and `status` commands
 - [x] Committed, reviewable `.figmarine/` state
-- [ ] Publish a JSON schema for the config file
-- [ ] GitHub Actions workflow template for scheduled refreshes
+- [x] Publish a JSON schema for the config file
+- [x] GitHub Actions workflow template for scheduled refreshes
 - [ ] CircleCI workflow template
 - [ ] Claude Code skill wrapping the CLI
 - [ ] Automate NPM releases
