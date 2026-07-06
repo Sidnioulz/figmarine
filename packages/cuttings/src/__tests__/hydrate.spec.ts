@@ -82,6 +82,8 @@ describe('@figmarine/cuttings - hydrate', () => {
   });
 
   it('bumps each facet hydration timestamp', async ({ client, cutting }) => {
+    // The cutting fixture moves the clock to TAKE_TIME while building.
+    vi.setSystemTime(HYDRATE_TIME);
     const hydrated = await hydrate({ client, cutting });
 
     expect(hydrated.facets).toHaveLength(2);
