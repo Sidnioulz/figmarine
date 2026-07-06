@@ -1,3 +1,7 @@
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+
 import { test as base, type Mock } from 'vitest';
 import { Client, type ClientInterface, type V1 } from '@figmarine/rest';
 import type { AxiosAdapter } from 'axios';
@@ -197,6 +201,61 @@ describe('@figmarine/cuttings - attach', () => {
       expect(networkAdapter).toHaveBeenCalledTimes(4);
     });
 
+    it('honours constraints embedded in the URL query string', async ({
+      client,
+      cutting,
+      networkAdapter,
+    }) => {
+      attachCuttings(client, [cutting]);
+
+      // Constraints in the raw URL constrain the response just as much as
+      // `params` do: version/depth mismatches must fall through.
+      await client.instance.get(`/v1/files/${FILE_KEY}?version=someOtherVersion`);
+      await client.instance.get(`/v1/files/${FILE_KEY}?ids=1:2&depth=1`);
+      expect(networkAdapter).toHaveBeenCalledTimes(2);
+
+      // While compatible URL-embedded constraints still get served.
+      const served = await client.instance.get(`/v1/files/${FILE_KEY}?branch_data=true`);
+      expect(served.headers[CUTTING_SOURCE_HEADER]).toBeDefined();
+      expect(networkAdapter).toHaveBeenCalledTimes(2);
+    });
+
+    it('honours constraints passed as URLSearchParams', async ({
+      client,
+      cutting,
+      networkAdapter,
+    }) => {
+      attachCuttings(client, [cutting]);
+
+      await client.instance.get(`/v1/files/${FILE_KEY}`, {
+        params: new URLSearchParams({ version: 'someOtherVersion' }),
+      });
+      expect(networkAdapter).toHaveBeenCalledTimes(1);
+
+      const served = await client.instance.get(`/v1/files/${FILE_KEY}`, {
+        params: new URLSearchParams({ branch_data: 'true' }),
+      });
+      expect(served.headers[CUTTING_SOURCE_HEADER]).toBeDefined();
+      expect(networkAdapter).toHaveBeenCalledTimes(1);
+    });
+
+    it('goes to the network when params cannot be introspected', async ({
+      client,
+      cutting,
+      networkAdapter,
+    }) => {
+      attachCuttings(client, [cutting]);
+
+      class ExoticParams {
+        toString() {
+          return 'version=someOtherVersion';
+        }
+      }
+      await client.instance.get(`/v1/files/${FILE_KEY}`, { params: new ExoticParams() });
+
+      expect(networkAdapter).toHaveBeenCalledTimes(1);
+    });
+
     it('goes to the network for files the cutting does not hold', async ({
       client,
       cutting,
@@ -208,6 +267,40 @@ describe('@figmarine/cuttings - attach', () => {
 
       expect(response.data).toStrictEqual({ reached: 'network' });
       expect(networkAdapter).toHaveBeenCalledTimes(1);
+    });
+
+    it('goes to the network when the stored file lost its core fields', async ({
+      client,
+      cutting,
+      networkAdapter,
+    }) => {
+      const hollow = structuredClone(cutting);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      hollow.data.files[FILE_KEY] = {} as any;
+      attachCuttings(client, [hollow]);
+
+      const response = await client.v1.getFile(FILE_KEY);
+
+      expect(response.data).toStrictEqual({ reached: 'network' });
+      expect(networkAdapter).toHaveBeenCalledTimes(1);
+    });
+
+    it('serves fresh copies so consumer mutations cannot corrupt the cutting', async ({
+      client,
+      cutting,
+    }) => {
+      attachCuttings(client, [cutting]);
+
+      const first = await client.v1.getFile(FILE_KEY);
+      expect(first.data).not.toBe(cutting.data.files[FILE_KEY]);
+
+      first.data.name = 'MUTATED';
+      first.data.document.children.push({} as never);
+
+      const second = await client.v1.getFile(FILE_KEY);
+      expect(second.data.name).toBe(rawFile.name);
+      expect(second.data.document.children).toHaveLength(rawFile.document.children.length);
+      expect(cutting.data.files[FILE_KEY].name).toBe(rawFile.name);
     });
   });
 
@@ -300,6 +393,33 @@ describe('@figmarine/cuttings - attach', () => {
       expect(response.data).toStrictEqual({ reached: 'network' });
       expect(networkAdapter).toHaveBeenCalledTimes(1);
     });
+
+    it('goes to the network when the facet was never hydrated', async ({
+      client,
+      cutting,
+      networkAdapter,
+    }) => {
+      // Hand-written cutting configs may declare facets with no data
+      // behind them; an empty list must never be fabricated for those.
+      const neverHydrated = structuredClone(cutting);
+      neverHydrated.facets = neverHydrated.facets.map((f) =>
+        f.endpoint === 'GetFileComponents' ? { ...f, lastHydrated: 0 } : f,
+      );
+      attachCuttings(client, [neverHydrated]);
+
+      const response = await client.v1.getFileComponents(FILE_KEY);
+
+      expect(response.data).toStrictEqual({ reached: 'network' });
+      expect(networkAdapter).toHaveBeenCalledTimes(1);
+    });
+
+    it('includes the i18n field real published endpoints return', async ({ client, cutting }) => {
+      attachCuttings(client, [cutting]);
+
+      const response = await client.v1.getFileStyles(FILE_KEY);
+
+      expect(response.data).toMatchObject({ error: false, i18n: null, status: 200 });
+    });
   });
 
   describe('several cuttings', () => {
@@ -318,6 +438,68 @@ describe('@figmarine/cuttings - attach', () => {
       expect(first.headers[CUTTING_SOURCE_HEADER]).toBe(encodeURIComponent('debug file'));
       expect(second.headers[CUTTING_SOURCE_HEADER]).toBe(encodeURIComponent('error states'));
       expect(networkAdapter).not.toHaveBeenCalled();
+    });
+
+    it('lets the most recent attachment win when several hold the same file', async ({
+      client,
+      cutting,
+    }) => {
+      const older = { ...cutting, meta: { ...cutting.meta, label: 'older attachment' } };
+      const newer = { ...cutting, meta: { ...cutting.meta, label: 'newer attachment' } };
+
+      attachCuttings(client, [older]);
+      const detachNewer = attachCuttings(client, [newer]);
+
+      const whileBothAttached = await client.v1.getFile(FILE_KEY);
+      expect(whileBothAttached.headers[CUTTING_SOURCE_HEADER]).toBe(
+        encodeURIComponent('newer attachment'),
+      );
+
+      detachNewer();
+      const afterNewerDetached = await client.v1.getFile(FILE_KEY);
+      expect(afterNewerDetached.headers[CUTTING_SOURCE_HEADER]).toBe(
+        encodeURIComponent('older attachment'),
+      );
+    });
+  });
+
+  describe('development cache interplay', () => {
+    it('serves cuttings over cached network responses, and never persists synthetic responses', async ({
+      cutting,
+      networkAdapter,
+    }) => {
+      const cacheDir = path.join(
+        os.tmpdir(),
+        `figmarine-attach-spec-${process.pid}-${Math.random().toString(36).slice(2)}`,
+      );
+      const client = await Client({
+        personalAccessToken: 'test-token',
+        mode: 'development',
+        cache: { location: cacheDir },
+        rateLimit: false,
+      });
+      client.instance.defaults.adapter = networkAdapter;
+
+      try {
+        // Prime the development cache with a network response.
+        const primed = await client.v1.getFile(FILE_KEY);
+        expect(primed.data).toStrictEqual({ reached: 'network' });
+
+        // The cutting must win over the cached network response.
+        const detach = attachCuttings(client, [cutting]);
+        const served = await client.v1.getFile(FILE_KEY);
+        expect(served.headers[CUTTING_SOURCE_HEADER]).toBe(encodeURIComponent('debug file'));
+        expect(served.data).toStrictEqual(slimFile(rawFile));
+
+        // And the synthetic response must not poison the cache: once
+        // detached, the client returns network(-cached) data again.
+        detach();
+        const afterDetach = await client.v1.getFile(FILE_KEY);
+        expect(afterDetach.headers[CUTTING_SOURCE_HEADER]).toBeUndefined();
+        expect(afterDetach.data).toStrictEqual({ reached: 'network' });
+      } finally {
+        fs.rmSync(cacheDir, { force: true, recursive: true });
+      }
     });
   });
 

@@ -1,6 +1,6 @@
 import os from 'node:os';
 
-import type { AxiosRequestHeaders, InternalAxiosRequestConfig } from 'axios';
+import type { AxiosInstance, AxiosRequestHeaders, InternalAxiosRequestConfig } from 'axios';
 import { test as base } from 'vitest';
 import { faker } from '@faker-js/faker';
 import { vol } from 'memfs';
@@ -191,6 +191,30 @@ describe('@figmarine/rest - interceptors', () => {
       expect(rlSpy).not.toHaveBeenCalled();
       expect(hasSpy).not.toHaveBeenCalled();
       expect(cfg.reqLog).toHaveLength(0);
+    });
+
+    it('still rate limits when the function adapter is the instance default', async ({ cache }) => {
+      const rlSpy = vi.spyOn(rateLimitModule, 'interceptRequest');
+      const cfg = getConfig();
+
+      // Consumers may install a custom network transport as the default
+      // adapter of the whole instance; those requests do hit the network.
+      const customTransport = async (config: InternalAxiosRequestConfig) => ({
+        data: {},
+        status: 200,
+        statusText: 'OK',
+        headers: {},
+        config,
+      });
+      const instance = { defaults: { adapter: customTransport } } as unknown as AxiosInstance;
+      const interceptor = rateLimitRequestInterceptor(cache, instance);
+      const throughCustomTransport: InternalAxiosRequestConfig = {
+        ...fileRequest,
+        adapter: customTransport,
+      };
+      await interceptor(throughCustomTransport);
+      expect(rlSpy).toHaveBeenCalled();
+      expect(cfg.reqLog).toHaveLength(1);
     });
   });
 });

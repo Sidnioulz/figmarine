@@ -208,6 +208,18 @@ describe('@figmarine/cuttings - fs', () => {
         'File did not match expected format',
       );
     });
+
+    it('fails if a stored file lost its core fields', ({ fileBasic, fileBasicLocation }) => {
+      // Hand-edits and bad merges must fail at load time, not deep inside
+      // consumers dereferencing the document tree.
+      const hollowed = structuredClone(fileBasic);
+      hollowed.data.files.naoned = {} as (typeof hollowed)['data']['files'][string];
+      vol.fromJSON({ [fileBasicLocation]: JSON.stringify(hollowed) });
+
+      expect(() => digCutting(fileBasicLocation)).toThrowError(
+        'File did not match expected format',
+      );
+    });
   });
 
   describe('chaining', () => {
