@@ -103,9 +103,11 @@ be enabled:
   configured with a 2-day `cooldown` so its PRs propose versions that clear
   the gate. If you ever need a fresher version, add it to
   `minimumReleaseAgeExclude`.
-- **Packages that release**: `multi-release.config.js` ignores `config-*`,
-  `cuttings`, `nursery` and `eslint-plugin-figma` for now. Remove entries
-  from `ignorePackages` to start releasing them.
+- **Packages that release**: `@figmarine/cache`, `@figmarine/logger`,
+  `@figmarine/rest`, `@figmarine/cuttings` and `@figmarine/nursery`.
+  `multi-release.config.js` ignores `config-*` (never published) and
+  `eslint-plugin-figma` (not ready for release yet); remove entries from
+  `ignorePackages` to start releasing them.
 - **GitLab mirror.** The README badge points to a GitLab CI mirror whose
   pipeline definition lives outside this repository. After the pnpm 11 /
   Node ≥ 22.22 upgrade, that pipeline must install pnpm 11 (e.g. via

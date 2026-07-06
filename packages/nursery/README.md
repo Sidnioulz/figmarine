@@ -126,7 +126,7 @@ when Figma content changed. Copy it to
 - [x] GitHub Actions workflow template for scheduled refreshes
 - [ ] CircleCI workflow template
 - [ ] Claude Code skill wrapping the CLI
-- [ ] Automate NPM releases
+- [x] Automate NPM releases
 
 ## :wave: Contributing
 

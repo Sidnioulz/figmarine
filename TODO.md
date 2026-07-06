@@ -44,18 +44,20 @@
 - [ ] Implement the server needed
 - [ ] And the auth ui?
 
-## apps/nursery
+## packages/nursery
 
-- [ ] Build nursery app
-- [ ] Create and document the `figorder.json` file format
-- [ ] Use the cuttings package to support passing orders
-- [ ] Ensure all retrieved cuttings are long-term stored by default
-- [ ] Include versioning in cache keys / file keys in the nursery storage
-- [ ] Handle cutting rehydration
-- [ ] Add unit tests
-- [ ] Write a README
-- [ ] Write CD code to release the package
-- [ ] Add repository and homepage to manifest
+- [x] Build nursery CLI
+- [x] Create and document the config file format (`.figmarine/nursery.json`)
+- [x] Use the cuttings package to take and refresh cuttings
+- [x] Ensure all retrieved cuttings are long-term stored by default
+- [x] Support pinning file versions in the config
+- [x] Handle cutting rehydration
+- [x] Add unit tests
+- [x] Write a README
+- [x] Write CD code to release the package
+- [x] Add repository and homepage to manifest
+- [ ] CircleCI workflow template
+- [ ] Claude Code skill wrapping the CLI
 
 ## apps/lint
 
