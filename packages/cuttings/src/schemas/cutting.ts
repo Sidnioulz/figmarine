@@ -104,7 +104,8 @@ export type Cutting = {
  * @returns Whether it is a valid Cutting.
  */
 export function isCutting(blob: unknown): blob is Cutting {
-  log(`Cutting::isCutting: Checking out the following blob: ${JSON.stringify(blob)}`);
+  // Do not stringify the blob: real cuttings weigh megabytes.
+  log(`Cutting::isCutting: Checking a candidate blob.`);
   const outcome = CuttingSchema.safeParse(blob);
 
   if (outcome.success) {
