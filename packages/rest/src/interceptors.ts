@@ -1,4 +1,4 @@
-import type { InternalAxiosRequestConfig } from 'axios';
+import type { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
 import { log } from '@figmarine/logger';
 
 import { Cache, generatePredictableKey } from './cache';
@@ -76,12 +76,14 @@ export function cacheInvalidationRequestInterceptor(cache: Cache) {
   };
 }
 
-export function rateLimitRequestInterceptor(cache: Cache | undefined) {
+export function rateLimitRequestInterceptor(cache: Cache | undefined, instance?: AxiosInstance) {
   return async function (config: InternalAxiosRequestConfig) {
     // A per-request function adapter means the response is produced
     // locally (e.g. by @figmarine/cuttings serving planted data), so no
-    // rate limit budget is consumed.
-    if (typeof config.adapter === 'function') {
+    // rate limit budget is consumed. A function adapter inherited from the
+    // instance defaults is different: that is how consumers install custom
+    // transports, and those requests do reach the network.
+    if (typeof config.adapter === 'function' && config.adapter !== instance?.defaults.adapter) {
       return config;
     }
 

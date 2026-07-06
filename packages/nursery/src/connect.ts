@@ -37,8 +37,8 @@ export interface NurseryConnection {
   locations: string[];
 
   /**
-   * Detaches the cuttings from the client. Subsequent API calls all go to
-   * the network again.
+   * Detaches the cuttings from the client, which then behaves as if the
+   * nursery was never connected.
    */
   disconnect: () => void;
 }

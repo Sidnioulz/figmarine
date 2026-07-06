@@ -31,6 +31,27 @@ const URL_PATTERNS: readonly [RegExp, ImplementedEndpointType][] = [
  */
 const SERVABLE_GET_FILE_PARAMS = ['branch_data', 'version'];
 
+/**
+ * Marks request configs already claimed by an `attachCuttings` interceptor,
+ * so that when several attachments can answer a call, the most recently
+ * attached one wins (request interceptors run most-recent-first) instead of
+ * being silently overwritten by an older attachment.
+ */
+const CUTTING_CLAIM = Symbol('figmarine.cuttings.claim');
+
+/**
+ * The parts of a request config this module reads or writes beyond what
+ * axios types: the claim marker above, and axios-cache-interceptor's
+ * per-request `cache` toggle. Serving sets `cache: false` so that the
+ * development disk cache neither masks attached cuttings with older
+ * network responses nor persists synthetic responses beyond the
+ * attachment's lifetime.
+ */
+type InterceptedRequestConfig = InternalAxiosRequestConfig & {
+  cache?: unknown;
+  [CUTTING_CLAIM]?: boolean;
+};
+
 function safeDecode(str: string): string {
   try {
     return decodeURIComponent(str);
@@ -41,16 +62,51 @@ function safeDecode(str: string): string {
 
 /**
  * Returns the query parameters that actually constrain a request, i.e.
- * those with a meaningful value.
+ * those with a meaningful value, merging the query string embedded in the
+ * request URL with the request's `params`. Returns undefined when the
+ * constraints cannot be fully understood (an exotic `params` object, or
+ * conflicting values for one key) — callers must then fall through to the
+ * network rather than risk serving data the caller did not ask for.
  */
-function meaningfulParams(params: unknown): Record<string, unknown> {
-  if (typeof params !== 'object' || params === null) {
-    return {};
+function requestConstraints(query: string, params: unknown): Record<string, unknown> | undefined {
+  const constraints: Record<string, unknown> = {};
+
+  const mergeEntry = (key: string, value: unknown): boolean => {
+    if (key in constraints && String(constraints[key]) !== String(value)) {
+      return false;
+    }
+    constraints[key] = value;
+    return true;
+  };
+
+  for (const [key, value] of new URLSearchParams(query)) {
+    if (!mergeEntry(key, value)) {
+      return undefined;
+    }
   }
 
-  return Object.fromEntries(
-    Object.entries(params).filter(([, value]) => value !== undefined && value !== null),
-  );
+  let paramEntries: [string, unknown][];
+  if (params === undefined || params === null) {
+    paramEntries = [];
+  } else if (params instanceof URLSearchParams) {
+    paramEntries = [...params.entries()];
+  } else if (typeof params === 'object' && Object.getPrototypeOf(params) === Object.prototype) {
+    paramEntries = Object.entries(params);
+  } else {
+    // Custom params containers can serialise to anything; never guess.
+    return undefined;
+  }
+
+  for (const [key, value] of paramEntries) {
+    if (value === undefined || value === null) {
+      continue;
+    }
+    if (!mergeEntry(key, value)) {
+      return undefined;
+    }
+  }
+
+  return constraints;
 }
 
 /**
@@ -86,7 +142,15 @@ function findServingCutting(
 
     if (endpoint === 'GetFile') {
       const file = cutting.data.files[fileKey];
-      if (!file) {
+      // Loose schemas tolerate hand-edited cuttings whose stored files
+      // miss core fields; those cannot stand in for a GetFile response.
+      if (
+        !file ||
+        typeof file.name !== 'string' ||
+        typeof file.version !== 'string' ||
+        typeof file.document !== 'object' ||
+        file.document === null
+      ) {
         return false;
       }
 
@@ -106,7 +170,10 @@ function findServingCutting(
       );
     }
 
-    return true;
+    // Facets that were never hydrated (e.g. hand-written cutting configs)
+    // have no data behind them: an empty published list must mean "this
+    // file publishes nothing", never "this was never fetched".
+    return (facet.lastHydrated ?? 0) > 0;
   });
 }
 
@@ -125,6 +192,7 @@ function buildResponseBody(
     case 'GetFileComponents':
       return {
         error: false,
+        i18n: null,
         status: 200,
         meta: {
           components: Object.values(cutting.data.components).filter((c) => c.file_key === fileKey),
@@ -133,6 +201,7 @@ function buildResponseBody(
     case 'GetFileComponentSets':
       return {
         error: false,
+        i18n: null,
         status: 200,
         meta: {
           component_sets: Object.values(cutting.data.componentSets).filter(
@@ -143,6 +212,7 @@ function buildResponseBody(
     case 'GetFileStyles':
       return {
         error: false,
+        i18n: null,
         status: 200,
         meta: {
           styles: Object.values(cutting.data.styles).filter((s) => s.file_key === fileKey),
@@ -168,22 +238,31 @@ function buildResponseBody(
  *
  * The cutting is authoritative regardless of its age: refreshing data is
  * a separate concern, handled by `hydrate` here or by `@figmarine/nursery`
- * refresh schedules.
+ * refresh schedules. Served requests bypass the client's development
+ * cache both ways: cached network responses do not mask cuttings, and
+ * synthetic responses are never persisted.
  *
  * @param client The REST client to attach the cuttings to.
  * @param cuttings The cuttings to serve API calls from. When several
- * cuttings can answer a call, the first one in the array wins.
+ * cuttings can answer a call, the first one in the array wins; when
+ * several attachments can, the most recently attached wins.
  * @returns A function that detaches the cuttings from the client.
  */
 export function attachCuttings(client: ClientInterface, cuttings: Cutting[]): () => void {
   const interceptorId = client.instance.interceptors.request.use(
-    (config: InternalAxiosRequestConfig) => {
+    (config: InterceptedRequestConfig) => {
       const method = config.method?.toLowerCase() ?? 'get';
-      if (method !== 'get' || !config.url) {
+      if (method !== 'get' || !config.url || config[CUTTING_CLAIM]) {
         return config;
       }
 
-      const [path] = config.url.split(/[?#]/);
+      // Constraints can hide in the URL's own query string, not just in
+      // `params` — never discard them.
+      const [beforeHash] = config.url.split('#');
+      const queryIndex = beforeHash.indexOf('?');
+      const path = queryIndex === -1 ? beforeHash : beforeHash.slice(0, queryIndex);
+      const query = queryIndex === -1 ? '' : beforeHash.slice(queryIndex + 1);
+
       for (const [pattern, endpoint] of URL_PATTERNS) {
         const match = path.match(pattern);
         if (!match) {
@@ -191,18 +270,27 @@ export function attachCuttings(client: ClientInterface, cuttings: Cutting[]): ()
         }
 
         const fileKey = safeDecode(match[1]);
-        const params = meaningfulParams(config.params);
-        const cutting = findServingCutting(cuttings, endpoint, fileKey, params);
+        const constraints = requestConstraints(query, config.params);
+        const cutting = constraints && findServingCutting(cuttings, endpoint, fileKey, constraints);
         if (!cutting) {
           log(`Cuttings::attachCuttings: no cutting holds ${endpoint}:${fileKey}, calling out.`);
           return config;
         }
 
         log(`Cuttings::attachCuttings: serving ${endpoint}:${fileKey} from a cutting.`);
+        config[CUTTING_CLAIM] = true;
+        // Keep the development request cache out of the loop: a cache hit
+        // would replace the adapter below with an older network response,
+        // and a cache write would persist the synthetic response beyond
+        // this attachment's lifetime.
+        config.cache = false;
         // A per-request adapter short-circuits the network: axios calls it
         // instead of its HTTP adapter, and response interceptors still run.
         config.adapter = async (servedConfig) => ({
-          data: buildResponseBody(cutting, endpoint, fileKey),
+          // Cloned like a real response is a fresh parse: consumers that
+          // mutate response bodies must not corrupt the cutting or later
+          // responses.
+          data: structuredClone(buildResponseBody(cutting, endpoint, fileKey)),
           status: 200,
           statusText: 'OK',
           headers: {

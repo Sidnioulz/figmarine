@@ -49,7 +49,18 @@ export const CuttingSchema = z.object({
   data: z.object({
     components: z.record(z.string(), z.looseObject({})),
     componentSets: z.record(z.string(), z.looseObject({})),
-    files: z.record(z.string(), z.looseObject({})),
+    // Stored files are slim but never hollow: consumers dereference at
+    // least the document tree, so a cutting whose file data lost its core
+    // fields (hand-edits, bad merges) must fail at load time, not deep
+    // inside consumer code.
+    files: z.record(
+      z.string(),
+      z.looseObject({
+        document: z.looseObject({}),
+        name: z.string(),
+        version: z.string(),
+      }),
+    ),
     localVariables: z.record(z.string(), z.looseObject({})),
     localVariableCollections: z.record(z.string(), z.looseObject({})),
     projects: z.record(z.string(), z.looseObject({})),

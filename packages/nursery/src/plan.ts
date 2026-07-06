@@ -18,15 +18,19 @@ export function planFacets(entry: ResolvedNurseryCutting): Facet[] {
   const facets = new Map<string, Facet>();
 
   for (const file of entry.files) {
-    const { fileKey } = parseFigmaUrl(file.url);
+    const { fileKey, mainFileKey } = parseFigmaUrl(file.url);
 
     for (const endpoint of file.endpoints) {
+      // Published-item endpoints only accept main file keys, and their
+      // items always report the main file's key. For a branch URL, plan
+      // them against the main file so facets and data stay coherent.
+      const id = endpoint === 'GetFile' ? fileKey : (mainFileKey ?? fileKey);
       const facet: Facet =
         endpoint === 'GetFile' && file.version !== undefined
-          ? { endpoint, id: fileKey, version: file.version }
-          : { endpoint, id: fileKey };
+          ? { endpoint, id, version: file.version }
+          : { endpoint, id };
 
-      facets.set(`${endpoint}:${fileKey}`, facet);
+      facets.set(`${endpoint}:${id}`, facet);
     }
   }
 
