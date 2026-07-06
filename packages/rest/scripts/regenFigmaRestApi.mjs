@@ -1,5 +1,4 @@
 import { createRequire } from 'node:module';
-import https from 'node:https';
 import path from 'node:path';
 import { readFile } from 'node:fs/promises';
 
@@ -8,27 +7,12 @@ import { parse } from 'yaml';
 
 const require = createRequire(import.meta.url);
 
-function fetchUrl(url) {
-  return new Promise((resolve, reject) => {
-    https
-      .get(url, (res) => {
-        if (res.statusCode !== 200) {
-          reject(new Error(`Failed to fetch ${url}: HTTP ${res.statusCode}`));
-          res.resume();
-          return;
-        }
-        let data = '';
-        res.on('data', (chunk) => {
-          data += chunk;
-        });
-        res.on('end', () => {
-          resolve(data);
-        });
-      })
-      .on('error', (err) => {
-        reject(err);
-      });
-  });
+async function fetchUrl(url) {
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`Failed to fetch ${url}: HTTP ${res.status}`);
+  }
+  return res.text();
 }
 
 /**
