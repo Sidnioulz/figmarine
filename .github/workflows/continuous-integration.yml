@@ -13,45 +13,25 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [22]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
-      - name: Install dependencies
-        run: pnpm install
+      - name: Setup repository
+        uses: ./.github/actions/setup-repo
       - name: Check for linter errors
         run: pnpm lint
 
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [22]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
-      - name: Install dependencies
-        run: pnpm install
+      - name: Setup repository
+        uses: ./.github/actions/setup-repo
       - name: Run tests
         run: pnpm test:coverage
       - name: Upload coverage reports to Codecov
@@ -61,23 +41,13 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [22]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
-      - name: Install dependencies
-        run: pnpm install
+      - name: Setup repository
+        uses: ./.github/actions/setup-repo
       - name: Run build
         run: pnpm build
 
@@ -92,20 +62,16 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'pnpm'
-      - name: Install dependencies
-        run: pnpm install
+      - name: Setup repository
+        uses: ./.github/actions/setup-repo
       - name: Regenerate API clients
         run: pnpm api:regen
       - name: Check for drift in generated code
+        # `git add -A` first so new, renamed or deleted generated files are
+        # caught too, not just edits to tracked files.
         run: |
-          if ! git diff --exit-code -- packages/rest/src/__generated__; then
+          git add -A packages/rest/src/__generated__
+          if ! git diff --cached --exit-code -- packages/rest/src/__generated__; then
             echo "::error::Generated API client is out of date. Run 'pnpm api:regen' and commit the result."
             exit 1
           fi

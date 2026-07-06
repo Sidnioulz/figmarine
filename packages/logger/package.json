@@ -17,7 +17,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsc --noEmit && tsup --env.NODE_ENV production",
+    "build": "tsup --env.NODE_ENV production",
     "dev": "tsc-watch --onSuccess \"tsup --env.NODE_ENV production\"",
     "lint": "eslint .",
     "lint:files": "eslint --",

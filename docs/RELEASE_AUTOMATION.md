@@ -11,7 +11,7 @@ Figma publishes @figma/rest-api-spec vX.Y.Z
   │  (npm)
   ▼
 Dependabot daily run (after a 2-day cooldown, see below)
-  │  opens a PR titled "Bump the oas group …"
+  │  opens a PR titled "chore(deps): bump the oas group …"
   ▼
 Dependabot automerge workflow (.github/workflows/automerge-dependabot.yml)
   │  1. pnpm api:regen  → regenerates packages/rest/src/__generated__
@@ -23,8 +23,8 @@ Dependabot automerge workflow (.github/workflows/automerge-dependabot.yml)
   ▼
 CI passes → PR auto-merges to main
   ▼
-CI workflow runs on main → Semantic Release workflow
-  │  (.github/workflows/semantic-release.yml, workflow_run on CI success)
+Semantic Release workflow (.github/workflows/semantic-release.yml)
+  │  runs after CI succeeds on main, and once a day as a fallback
   ▼
 multi-semantic-release analyzes commits since the last release
   │  feat(rest) → minor bump of @figmarine/rest
@@ -39,8 +39,9 @@ publishes nothing (by design).
 
 ## Administrator checklist
 
-The workflows only use `GITHUB_TOKEN`; no PAT is required. But the following
-repository settings must be enabled:
+The workflows only use `GITHUB_TOKEN`; no PAT is required (see the release
+latency note below for the trade-off). The following repository settings must
+be enabled:
 
 1. **Allow auto-merge** — *Settings → General → Pull Requests → Allow
    auto-merge*. Required for `gh pr merge --auto`.
@@ -48,8 +49,9 @@ repository settings must be enabled:
    Actions → General → Workflow permissions*. Required for
    `gh pr review --approve` in the automerge workflow.
 3. **Branch protection on `main`** with required status checks `lint`,
-   `test`, `build` and `api-drift` (the CI job names). Auto-merge waits for
-   these; without required checks, Dependabot PRs merge before CI finishes.
+   `test`, `build` and `api-drift` (the CI job names, which match the
+   check-run names since no job uses a matrix). Auto-merge waits for these;
+   without required checks, Dependabot PRs merge before CI finishes.
 4. **Secrets**:
    - `NPM_TOKEN`: npm automation token with publish rights on the
      `@figmarine` scope. Semantic Release fails on `main` when it expires —
@@ -63,16 +65,39 @@ repository settings must be enabled:
   so generated code always matches the pinned version. Set `FIGMA_BRANCH` to
   a branch or tag of `figma/rest-api-spec` to try an unreleased spec locally.
 - **The `api-drift` CI job** regenerates the client on every PR and fails if
-  the committed generated code differs. This catches spec or generator bumps
-  that skipped regeneration (e.g. a manual bump, or a group misconfiguration).
+  the committed generated code differs (including new or renamed files). This
+  catches spec, generator or formatter bumps that skipped regeneration.
 - **`GITHUB_TOKEN` pushes do not trigger `pull_request` workflows.** The
   regen commit would otherwise sit without CI checks and auto-merge would
   wait forever. The automerge workflow works around this by dispatching the
   CI workflow (`workflow_dispatch` is exempt from the restriction); check
-  runs attach to the head commit, satisfying branch protection.
-- **The `oas` Dependabot group contains both `@figma/rest-api-spec` and
-  `swagger-typescript-api`**, because bumps of either can change generated
-  output. Both therefore go through the regen flow.
+  runs attach to the head commit, satisfying branch protection. If the PR
+  branch predates the `workflow_dispatch` trigger in the CI workflow, the
+  dispatch fails; the workflow then comments `@dependabot rebase` so the
+  branch is recreated from current `main` and the flow self-heals.
+- **Release latency after auto-merge.** The same `GITHUB_TOKEN` rule means a
+  Dependabot auto-merge does not trigger the CI `push` run on `main`, so the
+  `workflow_run`-gated Semantic Release would never fire for those merges.
+  The Semantic Release workflow therefore also runs on a daily schedule (and
+  supports manual `workflow_dispatch` for an immediate release). Releases
+  triggered by human pushes to `main` still happen immediately. If you want
+  auto-merged releases to publish immediately too, enable auto-merge with a
+  fine-grained PAT or GitHub App token instead of `GITHUB_TOKEN`.
+- **The `oas` Dependabot group contains `@figma/rest-api-spec`,
+  `swagger-typescript-api` and `prettier`**, because bumps of any of them can
+  change generated output (the spec, the generator, and the formatter applied
+  to generated code). All three therefore go through the regen flow.
+- **GitHub Action bumps are not auto-merged.** Dependabot PRs titled `ci: …`
+  (the github-actions ecosystem) update code that runs with repository
+  secrets, so the automerge workflow deliberately skips approving and merging
+  them — a human must review.
+- **Breaking spec changes ship as minor releases.** The regen commit is
+  always `feat(rest)`, so a Figma spec that removes or renames endpoints
+  still publishes as semver-minor. Watch the
+  [Figma API changelog](https://www.figma.com/developers/api#changelog) for
+  removals; if one lands, publish a manual release with a
+  `feat(rest)!:`/`BREAKING CHANGE:` commit instead of letting the automation
+  ship it quietly.
 - **Supply-chain age gate.** pnpm 11 rejects dependency versions younger
   than 24h (`minimumReleaseAge` in `pnpm-workspace.yaml`). Dependabot is
   configured with a 2-day `cooldown` so its PRs propose versions that clear
@@ -95,3 +120,5 @@ repository settings must be enabled:
   unreleased upstream spec.
 - `pnpm release:dry`: dry-run the release pipeline locally (requires being on
   a branch with a configured remote; no publishing happens).
+- *Actions → Semantic Release → Run workflow*: trigger an immediate release
+  from `main`, e.g. right after a Dependabot auto-merge.
