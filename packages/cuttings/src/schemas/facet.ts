@@ -50,6 +50,11 @@ export const IMPLEMENTED_ENDPOINT_TYPES = [
 ] as const satisfies readonly (typeof ALL_ENDPOINT_TYPES)[number][];
 
 /**
+ * An endpoint type that `take` can currently fetch.
+ */
+export type ImplementedEndpointType = (typeof IMPLEMENTED_ENDPOINT_TYPES)[number];
+
+/**
  * The last time a facet's data was fetched through the Figma REST API,
  * as a Unix epoch in milliseconds. Zero when never fetched, e.g. in a
  * hand-written cutting config that was not taken yet.

@@ -78,6 +78,13 @@ export function cacheInvalidationRequestInterceptor(cache: Cache) {
 
 export function rateLimitRequestInterceptor(cache: Cache | undefined) {
   return async function (config: InternalAxiosRequestConfig) {
+    // A per-request function adapter means the response is produced
+    // locally (e.g. by @figmarine/cuttings serving planted data), so no
+    // rate limit budget is consumed.
+    if (typeof config.adapter === 'function') {
+      return config;
+    }
+
     // If we have cache for the request, no need to consider rate limiting.
     const cacheHit = cache && (await cache.has(generatePredictableKey(config)));
 

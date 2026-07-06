@@ -4,6 +4,7 @@ import { test as base } from 'vitest';
 import { API_FIXTURE_FILES, loadApiFixture } from '../__fixtures__/api';
 import type { Cutting } from '../schemas/cutting';
 import { hydrate } from '../hydrate';
+import { mockResponse } from '../__fixtures__/mockedClient';
 import { take } from '../take';
 
 /* Logger mock. */
@@ -13,10 +14,6 @@ vi.mock(import('@figmarine/logger'), async () => ({ log: mockedLog }));
 const FILE_KEY = API_FIXTURE_FILES['figma-api-debug-file'];
 const TAKE_TIME = 1751791000000;
 const HYDRATE_TIME = 1751795000000;
-
-function mockResponse<T>(data: T) {
-  return { status: 200, statusText: 'OK', data };
-}
 
 interface HydrateFixtures {
   client: ClientInterface;

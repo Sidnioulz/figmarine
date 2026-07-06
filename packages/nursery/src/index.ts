@@ -1,4 +1,5 @@
 export * from './client';
+export * from './connect';
 export * from './commands/init';
 export * from './commands/refresh';
 export * from './commands/status';
