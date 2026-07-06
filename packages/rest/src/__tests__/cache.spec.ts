@@ -12,7 +12,7 @@ interface StorageFixtures {
 const it = base.extend<StorageFixtures>({
   cache: async ({}, use) => {
     const c = new Cache(await Client({ personalAccessToken: 'foo ' }));
-    c.set('existing', Basic200);
+    await c.set('existing', Basic200);
     await use(c);
   },
 });

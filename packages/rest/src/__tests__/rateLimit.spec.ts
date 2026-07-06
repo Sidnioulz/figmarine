@@ -26,6 +26,7 @@ describe('@figmarine/rest - rateLimit', () => {
     });
     afterEach(() => {
       vi.restoreAllMocks();
+      mockedConfig.mockReset();
     });
 
     it('does not wait when the rate limiting request log is empty', async () => {
