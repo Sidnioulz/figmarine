@@ -11,5 +11,6 @@ describe('@figmarine/cuttings - index', () => {
     expect(index.slimFile).toBeDefined();
     expect(index.isCutting).toBeDefined();
     expect(index.isFacet).toBeDefined();
+    expect(index.printZodError).toBeDefined();
   });
 });
