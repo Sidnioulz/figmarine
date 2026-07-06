@@ -20,9 +20,7 @@
   "homepage": "https://github.com/Sidnioulz/figmarine",
   "scripts": {
     "build": "tsup --env.NODE_ENV production",
-    "build:debug": "tsup --entry src/debug.ts --entry src/index.ts --env.NODE_ENV development",
     "dev": "tsc-watch --onSuccess \"tsup --env.NODE_ENV production\"",
-    "dev:debug": "tsc-watch --onSuccess \"tsup --entry src/debug.ts --entry src/index.ts --env.NODE_ENV development\"",
     "fixtures:regen": "node ./scripts/fetchFixtures.mjs",
     "lint": "eslint .",
     "lint:files": "eslint --",

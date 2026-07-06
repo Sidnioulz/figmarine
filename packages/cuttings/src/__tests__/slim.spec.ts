@@ -29,6 +29,26 @@ describe('@figmarine/cuttings - slim', () => {
       expect(slim.linkAccess).toBeUndefined();
     });
 
+    it('drops volatile thumbnail URLs from branch entries', () => {
+      const withBranches = {
+        ...body,
+        branches: [
+          {
+            key: 'branchKey123',
+            name: 'A branch',
+            thumbnail_url: 'https://s3.example/signed?X-Amz-Signature=abc',
+            last_modified: '2026-07-01T00:00:00Z',
+          },
+        ],
+      } as V1.GetFile.ResponseBody;
+
+      const slim = slimFile(withBranches);
+
+      expect(slim.branches).toStrictEqual([
+        { key: 'branchKey123', name: 'A branch', last_modified: '2026-07-01T00:00:00Z' },
+      ]);
+    });
+
     it('omits optional fields that the response does not contain', () => {
       const { branches: _branches, ...withoutBranches } = body;
       const slim = slimFile(withoutBranches as V1.GetFile.ResponseBody);

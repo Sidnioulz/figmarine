@@ -1,6 +1,18 @@
 import type { File, V1 } from '@figmarine/rest';
 
 /**
+ * A branch entry as stored in a Cutting: the volatile signed
+ * `thumbnail_url` is dropped so refreshes stay diff-stable.
+ */
+export type SlimBranch = Omit<NonNullable<File['branches']>[number], 'thumbnail_url'>;
+
+/**
+ * A Figma file as stored in a Cutting: the fields of `File`, with branch
+ * entries slimmed of their volatile thumbnail URLs.
+ */
+export type SlimFile = Omit<File, 'branches'> & { branches?: SlimBranch[] };
+
+/**
  * The fields of a `GetFile` response body kept in a Cutting. Everything
  * else (thumbnails, access role, link settings…) is volatile or
  * irrelevant to offline analysis and would create meaningless diffs when
@@ -34,8 +46,8 @@ true satisfies MissingFileField extends never ? true : false;
  * @param body The raw `GetFile` response body.
  * @returns The slimmed file.
  */
-export function slimFile(body: V1.GetFile.ResponseBody): File {
-  const file: Partial<File> = {};
+export function slimFile(body: V1.GetFile.ResponseBody): SlimFile {
+  const file: Partial<SlimFile> = {};
 
   for (const field of FILE_FIELDS) {
     if (field in body) {
@@ -44,5 +56,9 @@ export function slimFile(body: V1.GetFile.ResponseBody): File {
     }
   }
 
-  return file as File;
+  if (body.branches) {
+    file.branches = body.branches.map(({ thumbnail_url: _thumbnailUrl, ...branch }) => branch);
+  }
+
+  return file as SlimFile;
 }
