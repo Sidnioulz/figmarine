@@ -11,10 +11,15 @@ import path from 'node:path';
 
 import { Client } from '@figmarine/rest';
 
+/**
+ * Full document trees for these files weigh 48MB to 400MB, far beyond what
+ * a repository should carry, so each file is recorded at the deepest depth
+ * that keeps its GetFile fixture in the hundreds-of-kilobytes range.
+ */
 const FIXTURE_FILES = [
-  { label: 'figma-api-debug-file', fileKey: 'idLa6ZCXDJUeRFI5wLVNWN' },
-  { label: 'error-states', fileKey: '3qv1uKfLSXm4etqj005Rmi' },
-  { label: 'surface-new-stories', fileKey: 'pMmZ9LmqB0KbgI8GNY4IW9' },
+  { label: 'figma-api-debug-file', fileKey: 'idLa6ZCXDJUeRFI5wLVNWN', depth: 4 },
+  { label: 'error-states', fileKey: '3qv1uKfLSXm4etqj005Rmi', depth: 3 },
+  { label: 'surface-new-stories', fileKey: 'pMmZ9LmqB0KbgI8GNY4IW9', depth: 2 },
 ];
 
 const OUTPUT_DIR = path.resolve(import.meta.dirname, '../src/__fixtures__/api');
@@ -29,11 +34,11 @@ async function saveFixture(label, endpoint, data) {
   console.log(`Saved ${path.relative(process.cwd(), file)}`);
 }
 
-for (const { label, fileKey } of FIXTURE_FILES) {
+for (const { label, fileKey, depth } of FIXTURE_FILES) {
   console.log(`Fetching fixture data for '${label}' (${fileKey})…`);
 
   const [file, components, componentSets, styles] = await Promise.all([
-    client.v1.getFile(fileKey, { branch_data: true }),
+    client.v1.getFile(fileKey, { branch_data: true, depth }),
     client.v1.getFileComponents(fileKey),
     client.v1.getFileComponentSets(fileKey),
     client.v1.getFileStyles(fileKey),

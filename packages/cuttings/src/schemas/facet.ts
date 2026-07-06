@@ -101,7 +101,7 @@ export type HydratedFacet = z.output<typeof FacetSchema>;
  * @returns Whether it is a valid facet.
  */
 export function isFacet(blob: unknown): blob is Facet {
-  log(`Facet::isFacet: Checking out the following blob: ${JSON.stringify(blob)}`);
+  log(`Facet::isFacet: Checking a candidate blob.`);
   const outcome = FacetSchema.safeParse(blob);
 
   if (outcome.success) {

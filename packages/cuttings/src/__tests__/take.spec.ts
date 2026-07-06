@@ -2,6 +2,11 @@ import type { ClientInterface, V1 } from '@figmarine/rest';
 import { test as base } from 'vitest';
 
 import { API_FIXTURE_FILES, loadApiFixture } from '../__fixtures__/api';
+import {
+  publishedComponents,
+  publishedComponentSets,
+  publishedStyles,
+} from '../__fixtures__/published';
 import { isCutting } from '../schemas/cutting';
 import { slimFile } from '../slim';
 import { take } from '../take';
@@ -90,53 +95,68 @@ describe('@figmarine/cuttings - take', () => {
   });
 
   describe('GetFileComponents facets', () => {
-    it('stores published components under their component key', async ({ client }) => {
+    it('leaves the component map empty when the file publishes none', async ({ client }) => {
+      // The recorded fixtures publish nothing; this is the real response.
       const cutting = await take({
         client,
         facets: [{ endpoint: 'GetFileComponents', id: FILE_KEY }],
       });
 
-      const raw = loadApiFixture<{ meta: { components: { key: string }[] } }>(
-        'figma-api-debug-file',
-        'GetFileComponents',
+      expect(cutting.data.components).toStrictEqual({});
+    });
+
+    it('stores published components under their component key', async ({ client }) => {
+      vi.mocked(client.v1.getFileComponents).mockResolvedValueOnce(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        mockResponse({ meta: { components: publishedComponents } }) as any,
       );
+
+      const cutting = await take({
+        client,
+        facets: [{ endpoint: 'GetFileComponents', id: FILE_KEY }],
+      });
+
       expect(Object.keys(cutting.data.components).sort()).toStrictEqual(
-        raw.meta.components.map((c) => c.key).sort(),
+        publishedComponents.map((c) => c.key).sort(),
+      );
+      expect(cutting.data.components[publishedComponents[0].key]).toStrictEqual(
+        publishedComponents[0],
       );
     });
   });
 
   describe('GetFileComponentSets facets', () => {
     it('stores published component sets under their key', async ({ client }) => {
+      vi.mocked(client.v1.getFileComponentSets).mockResolvedValueOnce(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        mockResponse({ meta: { component_sets: publishedComponentSets } }) as any,
+      );
+
       const cutting = await take({
         client,
         facets: [{ endpoint: 'GetFileComponentSets', id: FILE_KEY }],
       });
 
-      const raw = loadApiFixture<{ meta: { component_sets: { key: string }[] } }>(
-        'figma-api-debug-file',
-        'GetFileComponentSets',
-      );
-      expect(Object.keys(cutting.data.componentSets).sort()).toStrictEqual(
-        raw.meta.component_sets.map((c) => c.key).sort(),
+      expect(Object.keys(cutting.data.componentSets)).toStrictEqual(
+        publishedComponentSets.map((c) => c.key),
       );
     });
   });
 
   describe('GetFileStyles facets', () => {
     it('stores published styles under their key', async ({ client }) => {
+      vi.mocked(client.v1.getFileStyles).mockResolvedValueOnce(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        mockResponse({ meta: { styles: publishedStyles } }) as any,
+      );
+
       const cutting = await take({
         client,
         facets: [{ endpoint: 'GetFileStyles', id: FILE_KEY }],
       });
 
-      const raw = loadApiFixture<{ meta: { styles: { key: string }[] } }>(
-        'figma-api-debug-file',
-        'GetFileStyles',
-      );
-      expect(Object.keys(cutting.data.styles).sort()).toStrictEqual(
-        raw.meta.styles.map((s) => s.key).sort(),
-      );
+      expect(Object.keys(cutting.data.styles)).toStrictEqual(publishedStyles.map((s) => s.key));
+      expect(cutting.data.styles[publishedStyles[0].key].style_type).toBe('EFFECT');
     });
   });
 
@@ -193,21 +213,30 @@ describe('@figmarine/cuttings - take', () => {
       ).rejects.toThrowError('endpoint type GetTeamComponents is not implemented yet');
     });
 
-    it('throws when a facet request does not succeed', async ({ client }) => {
-      vi.mocked(client.v1.getFile).mockResolvedValueOnce({
-        status: 404,
-        statusText: 'Not Found',
-        data: {},
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any);
+    const ERROR_CASES = [
+      ['GetFile', 'getFile'],
+      ['GetFileComponents', 'getFileComponents'],
+      ['GetFileComponentSets', 'getFileComponentSets'],
+      ['GetFileStyles', 'getFileStyles'],
+    ] as const;
+    for (const [endpoint, method] of ERROR_CASES) {
+      it(`throws when a ${endpoint} request does not succeed`, async () => {
+        const client = makeMockedClient();
+        vi.mocked(client.v1[method]).mockResolvedValueOnce({
+          status: 404,
+          statusText: 'Not Found',
+          data: {},
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any);
 
-      await expect(() =>
-        take({
-          client,
-          facets: [{ endpoint: 'GetFile', id: 'missing' }],
-        }),
-      ).rejects.toThrowError('network call failed for facet GetFile:missing. 404: Not Found');
-    });
+        await expect(() =>
+          take({
+            client,
+            facets: [{ endpoint, id: 'missing' }],
+          }),
+        ).rejects.toThrowError(`network call failed for facet ${endpoint}:missing. 404: Not Found`);
+      });
+    }
 
     it('propagates client rejections', async ({ client }) => {
       vi.mocked(client.v1.getFile).mockRejectedValueOnce(new Error('boom'));
