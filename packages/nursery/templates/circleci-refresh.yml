@@ -28,7 +28,8 @@ jobs:
       - run:
           name: Open a pull request when cuttings changed
           command: |
-            if git diff --quiet -- .figmarine; then
+            # git status catches new cuttings too, which git diff would not.
+            if [ -z "$(git status --porcelain -- .figmarine)" ]; then
               echo "Cuttings are unchanged, nothing to do."
               exit 0
             fi
@@ -41,7 +42,9 @@ jobs:
             git checkout -B "$BRANCH"
             git add .figmarine
             git commit -m "chore(figma): Refresh cuttings"
-            git push --force-with-lease \
+            # Plain --force: the branch is owned by this automation, and
+            # lease-based pushes reject anonymous URL remotes outright.
+            git push --force \
               "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO_SLUG}.git" \
               "$BRANCH"
 
