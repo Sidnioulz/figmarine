@@ -18,7 +18,7 @@ jobs:
     if: github.actor == 'dependabot[bot]' && contains(github.event.pull_request.title, 'Bump the oas group')
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 1
           ref: ${{ github.head_ref }}
