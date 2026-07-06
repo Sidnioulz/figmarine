@@ -1,0 +1,48 @@
+# Scheduled Figma cutting refresh, powered by @figmarine/nursery.
+#
+# Copy this file to .github/workflows/refresh-cuttings.yml in the repository
+# that hosts your .figmarine/ directory, and add a FIGMA_PERSONAL_ACCESS_TOKEN
+# repository secret (a token with read access to the configured files).
+#
+# Every weekday morning (and on demand), the workflow refreshes every cutting
+# and opens a pull request when their content changed, so your team reviews
+# design changes like any other diff.
+name: Refresh Figma cuttings
+
+on:
+  schedule:
+    - cron: '0 6 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Refresh cuttings
+        run: npx --yes @figmarine/nursery refresh
+        env:
+          FIGMA_PERSONAL_ACCESS_TOKEN: ${{ secrets.FIGMA_PERSONAL_ACCESS_TOKEN }}
+
+      - name: Open a pull request with the refreshed cuttings
+        uses: peter-evans/create-pull-request@v7
+        with:
+          add-paths: .figmarine
+          branch: figmarine/refresh-cuttings
+          commit-message: 'chore(figma): Refresh cuttings'
+          title: 'chore(figma): Refresh cuttings'
+          body: |
+            Automated refresh of the Figma cuttings in `.figmarine/cuttings/`.
+
+            Review the diff to see what changed in the underlying Figma files.
