@@ -13,10 +13,12 @@ design-token pipelines) read the cuttings instead of calling the Figma API.
 
 ## Prerequisites
 
-- Authentication comes from the `FIGMA_PERSONAL_ACCESS_TOKEN` (or
-  `FIGMA_OAUTH_TOKEN`) environment variable. Before running any command,
-  check it is set (`test -n "$FIGMA_PERSONAL_ACCESS_TOKEN"`). If it is
-  missing, ask the user to provide one — never echo the token's value.
+- `take` and `refresh` call the Figma API and need the
+  `FIGMA_PERSONAL_ACCESS_TOKEN` (or `FIGMA_OAUTH_TOKEN`) environment
+  variable. Before running either, check it is set
+  (`test -n "$FIGMA_PERSONAL_ACCESS_TOKEN"`); if it is missing, ask the
+  user to provide one — never echo the token's value. `init` and `status`
+  are fully offline and need no token.
 - Run the CLI with `npx --yes @figmarine/nursery <command>` (or the
   project's pinned version if it is a dependency).
 
@@ -57,8 +59,11 @@ All commands accept `--config <path>` when the config is not at the default
 ## Troubleshooting
 
 - `no config found`: run `init` first, or pass `--config`.
-- Exit code 2: invalid usage (bad URL, malformed `--max-age`); the error
-  message and usage text explain what to fix.
+- Exit code 2: invalid CLI usage (unknown command or flag, malformed
+  `--max-age`); the usage text explains what to fix.
+- Exit code 1: the command itself failed — read the error message. It
+  covers invalid Figma URLs passed to `init`, missing config, unknown
+  cutting names, and API errors alike.
 - 403/404 from the API: the token lacks access to the file, or the URL
   points at a deleted/private file.
 - Long silent pauses during `take`/`refresh` on many-file configs are the
