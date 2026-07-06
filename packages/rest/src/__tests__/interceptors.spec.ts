@@ -50,7 +50,7 @@ const it = base.extend<StorageFixtures>({
       throw new Error('Failed to initialise test fixture.');
     }
 
-    c.set('existing', Basic200);
+    await c.set('existing', Basic200);
     await use(c);
   },
 });
@@ -73,6 +73,7 @@ describe('@figmarine/rest - interceptors', () => {
   });
   afterEach(() => {
     vi.restoreAllMocks();
+    mockedConfig.mockReset();
   });
 
   describe('userAgentRequestInterceptor', () => {

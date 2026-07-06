@@ -37,14 +37,16 @@
   },
   "dependencies": {
     "@eslint/json": "catalog:",
-    "eslint-config-turbo": "catalog:",
+    "@vitest/eslint-plugin": "catalog:",
+    "eslint-config-prettier": "catalog:",
     "eslint-plugin-n": "catalog:",
     "eslint-plugin-only-warn": "catalog:",
     "eslint-plugin-prettier": "catalog:",
+    "eslint-plugin-turbo": "catalog:",
     "typescript-eslint": "catalog:"
   },
   "devDependencies": {
-    "@vitest/eslint-plugin": "catalog:",
+    "eslint": "catalog:",
     "typescript": "catalog:"
   }
 }

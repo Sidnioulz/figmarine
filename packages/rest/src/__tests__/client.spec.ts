@@ -97,6 +97,8 @@ describe('@figmarine/rest - client', () => {
   });
   afterEach(() => {
     vi.restoreAllMocks();
+    mockedConfig.mockReset();
+    mocked429Config.mockReset();
   });
 
   describe('Options - cache', () => {
