@@ -10,6 +10,11 @@ on:
   # with GITHUB_TOKEN, which never trigger pull_request events themselves.
   workflow_dispatch:
 
+# Every job only reads the repository; coverage upload authenticates with
+# CODECOV_TOKEN, not GITHUB_TOKEN.
+permissions:
+  contents: read
+
 jobs:
   lint:
     runs-on: ubuntu-latest

@@ -17,6 +17,13 @@ on:
     - cron: '30 5 * * *'
   workflow_dispatch:
 
+# semantic-release pushes tags and creates GitHub releases (contents),
+# and comments on the issues and pull requests it releases.
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
 jobs:
   release:
     name: Semantic Release
