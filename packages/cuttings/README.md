@@ -133,7 +133,7 @@ to the fixture files).
 - [x] Document the cutting file format
 - [ ] Support team, project and variable facets
 - [ ] Facet options (depth, geometry, plugin_data)
-- [ ] Automate NPM releases
+- [x] Automate NPM releases
 
 
 ## :wave: Contributing
