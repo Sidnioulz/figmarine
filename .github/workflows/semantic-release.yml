@@ -36,12 +36,11 @@ jobs:
       - name: Build everything
         run: pnpm build
 
+      # pnpm 11 only reads auth and registry settings from .npmrc.
       - name: Setup .npmrc file
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           echo "registry=https://registry.npmjs.org/" >> .npmrc
-          echo "always-auth=true" >> .npmrc
-          echo "workspaces-update = false" >> .npmrc
 
       - name: Semantic Release
         env:
