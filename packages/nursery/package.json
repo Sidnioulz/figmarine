@@ -25,6 +25,7 @@
     "lint:files": "eslint --",
     "lint:fix": "eslint . --fix",
     "lint:staged": "lint-staged",
+    "schema:regen": "pnpm build && node ./scripts/generateSchema.mjs && prettier --write ./schema",
     "test": "vitest run",
     "test:changed": "vitest run --changed HEAD~1",
     "test:coverage": "vitest --coverage run",
@@ -42,7 +43,7 @@
       "default": "./dist/index.js"
     }
   },
-  "files": ["dist/**"],
+  "files": ["dist/**", "schema/**", "templates/**"],
   "dependencies": {
     "@figmarine/cuttings": "workspace:*",
     "@figmarine/logger": "workspace:*",
@@ -61,6 +62,7 @@
     "eslint": "catalog:",
     "lint-staged": "catalog:",
     "memfs": "catalog:",
+    "prettier": "catalog:",
     "tsc-watch": "catalog:",
     "tsup": "catalog:",
     "typescript": "catalog:",

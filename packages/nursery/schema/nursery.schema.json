@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "output": {
+      "default": ".figmarine/cuttings",
+      "type": "string"
+    },
+    "cuttings": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "files": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string"
+                },
+                "endpoints": {
+                  "default": [
+                    "GetFile",
+                    "GetFileComponents",
+                    "GetFileComponentSets",
+                    "GetFileStyles"
+                  ],
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "GetFile",
+                      "GetFileComponents",
+                      "GetFileComponentSets",
+                      "GetFileStyles"
+                    ]
+                  }
+                }
+              },
+              "required": ["url"]
+            }
+          }
+        },
+        "required": ["files"]
+      }
+    }
+  },
+  "required": ["cuttings"],
+  "title": "Figmarine nursery configuration",
+  "description": "Configuration for the @figmarine/nursery CLI, stored at .figmarine/nursery.json by default."
+}
