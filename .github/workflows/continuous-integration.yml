@@ -6,6 +6,9 @@ on:
   push:
     branches: [main]
   pull_request:
+  # Used by the Dependabot automerge workflow to run CI on commits pushed
+  # with GITHUB_TOKEN, which never trigger pull_request events themselves.
+  workflow_dispatch:
 
 jobs:
   lint:
@@ -77,3 +80,32 @@ jobs:
         run: pnpm install
       - name: Run build
         run: pnpm build
+
+  # The generated REST client must stay in sync with the pinned
+  # @figma/rest-api-spec version. Regeneration is deterministic (the spec is
+  # read from node_modules), so any diff means someone bumped the spec or the
+  # generator without running `pnpm api:regen`.
+  api-drift:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Regenerate API clients
+        run: pnpm api:regen
+      - name: Check for drift in generated code
+        run: |
+          if ! git diff --exit-code -- packages/rest/src/__generated__; then
+            echo "::error::Generated API client is out of date. Run 'pnpm api:regen' and commit the result."
+            exit 1
+          fi

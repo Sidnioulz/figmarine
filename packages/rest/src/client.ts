@@ -109,9 +109,8 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
   // other endpoints, which account for the need to deduce calls from
   // the rate limit budget.
 
-  /* Proxify every v* API object so we can slow down API calls.
-   * We do this without a loop because of TypeScript limitations,
-   * so this must be maintained on every major API version release. */
+  /* Rate limiting interceptors are attached to the shared Axios
+   * instance, so they cover every versioned API namespace at once. */
   if (rateLimit) {
     log('Applying rate limit safeguards to API client.');
 

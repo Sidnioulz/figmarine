@@ -35,20 +35,35 @@ jobs:
         run: pnpm install
 
       - name: Regenerate API clients on OpenAPI Spec change
-        run: |
-          pnpm api:regen
-          pnpm format
+        run: pnpm api:regen
 
+      # Only commit when regeneration changed the output: a spec package bump
+      # without codegen changes must not fail the job (and needs no release).
       - name: Commit regenerated API clients
+        id: commit
         run: |
           git config user.name github-actions-shell
           git config user.email github-actions[bot]@users.noreply.github.com
           git add packages/rest/src/__generated__
-          git commit -nm "feat(rest): Update OpenAPI Spec generated code"
-          git push
+          if git diff --cached --quiet; then
+            echo "No generated code changes to commit."
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -nm "feat(rest): Update OpenAPI Spec generated code"
+            git push
+            echo "pushed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Pushes made with GITHUB_TOKEN do not trigger `pull_request` workflows,
+      # so the CI checks required for auto-merge would never run on the new
+      # commit. workflow_dispatch is exempt from that rule, so trigger CI
+      # explicitly on the updated branch.
+      - name: Trigger CI on the regenerated commit
+        if: steps.commit.outputs.pushed == 'true'
+        run: gh workflow run CI --ref "$HEAD_REF" --repo "$GITHUB_REPOSITORY"
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          HEAD_REF: ${{ github.head_ref }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   dependabot-approve:
     needs: [dependabot-regen-api]

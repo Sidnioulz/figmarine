@@ -1,25 +1,22 @@
+import { createRequire } from 'node:module';
 import https from 'node:https';
 import path from 'node:path';
+import { readFile } from 'node:fs/promises';
 
 import { generateApi } from 'swagger-typescript-api';
 import { parse } from 'yaml';
 
-import prettierConfig from '../prettier.config.js';
-
-// import { createRequire } from 'node:module';
-// const require = createRequire(import.meta.url);
-// const spec = require('@figma/rest-api-spec/openapi.json');
-
-// FIXME: Temporarily fetching the YAML spec directly from GitHub until
-// https://github.com/figma/rest-api-spec/pull/18 is fixed upstream.
-const OAS_URL = process.env.FIGMA_BRANCH
-  ? `https://raw.githubusercontent.com/figma/rest-api-spec/refs/tags/${process.env.FIGMA_BRANCH}/openapi/openapi.yaml`
-  : 'https://raw.githubusercontent.com/figma/rest-api-spec/refs/heads/main/openapi/openapi.yaml';
+const require = createRequire(import.meta.url);
 
 function fetchUrl(url) {
   return new Promise((resolve, reject) => {
     https
       .get(url, (res) => {
+        if (res.statusCode !== 200) {
+          reject(new Error(`Failed to fetch ${url}: HTTP ${res.statusCode}`));
+          res.resume();
+          return;
+        }
         let data = '';
         res.on('data', (chunk) => {
           data += chunk;
@@ -34,16 +31,34 @@ function fetchUrl(url) {
   });
 }
 
-const yamlContent = await fetchUrl(OAS_URL);
-const spec = parse(yamlContent);
+/**
+ * Loads the Figma OpenAPI spec. By default, the spec is read from the
+ * installed `@figma/rest-api-spec` package, so that generated code always
+ * matches the dependency version pinned in package.json (and so that a
+ * Dependabot bump of that package regenerates exactly the bumped version).
+ *
+ * Set the FIGMA_BRANCH environment variable to a branch or tag name of
+ * https://github.com/figma/rest-api-spec to generate code for an
+ * unreleased spec instead.
+ */
+async function loadRawSpec() {
+  if (process.env.FIGMA_BRANCH) {
+    return fetchUrl(
+      `https://raw.githubusercontent.com/figma/rest-api-spec/${process.env.FIGMA_BRANCH}/openapi/openapi.yaml`,
+    );
+  }
+
+  return readFile(require.resolve('@figma/rest-api-spec/openapi/openapi.yaml'), 'utf8');
+}
+
+const spec = parse(await loadRawSpec());
 
 await generateApi({
-  name: 'figmaRestApi.ts',
+  fileName: 'figmaRestApi.ts',
   output: path.resolve(import.meta.dirname, '../src/__generated__'),
   spec,
   httpClientType: 'axios',
   generateRouteTypes: true,
-  prettier: prettierConfig,
   hooks: {
     /** Hack used to make it possible to pass `cache: false` to request params. */
     onCreateRequestParams: (data) => {

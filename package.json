@@ -47,7 +47,7 @@
     "@semantic-release/release-notes-generator": "^14.1.1",
     "husky": "^9.1.7",
     "lint-staged": "catalog:",
-    "prettier": "^3.9.4",
+    "prettier": "catalog:",
     "semantic-release": "^25.0.5",
     "turbo": "^2.10.3",
     "vitest": "catalog:"

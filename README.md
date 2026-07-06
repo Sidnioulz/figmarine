@@ -128,8 +128,11 @@ This project uses PNPM as a package manager, and Turbo as a monorepo provider.
 
 ### Release System
 
-> [!CAUTION]
-> TODO
+Releases are fully automated with semantic-release and Dependabot: when Figma
+publishes a new OpenAPI spec, the REST client is regenerated, merged and
+published without manual intervention. See
+[docs/RELEASE_AUTOMATION.md](./docs/RELEASE_AUTOMATION.md) for the full chain
+and the administrator checklist.
 
 ## :sos: Support
 
