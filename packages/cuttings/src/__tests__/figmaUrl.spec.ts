@@ -42,6 +42,36 @@ describe('@figmarine/cuttings - figmaUrl', () => {
       });
     });
 
+    it('normalises instance-path node ids with several dashes', () => {
+      expect(
+        parseFigmaUrl(
+          'https://www.figma.com/design/idLa6ZCXDJUeRFI5wLVNWN/Name?node-id=I2005-6797%3B2005-6798',
+        ).nodeId,
+      ).toBe('I2005:6797;2005:6798');
+    });
+
+    it('parses prototype URLs', () => {
+      expect(
+        parseFigmaUrl('https://www.figma.com/proto/idLa6ZCXDJUeRFI5wLVNWN/My-Proto?node-id=1-2'),
+      ).toStrictEqual({
+        fileKey: 'idLa6ZCXDJUeRFI5wLVNWN',
+        name: 'My-Proto',
+        nodeId: '1:2',
+      });
+    });
+
+    it('keeps undecodable name slugs raw instead of throwing', () => {
+      expect(
+        parseFigmaUrl('https://www.figma.com/design/idLa6ZCXDJUeRFI5wLVNWN/100%-off').name,
+      ).toBe('100%-off');
+    });
+
+    it('rejects branch URLs with an invalid branch key', () => {
+      expect(() =>
+        parseFigmaUrl('https://www.figma.com/design/idLa6ZCXDJUeRFI5wLVNWN/branch/not%20a%20key/N'),
+      ).toThrowError('not a Figma file URL');
+    });
+
     it('parses URLs without a node id or name', () => {
       expect(parseFigmaUrl('https://www.figma.com/design/idLa6ZCXDJUeRFI5wLVNWN')).toStrictEqual({
         fileKey: 'idLa6ZCXDJUeRFI5wLVNWN',

@@ -17,7 +17,8 @@ export interface FigmaFileRef {
 
   /**
    * The node targeted by the URL's `node-id` query parameter, if any,
-   * normalised to the API format (e.g. `12:345`).
+   * normalised to the API format (e.g. `12:345`, or `I12:345;67:890` for
+   * nodes nested inside instances).
    */
   nodeId?: string;
 
@@ -28,12 +29,26 @@ export interface FigmaFileRef {
 }
 
 const FIGMA_HOSTS = ['figma.com', 'www.figma.com'];
-const FILE_PATH_KINDS = ['design', 'file', 'board', 'slides', 'make', 'site'];
+const FILE_PATH_KINDS = ['design', 'file', 'board', 'slides', 'make', 'site', 'proto', 'deck'];
+const FILE_KEY_PATTERN = /^[A-Za-z0-9]+$/;
+
+/**
+ * Decodes a URL path segment, falling back to the raw segment when it
+ * contains stray percent signs (the WHATWG URL parser tolerates them).
+ */
+function safeDecode(segment: string): string {
+  try {
+    return decodeURIComponent(segment);
+  } catch {
+    return segment;
+  }
+}
 
 /**
  * Parses a URL to a Figma file into the identifiers needed to fetch that
  * file over the REST API. Supports current `/design/`, legacy `/file/`,
- * FigJam `/board/` and other file-kind URLs, as well as branch URLs.
+ * FigJam `/board/`, prototype `/proto/` and other file-kind URLs, as well
+ * as branch URLs.
  *
  * @param url The URL to parse.
  * @throws When the URL is not a valid Figma file URL.
@@ -56,25 +71,28 @@ export function parseFigmaUrl(url: string): FigmaFileRef {
   const segments = parsed.pathname.split('/').filter(Boolean);
   const [kind, fileKey, ...rest] = segments;
 
-  if (!kind || !FILE_PATH_KINDS.includes(kind) || !fileKey || !/^[A-Za-z0-9]+$/.test(fileKey)) {
+  if (!kind || !FILE_PATH_KINDS.includes(kind) || !fileKey || !FILE_KEY_PATTERN.test(fileKey)) {
     throw new Error(`Cuttings::parseFigmaUrl: not a Figma file URL: '${url}'.`);
   }
 
   const ref: FigmaFileRef = { fileKey };
 
-  if (rest[0] === 'branch' && rest[1]) {
+  if (rest[0] === 'branch') {
+    if (!rest[1] || !FILE_KEY_PATTERN.test(rest[1])) {
+      throw new Error(`Cuttings::parseFigmaUrl: not a Figma file URL: '${url}'.`);
+    }
     ref.mainFileKey = fileKey;
     ref.fileKey = rest[1];
     if (rest[2]) {
-      ref.name = decodeURIComponent(rest[2]);
+      ref.name = safeDecode(rest[2]);
     }
   } else if (rest[0]) {
-    ref.name = decodeURIComponent(rest[0]);
+    ref.name = safeDecode(rest[0]);
   }
 
   const nodeId = parsed.searchParams.get('node-id');
   if (nodeId) {
-    ref.nodeId = nodeId.replace(/-/, ':');
+    ref.nodeId = nodeId.replace(/-/g, ':');
   }
 
   log(`Cuttings::parseFigmaUrl: found file key '${ref.fileKey}'.`);

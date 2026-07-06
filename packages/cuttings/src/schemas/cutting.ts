@@ -1,5 +1,4 @@
 import type {
-  File,
   LocalVariable,
   LocalVariableCollection,
   Project,
@@ -14,6 +13,7 @@ import { z } from 'zod';
 
 import { printCutting, printZodError } from '../logHelpers';
 import { FacetSchema } from './facet';
+import type { SlimFile } from '../slim';
 
 export const CuttingSchema = z.object({
   meta: z.object({
@@ -47,15 +47,15 @@ export const CuttingSchema = z.object({
    * Data stored in the Cutting.
    */
   data: z.object({
-    components: z.record(z.string(), z.object({}).passthrough()),
-    componentSets: z.record(z.string(), z.object({}).passthrough()),
-    files: z.record(z.string(), z.object({}).passthrough()),
-    localVariables: z.record(z.string(), z.object({}).passthrough()),
-    localVariableCollections: z.record(z.string(), z.object({}).passthrough()),
-    projects: z.record(z.string(), z.object({}).passthrough()),
-    publishedVariables: z.record(z.string(), z.object({}).passthrough()),
-    publishedVariableCollections: z.record(z.string(), z.object({}).passthrough()),
-    styles: z.record(z.string(), z.object({}).passthrough()),
+    components: z.record(z.string(), z.looseObject({})),
+    componentSets: z.record(z.string(), z.looseObject({})),
+    files: z.record(z.string(), z.looseObject({})),
+    localVariables: z.record(z.string(), z.looseObject({})),
+    localVariableCollections: z.record(z.string(), z.looseObject({})),
+    projects: z.record(z.string(), z.looseObject({})),
+    publishedVariables: z.record(z.string(), z.looseObject({})),
+    publishedVariableCollections: z.record(z.string(), z.looseObject({})),
+    styles: z.record(z.string(), z.looseObject({})),
   }),
 });
 
@@ -88,7 +88,7 @@ export type Cutting = {
   data: {
     components: Record<string, PublishedComponent>;
     componentSets: Record<string, PublishedComponentSet>;
-    files: Record<string, File>;
+    files: Record<string, SlimFile>;
     localVariables: Record<string, LocalVariable>;
     localVariableCollections: Record<string, LocalVariableCollection>;
     projects: Record<string, Project>;
