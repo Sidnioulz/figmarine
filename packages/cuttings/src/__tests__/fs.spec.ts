@@ -57,7 +57,7 @@ describe('@figmarine/cuttings - fs', () => {
 
       const written = vol.readFileSync(fileBasicLocation, 'utf8');
       expect(written).toBeDefined();
-      expect(written).toContain(`"label":"${fileBasic.meta.label}"`);
+      expect(written).toContain(`"label": "${fileBasic.meta.label}"`);
     });
 
     it('creates the folders where to write if required, and warns about it', ({
@@ -68,7 +68,7 @@ describe('@figmarine/cuttings - fs', () => {
 
       const written = vol.readFileSync(fileBasicLocation, 'utf8');
       expect(written).toBeDefined();
-      expect(written).toContain(`"label":"${fileBasic.meta.label}"`);
+      expect(written).toContain(`"label": "${fileBasic.meta.label}"`);
       expect(mockedLog).toHaveBeenCalledWith(
         expect.stringMatching(/directory .* does not exist, attempting to create/),
       );
@@ -88,7 +88,7 @@ describe('@figmarine/cuttings - fs', () => {
       const written = vol.readFileSync(fileBasicLocation, 'utf8');
       expect(written).toBeDefined();
       expect(written).not.toBe(priorFileContent);
-      expect(written).toContain(`"label":"${fileBasic.meta.label}"`);
+      expect(written).toContain(`"label": "${fileBasic.meta.label}"`);
       expect(mockedLog).toHaveBeenCalledWith(expect.stringMatching(/overwriting existing file/));
     });
 
