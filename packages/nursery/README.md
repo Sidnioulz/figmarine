@@ -111,12 +111,17 @@ planted cuttings without touching the network.
 
 ### Refreshing on a schedule
 
-The package ships a
-[GitHub Actions workflow template](./templates/github-actions-refresh.yml)
-that refreshes every cutting on weekday mornings and opens a pull request
-when Figma content changed. Copy it to
-`.github/workflows/refresh-cuttings.yml` and add a
-`FIGMA_PERSONAL_ACCESS_TOKEN` secret to your repository.
+The package ships workflow templates that refresh every cutting on weekday
+mornings and open a pull request when Figma content changed:
+
+- [GitHub Actions](./templates/github-actions-refresh.yml): copy it to
+  `.github/workflows/refresh-cuttings.yml` and add a
+  `FIGMA_PERSONAL_ACCESS_TOKEN` secret to your repository.
+- [CircleCI](./templates/circleci-refresh.yml): merge it into
+  `.circleci/config.yml` and create a `figmarine` context with
+  `FIGMA_PERSONAL_ACCESS_TOKEN` and `GITHUB_TOKEN`.
+
+Each template documents its own caveats in its header comments.
 
 ## :dart: Roadmap
 
@@ -124,7 +129,7 @@ when Figma content changed. Copy it to
 - [x] Committed, reviewable `.figmarine/` state
 - [x] Publish a JSON schema for the config file
 - [x] GitHub Actions workflow template for scheduled refreshes
-- [ ] CircleCI workflow template
+- [x] CircleCI workflow template
 - [ ] Claude Code skill wrapping the CLI
 - [x] Automate NPM releases
 
