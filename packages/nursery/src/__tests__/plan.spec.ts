@@ -51,6 +51,25 @@ describe('@figmarine/nursery - plan', () => {
       ]);
     });
 
+    it('plans published-item facets against the main file for branch URLs', () => {
+      // Published-item endpoints only accept main file keys, and Figma
+      // reports published items under the main file's key.
+      const facets = planFacets({
+        files: [
+          {
+            url: 'https://www.figma.com/design/idLa6ZCXDJUeRFI5wLVNWN/branch/aBcD1234eFgH/Steve-s-Figma-API-debug-file',
+            endpoints: ['GetFile', 'GetFileComponents', 'GetFileStyles'],
+          },
+        ],
+      });
+
+      expect(facets).toStrictEqual([
+        { endpoint: 'GetFile', id: 'aBcD1234eFgH' },
+        { endpoint: 'GetFileComponents', id: 'idLa6ZCXDJUeRFI5wLVNWN' },
+        { endpoint: 'GetFileStyles', id: 'idLa6ZCXDJUeRFI5wLVNWN' },
+      ]);
+    });
+
     it('throws on invalid Figma URLs', () => {
       expect(() =>
         planFacets({ files: [{ url: 'https://example.com/nope', endpoints: ['GetFile'] }] }),

@@ -115,12 +115,17 @@ data can honour. `GetFile` calls with `ids`, `depth`, `geometry` or
 or the stored file's version. Everything else behaves as usual, so a client
 with cuttings attached keeps working for uncovered endpoints.
 
-Served responses differ from the wire format in one documented way: file
-bodies are the stored `SlimFile` (no `thumbnailUrl`, `role` or
-`linkAccess`). They carry an `x-figmarine-cutting` response header (exported
-as `CUTTING_SOURCE_HEADER`) so tooling can tell data sources apart. Cuttings
-are authoritative regardless of age — freshness is a separate concern,
-handled with `hydrate` or `@figmarine/nursery` refresh schedules.
+Served responses differ from the wire format in documented ways: file
+bodies are the stored `SlimFile` — no `thumbnailUrl`, `role` or
+`linkAccess`, `branches` (when the file has any) always present but without
+per-branch thumbnails. The TypeScript response types cannot express these
+deletions, so code that branches on such fields must tolerate `undefined`
+on served responses. Responses carry an `x-figmarine-cutting` response
+header (exported as `CUTTING_SOURCE_HEADER`) so tooling can tell data
+sources apart, and bypass the client's development cache in both
+directions. Cuttings are authoritative regardless of age — freshness is a
+separate concern, handled with `hydrate` or `@figmarine/nursery` refresh
+schedules.
 
 If you configure your cuttings with `@figmarine/nursery`, prefer its
 `connectNursery(client)` helper, which digs every planted cutting for you.

@@ -116,7 +116,9 @@ export async function Client(opts: ClientOptions = {}): Promise<ClientInterface>
 
     if (rateLimit === true || rateLimit === 'proactive') {
       log('Applying proactive rate limit (limiting req/s).');
-      api.instance.interceptors.request.use(rateLimitRequestInterceptor(cacheInstance));
+      api.instance.interceptors.request.use(
+        rateLimitRequestInterceptor(cacheInstance, api.instance),
+      );
     }
 
     // Add response interceptor for 429 handling.
