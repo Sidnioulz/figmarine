@@ -66,10 +66,10 @@ export const CuttingSchema = z.object({
  * a `data` object, with components, component sets, files, projects,
  * styles and variables, which are filled by the Cutting when it calls
  * facet endpoints. Each of these data objects is a dictionary where
- * keys are ids (e.g. `fileKey` for `data.files`) and values are the
- * item being represented. All types come from Figma except for File
- * types, which are simplified from `GetFile` response bodies to exclude
- * irrelevant data.
+ * keys are ids (e.g. `fileKey` for `data.files`, published `key` for
+ * `data.components`) and values are the item being represented. All
+ * types come from Figma except for File types, which are simplified
+ * from `GetFile` response bodies to exclude irrelevant data.
  */
 export type Cutting = {
   /**
@@ -80,7 +80,7 @@ export type Cutting = {
   /**
    * The Cutting's array of facets.
    */
-  facets: z.infer<typeof CuttingSchema.shape.facets>;
+  facets: z.input<typeof CuttingSchema.shape.facets>;
 
   /**
    * The Cutting's stored data.

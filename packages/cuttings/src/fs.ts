@@ -6,7 +6,9 @@ import { log } from '@figmarine/logger';
 import { type Cutting, isCutting } from './schemas/cutting';
 
 function stringifyCutting(cutting: Cutting): string {
-  return JSON.stringify(cutting);
+  // Cuttings are meant to be committed to consumer repositories, so
+  // pretty-print them for reviewable diffs.
+  return `${JSON.stringify(cutting, null, 2)}\n`;
 }
 
 function parseCuttingString(str: string): Cutting {
