@@ -95,6 +95,9 @@
 <!-- oauth helper lib -->
 <!-- graphql -->
 
+See [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) for how these packages
+support each other, with diagrams of the data flows and automation loops.
+
 ## :woman_technologist: Contributing
 
 ### Code of Conduct
