@@ -1,0 +1,71 @@
+{
+  "name": "@figmarine/nursery",
+  "version": "0.0.0-semantically-released",
+  "license": "MIT",
+  "type": "module",
+  "description": "CLI that grows and refreshes Figmarine cuttings from Figma URLs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sidnioulz/figmarine",
+    "directory": "packages/nursery"
+  },
+  "bugs": {
+    "url": "https://github.com/Sidnioulz/figmarine/issues"
+  },
+  "keywords": ["figma", "nursery", "cuttings", "figmarine", "cli"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Steve Dodier-Lazaro",
+  "homepage": "https://github.com/Sidnioulz/figmarine",
+  "scripts": {
+    "build": "tsup --env.NODE_ENV production",
+    "dev": "tsc-watch --onSuccess \"tsup --env.NODE_ENV production\"",
+    "lint": "eslint .",
+    "lint:files": "eslint --",
+    "lint:fix": "eslint . --fix",
+    "lint:staged": "lint-staged",
+    "schema:regen": "pnpm build && node ./scripts/generateSchema.mjs && prettier --write ./schema",
+    "test": "vitest run",
+    "test:changed": "vitest run --changed HEAD~1",
+    "test:coverage": "vitest --coverage run",
+    "test:dev": "vitest dev",
+    "typecheck": "tsc --noEmit"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "nursery": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": ["dist/**", "schema/**", "templates/**"],
+  "dependencies": {
+    "@figmarine/cuttings": "workspace:*",
+    "@figmarine/logger": "workspace:*",
+    "@figmarine/rest": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@figmarine/config-eslint": "workspace:*",
+    "@figmarine/config-prettier": "workspace:*",
+    "@figmarine/config-tsup": "workspace:*",
+    "@figmarine/config-typescript": "workspace:*",
+    "@figmarine/config-vitest": "workspace:*",
+    "@types/node": "catalog:",
+    "@vitest/coverage-istanbul": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "eslint": "catalog:",
+    "lint-staged": "catalog:",
+    "memfs": "catalog:",
+    "prettier": "catalog:",
+    "tsc-watch": "catalog:",
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

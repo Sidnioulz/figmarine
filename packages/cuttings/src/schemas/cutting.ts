@@ -1,5 +1,4 @@
 import type {
-  File,
   LocalVariable,
   LocalVariableCollection,
   Project,
@@ -14,6 +13,7 @@ import { z } from 'zod';
 
 import { printCutting, printZodError } from '../logHelpers';
 import { FacetSchema } from './facet';
+import type { SlimFile } from '../slim';
 
 export const CuttingSchema = z.object({
   meta: z.object({
@@ -47,15 +47,26 @@ export const CuttingSchema = z.object({
    * Data stored in the Cutting.
    */
   data: z.object({
-    components: z.record(z.string(), z.object({}).passthrough()),
-    componentSets: z.record(z.string(), z.object({}).passthrough()),
-    files: z.record(z.string(), z.object({}).passthrough()),
-    localVariables: z.record(z.string(), z.object({}).passthrough()),
-    localVariableCollections: z.record(z.string(), z.object({}).passthrough()),
-    projects: z.record(z.string(), z.object({}).passthrough()),
-    publishedVariables: z.record(z.string(), z.object({}).passthrough()),
-    publishedVariableCollections: z.record(z.string(), z.object({}).passthrough()),
-    styles: z.record(z.string(), z.object({}).passthrough()),
+    components: z.record(z.string(), z.looseObject({})),
+    componentSets: z.record(z.string(), z.looseObject({})),
+    // Stored files are slim but never hollow: consumers dereference at
+    // least the document tree, so a cutting whose file data lost its core
+    // fields (hand-edits, bad merges) must fail at load time, not deep
+    // inside consumer code.
+    files: z.record(
+      z.string(),
+      z.looseObject({
+        document: z.looseObject({}),
+        name: z.string(),
+        version: z.string(),
+      }),
+    ),
+    localVariables: z.record(z.string(), z.looseObject({})),
+    localVariableCollections: z.record(z.string(), z.looseObject({})),
+    projects: z.record(z.string(), z.looseObject({})),
+    publishedVariables: z.record(z.string(), z.looseObject({})),
+    publishedVariableCollections: z.record(z.string(), z.looseObject({})),
+    styles: z.record(z.string(), z.looseObject({})),
   }),
 });
 
@@ -66,10 +77,10 @@ export const CuttingSchema = z.object({
  * a `data` object, with components, component sets, files, projects,
  * styles and variables, which are filled by the Cutting when it calls
  * facet endpoints. Each of these data objects is a dictionary where
- * keys are ids (e.g. `fileKey` for `data.files`) and values are the
- * item being represented. All types come from Figma except for File
- * types, which are simplified from `GetFile` response bodies to exclude
- * irrelevant data.
+ * keys are ids (e.g. `fileKey` for `data.files`, published `key` for
+ * `data.components`) and values are the item being represented. All
+ * types come from Figma except for File types, which are simplified
+ * from `GetFile` response bodies to exclude irrelevant data.
  */
 export type Cutting = {
   /**
@@ -80,7 +91,7 @@ export type Cutting = {
   /**
    * The Cutting's array of facets.
    */
-  facets: z.infer<typeof CuttingSchema.shape.facets>;
+  facets: z.input<typeof CuttingSchema.shape.facets>;
 
   /**
    * The Cutting's stored data.
@@ -88,7 +99,7 @@ export type Cutting = {
   data: {
     components: Record<string, PublishedComponent>;
     componentSets: Record<string, PublishedComponentSet>;
-    files: Record<string, File>;
+    files: Record<string, SlimFile>;
     localVariables: Record<string, LocalVariable>;
     localVariableCollections: Record<string, LocalVariableCollection>;
     projects: Record<string, Project>;
@@ -104,7 +115,8 @@ export type Cutting = {
  * @returns Whether it is a valid Cutting.
  */
 export function isCutting(blob: unknown): blob is Cutting {
-  log(`Cutting::isCutting: Checking out the following blob: ${JSON.stringify(blob)}`);
+  // Do not stringify the blob: real cuttings weigh megabytes.
+  log(`Cutting::isCutting: Checking a candidate blob.`);
   const outcome = CuttingSchema.safeParse(blob);
 
   if (outcome.success) {

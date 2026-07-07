@@ -8,12 +8,18 @@ flags:
   pkg-cache:
     paths:
       - packages/cache/
+  pkg-cuttings:
+    paths:
+      - packages/cuttings/
   pkg-eslint-plugin-figma:
     paths:
       - packages/eslint-plugin-figma/
   pkg-logger:
     paths:
       - packages/logger/
+  pkg-nursery:
+    paths:
+      - packages/nursery/
   pkg-rest:
     paths:
       - packages/rest/

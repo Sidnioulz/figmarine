@@ -6,7 +6,7 @@
     },
     "build": {
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "dependsOn": ["^build"],
+      "dependsOn": ["typecheck", "^build"],
       "outputs": ["build/**", "dist/**"]
     },
     "clean": {

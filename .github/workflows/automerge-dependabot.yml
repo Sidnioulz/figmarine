@@ -5,15 +5,16 @@ name: Dependabot automerge
 on: pull_request
 
 permissions:
+  # Required by the CI dispatch step in dependabot-regen-api.
+  actions: write
   contents: write
   pull-requests: write
 
 jobs:
   dependabot-regen-api:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [22]
+    # Dependabot titles this group "chore(deps): bump the oas group …";
+    # contains() is case-insensitive so matching 'Bump the oas group' is safe.
     if: github.actor == 'dependabot[bot]' && contains(github.event.pull_request.title, 'Bump the oas group')
     steps:
       - name: Checkout
@@ -22,42 +23,60 @@ jobs:
           fetch-depth: 1
           ref: ${{ github.head_ref }}
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install
+      - name: Setup repository
+        uses: ./.github/actions/setup-repo
 
       - name: Regenerate API clients on OpenAPI Spec change
-        run: |
-          pnpm api:regen
-          pnpm format
+        run: pnpm api:regen
 
+      # Only commit when regeneration changed the output: a spec package bump
+      # without codegen changes must not fail the job (and needs no release).
       - name: Commit regenerated API clients
+        id: commit
         run: |
           git config user.name github-actions-shell
           git config user.email github-actions[bot]@users.noreply.github.com
-          git add packages/rest/src/__generated__
-          git commit -nm "feat(rest): Update OpenAPI Spec generated code"
-          git push
+          git add -A packages/rest/src/__generated__
+          if git diff --cached --quiet; then
+            echo "No generated code changes to commit."
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -nm "feat(rest): Update OpenAPI Spec generated code"
+            git push
+            echo "pushed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Pushes made with GITHUB_TOKEN do not trigger `pull_request` workflows,
+      # so the CI checks required for auto-merge would never run on the new
+      # commit. workflow_dispatch is exempt from that rule, so trigger CI
+      # explicitly on the updated branch. If the head branch predates the
+      # workflow_dispatch trigger in the CI workflow, the dispatch 422s; ask
+      # Dependabot to rebase (which recreates the branch from current main and
+      # reruns this job) and fail so the PR is not merged without checks.
+      - name: Trigger CI on the regenerated commit
+        if: steps.commit.outputs.pushed == 'true'
+        run: |
+          if ! gh workflow run CI --ref "$HEAD_REF" --repo "$GITHUB_REPOSITORY"; then
+            gh pr comment "$PR_URL" --body "@dependabot rebase"
+            echo "::error::Could not dispatch CI on $HEAD_REF; asked Dependabot to rebase."
+            exit 1
+          fi
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          HEAD_REF: ${{ github.head_ref }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   dependabot-approve:
     needs: [dependabot-regen-api]
     runs-on: ubuntu-latest
+    # GitHub Action bumps (titled "ci: …" per dependabot.yml) are excluded:
+    # they run with repository secrets, so a human must review them.
     if: |
       always() &&
       !contains(needs.*.result, 'failure') &&
       !contains(needs.*.result, 'cancelled') &&
-      github.actor == 'dependabot[bot]'
+      github.actor == 'dependabot[bot]' &&
+      !startsWith(github.event.pull_request.title, 'ci')
     steps:
       - name: Dependabot metadata
         id: metadata
@@ -72,7 +91,9 @@ jobs:
   dependabot-merge:
     needs: [dependabot-approve]
     runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]'
+    if: |
+      github.actor == 'dependabot[bot]' &&
+      !startsWith(github.event.pull_request.title, 'ci')
     steps:
       - name: Dependabot metadata
         id: metadata
