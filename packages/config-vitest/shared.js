@@ -1,16 +1,14 @@
 export const coverage = {
-  include: [
-    '**/*.{mjs,mjsx,js,jsx,ts,tsx}',
-    '!*.config.{js,ts,cjs}',
-    '!**/coverage/**',
-    '!**/scripts/**',
-    '!**/__fixtures__/**',
-    '!**/__mocks__/**',
-    '!**/__tests__/**',
-    '!**/__generated__/**',
-    '!**/node_modules/**',
-    '!**/dist/**',
-    '!**/src/debug.ts',
+  include: ['src/**/*.{mjs,mjsx,js,jsx,ts,tsx}'],
+  exclude: [
+    '**/__fixtures__/**',
+    '**/__generated__/**',
+    '**/__mocks__/**',
+    '**/__tests__/**',
+    '**/node_modules/**',
+    '**/dist/**',
+    '**/coverage/**',
+    'src/debug.ts',
   ],
   provider: 'istanbul',
 };

@@ -1,9 +1,9 @@
 import { test as base } from 'vitest';
 import { vol } from 'memfs';
 
+import { type Cutting, CuttingSchema } from '../schemas/cutting';
 import { fileBasic, unlabeled, unstoredAndUnlabeled } from '../__fixtures__/cuttings';
-import { printCutting, printFacet, printFacets } from '../logHelpers';
-import type { Cutting } from '../schemas/cutting';
+import { printCutting, printFacet, printFacets, printZodError } from '../logHelpers';
 
 /* FS mocks. */
 vi.mock('node:fs');
@@ -71,6 +71,27 @@ describe('@figmarine/cuttings - logHelpers', () => {
       expect(allFacets).toContain(f0);
       expect(allFacets).toContain(f1);
       expect(allFacets.indexOf(f0)).toBeLessThan(allFacets.indexOf(f1));
+    });
+  });
+
+  describe('printZodError', () => {
+    it('prints one line per issue with its path', () => {
+      const outcome = CuttingSchema.safeParse({ meta: {}, facets: 'not-an-array' });
+      expect(outcome.success).toBe(false);
+
+      const printed = printZodError(outcome.error!);
+      const lines = printed.split('\n');
+
+      expect(lines.length).toBe(outcome.error!.issues.length);
+      expect(printed).toContain('meta.lastStored');
+      expect(printed).toContain('facets');
+    });
+
+    it('labels issues without a path as <root>', () => {
+      const outcome = CuttingSchema.safeParse('not even an object');
+      expect(outcome.success).toBe(false);
+
+      expect(printZodError(outcome.error!)).toContain('<root>');
     });
   });
 });

@@ -8,14 +8,38 @@ updates:
     schedule:
       interval: "daily"
     versioning-strategy: increase
+    # Make the conventional-commit prefix explicit so semantic-release's
+    # commit analyzer always sees chore(deps)/chore(deps-dev) messages.
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    # pnpm 11 rejects versions younger than 24h (minimumReleaseAge in
+    # pnpm-workspace.yaml). Wait 2 days so proposed versions clear the gate.
+    cooldown:
+      default-days: 2
     assignees:
       - "sidnioulz"
     reviewers:
       - "sidnioulz"
     groups:
+      # Bumps of the spec, of the code generator, or of the formatter applied
+      # to generated code all require regenerating the REST client; the
+      # automerge workflow does so for this group.
       oas:
         patterns:
         - "@figma/rest-api-spec"
+        - "prettier"
+        - "swagger-typescript-api"
       all:
         patterns:
         - "*"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "ci"
+    assignees:
+      - "sidnioulz"
+    reviewers:
+      - "sidnioulz"

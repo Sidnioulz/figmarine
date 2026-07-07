@@ -97,6 +97,8 @@ describe('@figmarine/rest - client', () => {
   });
   afterEach(() => {
     vi.restoreAllMocks();
+    mockedConfig.mockReset();
+    mocked429Config.mockReset();
   });
 
   describe('Options - cache', () => {
@@ -223,6 +225,25 @@ describe('@figmarine/rest - client', () => {
       mockedEnv();
       await Client({ mode: 'production' });
       expect(spy).toHaveBeenCalledWith('Creating client in production mode.');
+    });
+  });
+
+  describe('API surface', () => {
+    it('exposes the v1 API namespace', async ({ mockedEnv }) => {
+      mockedEnv();
+      const c = await Client();
+      expect(c.v1).toBeDefined();
+      expect(c.v1.getFile).toBeTypeOf('function');
+      expect(c.v1.getFileMeta).toBeTypeOf('function');
+      expect(c.v1.getDeveloperLogs).toBeTypeOf('function');
+      expect(c.v1.getAiUsageDaily).toBeTypeOf('function');
+    });
+
+    it('exposes the v2 API namespace', async ({ mockedEnv }) => {
+      mockedEnv();
+      const c = await Client();
+      expect(c.v2).toBeDefined();
+      expect(c.v2.getWebhooks).toBeTypeOf('function');
     });
   });
 

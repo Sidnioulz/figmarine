@@ -7,12 +7,28 @@ on:
       - completed
     branches:
       - main
+  # Fallback triggers: pushes to main made with GITHUB_TOKEN (e.g. Dependabot
+  # auto-merges enabled by the automerge workflow) never trigger the CI
+  # workflow, so the workflow_run trigger above misses them. The daily
+  # schedule guarantees such merges release within 24h; the manual dispatch
+  # lets an admin release immediately. semantic-release is idempotent, so
+  # extra runs with nothing to release are no-ops.
+  schedule:
+    - cron: '30 5 * * *'
+  workflow_dispatch:
+
+# semantic-release pushes tags and creates GitHub releases (contents),
+# and comments on the issues and pull requests it releases.
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
 
 jobs:
   release:
     name: Semantic Release
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
 
     steps:
       - name: Checkout
@@ -21,7 +37,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -36,12 +52,11 @@ jobs:
       - name: Build everything
         run: pnpm build
 
+      # pnpm 11 only reads auth and registry settings from .npmrc.
       - name: Setup .npmrc file
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           echo "registry=https://registry.npmjs.org/" >> .npmrc
-          echo "always-auth=true" >> .npmrc
-          echo "workspaces-update = false" >> .npmrc
 
       - name: Semantic Release
         env:

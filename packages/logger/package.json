@@ -17,7 +17,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsc && tsup --env.NODE_ENV production",
+    "build": "tsup --env.NODE_ENV production",
     "dev": "tsc-watch --onSuccess \"tsup --env.NODE_ENV production\"",
     "lint": "eslint .",
     "lint:files": "eslint --",
@@ -41,12 +41,13 @@
     "@types/node": "catalog:",
     "@vitest/coverage-istanbul": "catalog:",
     "@vitest/coverage-v8": "catalog:",
+    "eslint": "catalog:",
     "acorn-jsx": "catalog:",
     "eslint-scope": "catalog:",
     "lint-staged": "catalog:",
     "tsc-watch": "catalog:",
     "tsup": "catalog:",
-    "typescript": "latest",
+    "typescript": "catalog:",
     "vitest": "catalog:"
   }
 }

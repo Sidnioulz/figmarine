@@ -3,6 +3,8 @@
   "compilerOptions": {
     "allowImportingTsExtensions": false,
     "esModuleInterop": true,
+    // tsup's dts worker injects the deprecated `baseUrl` option; drop when tsup is TS 6 clean.
+    "ignoreDeprecations": "6.0",
     "lib": [
       "ESNext"
     ],
@@ -10,6 +12,7 @@
     "noEmit": false,
     "target": "ESNext",
     "types": [
+      "node",
       "vitest/globals"
     ]
   }
