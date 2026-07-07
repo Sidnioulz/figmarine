@@ -19,10 +19,6 @@
   ],
   "author": "Steve Dodier-Lazaro",
   "homepage": "https://github.com/Sidnioulz/figmarine",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
     "api:regen": "turbo run api:regen",
     "build": "turbo run build",
@@ -43,32 +39,21 @@
     "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
-    "@anolilab/multi-semantic-release": "^2.0.6",
-    "@anolilab/semantic-release-pnpm": "^2.0.4",
+    "@anolilab/multi-semantic-release": "^4.4.5",
+    "@anolilab/semantic-release-pnpm": "^8.1.16",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/release-notes-generator": "^14.1.0",
+    "@semantic-release/release-notes-generator": "^14.1.1",
     "husky": "^9.1.7",
     "lint-staged": "catalog:",
-    "prettier": "^3.6.2",
-    "semantic-release": "^24.2.9",
-    "turbo": "^2.5.8",
+    "prettier": "catalog:",
+    "semantic-release": "^25.0.5",
+    "turbo": "^2.10.3",
     "vitest": "catalog:"
   },
-  "resolutions": {
-    "@eslint/plugin-kit": ">=0.2.3",
-    "cross-spawn": ">=7.0.5"
-  },
-  "packageManager": "pnpm@9.12.2",
+  "packageManager": "pnpm@11.10.0+sha512.0b7f8b98060031904c017e3a41eb187a16d40eeb829b95c4f8cb03681761fc4ab53dd219115b9b447f4dce1a05a214764461e7d3703392a9f32f9511ce8c86c8",
   "engines": {
-    "node": ">=20"
-  },
-  "pnpm": {
-    "overrides": {
-      "brace-expansion@>=2.0.0 <=2.0.1": ">=2.0.2",
-      "@eslint/plugin-kit@<0.3.4": ">=0.3.4",
-      "vite@>=6.0.0 <=6.3.5": ">=6.3.6"
-    }
+    "node": "^22.22.1 || >=24.10.0"
   }
 }

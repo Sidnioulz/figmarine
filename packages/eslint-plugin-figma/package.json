@@ -19,7 +19,7 @@
   "author": "Steve Dodier-Lazaro",
   "homepage": "https://github.com/Sidnioulz/figmarine",
   "scripts": {
-    "build": "tsc && tsup --env.NODE_ENV production",
+    "build": "tsup --env.NODE_ENV production",
     "dev": "tsc-watch --onSuccess \"tsup --env.NODE_ENV production\"",
     "docs:build": "echo 'TODO",
     "docs:dev": "echo 'TODO",
@@ -36,7 +36,7 @@
   },
   "exports": {
     "./*": {
-      "types": "./dist/*.d.js",
+      "types": "./dist/*.d.ts",
       "default": "./dist/*.js"
     }
   },
@@ -50,6 +50,7 @@
     "@types/node": "catalog:",
     "@vitest/coverage-istanbul": "catalog:",
     "@vitest/coverage-v8": "catalog:",
+    "eslint": "catalog:",
     "eslint-plugin-eslint-plugin": "catalog:",
     "lint-staged": "catalog:",
     "tsc-watch": "catalog:",

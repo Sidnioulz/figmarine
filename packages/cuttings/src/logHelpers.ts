@@ -37,6 +37,10 @@ export function printFacets(cutting: Cutting): string {
  * @returns A multi-line string with the error messages.
  */
 export function printZodError(error: ZodError<unknown>): string {
-  // TODO: implement.
-  return JSON.stringify(error);
+  return error.issues
+    .map((issue) => {
+      const where = issue.path.length ? issue.path.map(String).join('.') : '<root>';
+      return `  - ${where}: ${issue.message}`;
+    })
+    .join('\n');
 }

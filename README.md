@@ -77,11 +77,11 @@
     </td>
     <td>
       <h3><a href="./packages/cuttings/">Cuttings</a></h3>
-      <div><code role="status" aria-label="Work in progress">WIP</code> A library that creates JSON representations of Figma content (files, styles, etc.).</div>
+      <div>A library that creates JSON representations of Figma content (files, styles, etc.).</div>
     </td>
     <td>
-      <h3><a href="./apps/nursery/">Nursery</a></h3>
-      <div><code role="status" aria-label="To do">TODO</code> A library for fetching, storing and rehydrating cuttings automatically.</div>
+      <h3><a href="./packages/nursery/">Nursery</a></h3>
+      <div>A CLI for fetching, storing and rehydrating cuttings automatically.</div>
     </td>
     <td>
       <h3><a href="./packages/eslint-plugin-figma/">ESLint Plugin</a></h3>
@@ -94,6 +94,9 @@
 <!-- oauth server -->
 <!-- oauth helper lib -->
 <!-- graphql -->
+
+See [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) for how these packages
+support each other, with diagrams of the data flows and automation loops.
 
 ## :woman_technologist: Contributing
 
@@ -128,8 +131,11 @@ This project uses PNPM as a package manager, and Turbo as a monorepo provider.
 
 ### Release System
 
-> [!CAUTION]
-> TODO
+Releases are fully automated with semantic-release and Dependabot: when Figma
+publishes a new OpenAPI spec, the REST client is regenerated, merged and
+published without manual intervention. See
+[docs/RELEASE_AUTOMATION.md](./docs/RELEASE_AUTOMATION.md) for the full chain
+and the administrator checklist.
 
 ## :sos: Support
 
