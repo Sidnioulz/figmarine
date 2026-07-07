@@ -34,7 +34,7 @@ catalog:
   tsup: ^8.5.0
   typescript: ^5.9.3
   typescript-eslint: ^8.46.1
-  vite: ^7.1.10
+  vite: ^7.3.5
   vitest: ^3.2.4
   yaml: ^2.8.1
   zod: ^4.1.12
