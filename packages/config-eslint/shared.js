@@ -77,6 +77,8 @@ export const configs = [
     },
     rules: {
       ...vitest.configs.all.rules,
+      // Requires typed linting, which this config does not enable.
+      'vitest/unbound-method': 'off',
     },
   },
   {

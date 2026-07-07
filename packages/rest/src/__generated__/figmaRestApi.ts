@@ -1,5 +1,6 @@
 /* eslint-disable */
 /* tslint:disable */
+// @ts-nocheck
 /*
  * ---------------------------------------------------------------
  * ## THIS FILE WAS GENERATED VIA SWAGGER-TYPESCRIPT-API        ##
@@ -8,6 +9,525 @@
  * ## SOURCE: https://github.com/acacode/swagger-typescript-api ##
  * ---------------------------------------------------------------
  */
+
+/** The role of the user making the API request in relation to the resource. */
+export enum Role {
+  Owner = 'owner',
+  Editor = 'editor',
+  Viewer = 'viewer',
+}
+
+/** Access policy for users who have the link to the resource. */
+export enum LinkAccess {
+  View = 'view',
+  Edit = 'edit',
+  OrgView = 'org_view',
+  OrgEdit = 'org_edit',
+  Inherit = 'inherit',
+}
+
+/**
+ * Scopes allow a variable to be shown or hidden in the variable picker for various fields. This declutters the Figma UI if you have a large number of variables. Variable scopes are currently supported on `FLOAT`, `STRING`, and `COLOR` variables.
+ *
+ * `ALL_SCOPES` is a special scope that means that the variable will be shown in the variable picker for all variable fields. If `ALL_SCOPES` is set, no additional scopes can be set.
+ *
+ * `ALL_FILLS` is a special scope that means that the variable will be shown in the variable picker for all fill fields. If `ALL_FILLS` is set, no additional fill scopes can be set.
+ *
+ * Valid scopes for `FLOAT` variables:
+ * - `ALL_SCOPES`
+ * - `TEXT_CONTENT`
+ * - `WIDTH_HEIGHT`
+ * - `GAP`
+ * - `STROKE_FLOAT`
+ * - `EFFECT_FLOAT`
+ * - `OPACITY`
+ * - `FONT_WEIGHT`
+ * - `FONT_SIZE`
+ * - `LINE_HEIGHT`
+ * - `LETTER_SPACING`
+ * - `PARAGRAPH_SPACING`
+ * - `PARAGRAPH_INDENT`
+ *
+ * Valid scopes for `STRING` variables:
+ * - `ALL_SCOPES`
+ * - `TEXT_CONTENT`
+ * - `FONT_FAMILY`
+ * - `FONT_STYLE`
+ *
+ * Valid scopes for `COLOR` variables:
+ * - `ALL_SCOPES`
+ * - `ALL_FILLS`
+ * - `FRAME_FILL`
+ * - `SHAPE_FILL`
+ * - `TEXT_FILL`
+ * - `STROKE_COLOR`
+ * - `EFFECT_COLOR`
+ */
+export enum VariableScope {
+  ALL_SCOPES = 'ALL_SCOPES',
+  TEXT_CONTENT = 'TEXT_CONTENT',
+  CORNER_RADIUS = 'CORNER_RADIUS',
+  WIDTH_HEIGHT = 'WIDTH_HEIGHT',
+  GAP = 'GAP',
+  ALL_FILLS = 'ALL_FILLS',
+  FRAME_FILL = 'FRAME_FILL',
+  SHAPE_FILL = 'SHAPE_FILL',
+  TEXT_FILL = 'TEXT_FILL',
+  STROKE_COLOR = 'STROKE_COLOR',
+  STROKE_FLOAT = 'STROKE_FLOAT',
+  EFFECT_FLOAT = 'EFFECT_FLOAT',
+  EFFECT_COLOR = 'EFFECT_COLOR',
+  OPACITY = 'OPACITY',
+  FONT_FAMILY = 'FONT_FAMILY',
+  FONT_STYLE = 'FONT_STYLE',
+  FONT_WEIGHT = 'FONT_WEIGHT',
+  FONT_SIZE = 'FONT_SIZE',
+  LINE_HEIGHT = 'LINE_HEIGHT',
+  LETTER_SPACING = 'LETTER_SPACING',
+  PARAGRAPH_SPACING = 'PARAGRAPH_SPACING',
+  PARAGRAPH_INDENT = 'PARAGRAPH_INDENT',
+  FONT_VARIATIONS = 'FONT_VARIATIONS',
+}
+
+/**
+ * An enum representing the possible statuses you can set a webhook to:
+ * - `ACTIVE`: The webhook is healthy and receive all events
+ * - `PAUSED`: The webhook is paused and will not receive any events
+ */
+export enum WebhookV2Status {
+  ACTIVE = 'ACTIVE',
+  PAUSED = 'PAUSED',
+}
+
+/** An enum representing the possible events that a webhook can subscribe to */
+export enum WebhookV2Event {
+  PING = 'PING',
+  FILE_UPDATE = 'FILE_UPDATE',
+  FILE_VERSION_UPDATE = 'FILE_VERSION_UPDATE',
+  FILE_DELETE = 'FILE_DELETE',
+  LIBRARY_PUBLISH = 'LIBRARY_PUBLISH',
+  FILE_COMMENT = 'FILE_COMMENT',
+  DEV_MODE_STATUS_UPDATE = 'DEV_MODE_STATUS_UPDATE',
+}
+
+/** The type of style */
+export enum StyleType {
+  FILL = 'FILL',
+  TEXT = 'TEXT',
+  EFFECT = 'EFFECT',
+  GRID = 'GRID',
+}
+
+/** Defines the list of operators available to use in an Expression. */
+export enum ExpressionFunction {
+  ADDITION = 'ADDITION',
+  SUBTRACTION = 'SUBTRACTION',
+  MULTIPLICATION = 'MULTIPLICATION',
+  DIVISION = 'DIVISION',
+  EQUALS = 'EQUALS',
+  NOT_EQUAL = 'NOT_EQUAL',
+  LESS_THAN = 'LESS_THAN',
+  LESS_THAN_OR_EQUAL = 'LESS_THAN_OR_EQUAL',
+  GREATER_THAN = 'GREATER_THAN',
+  GREATER_THAN_OR_EQUAL = 'GREATER_THAN_OR_EQUAL',
+  AND = 'AND',
+  OR = 'OR',
+  VAR_MODE_LOOKUP = 'VAR_MODE_LOOKUP',
+  NEGATE = 'NEGATE',
+  NOT = 'NOT',
+}
+
+/** Defines the types of data a VariableData object can eventually equal */
+export enum VariableResolvedDataType {
+  BOOLEAN = 'BOOLEAN',
+  FLOAT = 'FLOAT',
+  STRING = 'STRING',
+  COLOR = 'COLOR',
+}
+
+/** Defines the types of data a VariableData object can hold */
+export enum VariableDataType {
+  BOOLEAN = 'BOOLEAN',
+  FLOAT = 'FLOAT',
+  STRING = 'STRING',
+  COLOR = 'COLOR',
+  VARIABLE_ALIAS = 'VARIABLE_ALIAS',
+  EXPRESSION = 'EXPRESSION',
+}
+
+/**
+ * The method of navigation. The possible values are:
+ * - `"NAVIGATE"`: Replaces the current screen with the destination, also closing all overlays.
+ * - `"OVERLAY"`: Opens the destination as an overlay on the current screen.
+ * - `"SWAP"`: On an overlay, replaces the current (topmost) overlay with the destination. On a top-level frame,
+ *   behaves the same as `"NAVIGATE"` except that no entry is added to the navigation history.
+ * - `"SCROLL_TO"`: Scrolls to the destination on the current screen.
+ * - `"CHANGE_TO"`: Changes the closest ancestor instance of source node to the specified variant.
+ */
+export enum Navigation {
+  NAVIGATE = 'NAVIGATE',
+  SWAP = 'SWAP',
+  OVERLAY = 'OVERLAY',
+  SCROLL_TO = 'SCROLL_TO',
+  CHANGE_TO = 'CHANGE_TO',
+}
+
+/** Connector line type. */
+export enum ConnectorLineType {
+  STRAIGHT = 'STRAIGHT',
+  ELBOWED = 'ELBOWED',
+  CURVED = 'CURVED',
+}
+
+/** Geometric shape type. */
+export enum ShapeType {
+  SQUARE = 'SQUARE',
+  ELLIPSE = 'ELLIPSE',
+  ROUNDED_RECTANGLE = 'ROUNDED_RECTANGLE',
+  DIAMOND = 'DIAMOND',
+  TRIANGLE_UP = 'TRIANGLE_UP',
+  TRIANGLE_DOWN = 'TRIANGLE_DOWN',
+  PARALLELOGRAM_RIGHT = 'PARALLELOGRAM_RIGHT',
+  PARALLELOGRAM_LEFT = 'PARALLELOGRAM_LEFT',
+  ENG_DATABASE = 'ENG_DATABASE',
+  ENG_QUEUE = 'ENG_QUEUE',
+  ENG_FILE = 'ENG_FILE',
+  ENG_FOLDER = 'ENG_FOLDER',
+  TRAPEZOID = 'TRAPEZOID',
+  PREDEFINED_PROCESS = 'PREDEFINED_PROCESS',
+  SHIELD = 'SHIELD',
+  DOCUMENT_SINGLE = 'DOCUMENT_SINGLE',
+  DOCUMENT_MULTIPLE = 'DOCUMENT_MULTIPLE',
+  MANUAL_INPUT = 'MANUAL_INPUT',
+  HEXAGON = 'HEXAGON',
+  CHEVRON = 'CHEVRON',
+  PENTAGON = 'PENTAGON',
+  OCTAGON = 'OCTAGON',
+  STAR = 'STAR',
+  PLUS = 'PLUS',
+  ARROW_LEFT = 'ARROW_LEFT',
+  ARROW_RIGHT = 'ARROW_RIGHT',
+  SUMMING_JUNCTION = 'SUMMING_JUNCTION',
+  OR = 'OR',
+  SPEECH_BUBBLE = 'SPEECH_BUBBLE',
+  INTERNAL_STORAGE = 'INTERNAL_STORAGE',
+}
+
+/** Component property type. */
+export enum ComponentPropertyType {
+  BOOLEAN = 'BOOLEAN',
+  INSTANCE_SWAP = 'INSTANCE_SWAP',
+  TEXT = 'TEXT',
+  VARIANT = 'VARIANT',
+}
+
+/**
+ * This type is a string enum with the following possible values:
+ *
+ * - `EASE_IN`: Ease in with an animation curve similar to CSS ease-in.
+ * - `EASE_OUT`: Ease out with an animation curve similar to CSS ease-out.
+ * - `EASE_IN_AND_OUT`: Ease in and then out with an animation curve similar to CSS ease-in-out.
+ * - `LINEAR`: No easing, similar to CSS linear.
+ * - `EASE_IN_BACK`: Ease in with an animation curve that moves past the initial keyframe's value and then accelerates as it reaches the end.
+ * - `EASE_OUT_BACK`: Ease out with an animation curve that starts fast, then slows and goes past the ending keyframe's value.
+ * - `EASE_IN_AND_OUT_BACK`: Ease in and then out with an animation curve that overshoots the initial keyframe's value, then accelerates quickly before it slows and overshoots the ending keyframes value.
+ * - `CUSTOM_CUBIC_BEZIER`: User-defined cubic bezier curve.
+ * - `GENTLE`: Gentle animation similar to react-spring.
+ * - `QUICK`: Quick spring animation, great for toasts and notifications.
+ * - `BOUNCY`: Bouncy spring, for delightful animations like a heart bounce.
+ * - `SLOW`: Slow spring, useful as a steady, natural way to scale up fullscreen content.
+ * - `CUSTOM_SPRING`: User-defined spring animation.
+ */
+export enum EasingType {
+  EASE_IN = 'EASE_IN',
+  EASE_OUT = 'EASE_OUT',
+  EASE_IN_AND_OUT = 'EASE_IN_AND_OUT',
+  LINEAR = 'LINEAR',
+  EASE_IN_BACK = 'EASE_IN_BACK',
+  EASE_OUT_BACK = 'EASE_OUT_BACK',
+  EASE_IN_AND_OUT_BACK = 'EASE_IN_AND_OUT_BACK',
+  CUSTOM_CUBIC_BEZIER = 'CUSTOM_CUBIC_BEZIER',
+  GENTLE = 'GENTLE',
+  QUICK = 'QUICK',
+  BOUNCY = 'BOUNCY',
+  SLOW = 'SLOW',
+  CUSTOM_SPRING = 'CUSTOM_SPRING',
+}
+
+/**
+ * This type is a string enum with the following possible values
+ *
+ * Normal blends:
+ * - `PASS_THROUGH` (only applicable to objects with children)
+ * - `NORMAL`
+ *
+ * Darken:
+ * - `DARKEN`
+ * - `MULTIPLY`
+ * - `LINEAR_BURN`
+ * - `COLOR_BURN`
+ *
+ * Lighten:
+ * - `LIGHTEN`
+ * - `SCREEN`
+ * - `LINEAR_DODGE`
+ * - `COLOR_DODGE`
+ *
+ * Contrast:
+ * - `OVERLAY`
+ * - `SOFT_LIGHT`
+ * - `HARD_LIGHT`
+ *
+ * Inversion:
+ * - `DIFFERENCE`
+ * - `EXCLUSION`
+ *
+ * Component:
+ * - `HUE`
+ * - `SATURATION`
+ * - `COLOR`
+ * - `LUMINOSITY`
+ */
+export enum BlendMode {
+  PASS_THROUGH = 'PASS_THROUGH',
+  NORMAL = 'NORMAL',
+  DARKEN = 'DARKEN',
+  MULTIPLY = 'MULTIPLY',
+  LINEAR_BURN = 'LINEAR_BURN',
+  COLOR_BURN = 'COLOR_BURN',
+  LIGHTEN = 'LIGHTEN',
+  SCREEN = 'SCREEN',
+  LINEAR_DODGE = 'LINEAR_DODGE',
+  COLOR_DODGE = 'COLOR_DODGE',
+  OVERLAY = 'OVERLAY',
+  SOFT_LIGHT = 'SOFT_LIGHT',
+  HARD_LIGHT = 'HARD_LIGHT',
+  DIFFERENCE = 'DIFFERENCE',
+  EXCLUSION = 'EXCLUSION',
+  HUE = 'HUE',
+  SATURATION = 'SATURATION',
+  COLOR = 'COLOR',
+  LUMINOSITY = 'LUMINOSITY',
+}
+
+export type VariableChange =
+  | ({
+      action: 'CREATE';
+    } & VariableCreate)
+  | ({
+      action: 'UPDATE';
+    } & VariableUpdate)
+  | ({
+      action: 'DELETE';
+    } & VariableDelete);
+
+export type VariableModeChange =
+  | ({
+      action: 'CREATE';
+    } & VariableModeCreate)
+  | ({
+      action: 'UPDATE';
+    } & VariableModeUpdate)
+  | ({
+      action: 'DELETE';
+    } & VariableModeDelete);
+
+export type VariableCollectionChange =
+  | ({
+      action: 'CREATE';
+    } & VariableCollectionCreate)
+  | ({
+      action: 'UPDATE';
+    } & VariableCollectionUpdate)
+  | ({
+      action: 'DELETE';
+    } & VariableCollectionDelete);
+
+export type Effect =
+  | ({
+      type: 'DROP_SHADOW';
+    } & DropShadowEffect)
+  | ({
+      type: 'INNER_SHADOW';
+    } & InnerShadowEffect)
+  | ({
+      type: 'LAYER_BLUR';
+    } & BlurEffect)
+  | ({
+      type: 'BACKGROUND_BLUR';
+    } & BlurEffect)
+  | ({
+      type: 'TEXTURE';
+    } & TextureEffect)
+  | ({
+      type: 'NOISE';
+    } & NoiseEffect);
+
+export type SubcanvasNode =
+  | ({
+      type: 'BOOLEAN_OPERATION';
+    } & BooleanOperationNode)
+  | ({
+      type: 'COMPONENT';
+    } & ComponentNode)
+  | ({
+      type: 'COMPONENT_SET';
+    } & ComponentSetNode)
+  | ({
+      type: 'CONNECTOR';
+    } & ConnectorNode)
+  | ({
+      type: 'ELLIPSE';
+    } & EllipseNode)
+  | ({
+      type: 'EMBED';
+    } & EmbedNode)
+  | ({
+      type: 'FRAME';
+    } & FrameNode)
+  | ({
+      type: 'GROUP';
+    } & GroupNode)
+  | ({
+      type: 'INSTANCE';
+    } & InstanceNode)
+  | ({
+      type: 'LINE';
+    } & LineNode)
+  | ({
+      type: 'LINK_UNFURL';
+    } & LinkUnfurlNode)
+  | ({
+      type: 'RECTANGLE';
+    } & RectangleNode)
+  | ({
+      type: 'REGULAR_POLYGON';
+    } & RegularPolygonNode)
+  | ({
+      type: 'SECTION';
+    } & SectionNode)
+  | ({
+      type: 'SHAPE_WITH_TEXT';
+    } & ShapeWithTextNode)
+  | ({
+      type: 'SLICE';
+    } & SliceNode)
+  | ({
+      type: 'STAR';
+    } & StarNode)
+  | ({
+      type: 'STICKY';
+    } & StickyNode)
+  | ({
+      type: 'TABLE';
+    } & TableNode)
+  | ({
+      type: 'TABLE_CELL';
+    } & TableCellNode)
+  | ({
+      type: 'TEXT';
+    } & TextNode)
+  | ({
+      type: 'TEXT_PATH';
+    } & TextPathNode)
+  | ({
+      type: 'TRANSFORM_GROUP';
+    } & TransformGroupNode)
+  | ({
+      type: 'VECTOR';
+    } & VectorNode)
+  | ({
+      type: 'WASHI_TAPE';
+    } & WashiTapeNode)
+  | ({
+      type: 'WIDGET';
+    } & WidgetNode);
+
+export type Node =
+  | ({
+      type: 'BOOLEAN_OPERATION';
+    } & BooleanOperationNode)
+  | ({
+      type: 'COMPONENT';
+    } & ComponentNode)
+  | ({
+      type: 'COMPONENT_SET';
+    } & ComponentSetNode)
+  | ({
+      type: 'CONNECTOR';
+    } & ConnectorNode)
+  | ({
+      type: 'ELLIPSE';
+    } & EllipseNode)
+  | ({
+      type: 'EMBED';
+    } & EmbedNode)
+  | ({
+      type: 'FRAME';
+    } & FrameNode)
+  | ({
+      type: 'GROUP';
+    } & GroupNode)
+  | ({
+      type: 'INSTANCE';
+    } & InstanceNode)
+  | ({
+      type: 'LINE';
+    } & LineNode)
+  | ({
+      type: 'LINK_UNFURL';
+    } & LinkUnfurlNode)
+  | ({
+      type: 'RECTANGLE';
+    } & RectangleNode)
+  | ({
+      type: 'REGULAR_POLYGON';
+    } & RegularPolygonNode)
+  | ({
+      type: 'SECTION';
+    } & SectionNode)
+  | ({
+      type: 'SHAPE_WITH_TEXT';
+    } & ShapeWithTextNode)
+  | ({
+      type: 'SLICE';
+    } & SliceNode)
+  | ({
+      type: 'STAR';
+    } & StarNode)
+  | ({
+      type: 'STICKY';
+    } & StickyNode)
+  | ({
+      type: 'TABLE';
+    } & TableNode)
+  | ({
+      type: 'TABLE_CELL';
+    } & TableCellNode)
+  | ({
+      type: 'TEXT';
+    } & TextNode)
+  | ({
+      type: 'TEXT_PATH';
+    } & TextPathNode)
+  | ({
+      type: 'TRANSFORM_GROUP';
+    } & TransformGroupNode)
+  | ({
+      type: 'VECTOR';
+    } & VectorNode)
+  | ({
+      type: 'WASHI_TAPE';
+    } & WashiTapeNode)
+  | ({
+      type: 'WIDGET';
+    } & WidgetNode)
+  | ({
+      type: 'DOCUMENT';
+    } & DocumentNode)
+  | ({
+      type: 'CANVAS';
+    } & CanvasNode);
 
 export interface IsLayerTrait {
   /** A string uniquely identifying this node within the document. */
@@ -114,6 +634,16 @@ export interface IsLayerTrait {
     textRangeFills?: VariableAlias[];
     effects?: VariableAlias[];
     layoutGrids?: VariableAlias[];
+    rectangleCornerRadii?: {
+      /** Contains a variable alias */
+      RECTANGLE_TOP_LEFT_CORNER_RADIUS?: VariableAlias;
+      /** Contains a variable alias */
+      RECTANGLE_TOP_RIGHT_CORNER_RADIUS?: VariableAlias;
+      /** Contains a variable alias */
+      RECTANGLE_BOTTOM_LEFT_CORNER_RADIUS?: VariableAlias;
+      /** Contains a variable alias */
+      RECTANGLE_BOTTOM_RIGHT_CORNER_RADIUS?: VariableAlias;
+    };
   };
   /** A mapping of variable collection ID to mode ID representing the explicitly set modes for this node. */
   explicitVariableModes?: Record<string, string>;
@@ -201,6 +731,48 @@ export interface HasLayoutTrait {
    * - `FILL`: only valid on auto-layout frame children
    */
   layoutSizingVertical?: 'FIXED' | 'HUG' | 'FILL';
+  /** The number of rows in the grid layout. This property is only applicable for auto-layout frames with `layoutMode: "GRID"`. */
+  gridRowCount?: number;
+  /** The number of columns in the grid layout. This property is only applicable for auto-layout frames with `layoutMode: "GRID"`. */
+  gridColumnCount?: number;
+  /**
+   * The distance between rows in the grid layout. This property is only applicable for auto-layout frames with `layoutMode: "GRID"`.
+   * @default 0
+   */
+  gridRowGap?: number;
+  /**
+   * The distance between columns in the grid layout. This property is only applicable for auto-layout frames with `layoutMode: "GRID"`.
+   * @default 0
+   */
+  gridColumnGap?: number;
+  /** The string for the CSS grid-template-columns property. This property is only applicable for auto-layout frames with `layoutMode: "GRID"`. */
+  gridColumnsSizing?: string;
+  /** The string for the CSS grid-template-rows property. This property is only applicable for auto-layout frames with `layoutMode: "GRID"`. */
+  gridRowsSizing?: string;
+  /** Determines how a GRID frame's child should be aligned in the horizontal direction within its grid area. This property is only applicable for direct children of frames with `layoutMode: "GRID"`. */
+  gridChildHorizontalAlign?: 'AUTO' | 'MIN' | 'CENTER' | 'MAX';
+  /** Determines how a GRID frame's child should be aligned in the vertical direction within its grid area. This property is only applicable for direct children of frames with `layoutMode: "GRID"`. */
+  gridChildVerticalAlign?: 'AUTO' | 'MIN' | 'CENTER' | 'MAX';
+  /**
+   * The number of rows that a GRID frame's child should span. This property is only applicable for direct children of frames with `layoutMode: "GRID"`.
+   * @default 1
+   */
+  gridRowSpan?: number;
+  /**
+   * The number of columns that a GRID frame's child should span. This property is only applicable for direct children of frames with `layoutMode: "GRID"`.
+   * @default 1
+   */
+  gridColumnSpan?: number;
+  /**
+   * The index of the row that a GRID frame's child should be anchored to. This property is only applicable for direct children of frames with `layoutMode: "GRID"`.
+   * @default 0
+   */
+  gridRowAnchorIndex?: number;
+  /**
+   * The index of the column that a GRID frame's child should be anchored to. This property is only applicable for direct children of frames with `layoutMode: "GRID"`.
+   * @default 0
+   */
+  gridColumnAnchorIndex?: number;
 }
 
 export interface HasFramePropertiesTrait {
@@ -223,15 +795,12 @@ export interface HasFramePropertiesTrait {
    * @default "NONE"
    */
   overflowDirection?:
-    | 'HORIZONTAL_SCROLLING'
-    | 'VERTICAL_SCROLLING'
-    | 'HORIZONTAL_AND_VERTICAL_SCROLLING'
-    | 'NONE';
+    'HORIZONTAL_SCROLLING' | 'VERTICAL_SCROLLING' | 'HORIZONTAL_AND_VERTICAL_SCROLLING' | 'NONE';
   /**
    * Whether this layer uses auto-layout to position its children.
    * @default "NONE"
    */
-  layoutMode?: 'NONE' | 'HORIZONTAL' | 'VERTICAL';
+  layoutMode?: 'NONE' | 'HORIZONTAL' | 'VERTICAL' | 'GRID';
   /**
    * Whether the primary axis has a fixed length (determined by the user) or an automatic length (determined by the layout engine). This property is only applicable for auto-layout frames.
    * @default "AUTO"
@@ -317,7 +886,7 @@ export interface HasExportSettingsTrait {
 
 export type HasGeometryTrait = MinimalFillsTrait &
   MinimalStrokesTrait & {
-    /** Map from ID to PaintOverride for looking up fill overrides. To see which regions are overriden, you must use the `geometry=paths` option. Each path returned may have an `overrideID` which maps to this table. */
+    /** Map from ID to PaintOverride for looking up fill overrides. To see which regions are overridden, you must use the `geometry=paths` option. Each path returned may have an `overrideID` which maps to this table. */
     fillOverrideTable?: Record<string, PaintOverride | null>;
     /** Only specified if parameter `geometry=paths` is used. An array of paths representing the object fill. */
     fillGeometry?: Path[];
@@ -389,6 +958,10 @@ export interface IndividualStrokesTrait {
   /** An object including the top, bottom, left, and right stroke weights. Only returned if individual stroke weights are used. */
   individualStrokeWeights?: StrokeWeights;
 }
+
+export type VariableWidthStrokesTrait = object;
+
+export type ComplexStrokesTrait = object;
 
 export interface CornerTrait {
   /**
@@ -463,6 +1036,19 @@ export interface TypePropertiesTrait {
   lineIndentations: number[];
 }
 
+export interface TextPathPropertiesTrait {
+  /** The raw characters in the text path node. */
+  characters: string;
+  /** Style of text including font family and weight. */
+  style: TextPathTypeStyle;
+  /** The array corresponds to characters in the text box, where each element references the 'styleOverrideTable' to apply specific styles to each character. The array's length can be less than or equal to the number of characters due to the removal of trailing zeros. Elements with a value of 0 indicate characters that use the default type style. If the array is shorter than the total number of characters, the characters beyond the array's length also use the default style. */
+  characterStyleOverrides: number[];
+  /** Internal property, preserved for backward compatibility. Avoid using this value. */
+  layoutVersion?: number;
+  /** Map from ID to TextPathTypeStyle for looking up style overrides. */
+  styleOverrideTable: Record<string, TextPathTypeStyle>;
+}
+
 export interface HasTextSublayerTrait {
   /** Text contained within a text box. */
   characters: string;
@@ -489,6 +1075,8 @@ export interface DevStatusTrait {
 
 export type AnnotationsTrait = object;
 
+export type TransformModifiersTrait = object;
+
 export type FrameTraits = IsLayerTrait &
   HasBlendModeAndOpacityTrait &
   HasChildrenTrait &
@@ -501,6 +1089,8 @@ export type FrameTraits = IsLayerTrait &
   HasMaskTrait &
   TransitionSourceTrait &
   IndividualStrokesTrait &
+  VariableWidthStrokesTrait &
+  ComplexStrokesTrait &
   DevStatusTrait &
   AnnotationsTrait;
 
@@ -511,7 +1101,9 @@ export type DefaultShapeTraits = IsLayerTrait &
   HasExportSettingsTrait &
   HasEffectsTrait &
   HasMaskTrait &
-  TransitionSourceTrait;
+  TransitionSourceTrait &
+  VariableWidthStrokesTrait &
+  ComplexStrokesTrait;
 
 export type CornerRadiusShapeTraits = DefaultShapeTraits & CornerTrait;
 
@@ -519,86 +1111,6 @@ export type RectangularShapeTraits = DefaultShapeTraits &
   CornerTrait &
   IndividualStrokesTrait &
   AnnotationsTrait;
-
-export type Node =
-  | ({
-      type: 'BOOLEAN_OPERATION';
-    } & BooleanOperationNode)
-  | ({
-      type: 'COMPONENT';
-    } & ComponentNode)
-  | ({
-      type: 'COMPONENT_SET';
-    } & ComponentSetNode)
-  | ({
-      type: 'CONNECTOR';
-    } & ConnectorNode)
-  | ({
-      type: 'ELLIPSE';
-    } & EllipseNode)
-  | ({
-      type: 'EMBED';
-    } & EmbedNode)
-  | ({
-      type: 'FRAME';
-    } & FrameNode)
-  | ({
-      type: 'GROUP';
-    } & GroupNode)
-  | ({
-      type: 'INSTANCE';
-    } & InstanceNode)
-  | ({
-      type: 'LINE';
-    } & LineNode)
-  | ({
-      type: 'LINK_UNFURL';
-    } & LinkUnfurlNode)
-  | ({
-      type: 'RECTANGLE';
-    } & RectangleNode)
-  | ({
-      type: 'REGULAR_POLYGON';
-    } & RegularPolygonNode)
-  | ({
-      type: 'SECTION';
-    } & SectionNode)
-  | ({
-      type: 'SHAPE_WITH_TEXT';
-    } & ShapeWithTextNode)
-  | ({
-      type: 'SLICE';
-    } & SliceNode)
-  | ({
-      type: 'STAR';
-    } & StarNode)
-  | ({
-      type: 'STICKY';
-    } & StickyNode)
-  | ({
-      type: 'TABLE';
-    } & TableNode)
-  | ({
-      type: 'TABLE_CELL';
-    } & TableCellNode)
-  | ({
-      type: 'TEXT';
-    } & TextNode)
-  | ({
-      type: 'VECTOR';
-    } & VectorNode)
-  | ({
-      type: 'WASHI_TAPE';
-    } & WashiTapeNode)
-  | ({
-      type: 'WIDGET';
-    } & WidgetNode)
-  | ({
-      type: 'DOCUMENT';
-    } & DocumentNode)
-  | ({
-      type: 'CANVAS';
-    } & CanvasNode);
 
 export type DocumentNode = {
   type: 'DOCUMENT';
@@ -619,83 +1131,11 @@ export type CanvasNode = {
   flowStartingPoints: FlowStartingPoint[];
   /** The device used to view a prototype. */
   prototypeDevice: PrototypeDevice;
+  /** The background color of the prototype (currently only supports a single solid color paint). */
+  prototypeBackgrounds?: RGBA[];
   measurements?: Measurement[];
 } & IsLayerTrait &
   HasExportSettingsTrait;
-
-export type SubcanvasNode =
-  | ({
-      type: 'BOOLEAN_OPERATION';
-    } & BooleanOperationNode)
-  | ({
-      type: 'COMPONENT';
-    } & ComponentNode)
-  | ({
-      type: 'COMPONENT_SET';
-    } & ComponentSetNode)
-  | ({
-      type: 'CONNECTOR';
-    } & ConnectorNode)
-  | ({
-      type: 'ELLIPSE';
-    } & EllipseNode)
-  | ({
-      type: 'EMBED';
-    } & EmbedNode)
-  | ({
-      type: 'FRAME';
-    } & FrameNode)
-  | ({
-      type: 'GROUP';
-    } & GroupNode)
-  | ({
-      type: 'INSTANCE';
-    } & InstanceNode)
-  | ({
-      type: 'LINE';
-    } & LineNode)
-  | ({
-      type: 'LINK_UNFURL';
-    } & LinkUnfurlNode)
-  | ({
-      type: 'RECTANGLE';
-    } & RectangleNode)
-  | ({
-      type: 'REGULAR_POLYGON';
-    } & RegularPolygonNode)
-  | ({
-      type: 'SECTION';
-    } & SectionNode)
-  | ({
-      type: 'SHAPE_WITH_TEXT';
-    } & ShapeWithTextNode)
-  | ({
-      type: 'SLICE';
-    } & SliceNode)
-  | ({
-      type: 'STAR';
-    } & StarNode)
-  | ({
-      type: 'STICKY';
-    } & StickyNode)
-  | ({
-      type: 'TABLE';
-    } & TableNode)
-  | ({
-      type: 'TABLE_CELL';
-    } & TableCellNode)
-  | ({
-      type: 'TEXT';
-    } & TextNode)
-  | ({
-      type: 'VECTOR';
-    } & VectorNode)
-  | ({
-      type: 'WASHI_TAPE';
-    } & WashiTapeNode)
-  | ({
-      type: 'WIDGET';
-    } & WidgetNode);
 
 export type BooleanOperationNode = {
   /** The type of this node, represented by the string literal "BOOLEAN_OPERATION" */
@@ -792,6 +1232,12 @@ export type TextNode = {
   TypePropertiesTrait &
   AnnotationsTrait;
 
+export type TextPathNode = {
+  /** The type of this node, represented by the string literal "TEXT_PATH" */
+  type: 'TEXT_PATH';
+} & DefaultShapeTraits &
+  TextPathPropertiesTrait;
+
 export type TableNode = {
   /** The type of this node, represented by the string literal "TABLE" */
   type: 'TABLE';
@@ -810,6 +1256,12 @@ export type TableCellNode = {
   MinimalFillsTrait &
   HasLayoutTrait &
   HasTextSublayerTrait;
+
+export type TransformGroupNode = {
+  /** The type of this node, represented by the string literal "TRANSFORM_GROUP" */
+  type: 'TRANSFORM_GROUP';
+} & FrameTraits &
+  TransformModifiersTrait;
 
 export type SliceNode = {
   /** The type of this node, represented by the string literal "SLICE" */
@@ -1029,62 +1481,6 @@ export interface ExportSetting {
   constraint: Constraint;
 }
 
-/**
- * This type is a string enum with the following possible values
- *
- * Normal blends:
- * - `PASS_THROUGH` (only applicable to objects with children)
- * - `NORMAL`
- *
- * Darken:
- * - `DARKEN`
- * - `MULTIPLY`
- * - `LINEAR_BURN`
- * - `COLOR_BURN`
- *
- * Lighten:
- * - `LIGHTEN`
- * - `SCREEN`
- * - `LINEAR_DODGE`
- * - `COLOR_DODGE`
- *
- * Contrast:
- * - `OVERLAY`
- * - `SOFT_LIGHT`
- * - `HARD_LIGHT`
- *
- * Inversion:
- * - `DIFFERENCE`
- * - `EXCLUSION`
- *
- * Component:
- * - `HUE`
- * - `SATURATION`
- * - `COLOR`
- * - `LUMINOSITY`
- */
-export enum BlendMode {
-  PASS_THROUGH = 'PASS_THROUGH',
-  NORMAL = 'NORMAL',
-  DARKEN = 'DARKEN',
-  MULTIPLY = 'MULTIPLY',
-  LINEAR_BURN = 'LINEAR_BURN',
-  COLOR_BURN = 'COLOR_BURN',
-  LIGHTEN = 'LIGHTEN',
-  SCREEN = 'SCREEN',
-  LINEAR_DODGE = 'LINEAR_DODGE',
-  COLOR_DODGE = 'COLOR_DODGE',
-  OVERLAY = 'OVERLAY',
-  SOFT_LIGHT = 'SOFT_LIGHT',
-  HARD_LIGHT = 'HARD_LIGHT',
-  DIFFERENCE = 'DIFFERENCE',
-  EXCLUSION = 'EXCLUSION',
-  HUE = 'HUE',
-  SATURATION = 'SATURATION',
-  COLOR = 'COLOR',
-  LUMINOSITY = 'LUMINOSITY',
-}
-
 /** A 2d vector. */
 export interface Vector {
   /** X coordinate of the vector. */
@@ -1218,7 +1614,25 @@ export type ImagePaint = {
   gifRef?: string;
 } & BasePaint;
 
-export type Paint = SolidPaint | GradientPaint | ImagePaint;
+/** A pattern */
+export type PatternPaint = {
+  /** The string literal "PATTERN" representing the paint's type. Always check the `type` before reading other properties. */
+  type: 'PATTERN';
+  /** The node id of the source node for the pattern */
+  sourceNodeId: string;
+  /** The tile type for the pattern */
+  tileType: 'RECTANGULAR' | 'HORIZONTAL_HEXAGONAL' | 'VERTICAL_HEXAGONAL';
+  /** The scaling factor for the pattern */
+  scalingFactor: number;
+  /** The spacing for the pattern */
+  spacing: Vector;
+  /** The horizontal alignment for the pattern */
+  horizontalAlignment: 'START' | 'CENTER' | 'END';
+  /** The vertical alignment for the pattern */
+  verticalAlignment: 'START' | 'CENTER' | 'END';
+} & BasePaint;
+
+export type Paint = SolidPaint | GradientPaint | ImagePaint | PatternPaint;
 
 /** Layout constraint relative to containing Frame */
 export interface LayoutConstraint {
@@ -1356,8 +1770,10 @@ export type InnerShadowEffect = {
   type?: 'INNER_SHADOW';
 } & BaseShadowEffect;
 
-/** A blur effect */
-export interface BlurEffect {
+export type BlurEffect = NormalBlurEffect | ProgressiveBlurEffect;
+
+/** Base properties shared by all blur effects */
+export interface BaseBlurEffect {
   /** A string literal representing the effect's type. Always check the type before reading other properties. */
   type: 'LAYER_BLUR' | 'BACKGROUND_BLUR';
   /** Whether this blur is active. */
@@ -1374,19 +1790,77 @@ export interface BlurEffect {
   };
 }
 
-export type Effect =
-  | ({
-      type: 'DROP_SHADOW';
-    } & DropShadowEffect)
-  | ({
-      type: 'INNER_SHADOW';
-    } & InnerShadowEffect)
-  | ({
-      type: 'LAYER_BLUR';
-    } & BlurEffect)
-  | ({
-      type: 'BACKGROUND_BLUR';
-    } & BlurEffect);
+/** A normal blur effect */
+export type NormalBlurEffect = {
+  /** The string literal 'NORMAL' representing the blur type. Always check the blurType before reading other properties. */
+  blurType?: 'NORMAL';
+} & BaseBlurEffect;
+
+/** A progressive blur effect */
+export type ProgressiveBlurEffect = {
+  /** The string literal 'PROGRESSIVE' representing the blur type. Always check the blurType before reading other properties. */
+  blurType: 'PROGRESSIVE';
+  /** The starting radius of the progressive blur */
+  startRadius: number;
+  /** The starting offset of the progressive blur */
+  startOffset: Vector;
+  /** The ending offset of the progressive blur */
+  endOffset: Vector;
+} & BaseBlurEffect;
+
+/** A texture effect */
+export interface TextureEffect {
+  /** The string literal 'TEXTURE' representing the effect's type. Always check the type before reading other properties. */
+  type: 'TEXTURE';
+  /** Whether the texture effect is visible. */
+  visible: boolean;
+  /** The size of the texture effect */
+  noiseSize: number;
+  /** The radius of the texture effect */
+  radius: number;
+  /** Whether the texture is clipped to the shape */
+  clipToShape: boolean;
+}
+
+/** A monotone noise effect */
+export type MonotoneNoiseEffect = {
+  /** The string literal 'MONOTONE' representing the noise type. */
+  noiseType: 'MONOTONE';
+} & BaseNoiseEffect;
+
+/** A multitone noise effect */
+export type MultitoneNoiseEffect = {
+  /** The string literal 'MULTITONE' representing the noise type. */
+  noiseType: 'MULTITONE';
+  /** The opacity of the noise effect */
+  opacity: number;
+} & BaseNoiseEffect;
+
+/** A duotone noise effect */
+export type DuotoneNoiseEffect = {
+  /** The string literal 'DUOTONE' representing the noise type. */
+  noiseType: 'DUOTONE';
+  /** The secondary color of the noise effect */
+  secondaryColor: RGBA;
+} & BaseNoiseEffect;
+
+/** A noise effect */
+export interface BaseNoiseEffect {
+  /** The string literal 'NOISE' representing the effect's type. Always check the type before reading other properties. */
+  type: 'NOISE';
+  /** The color of the noise effect */
+  color: RGBA;
+  /** Whether the noise effect is visible. */
+  visible: boolean;
+  /** Blend mode of the noise effect */
+  blendMode: BlendMode;
+  /** The size of the noise effect */
+  noiseSize: number;
+  /** The density of the noise effect */
+  density: number;
+}
+
+export type NoiseEffect = MonotoneNoiseEffect | MultitoneNoiseEffect | DuotoneNoiseEffect;
 
 /** A set of properties that can be applied to nodes and published. Styles for a property can be created in the corresponding property's panel while editing a file. */
 export interface Style {
@@ -1400,39 +1874,6 @@ export interface Style {
   remote: boolean;
   /** The type of style */
   styleType: StyleType;
-}
-
-/**
- * This type is a string enum with the following possible values:
- *
- * - `EASE_IN`: Ease in with an animation curve similar to CSS ease-in.
- * - `EASE_OUT`: Ease out with an animation curve similar to CSS ease-out.
- * - `EASE_IN_AND_OUT`: Ease in and then out with an animation curve similar to CSS ease-in-out.
- * - `LINEAR`: No easing, similar to CSS linear.
- * - `EASE_IN_BACK`: Ease in with an animation curve that moves past the initial keyframe's value and then accelerates as it reaches the end.
- * - `EASE_OUT_BACK`: Ease out with an animation curve that starts fast, then slows and goes past the ending keyframe's value.
- * - `EASE_IN_AND_OUT_BACK`: Ease in and then out with an animation curve that overshoots the initial keyframe's value, then accelerates quickly before it slows and overshoots the ending keyframes value.
- * - `CUSTOM_CUBIC_BEZIER`: User-defined cubic bezier curve.
- * - `GENTLE`: Gentle animation similar to react-spring.
- * - `QUICK`: Quick spring animation, great for toasts and notifications.
- * - `BOUNCY`: Bouncy spring, for delightful animations like a heart bounce.
- * - `SLOW`: Slow spring, useful as a steady, natural way to scale up fullscreen content.
- * - `CUSTOM_SPRING`: User-defined spring animation.
- */
-export enum EasingType {
-  EASE_IN = 'EASE_IN',
-  EASE_OUT = 'EASE_OUT',
-  EASE_IN_AND_OUT = 'EASE_IN_AND_OUT',
-  LINEAR = 'LINEAR',
-  EASE_IN_BACK = 'EASE_IN_BACK',
-  EASE_OUT_BACK = 'EASE_OUT_BACK',
-  EASE_IN_AND_OUT_BACK = 'EASE_IN_AND_OUT_BACK',
-  CUSTOM_CUBIC_BEZIER = 'CUSTOM_CUBIC_BEZIER',
-  GENTLE = 'GENTLE',
-  QUICK = 'QUICK',
-  BOUNCY = 'BOUNCY',
-  SLOW = 'SLOW',
-  CUSTOM_SPRING = 'CUSTOM_SPRING',
 }
 
 /** Individual stroke weights */
@@ -1496,12 +1937,44 @@ export interface Hyperlink {
   nodeID?: string;
 }
 
-/** Metadata for character formatting. */
-export interface TypeStyle {
+export interface BaseTypeStyle {
   /** Font family of text (standard name). */
   fontFamily?: string;
   /** PostScript font name. */
   fontPostScriptName?: string | null;
+  /** Describes visual weight or emphasis, such as Bold or Italic. */
+  fontStyle?: string;
+  /**
+   * Whether or not text is italicized.
+   * @default false
+   */
+  italic?: boolean;
+  /** Numeric font weight. */
+  fontWeight?: number;
+  /** Font size in px. */
+  fontSize?: number;
+  /** Text casing applied to the node, default is the original casing. */
+  textCase?: 'ORIGINAL' | 'UPPER' | 'LOWER' | 'TITLE' | 'SMALL_CAPS' | 'SMALL_CAPS_FORCED';
+  /** Horizontal text alignment as string enum. */
+  textAlignHorizontal?: 'LEFT' | 'RIGHT' | 'CENTER' | 'JUSTIFIED';
+  /** Vertical text alignment as string enum. */
+  textAlignVertical?: 'TOP' | 'CENTER' | 'BOTTOM';
+  /** Space between characters in px. */
+  letterSpacing?: number;
+  /** An array of fill paints applied to the characters. */
+  fills?: Paint[];
+  /** Link to a URL or frame. */
+  hyperlink?: Hyperlink;
+  /** A map of OpenType feature flags to 1 or 0, 1 if it is enabled and 0 if it is disabled. Note that some flags aren't reflected here. For example, SMCP (small caps) is still represented by the `textCase` field. */
+  opentypeFlags?: Record<string, number>;
+  /** Indicates how the font weight was overridden when there is a text style override. */
+  semanticWeight?: 'BOLD' | 'NORMAL';
+  /** Indicates how the font style was overridden when there is a text style override. */
+  semanticItalic?: 'ITALIC' | 'NORMAL';
+}
+
+/** Metadata for character formatting. */
+export type TypeStyle = {
   /**
    * Space between paragraphs in px, 0 if not present.
    * @default 0
@@ -1517,17 +1990,6 @@ export interface TypeStyle {
    * @default 0
    */
   listSpacing?: number;
-  /**
-   * Whether or not text is italicized.
-   * @default false
-   */
-  italic?: boolean;
-  /** Numeric font weight. */
-  fontWeight?: number;
-  /** Font size in px. */
-  fontSize?: number;
-  /** Text casing applied to the node, default is the original casing. */
-  textCase?: 'UPPER' | 'LOWER' | 'TITLE' | 'SMALL_CAPS' | 'SMALL_CAPS_FORCED';
   /**
    * Text decoration applied to the node, default is none.
    * @default "NONE"
@@ -1545,18 +2007,6 @@ export interface TypeStyle {
   textTruncation?: 'DISABLED' | 'ENDING';
   /** When `textTruncation: "ENDING"` is set, `maxLines` determines how many lines a text node can grow to before it truncates. */
   maxLines?: number;
-  /** Horizontal text alignment as string enum. */
-  textAlignHorizontal?: 'LEFT' | 'RIGHT' | 'CENTER' | 'JUSTIFIED';
-  /** Vertical text alignment as string enum. */
-  textAlignVertical?: 'TOP' | 'CENTER' | 'BOTTOM';
-  /** Space between characters in px. */
-  letterSpacing?: number;
-  /** An array of fill paints applied to the characters. */
-  fills?: Paint[];
-  /** Link to a URL or frame. */
-  hyperlink?: Hyperlink;
-  /** A map of OpenType feature flags to 1 or 0, 1 if it is enabled and 0 if it is disabled. Note that some flags aren't reflected here. For example, SMCP (small caps) is still represented by the `textCase` field. */
-  opentypeFlags?: Record<string, number>;
   /** Line height in px. */
   lineHeightPx?: number;
   /**
@@ -1568,6 +2018,8 @@ export interface TypeStyle {
   lineHeightPercentFontSize?: number;
   /** The unit of the line height value specified by the user. */
   lineHeightUnit?: 'PIXELS' | 'FONT_SIZE_%' | 'INTRINSIC_%';
+  /** Whether or not this style has overrides over a text style. The possible fields to override are semanticWeight, semanticItalic, hyperlink, and textDecoration. If this is true, then those fields are overrides if present. */
+  isOverrideOverTextStyle?: boolean;
   /** The variables bound to a particular field on this style */
   boundVariables?: {
     /** Contains a variable alias */
@@ -1587,21 +2039,26 @@ export interface TypeStyle {
     /** Contains a variable alias */
     paragraphIndent?: VariableAlias;
   };
-  /**  Whether or not this style has overrides over a text style. The possible fields to override are semanticWeight, semanticItalic, hyperlink, and textDecoration. If this is true, then those fields are overrides if present. */
-  isOverrideOverTextStyle?: boolean;
-  /** Indicates how the font weight was overridden when there is a text style override. */
-  semanticWeight?: 'BOLD' | 'NORMAL';
-  /** Indicates how the font style was overridden when there is a text style override. */
-  semanticItalic?: 'ITALIC' | 'NORMAL';
-}
+} & BaseTypeStyle;
 
-/** Component property type. */
-export enum ComponentPropertyType {
-  BOOLEAN = 'BOOLEAN',
-  INSTANCE_SWAP = 'INSTANCE_SWAP',
-  TEXT = 'TEXT',
-  VARIANT = 'VARIANT',
-}
+/** Metadata for character formatting for styles used in text paths. */
+export type TextPathTypeStyle = {
+  /** Whether or not this style has overrides over a text style. The possible fields to override are semanticWeight, semanticItalic, and hyperlink. If this is true, then those fields are overrides if present. */
+  isOverrideOverTextStyle?: boolean;
+  /** The variables bound to a particular field on this style */
+  boundVariables?: {
+    /** Contains a variable alias */
+    fontFamily?: VariableAlias;
+    /** Contains a variable alias */
+    fontSize?: VariableAlias;
+    /** Contains a variable alias */
+    fontStyle?: VariableAlias;
+    /** Contains a variable alias */
+    fontWeight?: VariableAlias;
+    /** Contains a variable alias */
+    letterSpacing?: VariableAlias;
+  };
+} & BaseTypeStyle;
 
 /** Instance swap preferred value. */
 export interface InstanceSwapPreferredValue {
@@ -1646,40 +2103,6 @@ export interface Overrides {
   overriddenFields: string[];
 }
 
-/** Geometric shape type. */
-export enum ShapeType {
-  SQUARE = 'SQUARE',
-  ELLIPSE = 'ELLIPSE',
-  ROUNDED_RECTANGLE = 'ROUNDED_RECTANGLE',
-  DIAMOND = 'DIAMOND',
-  TRIANGLE_UP = 'TRIANGLE_UP',
-  TRIANGLE_DOWN = 'TRIANGLE_DOWN',
-  PARALLELOGRAM_RIGHT = 'PARALLELOGRAM_RIGHT',
-  PARALLELOGRAM_LEFT = 'PARALLELOGRAM_LEFT',
-  ENG_DATABASE = 'ENG_DATABASE',
-  ENG_QUEUE = 'ENG_QUEUE',
-  ENG_FILE = 'ENG_FILE',
-  ENG_FOLDER = 'ENG_FOLDER',
-  TRAPEZOID = 'TRAPEZOID',
-  PREDEFINED_PROCESS = 'PREDEFINED_PROCESS',
-  SHIELD = 'SHIELD',
-  DOCUMENT_SINGLE = 'DOCUMENT_SINGLE',
-  DOCUMENT_MULTIPLE = 'DOCUMENT_MULTIPLE',
-  MANUAL_INPUT = 'MANUAL_INPUT',
-  HEXAGON = 'HEXAGON',
-  CHEVRON = 'CHEVRON',
-  PENTAGON = 'PENTAGON',
-  OCTAGON = 'OCTAGON',
-  STAR = 'STAR',
-  PLUS = 'PLUS',
-  ARROW_LEFT = 'ARROW_LEFT',
-  ARROW_RIGHT = 'ARROW_RIGHT',
-  SUMMING_JUNCTION = 'SUMMING_JUNCTION',
-  OR = 'OR',
-  SPEECH_BUBBLE = 'SPEECH_BUBBLE',
-  INTERNAL_STORAGE = 'INTERNAL_STORAGE',
-}
-
 /** Stores canvas location for a connector start/end point. */
 export type ConnectorEndpoint =
   | {
@@ -1694,12 +2117,6 @@ export type ConnectorEndpoint =
       /** The magnet type is a string enum. */
       magnet?: 'AUTO' | 'TOP' | 'BOTTOM' | 'LEFT' | 'RIGHT' | 'CENTER';
     };
-
-/** Connector line type. */
-export enum ConnectorLineType {
-  STRAIGHT = 'STRAIGHT',
-  ELBOWED = 'ELBOWED',
-}
 
 export type ConnectorTextBackground = CornerTrait & MinimalFillsTrait;
 
@@ -1822,12 +2239,7 @@ export type UpdateMediaRuntimeAction =
       type: 'UPDATE_MEDIA_RUNTIME';
       destinationId: string | null;
       mediaAction:
-        | 'PLAY'
-        | 'PAUSE'
-        | 'TOGGLE_PLAY_PAUSE'
-        | 'MUTE'
-        | 'UNMUTE'
-        | 'TOGGLE_MUTE_UNMUTE';
+        'PLAY' | 'PAUSE' | 'TOGGLE_PLAY_PAUSE' | 'MUTE' | 'UNMUTE' | 'TOGGLE_MUTE_UNMUTE';
     }
   | {
       type: 'UPDATE_MEDIA_RUNTIME';
@@ -1867,23 +2279,6 @@ export interface NodeAction {
   resetScrollPosition?: boolean;
   /** Whether the state of any interactive components in the current screen or overlay reset when navigating to the destination. This is applicable if there are interactive components in the destination frame. */
   resetInteractiveComponents?: boolean;
-}
-
-/**
- * The method of navigation. The possible values are:
- * - `"NAVIGATE"`: Replaces the current screen with the destination, also closing all overlays.
- * - `"OVERLAY"`: Opens the destination as an overlay on the current screen.
- * - `"SWAP"`: On an overlay, replaces the current (topmost) overlay with the destination. On a top-level frame,
- *   behaves the same as `"NAVIGATE"` except that no entry is added to the navigation history.
- * - `"SCROLL_TO"`: Scrolls to the destination on the current screen.
- * - `"CHANGE_TO"`: Changes the closest ancestor instance of source node to the specified variant.
- */
-export enum Navigation {
-  NAVIGATE = 'NAVIGATE',
-  SWAP = 'SWAP',
-  OVERLAY = 'OVERLAY',
-  SCROLL_TO = 'SCROLL_TO',
-  CHANGE_TO = 'CHANGE_TO',
 }
 
 export type Transition = SimpleTransition | DirectionalTransition;
@@ -1962,48 +2357,11 @@ export interface VariableData {
   value?: boolean | number | string | RGB | RGBA | VariableAlias | Expression;
 }
 
-/** Defines the types of data a VariableData object can hold */
-export enum VariableDataType {
-  BOOLEAN = 'BOOLEAN',
-  FLOAT = 'FLOAT',
-  STRING = 'STRING',
-  COLOR = 'COLOR',
-  VARIABLE_ALIAS = 'VARIABLE_ALIAS',
-  EXPRESSION = 'EXPRESSION',
-}
-
-/** Defines the types of data a VariableData object can eventually equal */
-export enum VariableResolvedDataType {
-  BOOLEAN = 'BOOLEAN',
-  FLOAT = 'FLOAT',
-  STRING = 'STRING',
-  COLOR = 'COLOR',
-}
-
 /** Defines the [Expression](https://help.figma.com/hc/en-us/articles/15253194385943) object, which contains a list of `VariableData` objects strung together by operators (`ExpressionFunction`). */
 export interface Expression {
   /** Defines the list of operators available to use in an Expression. */
   expressionFunction: ExpressionFunction;
   expressionArguments: VariableData[];
-}
-
-/** Defines the list of operators available to use in an Expression. */
-export enum ExpressionFunction {
-  ADDITION = 'ADDITION',
-  SUBTRACTION = 'SUBTRACTION',
-  MULTIPLICATION = 'MULTIPLICATION',
-  DIVISION = 'DIVISION',
-  EQUALS = 'EQUALS',
-  NOT_EQUAL = 'NOT_EQUAL',
-  LESS_THAN = 'LESS_THAN',
-  LESS_THAN_OR_EQUAL = 'LESS_THAN_OR_EQUAL',
-  GREATER_THAN = 'GREATER_THAN',
-  GREATER_THAN_OR_EQUAL = 'GREATER_THAN_OR_EQUAL',
-  AND = 'AND',
-  OR = 'OR',
-  VAR_MODE_LOOKUP = 'VAR_MODE_LOOKUP',
-  NEGATE = 'NEGATE',
-  NOT = 'NOT',
 }
 
 /** Either the if or else conditional blocks. The if block contains a condition to check. If that condition is met then it will run those list of actions, else it will run the actions in the else block. */
@@ -2153,6 +2511,23 @@ export interface FrameInfo {
   pageId: string;
   /** The name of the page containing the frame node. */
   pageName: string;
+  /**
+   * Deprecated - Use containingComponentSet instead.
+   * @deprecated
+   */
+  containingStateGroup?: {
+    /** The ID of the state group node. */
+    nodeId?: string;
+    /** The name of the state group node. */
+    name?: string;
+  } | null;
+  /** The component set node that contains the frame node. */
+  containingComponentSet?: {
+    /** The ID of the component set node. */
+    nodeId?: string;
+    /** The name of the component set node. */
+    name?: string;
+  } | null;
 }
 
 /** An arrangement of published UI elements that can be instantiated across figma files. */
@@ -2213,14 +2588,6 @@ export interface PublishedComponentSet {
   user: User;
   /** The containing frame of the component set. */
   containing_frame?: FrameInfo;
-}
-
-/** The type of style */
-export enum StyleType {
-  FILL = 'FILL',
-  TEXT = 'TEXT',
-  EFFECT = 'EFFECT',
-  GRID = 'GRID',
 }
 
 /** A set of published properties that can be applied to nodes. */
@@ -2288,38 +2655,27 @@ export interface WebhookV2 {
   id: string;
   /** The event this webhook triggers on */
   event_type: WebhookV2Event;
-  /** The team id you are subscribed to for updates */
+  /**
+   * The team id you are subscribed to for updates. This is deprecated, use context and context_id instead
+   * @deprecated
+   */
   team_id: string;
+  /** The type of context this webhook is attached to. The value will be "PROJECT", "TEAM", or "FILE" */
+  context: string;
+  /** The ID of the context this webhook is attached to */
+  context_id: string;
+  /** The plan API ID of the team or organization where this webhook was created */
+  plan_api_id: string;
   /** The current status of the webhook */
   status: WebhookV2Status;
   /** The client ID of the OAuth application that registered this webhook, if any */
   client_id: string | null;
-  /** The passcode that will be passed back to the webhook endpoint */
+  /** The passcode that will be passed back to the webhook endpoint. For security, when using the GET endpoints, the value is an empty string */
   passcode: string;
   /** The endpoint that will be hit when the webhook is triggered */
   endpoint: string;
   /** Optional user-provided description or name for the webhook. This is provided to help make maintaining a number of webhooks more convenient. Max length 140 characters. */
   description: string | null;
-}
-
-/** An enum representing the possible events that a webhook can subscribe to */
-export enum WebhookV2Event {
-  PING = 'PING',
-  FILE_UPDATE = 'FILE_UPDATE',
-  FILE_VERSION_UPDATE = 'FILE_VERSION_UPDATE',
-  FILE_DELETE = 'FILE_DELETE',
-  LIBRARY_PUBLISH = 'LIBRARY_PUBLISH',
-  FILE_COMMENT = 'FILE_COMMENT',
-}
-
-/**
- * An enum representing the possible statuses you can set a webhook to:
- * - `ACTIVE`: The webhook is healthy and receive all events
- * - `PAUSED`: The webhook is paused and will not receive any events
- */
-export enum WebhookV2Status {
-  ACTIVE = 'ACTIVE',
-  PAUSED = 'PAUSED',
 }
 
 /** Information regarding the most recent interactions sent to a webhook endpoint */
@@ -2482,6 +2838,22 @@ export type WebhookFileCommentPayload = WebhookBasePayload & {
   triggered_by: User;
 };
 
+export type WebhookDevModeStatusUpdatePayload = WebhookBasePayload & {
+  event_type: 'DEV_MODE_STATUS_UPDATE';
+  /** The key of the file that was updated */
+  file_key: string;
+  /** The name of the file that was updated */
+  file_name: string;
+  /** The id of the node where the Dev Mode status changed. For example, "43:2" */
+  node_id: string;
+  /** An array of related links that have been applied to the layer in the file */
+  related_links: DevResource[];
+  /** The Dev Mode status. Either "NONE", "READY_FOR_DEV", or "COMPLETED" */
+  status: string;
+  /** The user that made the status change and triggered the event */
+  triggered_by: User;
+};
+
 /** A Figma user */
 export interface ActivityLogUserEntity {
   /** The type of entity. */
@@ -2505,7 +2877,7 @@ export interface ActivityLogFileEntity {
   /** Indicates if the object is a file on Figma Design or FigJam. */
   editor_type: 'figma' | 'figjam';
   /** Access policy for users who have the link to the file. */
-  link_access: 'view' | 'edit' | 'org_view' | 'org_edit' | 'inherit';
+  link_access: LinkAccess;
   /** Access policy for users who have the link to the file's prototype. */
   proto_link_access: 'view' | 'org_view' | 'inherit';
 }
@@ -2608,7 +2980,7 @@ export interface ActivityLog {
     /** The type of the action. */
     type: string;
     /** Metadata of the action. Each action type supports its own metadata attributes. */
-    details: object | null;
+    details: Record<string, any> | null;
   };
   /** The resource the actor took the action on. It can be a user, file, project or other resource types. */
   entity:
@@ -2654,6 +3026,102 @@ export interface ActivityLog {
   };
 }
 
+/** The API endpoint or tool that was called. */
+export interface DeveloperLogAction {
+  /** The route path (for REST API requests) or tool name (for MCP server calls). */
+  event_name: string;
+  /** The source of the event. */
+  event_source: 'rest_api' | 'mcp_server';
+}
+
+/** The token used and associated user for the request. */
+export interface DeveloperLogActor {
+  /** The ID of the user who made the request; null for requests made with plan access tokens, as there is no associated user. */
+  user_id?: string | null;
+  /** The name of the user who made the request; null for requests made with plan access tokens, as there is no associated user. */
+  user_name?: string | null;
+  /** The email of the user who made the request; null for requests made with plan access tokens, as there is no associated user. */
+  user_email?: string | null;
+  /** The name of the token, or the OAuth app name for OAuth tokens. */
+  token_name: string;
+  /** The type of token used for authentication. */
+  token_type: 'developer_token' | 'plan_access_token' | 'oauth_token';
+}
+
+/** The resource accessed by the request. */
+export interface DeveloperLogResource {
+  /** The ID or key of the resource. For files this is the file key; for teams and projects this is the numeric ID. Null for requests without an associated resources (e.g. activity logs). */
+  id_or_key?: string | null;
+  /** The name of the resource; null for requests without an associated resource (e.g. activity logs). */
+  name?: string | null;
+  /** The type of resource; null for requests without an associated resource (e.g. activity logs). */
+  type?: 'file' | 'team' | 'project';
+  /** The ID of the organization associated with the request (e.g. that owns the resource). */
+  org_id: string;
+}
+
+/** Context about the request. */
+export interface DeveloperLogContext {
+  /** The IP address of the client that made the request. */
+  ip_address: string;
+  /** The city of the client, if available. */
+  city?: string | null;
+  /** The region of the client, if available. */
+  country_region?: string | null;
+  /** The country of the client, if available. */
+  country?: string | null;
+}
+
+/** A log entry from the Developer Log, representing a REST API or MCP server request. */
+export interface DeveloperLog {
+  /** The unique identifier of the log entry. */
+  uuid: string;
+  /** The ISO 8601 timestamp of when the request was made. */
+  timestamp: string;
+  /** The API endpoint or tool that was called. */
+  action: DeveloperLogAction;
+  /** The token used and associated user for the request. */
+  actor: DeveloperLogActor;
+  /** The resource accessed by the request. */
+  resource: DeveloperLogResource;
+  /** Context about the request. */
+  context: DeveloperLogContext;
+}
+
+/** A single per-user, per-day AI credit usage aggregate for the plan. */
+export interface AiUsageDailyRow {
+  /** The id of the plan the usage belongs to. */
+  plan_id: string;
+  /** The id of the Figma user that consumed the credits. */
+  user_id: string;
+  /** The email of the Figma user that consumed the credits, or `null` when the user's email could not be resolved (e.g. a deleted user). */
+  user_email?: string | null;
+  /** The calendar date (UTC) of the aggregated usage, in `YYYY-MM-DD` format. */
+  day: string;
+  /** The editor the AI action was associated with. `not_applicable` when the underlying AI action had no associated file. */
+  editor_type: 'design' | 'figjam' | 'slides' | 'sites' | 'buzz' | 'make' | 'not_applicable';
+  /** The sum of seat-level (per-user-allocated) credits consumed for this day, user, and editor type. */
+  seat_credits_sum: number;
+  /** The sum of plan-level (shared pool) credits consumed for this day, user, and editor type. */
+  plan_credits_sum: number;
+  /** The id of the workspace the usage was attributed to, or `null` when the usage had no associated workspace. */
+  workspace_id?: string | null;
+  /** The name of the workspace the usage was attributed to, or `null` when the usage had no associated workspace. */
+  workspace_name?: string | null;
+  /** The id of the team the usage was attributed to, or `null` when the usage had no associated team. */
+  team_id?: string | null;
+  /** The name of the team the usage was attributed to, or `null` when the usage had no associated team. */
+  team_name?: string | null;
+  /** The id of the license group the usage was attributed to, or `null` when the usage had no associated license group. */
+  license_group_id?: string | null;
+  /** The name of the license group the usage was attributed to, or `null` when the usage had no associated license group. */
+  license_group_name?: string | null;
+  /** The start of the plan-scoped metering period this usage belongs to, as an RFC 3339 UTC timestamp (e.g. `2026-05-01T00:00:00Z`). */
+  metering_period_start: string;
+  /** The end of the plan-scoped metering period this usage belongs to, as an RFC 3339 UTC timestamp (e.g. `2026-06-01T00:00:00Z`). */
+  metering_period_end: string;
+}
+
 /** An object describing the user's payment status. */
 export interface PaymentStatus {
   /**
@@ -2685,68 +3153,6 @@ export interface PaymentInformation {
   date_of_purchase?: string;
 }
 
-/**
- * Scopes allow a variable to be shown or hidden in the variable picker for various fields. This declutters the Figma UI if you have a large number of variables. Variable scopes are currently supported on `FLOAT`, `STRING`, and `COLOR` variables.
- *
- * `ALL_SCOPES` is a special scope that means that the variable will be shown in the variable picker for all variable fields. If `ALL_SCOPES` is set, no additional scopes can be set.
- *
- * `ALL_FILLS` is a special scope that means that the variable will be shown in the variable picker for all fill fields. If `ALL_FILLS` is set, no additional fill scopes can be set.
- *
- * Valid scopes for `FLOAT` variables:
- * - `ALL_SCOPES`
- * - `TEXT_CONTENT`
- * - `WIDTH_HEIGHT`
- * - `GAP`
- * - `STROKE_FLOAT`
- * - `EFFECT_FLOAT`
- * - `OPACITY`
- * - `FONT_WEIGHT`
- * - `FONT_SIZE`
- * - `LINE_HEIGHT`
- * - `LETTER_SPACING`
- * - `PARAGRAPH_SPACING`
- * - `PARAGRAPH_INDENT`
- *
- * Valid scopes for `STRING` variables:
- * - `ALL_SCOPES`
- * - `TEXT_CONTENT`
- * - `FONT_FAMILY`
- * - `FONT_STYLE`
- *
- * Valid scopes for `COLOR` variables:
- * - `ALL_SCOPES`
- * - `ALL_FILLS`
- * - `FRAME_FILL`
- * - `SHAPE_FILL`
- * - `TEXT_FILL`
- * - `STROKE_COLOR`
- * - `EFFECT_COLOR`
- */
-export enum VariableScope {
-  ALL_SCOPES = 'ALL_SCOPES',
-  TEXT_CONTENT = 'TEXT_CONTENT',
-  CORNER_RADIUS = 'CORNER_RADIUS',
-  WIDTH_HEIGHT = 'WIDTH_HEIGHT',
-  GAP = 'GAP',
-  ALL_FILLS = 'ALL_FILLS',
-  FRAME_FILL = 'FRAME_FILL',
-  SHAPE_FILL = 'SHAPE_FILL',
-  TEXT_FILL = 'TEXT_FILL',
-  STROKE_COLOR = 'STROKE_COLOR',
-  STROKE_FLOAT = 'STROKE_FLOAT',
-  EFFECT_FLOAT = 'EFFECT_FLOAT',
-  EFFECT_COLOR = 'EFFECT_COLOR',
-  OPACITY = 'OPACITY',
-  FONT_FAMILY = 'FONT_FAMILY',
-  FONT_STYLE = 'FONT_STYLE',
-  FONT_WEIGHT = 'FONT_WEIGHT',
-  FONT_SIZE = 'FONT_SIZE',
-  LINE_HEIGHT = 'LINE_HEIGHT',
-  LETTER_SPACING = 'LETTER_SPACING',
-  PARAGRAPH_SPACING = 'PARAGRAPH_SPACING',
-  PARAGRAPH_INDENT = 'PARAGRAPH_INDENT',
-}
-
 /** An object containing platform-specific code syntax definitions for a variable. All platforms are optional. */
 export interface VariableCodeSyntax {
   WEB?: string;
@@ -2766,6 +3172,8 @@ export interface LocalVariableCollection {
   modes: {
     /** The unique identifier of this mode. */
     modeId: string;
+    /** The unique identifier of this mode's parent mode from the parent variable collection. This will be `undefined` if this mode does not inherit from a parent mode. */
+    parentModeId?: string;
     /** The name of this mode. */
     name: string;
   }[];
@@ -2773,6 +3181,14 @@ export interface LocalVariableCollection {
   defaultModeId: string;
   /** Whether this variable collection is remote. */
   remote: boolean;
+  /** Whether this variable collection is an extension of another variable collection. */
+  isExtension?: boolean;
+  /** The id of the parent variable collection that this variable collection is an extension of. If this variable collection is not an extension, this value will be `undefined`. */
+  parentVariableCollectionId?: string;
+  /** The id of the root variable collection in the extension chain. This is the ID of the original (non-extended) collection at the top of the parent chain. For example, if Collection C extends B which extends A (root), then `rootVariableCollectionId` is A's ID. If this variable collection is not an extension, this value will be `undefined`. */
+  rootVariableCollectionId?: string;
+  /** The overrides for the variables in this variable collection as a map of variable ids to a map of mode ids to variable values. */
+  variableOverrides?: Record<string, Record<string, VariableValue>>;
   /**
    * Whether this variable collection is hidden when publishing the current file as a library.
    * @default false
@@ -2793,7 +3209,7 @@ export interface LocalVariable {
   /** The id of the variable collection that contains this variable. */
   variableCollectionId: string;
   /** The resolved type of the variable. */
-  resolvedType: 'BOOLEAN' | 'FLOAT' | 'STRING' | 'COLOR';
+  resolvedType: VariableResolvedDataType;
   /** The values for each mode of this variable. */
   valuesByMode: Record<string, boolean | number | string | RGBA | VariableAlias>;
   /** Whether this variable is remote. */
@@ -2853,7 +3269,7 @@ export interface PublishedVariable {
   /** The id of the variable collection that contains this variable. */
   variableCollectionId: string;
   /** The resolved type of the variable. */
-  resolvedDataType: 'BOOLEAN' | 'FLOAT' | 'STRING' | 'COLOR';
+  resolvedDataType: VariableResolvedDataType;
   /**
    * The UTC ISO 8601 time at which the variable was last updated.
    * @format date-time
@@ -2876,6 +3292,10 @@ export interface VariableCollectionCreate {
    * @default false
    */
   hiddenFromPublishing?: boolean;
+  /** The id of the parent variable collection that this variable collection is extending from. */
+  parentVariableCollectionId?: string;
+  /** Maps inherited modes from the parent variable collection to the initial mode ids on the extended variable collection. */
+  initialModeIdToParentModeIdMapping?: Record<string, string>;
 }
 
 /** An object that contains details about updating a `VariableCollection`. */
@@ -2901,17 +3321,6 @@ export interface VariableCollectionDelete {
   id: string;
 }
 
-export type VariableCollectionChange =
-  | ({
-      action: 'CREATE';
-    } & VariableCollectionCreate)
-  | ({
-      action: 'UPDATE';
-    } & VariableCollectionUpdate)
-  | ({
-      action: 'DELETE';
-    } & VariableCollectionDelete);
-
 /** An object that contains details about creating a `VariableMode`. */
 export interface VariableModeCreate {
   /** The action to perform for the variable mode. */
@@ -2920,7 +3329,7 @@ export interface VariableModeCreate {
   id?: string;
   /** The name of this variable mode. */
   name: string;
-  /** The variable collection that will contain the mode. You can use the temporary id of a variable collection. */
+  /** The variable collection that will contain the mode. You can use the temporary id of a variable collection. New modes cannot be created on extended collections. */
   variableCollectionId: string;
 }
 
@@ -2932,7 +3341,7 @@ export interface VariableModeUpdate {
   id: string;
   /** The name of this variable mode. */
   name?: string;
-  /** The variable collection that contains the mode. */
+  /** The variable collection that contains the mode. Modes cannot be updated on extended collections. */
   variableCollectionId: string;
 }
 
@@ -2940,20 +3349,9 @@ export interface VariableModeUpdate {
 export interface VariableModeDelete {
   /** The action to perform for the variable mode. */
   action: 'DELETE';
-  /** The id of the variable mode to delete. */
+  /** The id of the variable mode to delete. Modes cannot be deleted on extended collections unless its parent mode has been deleted. */
   id: string;
 }
-
-export type VariableModeChange =
-  | ({
-      action: 'CREATE';
-    } & VariableModeCreate)
-  | ({
-      action: 'UPDATE';
-    } & VariableModeUpdate)
-  | ({
-      action: 'DELETE';
-    } & VariableModeDelete);
 
 /** An object that contains details about creating a `Variable`. */
 export interface VariableCreate {
@@ -2966,7 +3364,7 @@ export interface VariableCreate {
   /** The variable collection that will contain the variable. You can use the temporary id of a variable collection. */
   variableCollectionId: string;
   /** The resolved type of the variable. */
-  resolvedType: 'BOOLEAN' | 'FLOAT' | 'STRING' | 'COLOR';
+  resolvedType: VariableResolvedDataType;
   /** The description of this variable. */
   description?: string;
   /**
@@ -3009,29 +3407,18 @@ export interface VariableDelete {
   id: string;
 }
 
-export type VariableChange =
-  | ({
-      action: 'CREATE';
-    } & VariableCreate)
-  | ({
-      action: 'UPDATE';
-    } & VariableUpdate)
-  | ({
-      action: 'DELETE';
-    } & VariableDelete);
-
 /** An object that represents a value for a given mode of a variable. All properties are required. */
 export interface VariableModeValue {
   /** The target variable. You can use the temporary id of a variable. */
   variableId: string;
   /** Must correspond to a mode in the variable collection that contains the target variable. */
   modeId: string;
-  /** The value for the variable. The value must match the variable's type. If setting to a variable alias, the alias must resolve to this type. */
+  /** The value for the variable. The value must match the variable's type. If setting to a variable alias, the alias must resolve to this type. If overriding a value, the value type must match the variable's type. If removing an overridden value, the value must be `null`. */
   value: VariableValue;
 }
 
-/** The value for the variable. The value must match the variable's type. If setting to a variable alias, the alias must resolve to this type. */
-export type VariableValue = boolean | number | string | RGB | RGBA | VariableAlias;
+/** The value for the variable. The value must match the variable's type. If setting to a variable alias, the alias must resolve to this type. If overriding a value, the value type must match the variable's type. If removing an overridden value, the value must be `null`. */
+export type VariableValue = boolean | number | string | RGB | RGBA | VariableAlias | null;
 
 /** A dev resource in a file */
 export interface DevResource {
@@ -3233,60 +3620,6 @@ export interface LibraryAnalyticsVariableUsagesByFile {
   usages: number;
 }
 
-/** Library analytics actions data broken down by component. */
-export interface LibraryAnalyticsActionsByComponent {
-  /** The date in ISO 8601 format. e.g. 2023-12-13 */
-  week: string;
-  /** Unique, stable id of the component. */
-  component_key: string;
-  /** Name of the component. */
-  component_name: string;
-  /** The number of detach events for this period. */
-  detachments: number;
-  /** The number of insertion events for this period. */
-  insertions: number;
-}
-
-/** Library analytics action data broken down by team. */
-export interface LibraryAnalyticsActionsByTeam {
-  /** The date in ISO 8601 format. e.g. 2023-12-13 */
-  week: string;
-  /** The name of the team using the library. */
-  team_name: string;
-  /** The name of the workspace that the team belongs to. */
-  workspace_name?: string;
-  /** The number of detach events for this period. */
-  detachments: number;
-  /** The number of insertion events for this period. */
-  insertions: number;
-}
-
-/** Library analytics usage data broken down by component. */
-export interface LibraryAnalyticsUsagesByComponent {
-  /** Unique, stable id of the component. */
-  component_key: string;
-  /** Name of the component. */
-  component_name: string;
-  /** The number of instances of the component within the organization. */
-  num_instances: number;
-  /** The number of teams using the component within the organization. */
-  num_teams_using: number;
-  /** The number of files using the component within the organization. */
-  num_files_using: number;
-}
-
-/** Library analytics usage data broken down by file. */
-export interface LibraryAnalyticsUsagesByFile {
-  /** The name of the file using the library. */
-  file_name: string;
-  /** The name of the team the file belongs to. */
-  team_name: string;
-  /** The name of the workspace that the file belongs to. */
-  workspace_name?: string;
-  /** The number of component instances from the library used within the file. */
-  num_instances: number;
-}
-
 /** If pagination is needed due to the length of the response, identifies the next and previous pages. */
 export interface ResponsePagination {
   /** A URL that calls the previous page of the response. */
@@ -3362,7 +3695,7 @@ export namespace V1 {
       /** The name of the file as it appears in the editor. */
       name: string;
       /** The role of the user making the API request in relation to the file. */
-      role: 'owner' | 'editor' | 'viewer';
+      role: Role;
       /**
        * The UTC ISO 8601 time at which the file was last modified.
        * @format date-time
@@ -3386,6 +3719,8 @@ export namespace V1 {
       schemaVersion: number;
       /** A mapping from style IDs to style metadata. */
       styles: Record<string, Style>;
+      /** The share permission level of the file link. */
+      linkAccess?: string;
       /** The key of the main file for this file. If present, this file is a component or component set. */
       mainFileKey?: string;
       /** A list of branches for this file. */
@@ -3440,7 +3775,7 @@ export namespace V1 {
       /** The name of the file as it appears in the editor. */
       name: string;
       /** The role of the user making the API request in relation to the file. */
-      role: 'owner' | 'editor' | 'viewer';
+      role: Role;
       /**
        * The UTC ISO 8601 time at which the file was last modified.
        * @format date-time
@@ -3576,6 +3911,54 @@ export namespace V1 {
   }
 
   /**
+   * @description Get file metadata
+   * @tags Files
+   * @name GetFileMeta
+   * @summary Get file metadata
+   * @request GET:/v1/files/{file_key}/meta
+   * @secure
+   */
+  export namespace GetFileMeta {
+    export type RequestParams = {
+      /** File to get metadata for. This can be a file key or branch key. Use `GET /v1/files/:key` with the `branch_data` query param to get the branch key. */
+      fileKey: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The file metadata. */
+      file: {
+        /** The name of the file. */
+        name: string;
+        /** The name of the project containing the file. */
+        folder_name?: string;
+        /**
+         * The UTC ISO 8601 time at which the file content was last modified.
+         * @format date-time
+         */
+        last_touched_at: string;
+        /** The user who created the file. */
+        creator: User;
+        /** The user who last modified the file contents. */
+        last_touched_by?: User;
+        /** A URL to a thumbnail image of the file. */
+        thumbnail_url?: string;
+        /** The type of editor associated with this file. */
+        editorType: 'figma' | 'figjam' | 'slides' | 'buzz' | 'sites' | 'make';
+        /** The role of the user making the API request in relation to the file. */
+        role?: Role;
+        /** Access policy for users who have the link to the file. */
+        link_access?: LinkAccess;
+        /** The URL of the file. */
+        url?: string;
+        /** The version number of the file. This number is incremented when a file is modified and can be used to check if the file has changed between requests. */
+        version?: string;
+      };
+    };
+  }
+
+  /**
    * @description You can use this endpoint to get a list of all the Projects within the specified team. This will only return projects visible to the authenticated user or owner of the developer token. Note: it is not currently possible to programmatically obtain the team id of a user just from a token. To obtain a team id, navigate to a team page of a team you are a part of. The team id will be present in the URL after the word team and before your team name.
    * @tags Projects
    * @name GetTeamProjects
@@ -3596,6 +3979,44 @@ export namespace V1 {
       name: string;
       /** An array of projects. */
       projects: Project[];
+    };
+  }
+
+  /**
+   * @description Get project metadata
+   * @tags Projects
+   * @name GetProjectMeta
+   * @summary Get project metadata
+   * @request GET:/v1/projects/{project_id}/meta
+   * @secure
+   */
+  export namespace GetProjectMeta {
+    export type RequestParams = {
+      /** ID of the project to get metadata for. */
+      projectId: string;
+    };
+    export type RequestQuery = {};
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The unique identifier of the project. */
+      id: string;
+      /** The name of the project. */
+      name: string;
+      /** A URL to a thumbnail image of the project. May be null if the project has no files. */
+      thumbnail_url: string | null;
+      /** The number of files in the project. */
+      file_count: number;
+      /**
+       * The UTC ISO 8601 time at which the project was last updated.
+       * @format date-time
+       */
+      updated_at: string;
+      /**
+       * The UTC ISO 8601 time at which the project was created.
+       * @format date-time
+       */
+      created_at: string;
     };
   }
 
@@ -3873,7 +4294,7 @@ export namespace V1 {
     };
     export type RequestQuery = {
       /**
-       * Number of items to return in a paged list of results. Defaults to 30.
+       * Number of items to return in a paged list of results. Defaults to 30. Maximum of 1000.
        * @default 30
        */
       page_size?: number;
@@ -4017,7 +4438,7 @@ export namespace V1 {
   }
 
   /**
-   * @description Get metadata on a component set by key.
+   * @description Get metadata on a published component set by key.
    * @tags Component Sets
    * @name GetComponentSet
    * @summary Get component set
@@ -4147,7 +4568,7 @@ export namespace V1 {
     export type RequestQuery = {
       /** Event type(s) to include in the response. Can have multiple values separated by comma. All events are returned by default. */
       events?: string;
-      /** Unix timestamp of the least recent event to include. This param defaults to one year ago if unspecified. Events prior to one year ago are not available. */
+      /** Unix timestamp of the least recent event to include. This param defaults to one year ago if unspecified. */
       start_time?: number;
       /** Unix timestamp of the most recent event to include. This param defaults to the current timestamp if unspecified. */
       end_time?: number;
@@ -4178,6 +4599,101 @@ export namespace V1 {
   }
 
   /**
+   * @description Returns a list of developer log entries for REST API and MCP server requests made within the organization. This endpoint requires a plan access token with the `org:developer_log_read` scope.
+   * @tags Developer Logs
+   * @name GetDeveloperLogs
+   * @summary Get developer logs
+   * @request POST:/v1/developer_logs
+   * @secure
+   */
+  export namespace GetDeveloperLogs {
+    export type RequestParams = {};
+    export type RequestQuery = {};
+    export type RequestBody = {
+      /** Filter by the type of token used for authentication. */
+      token_type?: 'plan_access_token' | 'developer_token' | 'oauth_token';
+      /** Filter by token value(s). Multiple values can be separated by commas. */
+      token?: string;
+      /** Filter by token name prefix(es). Multiple values can be separated by commas. */
+      token_name?: string;
+      /** Filter by user email prefix(es). Multiple values can be separated by commas. */
+      user_email?: string;
+      /** Filter by IP address prefix(es). Multiple values can be separated by commas. */
+      ip_address?: string;
+      /** Filter by event source. */
+      event_source?: 'rest_api' | 'mcp_server';
+      /**
+       * Filter by date range.
+       * @default "last_30d"
+       */
+      date_range?: 'last_24h' | 'last_7d' | 'last_30d';
+      /**
+       * Maximum number of entries to return.
+       * @min 1
+       * @max 100
+       * @default 25
+       */
+      limit?: number;
+      /** A cursor returned from a previous request, used for pagination. */
+      cursor?: string;
+    };
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** The response status code. */
+      status: 200;
+      /** For successful requests, this value is always `false`. */
+      error: false;
+      meta: {
+        /** An array of developer log entries sorted by timestamp in descending order. */
+        items: DeveloperLog[];
+        /** A cursor for pagination. Pass this value as the `cursor` parameter in the next request to retrieve the next page of results. `null` when there are no more results. */
+        cursor?: string | null;
+        /** Whether there are more results available after this page. */
+        has_more: boolean;
+      };
+    };
+  }
+
+  /**
+   * @description Returns per-user, per-day AI credit usage for the plan associated with the calling token. This endpoint requires a plan access token with the `org:ai_metering_usage_read` scope.
+   * @tags AI Usage
+   * @name GetAiUsageDaily
+   * @summary Get daily AI credit usage
+   * @request GET:/v1/ai_usage/daily
+   * @secure
+   */
+  export namespace GetAiUsageDaily {
+    export type RequestParams = {};
+    export type RequestQuery = {
+      /** The first day to include, inclusive, as a `YYYY-MM-DD` calendar date (UTC). Required. Must be on or after `2025-12-01` and no more than 366 days before the current UTC day. */
+      start_date: string;
+      /** The last day to include, inclusive, as a `YYYY-MM-DD` calendar date (UTC). Required. Must be on or after `start_date` and the current UTC day or earlier. */
+      end_date: string;
+      /** Restrict the results to a single Figma user, identified by email. When omitted, rows for every user in the plan with usage in the range are returned. An email that matches no Figma user returns a 400. */
+      user_email?: string;
+      /**
+       * Maximum number of rows to return. This param defaults to 1000 if unspecified, and may not exceed 1000.
+       * @min 1
+       * @max 1000
+       * @default 1000
+       */
+      limit?: number;
+      /** An opaque cursor returned from a previous request, used for pagination. */
+      cursor?: string;
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** Per-user, per-day AI credit usage aggregates, ordered by `day`, then user, then `editor_type`. */
+      rows: AiUsageDailyRow[];
+      /** An opaque cursor to pass as the `cursor` query parameter to fetch the next page. Empty when there are no more pages. */
+      next_cursor: string;
+      /** Whether there is a next page of results to fetch. */
+      has_next_page: boolean;
+    };
+  }
+
+  /**
    * @description There are two methods to query for a user's payment information on a plugin, widget, or Community file. The first method, using plugin payment tokens, is typically used when making queries from a plugin's or widget's code. The second method, providing a user ID and resource ID, is typically used when making queries from anywhere else. Note that you can only query for resources that you own. In most cases, this means that you can only query resources that you originally created.
    * @tags Payments
    * @name GetPayments
@@ -4191,13 +4707,13 @@ export namespace V1 {
       /** Short-lived token returned from "getPluginPaymentTokenAsync" in the plugin payments API and used to authenticate to this endpoint. Read more about generating this token through "Calling the Payments REST API from a plugin or widget" below. */
       plugin_payment_token?: string;
       /** The ID of the user to query payment information about. You can get the user ID by having the user OAuth2 to the Figma REST API. */
-      user_id?: number;
+      user_id?: string;
       /** The ID of the Community file to query a user's payment information on. You can get the Community file ID from the file's Community page (look for the number after "file/" in the URL). Provide exactly one of "community_file_id", "plugin_id", or "widget_id". */
-      community_file_id?: number;
+      community_file_id?: string;
       /** The ID of the plugin to query a user's payment information on. You can get the plugin ID from the plugin's manifest, or from the plugin's Community page (look for the number after "plugin/" in the URL). Provide exactly one of "community_file_id", "plugin_id", or "widget_id". */
-      plugin_id?: number;
+      plugin_id?: string;
       /** The ID of the widget to query a user's payment information on. You can get the widget ID from the widget's manifest, or from the widget's Community page (look for the number after "widget/" in the URL). Provide exactly one of "community_file_id", "plugin_id", or "widget_id". */
-      widget_id?: number;
+      widget_id?: string;
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
@@ -4629,85 +5145,99 @@ export namespace V1 {
   }
 
   /**
-   * @description Returns a list of library analytics actions data broken down by the requested dimension.
-   * @tags Library Analytics
-   * @name GetLibraryAnalyticsActions
-   * @summary Get library analytics action data.
-   * @request GET:/v1/analytics/libraries/{file_key}/actions
+   * @description Returns oEmbed data for a Figma file or published Make site URL, following the [oEmbed specification](https://oembed.com/).
+   * @tags oEmbed
+   * @name GetOEmbed
+   * @summary Get oEmbed data
+   * @request GET:/v1/oembed
    * @secure
    */
-  export namespace GetLibraryAnalyticsActions {
-    export type RequestParams = {
-      /** File key of the library to fetch analytics data for. */
-      fileKey: string;
-    };
+  export namespace GetOEmbed {
+    export type RequestParams = {};
     export type RequestQuery = {
-      /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
-      cursor?: string;
-      /** A dimension to group returned analytics data by. Accepts "component" or "team". */
-      group_by: 'component' | 'team';
-      /** ISO 8601 date string (YYYY-MM-DD) of the earliest week to include. Dates are rounded back to the nearest start of a week. Defaults to one year prior. */
-      start_date?: string;
-      /** ISO 8601 date string (YYYY-MM-DD) of the latest week to include. Dates are rounded forward to the nearest end of a week. Defaults to the latest computed week. */
-      end_date?: string;
+      /** The URL of the Figma file or published Make site to retrieve oEmbed data for. */
+      url: string;
       /**
-       * How to order response rows by week. This param can be either "asc" or "desc" (default).
-       * @default "desc"
+       * Maximum width of the embed in pixels. Defaults to 800. The response width will be adjusted to maintain a 16:9 aspect ratio with maxheight.
+       * @default 800
        */
-      order?: 'asc' | 'desc';
+      maxwidth?: number;
+      /**
+       * Maximum height of the embed in pixels. Defaults to 450. The response height will be adjusted to maintain a 16:9 aspect ratio with maxwidth.
+       * @default 450
+       */
+      maxheight?: number;
     };
     export type RequestBody = never;
     export type RequestHeaders = {};
     export type ResponseBody = {
-      /** An array of analytics data. */
-      rows: LibraryAnalyticsActionsByComponent[] | LibraryAnalyticsActionsByTeam[];
-      /** Whether there is a next page of data that can be fetched. */
-      next_page: boolean;
-      /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
-      cursor?: string;
-    };
-  }
-
-  /**
-   * @description Returns a list of library analytics usage data broken down by the requested dimension.
-   * @tags Library Analytics
-   * @name GetLibraryAnalyticsUsages
-   * @summary Get library analytics usage data.
-   * @request GET:/v1/analytics/libraries/{file_key}/usages
-   * @secure
-   */
-  export namespace GetLibraryAnalyticsUsages {
-    export type RequestParams = {
-      /** File key of the library to fetch analytics data for. */
-      fileKey: string;
-    };
-    export type RequestQuery = {
-      /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
-      cursor?: string;
-      /** A dimension to group returned analytics data by. Accepts "component" or "file". */
-      group_by: 'component' | 'file';
-      /**
-       * How to order response rows by number of instances. This param can be either "asc" or "desc" (default).
-       * @default "desc"
-       */
-      order?: 'asc' | 'desc';
-    };
-    export type RequestBody = never;
-    export type RequestHeaders = {};
-    export type ResponseBody = {
-      /** An array of analytics data when breaking down usage by component. */
-      components?: LibraryAnalyticsUsagesByComponent[];
-      /** An array of analytics data when breaking down usage by file. */
-      files?: LibraryAnalyticsUsagesByFile[];
-      /** Whether there is a next page of data that can be fetched. */
-      next_page: boolean;
-      /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
-      cursor?: string;
+      /** The oEmbed specification version. Always "1.0". */
+      version: string;
+      /** The oEmbed response type. Always "rich". */
+      type: string;
+      /** The title of the Figma file or published Make site. */
+      title: string;
+      /** The key of the Figma file. Not present for published Makes */
+      key?: string;
+      /** The canonical URL of the resource. */
+      url: string;
+      /** The name of the content provider. Always "Figma" or "Make". */
+      provider_name: string;
+      /** The URL of the content provider's website. Always "https://www.figma.com". */
+      provider_url: string;
+      /** Suggested cache lifetime for this response in seconds. Always 3600. */
+      cache_age: number;
+      /** Width of the embed in pixels. */
+      width: number;
+      /** Height of the embed in pixels. */
+      height: number;
+      /** The HTML for embedding the file. Contains an iframe pointing to the Figma embed URL. */
+      html: string;
+      /** Only present and "true" when the resource is a published Make. */
+      is_published_site?: boolean;
+      /** The name of the folder containing the file, if the file resides in a folder. */
+      folder_name?: string;
+      /** URL of a thumbnail image for the file. */
+      thumbnail_url?: string;
+      /** Width of the thumbnail image in pixels. */
+      thumbnail_width?: number;
+      /** Height of the thumbnail image in pixels. */
+      thumbnail_height?: number;
     };
   }
 }
 
 export namespace V2 {
+  /**
+   * @description Returns a list of webhooks corresponding to the context or plan provided, if they exist. For plan, the webhooks for all contexts that you have access to will be returned, and theresponse is paginated
+   * @tags Webhooks
+   * @name GetWebhooks
+   * @summary Get webhooks by context or plan
+   * @request GET:/v2/webhooks
+   * @secure
+   */
+  export namespace GetWebhooks {
+    export type RequestParams = {};
+    export type RequestQuery = {
+      /** Context to create the resource on. Should be "team", "project", or "file". */
+      context?: string;
+      /** The id of the context that you want to get attached webhooks for. If you're using context_id, you cannot use plan_api_id. */
+      context_id?: string;
+      /** The id of your plan. Use this to get all webhooks for all contexts you have access to. If you're using plan_api_id, you cannot use context or context_id. When you use plan_api_id, the response is paginated. */
+      plan_api_id?: string;
+      /** If you're using plan_api_id, this is the cursor to use for pagination. If you're using context or context_id, this parameter is ignored. Provide the next_page or prev_page value from the previous response to get the next or previous page of results. */
+      cursor?: string;
+    };
+    export type RequestBody = never;
+    export type RequestHeaders = {};
+    export type ResponseBody = {
+      /** An array of webhooks. */
+      webhooks: WebhookV2[];
+      /** If pagination is needed due to the length of the response, identifies the next and previous pages. */
+      pagination?: ResponsePagination;
+    };
+  }
+
   /**
    * @description Create a new webhook which will call the specified endpoint when the event triggers. By default, this webhook will automatically send a PING event to the endpoint when it is created. If this behavior is not desired, you can create the webhook and set the status to PAUSED and reactivate it later.
    * @tags Webhooks
@@ -4722,8 +5252,15 @@ export namespace V2 {
     export type RequestBody = {
       /** An enum representing the possible events that a webhook can subscribe to */
       event_type: WebhookV2Event;
-      /** Team id to receive updates about */
-      team_id: string;
+      /**
+       * Team id to receive updates about. This is deprecated, use 'context' and 'context_id' instead.
+       * @deprecated
+       */
+      team_id?: string;
+      /** Context to create the webhook for. Must be "team", "project", or "file". */
+      context: string;
+      /** The id of the context you want to receive updates about. */
+      context_id: string;
       /** The HTTP endpoint that will receive a POST request when the event triggers. Max length 2048 characters. */
       endpoint: string;
       /** String that will be passed back to your webhook endpoint to verify that it is being called by Figma. Max length 100 characters. */
@@ -4809,8 +5346,9 @@ export namespace V2 {
    * @description Returns all webhooks registered under the specified team.
    * @tags Webhooks
    * @name GetTeamWebhooks
-   * @summary Get team webhooks
+   * @summary [Deprecated] Get team webhooks
    * @request GET:/v2/teams/{team_id}/webhooks
+   * @deprecated
    * @secure
    */
   export namespace GetTeamWebhooks {
@@ -4861,8 +5399,10 @@ import axios from 'axios';
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams
-  extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
+export interface FullRequestParams extends Omit<
+  AxiosRequestConfig,
+  'data' | 'params' | 'url' | 'responseType'
+> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -4879,8 +5419,10 @@ export interface FullRequestParams
 
 export type RequestParams = Omit<FullRequestParams, 'body' | 'method' | 'query' | 'path'>;
 
-export interface ApiConfig<SecurityDataType = unknown>
-  extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
+export interface ApiConfig<SecurityDataType = unknown> extends Omit<
+  AxiosRequestConfig,
+  'data' | 'cancelToken'
+> {
   securityWorker?: (
     securityData: SecurityDataType | null,
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
@@ -4890,6 +5432,7 @@ export interface ApiConfig<SecurityDataType = unknown>
 
 export enum ContentType {
   Json = 'application/json',
+  JsonApi = 'application/vnd.api+json',
   FormData = 'multipart/form-data',
   UrlEncoded = 'application/x-www-form-urlencoded',
   Text = 'text/plain',
@@ -5007,13 +5550,13 @@ export class HttpClient<SecurityDataType = unknown> {
 
 /**
  * @title Figma API
- * @version 0.21.0
+ * @version 0.41.0
  * @termsOfService https://www.figma.com/developer-terms/
  * @baseUrl https://api.figma.com
- * @externalDocs https://www.figma.com/developers/api
+ * @externalDocs https://developers.figma.com/docs/rest-api/
  * @contact <support@figma.com>
  *
- * This is the OpenAPI specification for the [Figma REST API](https://www.figma.com/developers/api).
+ * This is the OpenAPI specification for the [Figma REST API](https://developers.figma.com/docs/rest-api/).
  *
  * Note: we are releasing the OpenAPI specification as a beta given the large surface area and complexity of the REST API. If you notice any inaccuracies with the specification, please [file an issue](https://github.com/figma/rest-api-spec/issues).
  */
@@ -5060,7 +5603,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           /** The name of the file as it appears in the editor. */
           name: string;
           /** The role of the user making the API request in relation to the file. */
-          role: 'owner' | 'editor' | 'viewer';
+          role: Role;
           /**
            * The UTC ISO 8601 time at which the file was last modified.
            * @format date-time
@@ -5084,6 +5627,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           schemaVersion: number;
           /** A mapping from style IDs to style metadata. */
           styles: Record<string, Style>;
+          /** The share permission level of the file link. */
+          linkAccess?: string;
           /** The key of the main file for this file. If present, this file is a component or component set. */
           mainFileKey?: string;
           /** A list of branches for this file. */
@@ -5163,7 +5708,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           /** The name of the file as it appears in the editor. */
           name: string;
           /** The role of the user making the API request in relation to the file. */
-          role: 'owner' | 'editor' | 'viewer';
+          role: Role;
           /**
            * The UTC ISO 8601 time at which the file was last modified.
            * @format date-time
@@ -5370,6 +5915,74 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       }),
 
     /**
+     * @description Get file metadata
+     *
+     * @tags Files
+     * @name GetFileMeta
+     * @summary Get file metadata
+     * @request GET:/v1/files/{file_key}/meta
+     * @secure
+     */
+    getFileMeta: (fileKey: string, params: RequestParams = {}) =>
+      this.request<
+        {
+          /** The file metadata. */
+          file: {
+            /** The name of the file. */
+            name: string;
+            /** The name of the project containing the file. */
+            folder_name?: string;
+            /**
+             * The UTC ISO 8601 time at which the file content was last modified.
+             * @format date-time
+             */
+            last_touched_at: string;
+            /** The user who created the file. */
+            creator: User;
+            /** The user who last modified the file contents. */
+            last_touched_by?: User;
+            /** A URL to a thumbnail image of the file. */
+            thumbnail_url?: string;
+            /** The type of editor associated with this file. */
+            editorType: 'figma' | 'figjam' | 'slides' | 'buzz' | 'sites' | 'make';
+            /** The role of the user making the API request in relation to the file. */
+            role?: Role;
+            /** Access policy for users who have the link to the file. */
+            link_access?: LinkAccess;
+            /** The URL of the file. */
+            url?: string;
+            /** The version number of the file. This number is incremented when a file is modified and can be used to check if the file has changed between requests. */
+            version?: string;
+          };
+        },
+        | (ErrorResponsePayloadWithErrMessage & {
+            /** Status code */
+            status: 400;
+          })
+        | (ErrorResponsePayloadWithErrMessage & {
+            /** Status code */
+            status: 403;
+          })
+        | (ErrorResponsePayloadWithErrMessage & {
+            /** Status code */
+            status: 404;
+          })
+        | (ErrorResponsePayloadWithErrMessage & {
+            /** Status code */
+            status: 429;
+          })
+        | (ErrorResponsePayloadWithErrMessage & {
+            /** Status code */
+            status: 500;
+          })
+      >({
+        path: `/v1/files/${fileKey}/meta`,
+        method: 'GET',
+        secure: true,
+        ...params,
+      }),
+
+    /**
      * @description You can use this endpoint to get a list of all the Projects within the specified team. This will only return projects visible to the authenticated user or owner of the developer token. Note: it is not currently possible to programmatically obtain the team id of a user just from a token. To obtain a team id, navigate to a team page of a team you are a part of. The team id will be present in the URL after the word team and before your team name.
      *
      * @tags Projects
@@ -5404,6 +6017,60 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           })
       >({
         path: `/v1/teams/${teamId}/projects`,
+        method: 'GET',
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * @description Get project metadata
+     *
+     * @tags Projects
+     * @name GetProjectMeta
+     * @summary Get project metadata
+     * @request GET:/v1/projects/{project_id}/meta
+     * @secure
+     */
+    getProjectMeta: (projectId: string, params: RequestParams = {}) =>
+      this.request<
+        {
+          /** The unique identifier of the project. */
+          id: string;
+          /** The name of the project. */
+          name: string;
+          /** A URL to a thumbnail image of the project. May be null if the project has no files. */
+          thumbnail_url: string | null;
+          /** The number of files in the project. */
+          file_count: number;
+          /**
+           * The UTC ISO 8601 time at which the project was last updated.
+           * @format date-time
+           */
+          updated_at: string;
+          /**
+           * The UTC ISO 8601 time at which the project was created.
+           * @format date-time
+           */
+          created_at: string;
+        },
+        | (ErrorResponsePayloadWithErrMessage & {
+            /** Status code */
+            status: 403;
+          })
+        | (ErrorResponsePayloadWithErrMessage & {
+            /** Status code */
+            status: 404;
+          })
+        | (ErrorResponsePayloadWithErrMessage & {
+            /** Status code */
+            status: 429;
+          })
+        | (ErrorResponsePayloadWithErrMessage & {
+            /** Status code */
+            status: 500;
+          })
+      >({
+        path: `/v1/projects/${projectId}/meta`,
         method: 'GET',
         secure: true,
         ...params,
@@ -5864,7 +6531,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       teamId: string,
       query?: {
         /**
-         * Number of items to return in a paged list of results. Defaults to 30.
+         * Number of items to return in a paged list of results. Defaults to 30. Maximum of 1000.
          * @default 30
          */
         page_size?: number;
@@ -6120,7 +6787,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       }),
 
     /**
-     * @description Get metadata on a component set by key.
+     * @description Get metadata on a published component set by key.
      *
      * @tags Component Sets
      * @name GetComponentSet
@@ -6335,7 +7002,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       query?: {
         /** Event type(s) to include in the response. Can have multiple values separated by comma. All events are returned by default. */
         events?: string;
-        /** Unix timestamp of the least recent event to include. This param defaults to one year ago if unspecified. Events prior to one year ago are not available. */
+        /** Unix timestamp of the least recent event to include. This param defaults to one year ago if unspecified. */
         start_time?: number;
         /** Unix timestamp of the most recent event to include. This param defaults to the current timestamp if unspecified. */
         end_time?: number;
@@ -6393,6 +7060,156 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       }),
 
     /**
+     * @description Returns a list of developer log entries for REST API and MCP server requests made within the organization. This endpoint requires a plan access token with the `org:developer_log_read` scope.
+     *
+     * @tags Developer Logs
+     * @name GetDeveloperLogs
+     * @summary Get developer logs
+     * @request POST:/v1/developer_logs
+     * @secure
+     */
+    getDeveloperLogs: (
+      data: {
+        /** Filter by the type of token used for authentication. */
+        token_type?: 'plan_access_token' | 'developer_token' | 'oauth_token';
+        /** Filter by token value(s). Multiple values can be separated by commas. */
+        token?: string;
+        /** Filter by token name prefix(es). Multiple values can be separated by commas. */
+        token_name?: string;
+        /** Filter by user email prefix(es). Multiple values can be separated by commas. */
+        user_email?: string;
+        /** Filter by IP address prefix(es). Multiple values can be separated by commas. */
+        ip_address?: string;
+        /** Filter by event source. */
+        event_source?: 'rest_api' | 'mcp_server';
+        /**
+         * Filter by date range.
+         * @default "last_30d"
+         */
+        date_range?: 'last_24h' | 'last_7d' | 'last_30d';
+        /**
+         * Maximum number of entries to return.
+         * @min 1
+         * @max 100
+         * @default 25
+         */
+        limit?: number;
+        /** A cursor returned from a previous request, used for pagination. */
+        cursor?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          /** The response status code. */
+          status: 200;
+          /** For successful requests, this value is always `false`. */
+          error: false;
+          meta: {
+            /** An array of developer log entries sorted by timestamp in descending order. */
+            items: DeveloperLog[];
+            /** A cursor for pagination. Pass this value as the `cursor` parameter in the next request to retrieve the next page of results. `null` when there are no more results. */
+            cursor?: string | null;
+            /** Whether there are more results available after this page. */
+            has_more: boolean;
+          };
+        },
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 400;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 401;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 403;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 429;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 500;
+          })
+      >({
+        path: `/v1/developer_logs`,
+        method: 'POST',
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * @description Returns per-user, per-day AI credit usage for the plan associated with the calling token. This endpoint requires a plan access token with the `org:ai_metering_usage_read` scope.
+     *
+     * @tags AI Usage
+     * @name GetAiUsageDaily
+     * @summary Get daily AI credit usage
+     * @request GET:/v1/ai_usage/daily
+     * @secure
+     */
+    getAiUsageDaily: (
+      query: {
+        /** The first day to include, inclusive, as a `YYYY-MM-DD` calendar date (UTC). Required. Must be on or after `2025-12-01` and no more than 366 days before the current UTC day. */
+        start_date: string;
+        /** The last day to include, inclusive, as a `YYYY-MM-DD` calendar date (UTC). Required. Must be on or after `start_date` and the current UTC day or earlier. */
+        end_date: string;
+        /** Restrict the results to a single Figma user, identified by email. When omitted, rows for every user in the plan with usage in the range are returned. An email that matches no Figma user returns a 400. */
+        user_email?: string;
+        /**
+         * Maximum number of rows to return. This param defaults to 1000 if unspecified, and may not exceed 1000.
+         * @min 1
+         * @max 1000
+         * @default 1000
+         */
+        limit?: number;
+        /** An opaque cursor returned from a previous request, used for pagination. */
+        cursor?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          /** Per-user, per-day AI credit usage aggregates, ordered by `day`, then user, then `editor_type`. */
+          rows: AiUsageDailyRow[];
+          /** An opaque cursor to pass as the `cursor` query parameter to fetch the next page. Empty when there are no more pages. */
+          next_cursor: string;
+          /** Whether there is a next page of results to fetch. */
+          has_next_page: boolean;
+        },
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 400;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 401;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 403;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 429;
+          })
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 500;
+          })
+      >({
+        path: `/v1/ai_usage/daily`,
+        method: 'GET',
+        query: query,
+        secure: true,
+        ...params,
+      }),
+
+    /**
      * @description There are two methods to query for a user's payment information on a plugin, widget, or Community file. The first method, using plugin payment tokens, is typically used when making queries from a plugin's or widget's code. The second method, providing a user ID and resource ID, is typically used when making queries from anywhere else. Note that you can only query for resources that you own. In most cases, this means that you can only query resources that you originally created.
      *
      * @tags Payments
@@ -6406,13 +7223,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         /** Short-lived token returned from "getPluginPaymentTokenAsync" in the plugin payments API and used to authenticate to this endpoint. Read more about generating this token through "Calling the Payments REST API from a plugin or widget" below. */
         plugin_payment_token?: string;
         /** The ID of the user to query payment information about. You can get the user ID by having the user OAuth2 to the Figma REST API. */
-        user_id?: number;
+        user_id?: string;
         /** The ID of the Community file to query a user's payment information on. You can get the Community file ID from the file's Community page (look for the number after "file/" in the URL). Provide exactly one of "community_file_id", "plugin_id", or "widget_id". */
-        community_file_id?: number;
+        community_file_id?: string;
         /** The ID of the plugin to query a user's payment information on. You can get the plugin ID from the plugin's manifest, or from the plugin's Community page (look for the number after "plugin/" in the URL). Provide exactly one of "community_file_id", "plugin_id", or "widget_id". */
-        plugin_id?: number;
+        plugin_id?: string;
         /** The ID of the widget to query a user's payment information on. You can get the widget ID from the widget's manifest, or from the widget's Community page (look for the number after "widget/" in the URL). Provide exactly one of "community_file_id", "plugin_id", or "widget_id". */
-        widget_id?: number;
+        widget_id?: string;
       },
       params: RequestParams = {},
     ) =>
@@ -6864,8 +7681,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         {
           /** An array of analytics data. */
           rows:
-            | LibraryAnalyticsComponentActionsByAsset[]
-            | LibraryAnalyticsComponentActionsByTeam[];
+            LibraryAnalyticsComponentActionsByAsset[] | LibraryAnalyticsComponentActionsByTeam[];
           /** Whether there is a next page of data that can be fetched. */
           next_page: boolean;
           /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
@@ -7188,127 +8004,84 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       }),
 
     /**
-     * @description Returns a list of library analytics actions data broken down by the requested dimension.
+     * @description Returns oEmbed data for a Figma file or published Make site URL, following the [oEmbed specification](https://oembed.com/).
      *
-     * @tags Library Analytics
-     * @name GetLibraryAnalyticsActions
-     * @summary Get library analytics action data.
-     * @request GET:/v1/analytics/libraries/{file_key}/actions
+     * @tags oEmbed
+     * @name GetOEmbed
+     * @summary Get oEmbed data
+     * @request GET:/v1/oembed
      * @secure
      */
-    getLibraryAnalyticsActions: (
-      fileKey: string,
+    getOEmbed: (
       query: {
-        /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
-        cursor?: string;
-        /** A dimension to group returned analytics data by. Accepts "component" or "team". */
-        group_by: 'component' | 'team';
-        /** ISO 8601 date string (YYYY-MM-DD) of the earliest week to include. Dates are rounded back to the nearest start of a week. Defaults to one year prior. */
-        start_date?: string;
-        /** ISO 8601 date string (YYYY-MM-DD) of the latest week to include. Dates are rounded forward to the nearest end of a week. Defaults to the latest computed week. */
-        end_date?: string;
+        /** The URL of the Figma file or published Make site to retrieve oEmbed data for. */
+        url: string;
         /**
-         * How to order response rows by week. This param can be either "asc" or "desc" (default).
-         * @default "desc"
+         * Maximum width of the embed in pixels. Defaults to 800. The response width will be adjusted to maintain a 16:9 aspect ratio with maxheight.
+         * @default 800
          */
-        order?: 'asc' | 'desc';
+        maxwidth?: number;
+        /**
+         * Maximum height of the embed in pixels. Defaults to 450. The response height will be adjusted to maintain a 16:9 aspect ratio with maxwidth.
+         * @default 450
+         */
+        maxheight?: number;
       },
       params: RequestParams = {},
     ) =>
       this.request<
         {
-          /** An array of analytics data. */
-          rows: LibraryAnalyticsActionsByComponent[] | LibraryAnalyticsActionsByTeam[];
-          /** Whether there is a next page of data that can be fetched. */
-          next_page: boolean;
-          /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
-          cursor?: string;
+          /** The oEmbed specification version. Always "1.0". */
+          version: string;
+          /** The oEmbed response type. Always "rich". */
+          type: string;
+          /** The title of the Figma file or published Make site. */
+          title: string;
+          /** The key of the Figma file. Not present for published Makes */
+          key?: string;
+          /** The canonical URL of the resource. */
+          url: string;
+          /** The name of the content provider. Always "Figma" or "Make". */
+          provider_name: string;
+          /** The URL of the content provider's website. Always "https://www.figma.com". */
+          provider_url: string;
+          /** Suggested cache lifetime for this response in seconds. Always 3600. */
+          cache_age: number;
+          /** Width of the embed in pixels. */
+          width: number;
+          /** Height of the embed in pixels. */
+          height: number;
+          /** The HTML for embedding the file. Contains an iframe pointing to the Figma embed URL. */
+          html: string;
+          /** Only present and "true" when the resource is a published Make. */
+          is_published_site?: boolean;
+          /** The name of the folder containing the file, if the file resides in a folder. */
+          folder_name?: string;
+          /** URL of a thumbnail image for the file. */
+          thumbnail_url?: string;
+          /** Width of the thumbnail image in pixels. */
+          thumbnail_width?: number;
+          /** Height of the thumbnail image in pixels. */
+          thumbnail_height?: number;
         },
         | (ErrorResponsePayloadWithErrorBoolean & {
             /** Status code */
             status: 400;
           })
-        | (ErrorResponsePayloadWithErrorBoolean & {
+        | (ErrorResponsePayloadWithErrMessage & {
             /** Status code */
-            status: 401;
+            status: 404;
           })
-        | (ErrorResponsePayloadWithErrorBoolean & {
-            /** Status code */
-            status: 403;
-          })
-        | (ErrorResponsePayloadWithErrorBoolean & {
+        | (ErrorResponsePayloadWithErrMessage & {
             /** Status code */
             status: 429;
           })
-        | (ErrorResponsePayloadWithErrorBoolean & {
+        | (ErrorResponsePayloadWithErrMessage & {
             /** Status code */
-            status: 500;
+            status: 501;
           })
       >({
-        path: `/v1/analytics/libraries/${fileKey}/actions`,
-        method: 'GET',
-        query: query,
-        secure: true,
-        ...params,
-      }),
-
-    /**
-     * @description Returns a list of library analytics usage data broken down by the requested dimension.
-     *
-     * @tags Library Analytics
-     * @name GetLibraryAnalyticsUsages
-     * @summary Get library analytics usage data.
-     * @request GET:/v1/analytics/libraries/{file_key}/usages
-     * @secure
-     */
-    getLibraryAnalyticsUsages: (
-      fileKey: string,
-      query: {
-        /** Cursor indicating what page of data to fetch. Obtained from prior API call. */
-        cursor?: string;
-        /** A dimension to group returned analytics data by. Accepts "component" or "file". */
-        group_by: 'component' | 'file';
-        /**
-         * How to order response rows by number of instances. This param can be either "asc" or "desc" (default).
-         * @default "desc"
-         */
-        order?: 'asc' | 'desc';
-      },
-      params: RequestParams = {},
-    ) =>
-      this.request<
-        {
-          /** An array of analytics data when breaking down usage by component. */
-          components?: LibraryAnalyticsUsagesByComponent[];
-          /** An array of analytics data when breaking down usage by file. */
-          files?: LibraryAnalyticsUsagesByFile[];
-          /** Whether there is a next page of data that can be fetched. */
-          next_page: boolean;
-          /** The cursor to use to fetch the next page of data. Not present if next_page is false. */
-          cursor?: string;
-        },
-        | (ErrorResponsePayloadWithErrorBoolean & {
-            /** Status code */
-            status: 400;
-          })
-        | (ErrorResponsePayloadWithErrorBoolean & {
-            /** Status code */
-            status: 401;
-          })
-        | (ErrorResponsePayloadWithErrorBoolean & {
-            /** Status code */
-            status: 403;
-          })
-        | (ErrorResponsePayloadWithErrorBoolean & {
-            /** Status code */
-            status: 429;
-          })
-        | (ErrorResponsePayloadWithErrorBoolean & {
-            /** Status code */
-            status: 500;
-          })
-      >({
-        path: `/v1/analytics/libraries/${fileKey}/usages`,
+        path: `/v1/oembed`,
         method: 'GET',
         query: query,
         secure: true,
@@ -7316,6 +8089,51 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       }),
   };
   v2 = {
+    /**
+     * @description Returns a list of webhooks corresponding to the context or plan provided, if they exist. For plan, the webhooks for all contexts that you have access to will be returned, and theresponse is paginated
+     *
+     * @tags Webhooks
+     * @name GetWebhooks
+     * @summary Get webhooks by context or plan
+     * @request GET:/v2/webhooks
+     * @secure
+     */
+    getWebhooks: (
+      query?: {
+        /** Context to create the resource on. Should be "team", "project", or "file". */
+        context?: string;
+        /** The id of the context that you want to get attached webhooks for. If you're using context_id, you cannot use plan_api_id. */
+        context_id?: string;
+        /** The id of your plan. Use this to get all webhooks for all contexts you have access to. If you're using plan_api_id, you cannot use context or context_id. When you use plan_api_id, the response is paginated. */
+        plan_api_id?: string;
+        /** If you're using plan_api_id, this is the cursor to use for pagination. If you're using context or context_id, this parameter is ignored. Provide the next_page or prev_page value from the previous response to get the next or previous page of results. */
+        cursor?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<
+        {
+          /** An array of webhooks. */
+          webhooks: WebhookV2[];
+          /** If pagination is needed due to the length of the response, identifies the next and previous pages. */
+          pagination?: ResponsePagination;
+        },
+        | (ErrorResponsePayloadWithErrorBoolean & {
+            /** Status code */
+            status: 400;
+          })
+        | (ErrorResponsePayloadWithErrMessage & {
+            /** Status code */
+            status: 403;
+          })
+      >({
+        path: `/v2/webhooks`,
+        method: 'GET',
+        query: query,
+        secure: true,
+        ...params,
+      }),
+
     /**
      * @description Create a new webhook which will call the specified endpoint when the event triggers. By default, this webhook will automatically send a PING event to the endpoint when it is created. If this behavior is not desired, you can create the webhook and set the status to PAUSED and reactivate it later.
      *
@@ -7329,8 +8147,15 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       data: {
         /** An enum representing the possible events that a webhook can subscribe to */
         event_type: WebhookV2Event;
-        /** Team id to receive updates about */
-        team_id: string;
+        /**
+         * Team id to receive updates about. This is deprecated, use 'context' and 'context_id' instead.
+         * @deprecated
+         */
+        team_id?: string;
+        /** Context to create the webhook for. Must be "team", "project", or "file". */
+        context: string;
+        /** The id of the context you want to receive updates about. */
+        context_id: string;
         /** The HTTP endpoint that will receive a POST request when the event triggers. Max length 2048 characters. */
         endpoint: string;
         /** String that will be passed back to your webhook endpoint to verify that it is being called by Figma. Max length 100 characters. */
@@ -7508,8 +8333,9 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      *
      * @tags Webhooks
      * @name GetTeamWebhooks
-     * @summary Get team webhooks
+     * @summary [Deprecated] Get team webhooks
      * @request GET:/v2/teams/{team_id}/webhooks
+     * @deprecated
      * @secure
      */
     getTeamWebhooks: (teamId: string, params: RequestParams = {}) =>
