@@ -24,6 +24,7 @@
   "homepage": "https://github.com/Sidnioulz/figmarine",
   "files": [
     "integration.js",
+    "shared.js",
     "unit.js"
   ],
   "exports": {

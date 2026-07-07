@@ -1,0 +1,40 @@
+name: Seed Release Tags
+
+# One-off utility: seeds 0.0.1 tags for packages whose first automated
+# release should stay in the 0.x range (semantic-release otherwise debuts
+# new packages at 1.0.0). Idempotent: existing tags are left untouched.
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Commit to tag. Must predate the packages' first feat commits.
+        required: true
+        default: 12ea93155ff670c6c39fa2d54049adcc100d09b0
+
+permissions:
+  contents: write
+
+jobs:
+  seed:
+    name: Seed 0.0.1 tags
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Create and push seed tags
+        run: |
+          git config user.name 'github-actions-shell'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          for tag in '@figmarine/cuttings@0.0.1' '@figmarine/nursery@0.0.1'; do
+            if git rev-parse -q --verify "refs/tags/$tag" >/dev/null; then
+              echo "Tag $tag already exists, skipping."
+            else
+              git tag "$tag" '${{ inputs.target }}'
+              git push origin "refs/tags/$tag"
+              echo "Pushed $tag -> ${{ inputs.target }}"
+            fi
+          done

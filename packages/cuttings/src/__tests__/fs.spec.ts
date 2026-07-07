@@ -57,7 +57,7 @@ describe('@figmarine/cuttings - fs', () => {
 
       const written = vol.readFileSync(fileBasicLocation, 'utf8');
       expect(written).toBeDefined();
-      expect(written).toContain(`"label":"${fileBasic.meta.label}"`);
+      expect(written).toContain(`"label": "${fileBasic.meta.label}"`);
     });
 
     it('creates the folders where to write if required, and warns about it', ({
@@ -68,7 +68,7 @@ describe('@figmarine/cuttings - fs', () => {
 
       const written = vol.readFileSync(fileBasicLocation, 'utf8');
       expect(written).toBeDefined();
-      expect(written).toContain(`"label":"${fileBasic.meta.label}"`);
+      expect(written).toContain(`"label": "${fileBasic.meta.label}"`);
       expect(mockedLog).toHaveBeenCalledWith(
         expect.stringMatching(/directory .* does not exist, attempting to create/),
       );
@@ -88,8 +88,34 @@ describe('@figmarine/cuttings - fs', () => {
       const written = vol.readFileSync(fileBasicLocation, 'utf8');
       expect(written).toBeDefined();
       expect(written).not.toBe(priorFileContent);
-      expect(written).toContain(`"label":"${fileBasic.meta.label}"`);
+      expect(written).toContain(`"label": "${fileBasic.meta.label}"`);
       expect(mockedLog).toHaveBeenCalledWith(expect.stringMatching(/overwriting existing file/));
+    });
+
+    it('leaves the file untouched when only timestamps changed', ({
+      fileBasic,
+      fileBasicLocation,
+    }) => {
+      plantCutting(fileBasic, fileBasicLocation);
+      const firstWrite = vol.readFileSync(fileBasicLocation, 'utf8');
+
+      const rehydrated = structuredClone(fileBasic);
+      rehydrated.facets = rehydrated.facets.map((f) => ({ ...f, lastHydrated: 999999999 }));
+      plantCutting(rehydrated, fileBasicLocation);
+
+      expect(vol.readFileSync(fileBasicLocation, 'utf8')).toStrictEqual(firstWrite);
+      expect(mockedLog).toHaveBeenCalledWith(expect.stringMatching(/content unchanged/));
+    });
+
+    it('overwrites the file when content changed', ({ fileBasic, fileBasicLocation }) => {
+      plantCutting(fileBasic, fileBasicLocation);
+
+      const changed = structuredClone(fileBasic);
+      changed.data.files.naoned.version = '45';
+      plantCutting(changed, fileBasicLocation);
+
+      const written = JSON.parse(vol.readFileSync(fileBasicLocation, 'utf8').toString());
+      expect(written.data.files.naoned.version).toBe('45');
     });
 
     it('does not write `lastKnownFilePath` to a stored cutting', ({
@@ -178,6 +204,18 @@ describe('@figmarine/cuttings - fs', () => {
 
     it('fails if the location contained something else altogether', ({ fileBasicLocation }) => {
       vol.fromJSON({ [fileBasicLocation]: '{"name":"McParrot","isBird":true}' });
+      expect(() => digCutting(fileBasicLocation)).toThrowError(
+        'File did not match expected format',
+      );
+    });
+
+    it('fails if a stored file lost its core fields', ({ fileBasic, fileBasicLocation }) => {
+      // Hand-edits and bad merges must fail at load time, not deep inside
+      // consumers dereferencing the document tree.
+      const hollowed = structuredClone(fileBasic);
+      hollowed.data.files.naoned = {} as (typeof hollowed)['data']['files'][string];
+      vol.fromJSON({ [fileBasicLocation]: JSON.stringify(hollowed) });
+
       expect(() => digCutting(fileBasicLocation)).toThrowError(
         'File did not match expected format',
       );
