@@ -1,0 +1,86 @@
+# Scheduled Figma cutting refresh for CircleCI, powered by @figmarine/nursery.
+#
+# Setup:
+# 1. Merge this configuration into your repository's .circleci/config.yml
+#    (or use it as-is if you have no other CircleCI workflows).
+# 2. Create a CircleCI context named `figmarine` holding:
+#    - FIGMA_PERSONAL_ACCESS_TOKEN: a token with read access to the
+#      configured Figma files.
+#    - GITHUB_TOKEN: a token with `contents: write` and `pull-requests:
+#      write` on this repository, used to push the refresh branch and open
+#      a pull request. A fine-grained PAT or GitHub App token also makes
+#      the resulting PR trigger your CI, which GITHUB_TOKEN would not.
+# 3. Pin the @figmarine/nursery version below and let your dependency
+#    update tooling propose bumps: an unpinned npx run would execute
+#    whatever was last published, with your Figma token in its environment.
+version: 2.1
+
+jobs:
+  refresh-cuttings:
+    docker:
+      - image: cimg/node:22.22
+    steps:
+      - checkout
+      - run:
+          name: Refresh cuttings
+          # Pin to the version you have vetted, e.g. @figmarine/nursery@0.1.0.
+          command: npx --yes @figmarine/nursery@latest refresh
+      - run:
+          name: Open a pull request when cuttings changed
+          command: |
+            # git status catches new cuttings too, which git diff would not.
+            if [ -z "$(git status --porcelain -- .figmarine)" ]; then
+              echo "Cuttings are unchanged, nothing to do."
+              exit 0
+            fi
+
+            BRANCH=figmarine/refresh-cuttings
+            REPO_SLUG="${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}"
+
+            git config user.name "figmarine-nursery"
+            git config user.email "figmarine-nursery@users.noreply.github.com"
+            git checkout -B "$BRANCH"
+            git add .figmarine
+            git commit -m "chore(figma): Refresh cuttings"
+            # Plain --force: the branch is owned by this automation, and
+            # lease-based pushes reject anonymous URL remotes outright.
+            git push --force \
+              "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO_SLUG}.git" \
+              "$BRANCH"
+
+            # Open the PR unless one already exists for the branch.
+            EXISTING=$(curl -sf \
+              -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/${REPO_SLUG}/pulls?head=${CIRCLE_PROJECT_USERNAME}:${BRANCH}&state=open" \
+              | jq length)
+            if [ "$EXISTING" = "0" ]; then
+              jq -n \
+                --arg title "chore(figma): Refresh cuttings" \
+                --arg head "$BRANCH" \
+                --arg base "${CIRCLE_BRANCH}" \
+                --arg body "Automated refresh of the Figma cuttings in \`.figmarine/cuttings/\`. Review the diff to see what changed in the underlying Figma files." \
+                '{title: $title, head: $head, base: $base, body: $body}' \
+                | curl -sf -X POST \
+                  -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+                  -H "Accept: application/vnd.github+json" \
+                  -d @- \
+                  "https://api.github.com/repos/${REPO_SLUG}/pulls" > /dev/null
+              echo "Opened a pull request from ${BRANCH}."
+            else
+              echo "A pull request for ${BRANCH} already exists; branch updated."
+            fi
+
+workflows:
+  refresh-cuttings:
+    triggers:
+      - schedule:
+          # Weekday mornings, 06:00 UTC.
+          cron: '0 6 * * 1-5'
+          filters:
+            branches:
+              only:
+                - main
+    jobs:
+      - refresh-cuttings:
+          context: figmarine
