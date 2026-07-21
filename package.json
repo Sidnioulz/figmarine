@@ -43,17 +43,17 @@
     "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
-    "@anolilab/multi-semantic-release": "^2.0.6",
-    "@anolilab/semantic-release-pnpm": "^2.0.4",
-    "@semantic-release/changelog": "^6.0.3",
+    "@anolilab/multi-semantic-release": "^4.4.5",
+    "@anolilab/semantic-release-pnpm": "^8.1.16",
+    "@semantic-release/changelog": "^7.0.0",
     "@semantic-release/commit-analyzer": "^13.0.1",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/release-notes-generator": "^14.1.0",
+    "@semantic-release/git": "^11.0.0",
+    "@semantic-release/release-notes-generator": "^14.1.1",
     "husky": "^9.1.7",
     "lint-staged": "catalog:",
-    "prettier": "^3.6.2",
-    "semantic-release": "^24.2.9",
-    "turbo": "^2.5.8",
+    "prettier": "^3.9.6",
+    "semantic-release": "^25.0.8",
+    "turbo": "^2.10.5",
     "vitest": "catalog:"
   },
   "resolutions": {
