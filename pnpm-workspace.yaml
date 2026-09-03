@@ -5,7 +5,7 @@ packages:
 catalog:
   '@eslint/core': ^0.16.0
   '@eslint/json': ^0.13.2
-  '@faker-js/faker': ^10.1.0
+  '@faker-js/faker': ^10.5.0
   '@keyv/compress-gzip': ^2.0.3
   '@types/node': ^24.7.2
   '@vitest/coverage-istanbul': ^3.2.4
