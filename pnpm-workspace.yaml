@@ -35,6 +35,6 @@ catalog:
   typescript: ^5.9.3
   typescript-eslint: ^8.46.1
   vite: ^7.1.10
-  vitest: ^3.2.4
+  vitest: ^4.1.11
   yaml: ^2.8.1
   zod: ^4.1.12
